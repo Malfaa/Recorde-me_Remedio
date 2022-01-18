@@ -7,20 +7,20 @@ import androidx.room.RoomDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 
 @Database(entities = [ItemEntidade::class], version = 1, exportSchema = false)
-abstract class Database: RoomDatabase(){
-    abstract fun meuDao(): Dao
+abstract class LDatabase: RoomDatabase(){
+    abstract fun meuDao(): LDao
 
     private class DatabaseCallback : RoomDatabase.Callback()
 
     companion object{
         @Volatile
-        private var INSTANCE: com.malfaa.lembrete.room.Database? = null
+        private var INSTANCE: com.malfaa.lembrete.room.LDatabase? = null
 
-        fun recebaDatabase(context: Context): com.malfaa.lembrete.room.Database {
+        fun recebaDatabase(context: Context): com.malfaa.lembrete.room.LDatabase {
             return (INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    com.malfaa.lembrete.room.Database::class.java,
+                    com.malfaa.lembrete.room.LDatabase::class.java,
                     "database"
                 ).addCallback(DatabaseCallback()).build()
                 INSTANCE = instance

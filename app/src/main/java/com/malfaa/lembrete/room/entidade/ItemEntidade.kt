@@ -8,7 +8,8 @@ import java.sql.Date
 data class ItemEntidade(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val remedio: String,
-    val hora: String,
-    val data: Date
+    var remedio: String,
+    var hora: String,
+    var data: Date,
+    var nota: String
 )

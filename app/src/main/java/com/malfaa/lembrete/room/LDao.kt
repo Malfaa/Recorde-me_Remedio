@@ -6,7 +6,7 @@ import androidx.room.Dao
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 
 @Dao
-interface Dao {
+interface LDao {
     @Query("SELECT * FROM item")
     fun recebeInfos(): LiveData<List<ItemEntidade>>
 

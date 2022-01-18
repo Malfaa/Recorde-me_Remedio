@@ -1,13 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.AlterarFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical"
+        tools:context=".fragment.AdicionarFragment">
 
-</FrameLayout>
+
+        <TextView
+            android:id="@+id/remedioTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/distancia_entre_itens"
+            android:layout_gravity="center"
+            android:textSize="@dimen/font_adicao"
+            android:text="@string/remedio" />
+
+        <EditText
+            android:id="@+id/campoRemedio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/distancia_item_edittext"
+            android:layout_marginTop="@dimen/distancia_item_edittext"
+            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            android:autofillHints="no"
+            android:background="@drawable/edittext_corner_radius_azul"
+            android:ems="10"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/caixaExterior"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/distancia_item"
+            android:layout_marginEnd="@dimen/distancia_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/caixaInteriorHora"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/distancia_entre_itens"
+                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:textSize="@dimen/font_adicao"
+                    android:text="@string/hora" />
+
+                <Spinner
+                    android:id="@+id/horaSpinner"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:contentDescription="@string/descricaoSpinnerHora" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/caixaInteriorData"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/distancia_entre_itens"
+                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:textSize="@dimen/font_adicao"
+                    android:text="@string/data" />
+
+                <Spinner
+                    android:id="@+id/dataSpinner"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:contentDescription="@string/descricaoSpinnerData" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/notaText"
+            android:layout_marginTop="@dimen/distancia_entre_itens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_adicao"
+            android:layout_gravity=""
+            android:layout_marginStart="@dimen/distancia_item_edittext"
+            android:text="@string/nota" />
+
+        <EditText
+            android:id="@+id/campoNota"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/distancia_item_edittext"
+            android:layout_marginTop="@dimen/distancia_item_edittext"
+            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            android:layout_marginBottom="@dimen/distancia_entre_itens"
+            android:background="@drawable/edittext_corner_radius_azul"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/caixaDosBotoes"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/distancia_entre_itens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/retornar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:text="@string/retornar"
+                android:textColor="#4A148C" />
+
+            <Button
+                android:id="@+id/adicionar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:text="@string/adicionar"
+                android:textColor="#4A148C" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

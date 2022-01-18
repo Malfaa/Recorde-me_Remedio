@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragment.AdicionarFragment">
+
+
+        <TextView
+            android:id="@+id/remedioTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/distancia_entre_itens"
+            android:layout_gravity="center"
+            android:textSize="@dimen/font_adicao"
+            android:text="@string/remedio" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/distancia_item_edittext"
+            android:layout_marginStart="@dimen/distancia_item_edittext"
+            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            android:background="@drawable/edittext_corner_radius_azul"
+            android:ems="10"
+            android:inputType="text"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

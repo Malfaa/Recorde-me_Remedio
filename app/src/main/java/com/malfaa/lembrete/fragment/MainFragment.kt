@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.malfaa.lembrete.R
+import com.malfaa.lembrete.adapters.MainAdapter
 import com.malfaa.lembrete.databinding.MainFragmentBinding
 import com.malfaa.lembrete.viewmodel.MainViewModel
+import com.malfaa.lembrete.viewmodelfactory.MainViewModelFactory
 
 class MainFragment : Fragment() {
 
@@ -19,6 +22,7 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
+    private lateinit var viewModelFactory: MainViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +34,28 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val application = requireNotNull(this.activity).application
+        val datasource = com.malfaa.lembrete.room.LDatabase.recebaDatabase(application).meuDao()
 
+        viewModelFactory = MainViewModelFactory(datasource)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
+        val adapter = MainAdapter()
+        binding.recyclerview.adapter = adapter
+
+        viewModel.listaLembretes.observe(viewLifecycleOwner,{
+            adapter.submitList(it.toMutableList())
+        })
+
+
+        binding.adicionarLembrete.setOnClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+        }
     }
 
 }
-
+// TODO: 18/01/2022 https://stackoverflow.com/questions/50638093/how-to-change-actionbar-title-in-fragment-class-in-kotlin
 /*<androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -18,6 +18,9 @@
     <string name="todos_dias">Todos os dias</string>
 
     <string name="nota">Nota</string>
+    <string name="hora">Hora</string>
+    <string name="data">Data</string>
+
     <string name="lembrar">Lembrar</string>
     <string name="novo_lembrete">Novo Lembrete</string>
     <string name="adicionar">Adicionar</string>
@@ -51,5 +54,9 @@
         <item>@string/todos_dias</item>
         <item>@string/customizar</item>
     </string-array>
+
+    <string name="descricaoNota">Campo onde é colocado alguma descrição adicional do lembrete.</string>
+    <string name="descricaoSpinnerData">Campo de escolha das datas que serão selecionadas.</string>
+    <string name="descricaoSpinnerHora">Campo de escolha dos horarios que serão selecionados.</string>
 
 </resources>

@@ -30,10 +30,18 @@
         android:id="@+id/adicionarFragment"
         android:name="com.malfaa.lembrete.fragment.AdicionarFragment"
         tools:layout="@layout/adicionar_fragment"
-        android:label="AdicionarFragment" />
+        android:label="AdicionarFragment" >
+        <action
+            android:id="@+id/action_adicionarFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/alterarFragment"
         android:name="com.malfaa.lembrete.fragment.AlterarFragment"
         android:label="alterar_fragment"
-        tools:layout="@layout/alterar_fragment" />
+        tools:layout="@layout/alterar_fragment" >
+        <action
+            android:id="@+id/action_alterarFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
