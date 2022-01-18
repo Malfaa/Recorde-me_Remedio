@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.SplashScreen">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/azul_secundario"
+        tools:context=".fragment.SplashScreen">
 
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/logo_dist_top"
+            android:src="@drawable/ic_logo"
+            android:contentDescription="@string/lembrete" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/lembrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/lembrete_font_size"
+            android:textColor="@color/cinza_texto"
+            android:layout_marginTop="@dimen/lembrete_dist"
+            android:text="@string/lembrete" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -3,17 +3,20 @@
     <string name="lembrete">Lembrete</string>
     <string name="restam">Restam:</string>
     <string name="remedio">Remédio</string>
+
     <string name="customizar">Customizar…</string>
     <string name="quatro_horas">4 horas</string>
     <string name="seis_horas">6 horas</string>
     <string name="oito_horas">8 horas</string>
     <string name="doze_horas">12 horas</string>
     <string name="vintequatro_horas">24 horas</string>
+
     <string name="cinco_dias">5 dias</string>
     <string name="sete_dias">7 dias</string>
     <string name="uma_semana">1 semana</string>
     <string name="duas_semanas">2 semanas</string>
     <string name="todos_dias">Todos os dias</string>
+
     <string name="nota">Nota</string>
     <string name="lembrar">Lembrar</string>
     <string name="novo_lembrete">Novo Lembrete</string>
@@ -25,5 +28,28 @@
     <string name="alterar_lembrete">Alterar Lembrete</string>
     <string name="deletar_lembrete">Deletar Lembrete</string>
     <string name="deletar_descricao">Tem certeza que deseja deletar este lembrete?</string>
+
+    <string name="seis_em_seis">6 em 6 horas</string>
+    <string name="horario_restante">2 horas 34 min</string>
+    <string name="data_restante">4 dias</string>
+    
+    
+    <string-array name="list_horario">
+        <item>@string/quatro_horas</item>
+        <item>@string/seis_em_seis</item>
+        <item>@string/oito_horas</item>
+        <item>@string/doze_horas</item>
+        <item>@string/vintequatro_horas</item>
+        <item>@string/customizar</item>
+    </string-array>
+
+    <string-array name="list_datas">
+        <item>@string/cinco_dias</item>
+        <item>@string/sete_dias</item>
+        <item>@string/uma_semana</item>
+        <item>@string/duas_semanas</item>
+        <item>@string/todos_dias</item>
+        <item>@string/customizar</item>
+    </string-array>
 
 </resources>

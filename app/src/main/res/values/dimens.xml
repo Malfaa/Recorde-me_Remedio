@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lembrete_dist">15</dimen>
+    <dimen name="logo_dist_top">80</dimen>
+
+    <dimen name="lembrete_font_size">24</dimen>
+
+    <dimen name="distancia_item_edittext">16</dimen>
+    <dimen name="distancia_item">8</dimen>
+    <dimen name="distancia_entre_remedio_e_restam">30</dimen>
+
+    <dimen name="restam_dist_item">16</dimen>
+</resources>

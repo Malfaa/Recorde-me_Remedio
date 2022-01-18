@@ -9,5 +9,31 @@
         android:id="@+id/splashScreen"
         android:name="com.malfaa.lembrete.fragment.SplashScreen"
         android:label="splash_screen_fragment"
-        tools:layout="@layout/splash_screen_fragment" />
+        tools:layout="@layout/splash_screen_fragment" >
+        <action
+            android:id="@+id/action_splashScreen_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.malfaa.lembrete.fragment.MainFragment"
+        tools:layout="@layout/main_fragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_adicionarFragment"
+            app:destination="@id/adicionarFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_alterarFragment"
+            app:destination="@id/alterarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adicionarFragment"
+        android:name="com.malfaa.lembrete.fragment.AdicionarFragment"
+        tools:layout="@layout/adicionar_fragment"
+        android:label="AdicionarFragment" />
+    <fragment
+        android:id="@+id/alterarFragment"
+        android:name="com.malfaa.lembrete.fragment.AlterarFragment"
+        android:label="alterar_fragment"
+        tools:layout="@layout/alterar_fragment" />
 </navigation>
