@@ -1,7 +1,6 @@
 package com.malfaa.lembrete.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.room.Dao
 import com.malfaa.lembrete.room.LDao
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import kotlinx.coroutines.*
@@ -21,4 +20,5 @@ class AdicionarViewModel(private val dao: LDao)  : ViewModel() {
             valor
         }
     }
+
 }

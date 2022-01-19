@@ -1,22 +1,24 @@
 package com.malfaa.lembrete.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
+import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
 
-class AdicionarFragment : Fragment() {
+class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() = AdicionarFragment()
@@ -31,6 +33,9 @@ class AdicionarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.adicionar_fragment, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Novo Lembrete"
+
         return binding.root
     }
 
@@ -47,9 +52,7 @@ class AdicionarFragment : Fragment() {
             R.array.list_datas,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             binding.dataSpinner?.adapter = adapter
         }
 
@@ -58,14 +61,19 @@ class AdicionarFragment : Fragment() {
             R.array.list_horario,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             binding.horaSpinner?.adapter = adapter
         }
 
+
         binding.adicionar?.setOnClickListener {
-            //viewModel.adicionandoLembrete()
+//            viewModel.adicionandoLembrete(ItemEntidade(
+//                0, binding.campoRemedio.toString(),
+//                binding.horaInicialValue.toString(),
+//                binding.horaSpinner?.onItemSelectedListener.toString(),
+//                binding.dataSpinner?.onItemSelectedListener,
+//                binding.notaText.toString())
+//            )
         }
 
         binding.retornar?.setOnClickListener {
@@ -73,17 +81,16 @@ class AdicionarFragment : Fragment() {
         }
 
     }
-
     // TODO: 18/01/2022 adicionar qual o horario incial do alarme, pesquisar como programar um alarme, como pegar valor restante e notificação
-    class AcaoSpinner: AdapterView.OnItemSelectedListener{
-        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            // An item was selected. You can retrieve the selected item using
-            // parent.getItemAtPosition(pos)
 
-        }
-
-        override fun onNothingSelected(p0: AdapterView<*>?) {
-            TODO("Not yet implemented")
-        }
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        p0?.getItemAtPosition(p2)
     }
+    //binding.dataSpinner?.onItemSelectedListener = this
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        p0?.emptyView
+    }
+
 }

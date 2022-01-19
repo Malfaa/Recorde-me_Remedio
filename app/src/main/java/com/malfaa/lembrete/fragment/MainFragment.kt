@@ -1,11 +1,15 @@
 package com.malfaa.lembrete.fragment
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.malfaa.lembrete.R
@@ -29,6 +33,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Lembrar"
+
         return binding.root
     }
 
@@ -48,29 +55,22 @@ class MainFragment : Fragment() {
             adapter.submitList(it.toMutableList())
         })
 
+        viewModel.alarme()
 
         binding.adicionarLembrete.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            val a = Intent(Intent.ACTION_MAIN)
+            a.addCategory(Intent.CATEGORY_HOME)
+            a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(a)
+        }
+        callback.isEnabled
+
+
     }
 
 }
-// TODO: 18/01/2022 https://stackoverflow.com/questions/50638093/how-to-change-actionbar-title-in-fragment-class-in-kotlin
-/*<androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/azul_primario"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView">
-
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/lembrar"
-                android:textColor="@color/white"
-                android:textSize="40sp" />
-        </androidx.cardview.widget.CardView>*/
+// TODO: 19/01/2022 talvez abrir um pop-up com escolha entre deletar e alterar o lembrete  ou usar Swipe p/ ação, esquerda altera direita deleta (vice-versa)

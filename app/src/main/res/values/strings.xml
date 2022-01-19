@@ -20,6 +20,7 @@
     <string name="nota">Nota</string>
     <string name="hora">Hora</string>
     <string name="data">Data</string>
+    <string name="hora_inicial">Iniciar em</string>
 
     <string name="lembrar">Lembrar</string>
     <string name="novo_lembrete">Novo Lembrete</string>
@@ -59,4 +60,5 @@
     <string name="descricaoSpinnerData">Campo de escolha das datas que serão selecionadas.</string>
     <string name="descricaoSpinnerHora">Campo de escolha dos horarios que serão selecionados.</string>
 
+    <string name="descricao_hora_inicial">Escolha qual horário o alarme terá seu ínicio.</string>
 </resources>

@@ -48,14 +48,43 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/caixaInteriorHora"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:layout_marginStart="@dimen/distancia_entre_itens"
                 android:layout_marginEnd="@dimen/distancia_entre_itens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/hora"
+                    android:id="@+id/horaInicialText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:textSize="@dimen/font_adicao"
+                    android:text="@string/hora_inicial" />
+
+                <EditText
+                    android:id="@+id/horaInicialValue"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:inputType="time"
+                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:contentDescription="@string/descricao_hora_inicial"
+                    android:autofillHints="no"
+                    tools:ignore="LabelFor" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/caixaInteriorData"
+                android:orientation="vertical"
+                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/horaText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -73,35 +102,25 @@
                     android:contentDescription="@string/descricaoSpinnerHora" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/caixaInteriorData"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:layout_marginEnd="@dimen/distancia_entre_itens"
-                android:layout_marginStart="@dimen/distancia_entre_itens"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:textSize="@dimen/font_adicao"
-                    android:text="@string/data" />
-
-                <Spinner
-                    android:id="@+id/dataSpinner"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:background="@drawable/edittext_corner_radius_azul"
-                    android:contentDescription="@string/descricaoSpinnerData" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/distancia_item_edittext"
+            android:textSize="@dimen/font_adicao"
+            android:text="@string/data" />
+
+        <Spinner
+            android:id="@+id/dataSpinner"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/distancia_item_edittext"
+            android:background="@drawable/edittext_corner_radius_azul"
+            android:contentDescription="@string/descricaoSpinnerData" />
 
         <TextView
             android:id="@+id/notaText"
@@ -116,7 +135,7 @@
         <EditText
             android:id="@+id/campoNota"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_marginStart="@dimen/distancia_item_edittext"
             android:layout_marginTop="@dimen/distancia_item_edittext"
             android:layout_marginEnd="@dimen/distancia_item_edittext"
@@ -141,8 +160,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_entre_itens"
                 android:layout_marginEnd="@dimen/distancia_entre_itens"
-                android:text="@string/retornar"
-                android:textColor="#4A148C" />
+                android:backgroundTint="@color/cinza_texto"
+                android:text="@string/retornar" />
 
             <Button
                 android:id="@+id/adicionar"
@@ -150,8 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_entre_itens"
                 android:layout_marginEnd="@dimen/distancia_entre_itens"
-                android:text="@string/adicionar"
-                android:textColor="#4A148C" />
+                android:text="@string/adicionar"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
