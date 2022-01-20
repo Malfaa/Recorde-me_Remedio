@@ -62,17 +62,14 @@
                     android:textSize="@dimen/font_adicao"
                     android:text="@string/hora_inicial" />
 
-                <EditText
+                <Button
                     android:id="@+id/horaInicialValue"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:inputType="time"
-                    android:background="@drawable/edittext_corner_radius_azul"
-                    android:contentDescription="@string/descricao_hora_inicial"
-                    android:autofillHints="no"
-                    tools:ignore="LabelFor" />
+                    android:minWidth="50dp"
+                    android:background="@drawable/edittext_corner_radius_azul" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -94,7 +91,8 @@
 
                 <Spinner
                     android:id="@+id/horaSpinner"
-                    android:layout_width="100dp"
+                    android:minWidth="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -115,7 +113,8 @@
 
         <Spinner
             android:id="@+id/dataSpinner"
-            android:layout_width="100dp"
+            android:minWidth="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/distancia_item_edittext"

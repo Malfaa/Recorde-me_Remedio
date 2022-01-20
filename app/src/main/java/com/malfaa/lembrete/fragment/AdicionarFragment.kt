@@ -1,6 +1,9 @@
 package com.malfaa.lembrete.fragment
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +15,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.malfaa.lembrete.R
+import com.malfaa.lembrete.alarme
+import com.malfaa.lembrete.conversorStringEmMinutos
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.properties.Delegates
 
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
-        fun newInstance() = AdicionarFragment()
+        fun adicionarInstance() = AdicionarFragment()
+
+        var horaEscolhida by Delegates.notNull<Long>()
+        var minutoEscolhido by Delegates.notNull<Long>()
+        lateinit var horarioFinal: String
     }
 
     private lateinit var binding: AdicionarFragmentBinding
@@ -39,6 +51,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return binding.root
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
@@ -53,7 +66,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.dataSpinner?.adapter = adapter
+            binding.dataSpinner.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -62,21 +75,44 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.horaSpinner?.adapter = adapter
+            binding.horaSpinner.adapter = adapter
         }
 
+        // FIXME: 19/01/2022 estranho aqui
+        binding.horaInicialValue.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                val text = SimpleDateFormat("HH:mm").format(cal.time)
+                //text.toLong()
+                horaEscolhida = hour.toLong()
+                minutoEscolhido = minute.toLong()
+                horarioFinal = text//"$horaEscolhida:$minutoEscolhido"
+            }
+            TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            //binding.horaInicialValue.text = horarioFinal
+        } // FIXME: 20/01/2022 talvez trocar o botão por outra tag(?)
 
-        binding.adicionar?.setOnClickListener {
-//            viewModel.adicionandoLembrete(ItemEntidade(
-//                0, binding.campoRemedio.toString(),
-//                binding.horaInicialValue.toString(),
-//                binding.horaSpinner?.onItemSelectedListener.toString(),
-//                binding.dataSpinner?.onItemSelectedListener,
-//                binding.notaText.toString())
-//            )
+
+        binding.adicionar.setOnClickListener {
+            try {
+                viewModel.adicionandoLembrete(ItemEntidade(
+                    0, binding.campoRemedio.toString(),
+                    binding.horaInicialValue.toString(),
+                    binding.horaSpinner.onItemSelectedListener.toString().toLong(),
+                    binding.dataSpinner.onItemSelectedListener.toString().toLong(),
+                    binding.notaText.toString())
+                )
+
+                alarme(horaEscolhida, minutoEscolhido, conversorStringEmMinutos(horarioFinal.toInt()))//(binding.horaSpinner.onItemSelectedListener.toString().toInt()))
+
+            }catch (e:Exception){
+                Log.d("error", e.toString())
+            }
         }
 
-        binding.retornar?.setOnClickListener {
+        binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
         }
 
@@ -84,8 +120,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // TODO: 18/01/2022 adicionar qual o horario incial do alarme, pesquisar como programar um alarme, como pegar valor restante e notificação
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
         p0?.getItemAtPosition(p2)
     }
     //binding.dataSpinner?.onItemSelectedListener = this
@@ -93,4 +127,16 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 
+
 }
+
+// TODO: 19/01/2022 arrumar large_adicionar
+
+//        mPickTimeBtn.setOnClickListener {
+//            val cal = Calendar.getInstance()
+//            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+//                cal.set(Calendar.HOUR_OF_DAY, hour)
+//                cal.set(Calendar.MINUTE, minute)
+//                textView.text = SimpleDateFormat("HH:mm").format(cal.time)
+//            }
+//            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()

@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.malfaa.lembrete.room.entidade.ItemEntidade" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +23,7 @@
             android:layout_marginEnd="60dp"
             android:background="@drawable/edittext_corner_radius"
             android:hint="@string/remedio"
+            app:setRemedio="@{item.remedio}"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/restam"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +37,7 @@
             android:layout_marginTop="@dimen/distancia_item"
             android:background="@drawable/edittext_corner_radius"
             android:hint="@string/seis_em_seis"
+            app:setHorario="@{item.hora}"
             app:layout_constraintStart_toStartOf="@+id/remedio"
             app:layout_constraintTop_toBottomOf="@+id/remedio" />
 
@@ -46,6 +50,7 @@
             android:textAlignment="center"
             android:background="@drawable/edittext_corner_radius"
             android:hint="@string/uma_semana"
+            app:setData="@{item.data}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/horario"
             app:layout_constraintStart_toStartOf="@+id/horario"
@@ -59,6 +64,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_corner_radius"
             android:hint="@string/nota"
+            app:setNota="@{item.nota}"
             app:layout_constraintBottom_toBottomOf="@+id/data"
             app:layout_constraintEnd_toEndOf="@+id/remedio"
             app:layout_constraintStart_toEndOf="@+id/horario"

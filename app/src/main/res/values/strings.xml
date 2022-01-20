@@ -19,7 +19,7 @@
 
     <string name="nota">Nota</string>
     <string name="hora">Hora</string>
-    <string name="data">Data</string>
+    <string name="data">Período</string>
     <string name="hora_inicial">Iniciar em</string>
 
     <string name="lembrar">Lembrar</string>
@@ -34,20 +34,28 @@
     <string name="deletar_descricao">Tem certeza que deseja deletar este lembrete?</string>
 
     <string name="seis_em_seis">6 em 6 horas</string>
+    <string name="quatro_em_quatro">4 em 4 horas</string>
+    <string name="doze_em_doze">12 em 12 horas</string>
+    <string name="oito_em_oito">8 em 8 horas</string>
+    <string name="vintequtro_em_vintequatro">24 em 24 horas</string>
+
+
     <string name="horario_restante">2 horas 34 min</string>
     <string name="data_restante">4 dias</string>
     
     
     <string-array name="list_horario">
-        <item>@string/quatro_horas</item>
+        <item>…</item>
+        <item>@string/quatro_em_quatro</item>
         <item>@string/seis_em_seis</item>
-        <item>@string/oito_horas</item>
-        <item>@string/doze_horas</item>
-        <item>@string/vintequatro_horas</item>
+        <item>@string/oito_em_oito</item>
+        <item>@string/doze_em_doze</item>
+        <item>@string/vintequtro_em_vintequatro</item>
         <item>@string/customizar</item>
     </string-array>
 
     <string-array name="list_datas">
+        <item>…</item>
         <item>@string/cinco_dias</item>
         <item>@string/sete_dias</item>
         <item>@string/uma_semana</item>

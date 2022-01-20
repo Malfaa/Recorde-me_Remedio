@@ -21,7 +21,7 @@ import com.malfaa.lembrete.viewmodelfactory.MainViewModelFactory
 class MainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun mainInstance() = MainFragment()
     }
 
     private lateinit var viewModel: MainViewModel
@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
             adapter.submitList(it.toMutableList())
         })
 
-        viewModel.alarme()
+        //viewModel.alarme()
 
         binding.adicionarLembrete.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())

@@ -20,9 +20,9 @@
                 android:id="@+id/remedioTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/l_distancia_itens"
+                android:layout_marginTop="@dimen/s_distancia_itens"
                 android:layout_gravity="center"
-                android:textSize="@dimen/font_adicao_large"
+                android:textSize="@dimen/font_adicao"
                 android:text="@string/remedio" />
 
             <EditText
@@ -51,8 +51,8 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/caixaInteriorHora"
                     android:orientation="vertical"
-                    android:layout_marginStart="@dimen/l_distancia_itens"
-                    android:layout_marginEnd="@dimen/l_distancia_itens"
+                    android:layout_marginStart="@dimen/s_distancia_itens"
+                    android:layout_marginEnd="@dimen/s_distancia_itens"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -61,29 +61,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/l_distancia_itens"
-                        android:textSize="@dimen/font_adicao_large"
+                        android:layout_marginTop="@dimen/s_distancia_itens"
+                        android:textSize="@dimen/font_adicao"
                         android:text="@string/hora_inicial" />
 
-                    <EditText
+                    <Button
                         android:id="@+id/horaInicialValue"
-                        android:minWidth="150dp"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:inputType="time"
-                        android:background="@drawable/edittext_corner_radius_azul"
-                        android:contentDescription="@string/descricao_hora_inicial"
-                        android:autofillHints="no"
-                        tools:ignore="LabelFor" />
+                        android:minWidth="50dp"
+                        android:background="@drawable/edittext_corner_radius_azul" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/caixaInteriorData"
                     android:orientation="vertical"
-                    android:layout_marginEnd="@dimen/l_distancia_itens"
-                    android:layout_marginStart="@dimen/l_distancia_itens"
+                    android:layout_marginEnd="@dimen/s_distancia_itens"
+                    android:layout_marginStart="@dimen/s_distancia_itens"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
@@ -92,8 +88,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/l_distancia_itens"
-                        android:textSize="@dimen/font_adicao_large"
+                        android:layout_marginTop="@dimen/s_distancia_itens"
+                        android:textSize="@dimen/font_adicao"
                         android:text="@string/hora" />
 
                     <Spinner
@@ -101,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
-                        android:minWidth="150dp"
+                        android:minWidth="50dp"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerHora" />
@@ -115,13 +111,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:textSize="@dimen/font_adicao_large"
+                android:textSize="@dimen/font_adicao"
                 android:text="@string/data" />
 
             <Spinner
                 android:id="@+id/dataSpinner"
                 android:layout_width="wrap_content"
-                android:minWidth="180dp"
+                android:minWidth="120dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -130,10 +126,10 @@
 
             <TextView
                 android:id="@+id/notaText"
-                android:layout_marginTop="@dimen/l_distancia_itens"
+                android:layout_marginTop="@dimen/s_distancia_itens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_adicao_large"
+                android:textSize="@dimen/font_adicao"
                 android:layout_gravity=""
                 android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:text="@string/nota" />
@@ -141,7 +137,7 @@
             <EditText
                 android:id="@+id/campoNota"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
                 android:layout_marginEnd="@dimen/distancia_item_edittext"
@@ -156,26 +152,25 @@
                 android:id="@+id/caixaDosBotoes"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/l_distancia_itens"
+                android:layout_marginTop="@dimen/s_distancia_itens"
+                android:layout_marginBottom="@dimen/s_distancia_itens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/retornar"
-                    android:layout_width="250dp"
-                    android:layout_height="80dp"
-                    android:textSize="@dimen/font_adicao"
-                    android:layout_marginStart="@dimen/distancia_entre_itens"
-                    android:layout_marginEnd="@dimen/font_adicao_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/s_distancia_itens"
+                    android:layout_marginEnd="@dimen/s_distancia_itens"
                     android:backgroundTint="@color/cinza_texto"
                     android:text="@string/retornar" />
 
                 <Button
                     android:id="@+id/adicionar"
-                    android:layout_width="250dp"
-                    android:textSize="@dimen/font_adicao"
-                    android:layout_height="80dp"
-                    android:layout_marginEnd="@dimen/font_adicao_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/s_distancia_itens"
                     android:text="@string/adicionar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

@@ -15,9 +15,8 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
             binding.data.text = item.data.toString()
-            binding.horario.text = item.hora
+            binding.horario.text = item.hora.toString()
             binding.nota.text = item.nota
-
 
             binding.executePendingBindings()
         }
