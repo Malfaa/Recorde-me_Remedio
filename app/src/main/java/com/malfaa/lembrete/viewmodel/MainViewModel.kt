@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.malfaa.lembrete.fragment.MainFragment
-import com.malfaa.lembrete.fragment.MainFragment.Companion.mainInstance
 import com.malfaa.lembrete.room.LDao
 import java.util.*
 

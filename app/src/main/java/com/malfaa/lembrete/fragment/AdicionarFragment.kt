@@ -1,7 +1,11 @@
 package com.malfaa.lembrete.fragment
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,9 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.malfaa.lembrete.R
-import com.malfaa.lembrete.alarme
-import com.malfaa.lembrete.conversorStringEmMinutos
+import com.malfaa.lembrete.*
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
@@ -33,8 +35,12 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         var horaEscolhida by Delegates.notNull<Long>()
         var minutoEscolhido by Delegates.notNull<Long>()
-        lateinit var horarioFinal: String
+        var horarioFinal: String = "" // FIXME: 20/01/2022 arrumar aqui
     }
+
+    private var alarmMgr: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
+
 
     private lateinit var binding: AdicionarFragmentBinding
     private lateinit var viewModel: AdicionarViewModel
@@ -78,36 +84,42 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.horaSpinner.adapter = adapter
         }
 
-        // FIXME: 19/01/2022 estranho aqui
         binding.horaInicialValue.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
                 val text = SimpleDateFormat("HH:mm").format(cal.time)
-                //text.toLong()
                 horaEscolhida = hour.toLong()
                 minutoEscolhido = minute.toLong()
-                horarioFinal = text//"$horaEscolhida:$minutoEscolhido"
+                Log.d("Valores Horarios", "$horaEscolhida e $minutoEscolhido")
+                horarioFinal = text
             }
             TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-            //binding.horaInicialValue.text = horarioFinal
-        } // FIXME: 20/01/2022 talvez trocar o botão por outra tag(?)
-
+            Log.d("Valor Relógio", horarioFinal)
+        }
 
         binding.adicionar.setOnClickListener {
             try {
-                viewModel.adicionandoLembrete(ItemEntidade(
-                    0, binding.campoRemedio.toString(),
-                    binding.horaInicialValue.toString(),
-                    binding.horaSpinner.onItemSelectedListener.toString().toLong(),
-                    binding.dataSpinner.onItemSelectedListener.toString().toLong(),
-                    binding.notaText.toString())
+                Log.d("Spinner", binding.horaSpinner.selectedItem.toString())
+                alarme(
+                    horaEscolhida,
+                    minutoEscolhido,
+                    conversorStringEmMinutos(binding.horaSpinner.selectedItem.toString())
                 )
-
-                alarme(horaEscolhida, minutoEscolhido, conversorStringEmMinutos(horarioFinal.toInt()))//(binding.horaSpinner.onItemSelectedListener.toString().toInt()))
-
-            }catch (e:Exception){
+                viewModel.adicionandoLembrete(
+                    ItemEntidade(
+                        0,
+                        binding.campoRemedio.text.toString(),
+                        horarioFinal,
+                        binding.horaSpinner.selectedItem.toString(),
+                        binding.dataSpinner.selectedItem.toString(),
+                        binding.notaText.text.toString()
+                    )
+                )
+                this.findNavController()
+                    .navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
+            }catch (e: Exception){
                 Log.d("error", e.toString())
             }
         }
@@ -115,9 +127,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
         }
-
     }
-    // TODO: 18/01/2022 adicionar qual o horario incial do alarme, pesquisar como programar um alarme, como pegar valor restante e notificação
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.getItemAtPosition(p2)
@@ -127,16 +137,30 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun alarme(hora: Long, minutos: Long, horario: Long) { //mainviewmodel    horario é em millis, logo, valor tem que ser long
+        alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(
+            requireContext(), MainFragment::class.java).let { intent ->
+            PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
+        }
 
-}
+        // Set the alarm to start at 8:30 a.m.
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, hora.toInt())
+            set(Calendar.MINUTE, minutos.toInt())
+        }
 
-// TODO: 19/01/2022 arrumar large_adicionar
+        // setRepeating() lets you specify a precise custom interval--in this case,
+        // 20 minutes.
+        alarmMgr?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000
+            alarmIntent
+        )
+    }
 
-//        mPickTimeBtn.setOnClickListener {
-//            val cal = Calendar.getInstance()
-//            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-//                cal.set(Calendar.HOUR_OF_DAY, hour)
-//                cal.set(Calendar.MINUTE, minute)
-//                textView.text = SimpleDateFormat("HH:mm").format(cal.time)
-//            }
-//            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+}// TODO: 19/01/2022 arrumar large_adicionar
+// FIXME: 20/01/2022 alarme num funfa

@@ -23,7 +23,7 @@
             android:id="@+id/action_mainFragment_to_adicionarFragment"
             app:destination="@id/adicionarFragment"
             app:enterAnim="@anim/slide_down"
-            app:exitAnim="@anim/slide_up_out" />
+            app:exitAnim="@anim/slide_down_out" />
         <action
             android:id="@+id/action_mainFragment_to_alterarFragment"
             app:destination="@id/alterarFragment" />
@@ -37,7 +37,7 @@
             android:id="@+id/action_adicionarFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/slide_down_out" />
+            app:exitAnim="@anim/slide_up_out" />
     </fragment>
     <fragment
         android:id="@+id/alterarFragment"

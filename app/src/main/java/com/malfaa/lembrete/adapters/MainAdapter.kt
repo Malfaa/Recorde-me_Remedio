@@ -10,8 +10,7 @@ import com.malfaa.lembrete.databinding.ItemLembreteBinding
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 
 class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCallBack()) {
-    class ViewHolder private constructor(private val binding: ItemLembreteBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
             binding.data.text = item.data.toString()
@@ -20,8 +19,6 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
 
             binding.executePendingBindings()
         }
-
-        // TODO: 18/01/2022 adicionar onclick pra entrar no alterar
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,17 +27,6 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-    }
-
-
-
     class ItemDiffCallBack: DiffUtil.ItemCallback<ItemEntidade>(){
         override fun areItemsTheSame(oldItem: ItemEntidade, newItem: ItemEntidade): Boolean {
             return oldItem == newItem
@@ -51,4 +37,14 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             return oldItem === newItem
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+    }
+
 }
