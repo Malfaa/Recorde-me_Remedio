@@ -1,17 +1,12 @@
 package com.malfaa.lembrete
 
-import android.annotation.SuppressLint
-import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.malfaa.lembrete.fragment.MainFragment
-import com.malfaa.lembrete.fragment.MainFragment.Companion.mainInstance
-import java.util.*
 
 class Notificaticao : BroadcastReceiver(){
 

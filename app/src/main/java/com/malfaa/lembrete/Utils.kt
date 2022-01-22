@@ -56,6 +56,18 @@ fun conversorStringEmMinutos(valor: String): Long{
     }
 }
 
+fun conversorStringEmId(valor: String): Int{
+    return when(valor){
+        "4 em 4 horas" -> 1
+        "6 em 6 horas" -> 2
+        "8 em 8 horas" -> 3
+        "12 em 12 horas"-> 4
+        "24 em 24 horas" -> 5
+        "Customizar..." -> 6
+        else -> 0
+    }
+}
+
 @BindingAdapter("setRemedio")
 fun TextView.setRemedio(item: String){
     text = item

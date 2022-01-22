@@ -11,11 +11,11 @@ interface LDao {
     fun recebeInfos(): LiveData<List<ItemEntidade>>
 
     @Insert
-    suspend fun adicionaLembrete(nota: ItemEntidade)
+    suspend fun adicionaLembrete(item: ItemEntidade)
 
     @Update
-    suspend fun atualizaLembrete(nota: ItemEntidade)
+    suspend fun atualizaLembrete(item: ItemEntidade)
 
     @Delete
-    suspend fun deletarLembrete(nota: ItemEntidade)
+    suspend fun deletarLembrete(item: ItemEntidade)
 }

@@ -151,7 +151,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             set(Calendar.HOUR_OF_DAY, hora.toInt())
             set(Calendar.MINUTE, minutos.toInt())
         }
-
+// TODO: 21/01/2022 como linkar a notificação com o disparo do alarme?
         // setRepeating() lets you specify a precise custom interval--in this case,
         // 20 minutes.
         alarmMgr?.setRepeating(

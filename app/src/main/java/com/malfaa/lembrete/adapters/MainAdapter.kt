@@ -7,14 +7,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.malfaa.lembrete.databinding.ItemLembreteBinding
+import com.malfaa.lembrete.fragment.MainFragment.Companion.lembreteDestino
 import com.malfaa.lembrete.room.entidade.ItemEntidade
+import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
+import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.deletar
 
 class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCallBack()) {
-    class ViewHolder private constructor(private val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
+
+//    private lateinit var aListener: onItemClickListener
+
+    class ViewHolder private constructor(val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
-            binding.data.text = item.data.toString()
-            binding.horario.text = item.hora.toString()
+            binding.data.text = item.data
+            binding.horario.text = item.hora
             binding.nota.text = item.nota
 
             binding.executePendingBindings()
@@ -27,6 +33,7 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             }
         }
     }
+
     class ItemDiffCallBack: DiffUtil.ItemCallback<ItemEntidade>(){
         override fun areItemsTheSame(oldItem: ItemEntidade, newItem: ItemEntidade): Boolean {
             return oldItem == newItem
@@ -37,6 +44,24 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             return oldItem === newItem
         }
     }
+//
+//    interface onItemClickListener{
+//
+//        fun onItemClick(position: Int)
+//
+//    }
+//
+//    fun setOnClickListener(listener: onItemClickListener){
+//        aListener = listener
+//    }
+
+//    fun deletarLembrete(pos: Int){
+//        deletar = true
+//    }
+//
+//    fun alterarLembrete(pos: Int){
+//        alterar = true
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -45,6 +70,19 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+
+        holder.binding.lembrete.setOnClickListener {
+            alterar.value = true
+            lembreteDestino.value = item
+        }
+
+        holder.binding.lembrete.setOnLongClickListener{
+            deletar.value = true
+            lembreteDestino.value = item
+            true
+        }
     }
+
+
 
 }
