@@ -61,7 +61,6 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:maxWidth="40dp"
             android:maxLines="3"
             android:background="@drawable/edittext_corner_radius"
             android:hint="@string/nota"

@@ -1,16 +1,9 @@
 package com.malfaa.lembrete
 
-import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.malfaa.lembrete.fragment.MainFragment
-import com.malfaa.lembrete.room.entidade.ItemEntidade
-import java.util.*
 
 private var alarmMgr: AlarmManager? = null
 private lateinit var alarmIntent: PendingIntent
@@ -68,6 +61,43 @@ fun conversorStringEmId(valor: String): Int{
     }
 }
 
+// TESTE ------------
+
+fun conversorPosEmMinutos(pos: Int): Long{
+    return when(pos){
+        0 -> 240
+        1 -> 360
+        2 -> 480
+        3-> 720
+        4 -> 1440
+        5 -> 1
+        else -> 0
+    }
+}
+
+fun conversorPosEmData(valor: Int): String{
+    return when(valor){
+        1 -> "5 dias"
+        2 -> "7 dias"
+        3-> "1 semana"
+        4-> "2 semanas"
+        5-> "Todos os dias"
+        6-> "Customizar..."
+        else -> ""
+    }
+}
+fun conversorPosEmHoras(valor: Int): String{
+    return when(valor){
+        1 -> "4 em 4 horas"
+        2 -> "6 em 6 horas"
+        3-> "8 em 8 horas"
+        4-> "12 em 12 horas"
+        5-> "24 em 24 horas"
+        6-> "Customizar..."
+        else -> ""
+    }
+}
+
 @BindingAdapter("setRemedio")
 fun TextView.setRemedio(item: String){
     text = item
@@ -88,6 +118,10 @@ fun TextView.setNota(item: String){
     text = item
 }
 
+@BindingAdapter("setTexto")
+fun TextView.setHoraInicial(item: String?){
+    this.text = item ?: ""
+}
 
 // FIXME: 20/01/2022 adicionei vários setters no "item_lembrete.xml"
 //todo https://www.google.com/search?client=firefox-b-d&q=kotlin+notification+

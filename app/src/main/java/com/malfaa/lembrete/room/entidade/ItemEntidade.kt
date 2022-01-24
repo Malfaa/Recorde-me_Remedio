@@ -14,7 +14,7 @@ data class ItemEntidade(
     val id: Long,
     var remedio: String,
     var horaInicial: String,
-    var hora: String,
-    var data: String,
+    var hora: Int,
+    var data: Int,
     var nota: String
 ): Parcelable

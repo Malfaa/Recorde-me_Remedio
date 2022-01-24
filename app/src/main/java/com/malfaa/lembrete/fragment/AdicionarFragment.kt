@@ -13,12 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.malfaa.lembrete.*
+import com.malfaa.lembrete.R
+import com.malfaa.lembrete.conversorStringEmMinutos
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
@@ -31,11 +33,8 @@ import kotlin.properties.Delegates
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
-        fun adicionarInstance() = AdicionarFragment()
-
         var horaEscolhida by Delegates.notNull<Long>()
         var minutoEscolhido by Delegates.notNull<Long>()
-        var horarioFinal: String = "" // FIXME: 20/01/2022 arrumar aqui
     }
 
     private var alarmMgr: AlarmManager? = null
@@ -86,17 +85,19 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.horaInicialValue.setOnClickListener {
             val cal = Calendar.getInstance()
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
                 val text = SimpleDateFormat("HH:mm").format(cal.time)
                 horaEscolhida = hour.toLong()
                 minutoEscolhido = minute.toLong()
                 Log.d("Valores Horarios", "$horaEscolhida e $minutoEscolhido")
-                horarioFinal = text
+                viewModel.horarioFinal.value = text
+                Log.d("Valor HorarioFinal", viewModel.horarioFinal.value.toString())
             }
             TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-            Log.d("Valor Relógio", horarioFinal)
+            Log.d("Valor Relógio", viewModel.horarioFinal.value.toString())
+
         }
 
         binding.adicionar.setOnClickListener {
@@ -111,10 +112,10 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     ItemEntidade(
                         0,
                         binding.campoRemedio.text.toString(),
-                        horarioFinal,
-                        binding.horaSpinner.selectedItem.toString(),
-                        binding.dataSpinner.selectedItem.toString(),
-                        binding.notaText.text.toString()
+                        viewModel.horarioFinal.value.toString(),
+                        binding.horaSpinner.selectedItemPosition,
+                        binding.dataSpinner.selectedItemPosition,
+                        binding.campoNota.text.toString()
                     )
                 )
                 this.findNavController()
@@ -127,10 +128,17 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
         }
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
+        }
+        callback.isEnabled
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        p0?.getItemAtPosition(p2)
+        //p0?.getItemAtPosition(p2)
+        p0?.getItemIdAtPosition(p2)
+
     }
     //binding.dataSpinner?.onItemSelectedListener = this
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -164,3 +172,4 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 }// TODO: 19/01/2022 arrumar large_adicionar
 // FIXME: 20/01/2022 alarme num funfa
+// TODO: 24/01/2022 colocar que a primeira posição da hora e data list array como inválido

@@ -1,26 +1,28 @@
 package com.malfaa.lembrete.fragment
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.malfaa.lembrete.R
-import com.malfaa.lembrete.conversorStringEmId
-import com.malfaa.lembrete.conversorStringEmMinutos
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
-import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
 
-class AlterarFragment : Fragment() {
+class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var viewModel: AlterarViewModel
     private lateinit var binding: AlterarFragmentBinding
@@ -36,6 +38,10 @@ class AlterarFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title = "Alterar Lembrete"
 
+        Log.d("ARgumentos", args.item.toString())
+
+        bindingDasInfos()
+
         return binding.root
     }
 
@@ -48,16 +54,52 @@ class AlterarFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[AlterarViewModel::class.java]
 
         alterar.value = false
-        bindingDasInfos()
 
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.list_datas,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.dataSpinner.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.list_horario,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.horaSpinner.adapter = adapter
+        }
+
+        binding.retornar.setOnClickListener {
+            this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
+        }
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
+        }
+        callback.isEnabled
     }
 
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        //p0?.getItemAtPosition(p2)
+        p0?.getItemIdAtPosition(p2)
+
+    }
+    //binding.dataSpinner?.onItemSelectedListener = this
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        p0?.emptyView
+    }
 
     private fun bindingDasInfos(){
         binding.campoRemedio.setText(args.item.remedio)
-        binding.campoNota.setText(args.item.remedio)
-        binding.dataSpinner.getItemAtPosition(conversorStringEmId(args.item.data))
-        binding.horaSpinner.getItemAtPosition(conversorStringEmId(args.item.hora))
+        binding.campoNota.setText(args.item.nota)
+        binding.dataSpinner.setSelection(args.item.data)
+        binding.horaSpinner.getItemAtPosition(args.item.hora)
         //binding.horaInicialValue.text = args.item.horaInicial fixme arrumar aqui
     }
 }
+
+// FIXME: 24/01/2022 mudei utils, itemEntidade, adicionar e alterar

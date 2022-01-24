@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.malfaa.lembrete.conversorPosEmData
+import com.malfaa.lembrete.conversorPosEmHoras
 import com.malfaa.lembrete.databinding.ItemLembreteBinding
 import com.malfaa.lembrete.fragment.MainFragment.Companion.lembreteDestino
 import com.malfaa.lembrete.room.entidade.ItemEntidade
@@ -19,8 +21,8 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
     class ViewHolder private constructor(val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
-            binding.data.text = item.data
-            binding.horario.text = item.hora
+            binding.data.text = conversorPosEmData(item.data)
+            binding.horario.text = conversorPosEmHoras(item.hora)
             binding.nota.text = item.nota
 
             binding.executePendingBindings()
