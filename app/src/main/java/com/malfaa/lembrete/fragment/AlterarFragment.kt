@@ -1,6 +1,7 @@
 package com.malfaa.lembrete.fragment
 
-import android.content.Intent
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,9 +19,12 @@ import androidx.navigation.fragment.navArgs
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
+import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -28,7 +32,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: AlterarFragmentBinding
     private lateinit var viewModelFactory: AlterarViewModelFactory
     private val args: AlterarFragmentArgs by navArgs()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +43,12 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         Log.d("ARgumentos", args.item.toString())
 
-        bindingDasInfos()
+        bindingInfos()
 
         return binding.root
     }
-
+// mindset é primeiro o recurso, logo, var e depois o insert, logo, atribuir o valor requerido
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
@@ -73,6 +77,51 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.horaSpinner.adapter = adapter
         }
 
+        binding.dataSpinner.setSelection(args.item.data,true)
+        binding.horaSpinner.setSelection(args.item.hora,true)
+
+    binding.horaInicialValue.setOnClickListener {
+        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+            val text = SimpleDateFormat("HH:mm").format(cal.time)
+            AdicionarFragment.horaEscolhida = hour.toLong()
+            AdicionarFragment.minutoEscolhido = minute.toLong()
+            viewModel.horarioFinal.value = text
+        }
+        TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(
+            Calendar.MINUTE), true).show()
+
+        //Under Develpment
+//        relogioPicker()
+//        Log.d("Antes de alterar", args.item.horaInicial.toString())
+//        AdicionarFragment.horaEscolhida = relogioPicker().hora.toLong()
+//        AdicionarFragment.minutoEscolhido = relogioPicker().minuto.toLong()
+//        viewModel.horarioFinal.value = relogioPicker().horarioFinal
+//        Log.d("Depois de alterar", viewModel.horarioFinal.value.toString())
+    }
+
+        binding.alterar.setOnClickListener {
+            try {
+                viewModel.alterarLembrete(
+                    ItemEntidade(
+                        args.item.id,
+                        binding.campoRemedio.text.toString(),
+                        viewModel.horarioFinal.value.toString(),
+                        binding.horaSpinner.selectedItemPosition,
+                        binding.dataSpinner.selectedItemPosition,
+                        binding.campoNota.text.toString()
+                    )
+                )
+                this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
+            }catch (e: Exception){
+                Log.d("Error Alterar", e.toString())
+            }
+
+        }
+
+
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
         }
@@ -84,7 +133,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        //p0?.getItemAtPosition(p2)
         p0?.getItemIdAtPosition(p2)
 
     }
@@ -93,11 +141,10 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 
-    private fun bindingDasInfos(){
+    private fun bindingInfos(){
         binding.campoRemedio.setText(args.item.remedio)
         binding.campoNota.setText(args.item.nota)
-        binding.dataSpinner.setSelection(args.item.data)
-        binding.horaSpinner.getItemAtPosition(args.item.hora)
+
         //binding.horaInicialValue.text = args.item.horaInicial fixme arrumar aqui
     }
 }

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -39,7 +40,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
-
 
     private lateinit var binding: AdicionarFragmentBinding
     private lateinit var viewModel: AdicionarViewModel
@@ -91,13 +91,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 val text = SimpleDateFormat("HH:mm").format(cal.time)
                 horaEscolhida = hour.toLong()
                 minutoEscolhido = minute.toLong()
-                Log.d("Valores Horarios", "$horaEscolhida e $minutoEscolhido")
                 viewModel.horarioFinal.value = text
-                Log.d("Valor HorarioFinal", viewModel.horarioFinal.value.toString())
             }
             TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-            Log.d("Valor Relógio", viewModel.horarioFinal.value.toString())
-
         }
 
         binding.adicionar.setOnClickListener {
@@ -170,6 +166,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-}// TODO: 19/01/2022 arrumar large_adicionar
+}
+// TODO: 19/01/2022 arrumar large_adicionar
 // FIXME: 20/01/2022 alarme num funfa
 // TODO: 24/01/2022 colocar que a primeira posição da hora e data list array como inválido

@@ -171,12 +171,12 @@
                     android:text="@string/retornar" />
 
                 <Button
-                    android:id="@+id/adicionar"
+                    android:id="@+id/alterar"
                     android:layout_width="250dp"
                     android:textSize="@dimen/font_adicao"
                     android:layout_height="80dp"
                     android:layout_marginEnd="@dimen/font_adicao_large"
-                    android:text="@string/adicionar"/>
+                    android:text="@string/alterar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

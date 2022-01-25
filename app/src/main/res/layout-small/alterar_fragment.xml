@@ -167,11 +167,11 @@
                     android:text="@string/retornar" />
 
                 <Button
-                    android:id="@+id/adicionar"
+                    android:id="@+id/alterar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/s_distancia_itens"
-                    android:text="@string/adicionar"/>
+                    android:text="@string/alterar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

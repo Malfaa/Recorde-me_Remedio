@@ -16,7 +16,7 @@ import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.deletar
 
 class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCallBack()) {
 
-//    private lateinit var aListener: onItemClickListener
+//    private lateinit var aListener: onItemClickListene
 
     class ViewHolder private constructor(val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
@@ -74,13 +74,13 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
         holder.bind(item)
 
         holder.binding.lembrete.setOnClickListener {
-            alterar.value = true
             lembreteDestino.value = item
+            alterar.value = true
         }
 
         holder.binding.lembrete.setOnLongClickListener{
-            deletar.value = true
             lembreteDestino.value = item
+            deletar.value = true
             true
         }
     }

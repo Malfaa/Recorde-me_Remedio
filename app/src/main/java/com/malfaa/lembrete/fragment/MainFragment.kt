@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
     private lateinit var viewModelFactory: MainViewModelFactory
 
     companion object{
-        val lembreteDestino = MutableLiveData<ItemEntidade>(ItemEntidade(0, "", "", 0, 0,""))
+        val lembreteDestino = MutableLiveData<ItemEntidade>()
     }
 
     override fun onCreateView(
@@ -102,9 +102,8 @@ class MainFragment : Fragment() {
                     lembreteDestino.value!!))
                 Log.d("Valor", lembreteDestino.value.toString())
             }
-
         })
-// FIXME: 24/01/2022 corrigir quando entra em p/ alterar um item, ele não mostra de inicio, se entrar em outro ele obtém as infos do passado, resumindo, está como se fosse 'atrasado'
+
         deletar.observe(viewLifecycleOwner, {
                 condicao ->
             if (condicao) {

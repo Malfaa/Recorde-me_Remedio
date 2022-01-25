@@ -1,9 +1,18 @@
 package com.malfaa.lembrete
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.app.TimePickerDialog
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.BindingAdapter
+import com.malfaa.lembrete.fragment.AdicionarFragment
+import com.malfaa.lembrete.fragment.AlterarFragment
+import com.malfaa.lembrete.fragment.MainFragment
+import com.malfaa.lembrete.room.entidade.ItemEntidade
+import java.text.SimpleDateFormat
+import java.util.*
 
 private var alarmMgr: AlarmManager? = null
 private lateinit var alarmIntent: PendingIntent
@@ -95,6 +104,30 @@ fun conversorPosEmHoras(valor: Int): String{
         5-> "24 em 24 horas"
         6-> "Customizar..."
         else -> ""
+    }
+}
+
+//@SuppressLint("SimpleDateFormat")
+//fun relogioPicker():Relogio{
+//    val cal = Calendar.getInstance()
+//    val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+//        cal.set(Calendar.HOUR_OF_DAY, hour)
+//        cal.set(Calendar.MINUTE, minute)
+//        val text = SimpleDateFormat("HH:mm").format(cal.time)
+//    }
+//    TimePickerDialog(AlterarFragment.requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+//    return Relogio(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),
+//        dataFormato(cal.time.toString().toLong())
+//    )
+//}
+
+@SuppressLint("SimpleDateFormat")
+fun dataFormato(horaSistema: Long): String {
+    return try {
+        val formato = SimpleDateFormat("HH:mm")
+        formato.format(horaSistema)
+    }catch (e: Exception) {
+        e.toString()
     }
 }
 
