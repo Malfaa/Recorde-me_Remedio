@@ -65,14 +65,16 @@
                         android:textSize="@dimen/font_adicao"
                         android:text="@string/hora_inicial" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/horaInicialValue"
+                    <TextView
+                        android:id="@+id/textView"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:minWidth="@dimen/dimen_box_normal_width"
+                        android:layout_height="@dimen/dimen_box_default_height"
                         android:layout_gravity="center"
+                        android:textSize="@dimen/font_adicao"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:minWidth="80dp"
-                        android:background="@drawable/edittext_corner_radius_azul"/>
+                        android:background="@drawable/edittext_corner_radius_azul"
+                        android:text="" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -95,9 +97,9 @@
                     <Spinner
                         android:id="@+id/horaSpinner"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_height="@dimen/dimen_box_default_height"
                         android:layout_gravity="center"
-                        android:minWidth="50dp"
+                        android:minWidth="@dimen/dimen_box_normal_width"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerHora" />

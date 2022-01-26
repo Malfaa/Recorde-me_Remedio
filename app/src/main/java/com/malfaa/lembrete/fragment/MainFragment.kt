@@ -119,10 +119,6 @@ class MainFragment : Fragment() {
             startActivity(a)
         }
         callback.isEnabled
-
-        //pegar os valores do item e passar como bundle
-        //this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlterarFragment())
-
     }
 
     private fun alertDialogDeletarContato(){
@@ -150,6 +146,4 @@ class MainFragment : Fragment() {
     }
 
 }
-// TODO: 19/01/2022 talvez abrir um pop-up com escolha entre deletar e alterar o lembrete  ou usar Swipe p/ ação, esquerda altera direita deleta (vice-versa)
 // TODO: 20/01/2022 tracking dos timers/alarmes
-// TODO: 22/01/2022 mini tutorial right & left swipe

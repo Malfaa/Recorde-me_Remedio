@@ -46,7 +46,7 @@
     
     
     <string-array name="list_horario">
-        <item>…</item>
+        <item />
         <item>@string/quatro_em_quatro</item>
         <item>@string/seis_em_seis</item>
         <item>@string/oito_em_oito</item>
@@ -56,7 +56,7 @@
     </string-array>
 
     <string-array name="list_datas">
-        <item>…</item>
+        <item/>
         <item>@string/cinco_dias</item>
         <item>@string/sete_dias</item>
         <item>@string/uma_semana</item>

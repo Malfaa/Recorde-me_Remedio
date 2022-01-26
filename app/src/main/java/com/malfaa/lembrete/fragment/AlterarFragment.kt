@@ -80,7 +80,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.dataSpinner.setSelection(args.item.data,true)
         binding.horaSpinner.setSelection(args.item.hora,true)
 
-    binding.horaInicialValue.setOnClickListener {
+    binding.textView?.setOnClickListener {
         val cal = Calendar.getInstance()
         val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             cal.set(Calendar.HOUR_OF_DAY, hour)
@@ -118,7 +118,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }catch (e: Exception){
                 Log.d("Error Alterar", e.toString())
             }
-
         }
 
 
@@ -144,9 +143,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun bindingInfos(){
         binding.campoRemedio.setText(args.item.remedio)
         binding.campoNota.setText(args.item.nota)
-
-        //binding.horaInicialValue.text = args.item.horaInicial fixme arrumar aqui
+        binding.textView?.text = args.item.horaInicial
     }
 }
-
-// FIXME: 24/01/2022 mudei utils, itemEntidade, adicionar e alterar

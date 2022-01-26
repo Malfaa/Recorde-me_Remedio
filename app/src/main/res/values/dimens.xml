@@ -21,4 +21,12 @@
     <dimen name="n_distancia_itens">30dp</dimen>
     <dimen name="l_distancia_itens">60dp</dimen>
 
+    <dimen name="dimen_box_large_height">60dp</dimen>
+    <dimen name="dimen_box_large_width">150dp</dimen>
+
+    <dimen name="dimen_box_normal_width">80dp</dimen>
+
+    <dimen name="dimen_box_default_width">100dp</dimen>
+    <dimen name="dimen_box_default_height">48dp</dimen>
+
 </resources>
