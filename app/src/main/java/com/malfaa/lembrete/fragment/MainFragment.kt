@@ -74,42 +74,30 @@ class MainFragment : Fragment() {
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
 
-//        val swipeGesture = object : SwipeGesture(){
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//
-//                when(direction){
-//                    ItemTouchHelper.LEFT -> {
-//                        alertDialogDeletarContato()
-//                    }
-//                }
-//
-//                super.onSwiped(viewHolder, direction)
-//            }
-//        }
-
-        viewModel.listaLembretes.observe(viewLifecycleOwner,{
+        viewModel.listaLembretes.observe(viewLifecycleOwner){
             adapter.submitList(it.toMutableList())
-        })
+        }
 
         binding.adicionarLembrete.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-        alterar.observe(viewLifecycleOwner,{
-            condicao ->
-            if (condicao){
-                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlterarFragment(
-                    lembreteDestino.value!!))
+        alterar.observe(viewLifecycleOwner) { condicao ->
+            if (condicao) {
+                this.findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToAlterarFragment(
+                        lembreteDestino.value!!
+                    )
+                )
                 Log.d("Valor", lembreteDestino.value.toString())
             }
-        })
+        }
 
-        deletar.observe(viewLifecycleOwner, {
-                condicao ->
+        deletar.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
                 alertDialogDeletarContato()
             }
-        })
+        }
 
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {

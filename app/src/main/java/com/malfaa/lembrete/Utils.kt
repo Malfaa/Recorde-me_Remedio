@@ -7,6 +7,8 @@ import android.app.TimePickerDialog
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.BindingAdapter
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.fragment.AdicionarFragment
 import com.malfaa.lembrete.fragment.AlterarFragment
 import com.malfaa.lembrete.fragment.MainFragment
@@ -107,19 +109,13 @@ fun conversorPosEmHoras(valor: Int): String{
     }
 }
 
-//@SuppressLint("SimpleDateFormat")
-//fun relogioPicker():Relogio{
-//    val cal = Calendar.getInstance()
-//    val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-//        cal.set(Calendar.HOUR_OF_DAY, hour)
-//        cal.set(Calendar.MINUTE, minute)
-//        val text = SimpleDateFormat("HH:mm").format(cal.time)
-//    }
-//    TimePickerDialog(AlterarFragment.requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-//    return Relogio(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE),
-//        dataFormato(cal.time.toString().toLong())
-//    )
-//}
+fun relogio(): MaterialTimePicker {
+    var picker: MaterialTimePicker =
+    MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
+        .setMinute(0).build()
+
+    return picker
+}
 
 @SuppressLint("SimpleDateFormat")
 fun dataFormato(horaSistema: Long): String {

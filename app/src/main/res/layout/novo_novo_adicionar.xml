@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.malfaa.lembrete.viewmodel.AdicionarViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".fragment.AdicionarFragment">
+
+
+            <TextView
+                android:id="@+id/remedioTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/n_distancia_itens"
+                android:layout_gravity="center"
+                android:textSize="@dimen/font_adicao"
+                android:text="@string/remedio" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/remedio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dimen_box_default_height"
+                android:background="@drawable/edittext_corner_radius_azul"
+                app:startIconDrawable="@drawable/ic_pill"
+                android:layout_marginTop="@dimen/distancia_item"
+                android:layout_marginEnd="@dimen/n_distancia_itens"
+                android:layout_marginStart="@dimen/n_distancia_itens"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoRemedio"
+                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/caixaExterior"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/distancia_item"
+                android:layout_marginEnd="@dimen/distancia_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/caixaInteriorHora"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/n_distancia_itens"
+                    android:layout_marginEnd="@dimen/n_distancia_itens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/horaInicialText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/n_distancia_itens"
+                        android:textSize="@dimen/font_adicao"
+                        android:text="@string/hora_inicial" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:minWidth="@dimen/dimen_box_normal_width"
+                        android:layout_height="@dimen/dimen_box_default_height"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/font_adicao"
+                        android:layout_marginTop="@dimen/distancia_item_edittext"
+                        android:background="@drawable/edittext_corner_radius_azul"
+                        android:text="" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/caixaInteriorData"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/n_distancia_itens"
+                    android:layout_marginStart="@dimen/n_distancia_itens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/horaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/n_distancia_itens"
+                        android:textSize="@dimen/font_adicao"
+                        android:text="@string/hora" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/horaSpinnerBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_box_default_height"
+                        android:layout_gravity="center"
+                        android:minWidth="50dp"
+                        app:startIconDrawable="@drawable/ic_time"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_marginTop="@dimen/distancia_item_edittext"
+                        android:background="@drawable/edittext_corner_radius_azul"
+                        >
+                        <AutoCompleteTextView
+                            android:backgroundTint="@color/azul_secundario"
+                            android:id="@+id/autoComplete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/distancia_item_edittext"
+                android:textSize="@dimen/font_adicao"
+                android:text="@string/data" />
+
+            <Spinner
+                android:id="@+id/dataSpinner"
+                android:layout_width="wrap_content"
+                android:minWidth="120dp"
+                android:layout_height="@dimen/dimen_box_default_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/distancia_item_edittext"
+                android:background="@drawable/edittext_corner_radius_azul"
+                android:contentDescription="@string/descricaoSpinnerData" />
+
+            <TextView
+                android:id="@+id/notaText"
+                android:layout_marginTop="@dimen/n_distancia_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_adicao"
+                android:layout_gravity="center"
+                android:text="@string/nota" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dimen_box_default_height"
+                android:background="@drawable/edittext_corner_radius_azul"
+                app:startIconDrawable="@drawable/ic_notes"
+                android:layout_marginStart="@dimen/distancia_item_edittext"
+                android:layout_marginTop="@dimen/distancia_item_edittext"
+                android:layout_marginEnd="@dimen/distancia_item_edittext"
+                android:layout_marginBottom="@dimen/distancia_entre_itens"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoNota"
+                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/caixaDosBotoes"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/n_distancia_itens"
+                android:layout_marginBottom="@dimen/n_distancia_itens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/retornar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/distancia_entre_itens"
+                    android:layout_marginEnd="@dimen/distancia_entre_itens"
+                    android:backgroundTint="@color/cinza_texto"
+                    android:text="@string/retornar" />
+
+                <Button
+                    android:id="@+id/adicionar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/distancia_entre_itens"
+                    android:text="@string/adicionar"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</layout>

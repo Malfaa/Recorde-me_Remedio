@@ -18,6 +18,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaEscolhida
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.minutoEscolhido
+import com.malfaa.lembrete.relogio
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
@@ -81,25 +84,16 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.horaSpinner.setSelection(args.item.hora,true)
 
     binding.textView?.setOnClickListener {
-        val cal = Calendar.getInstance()
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-            val text = SimpleDateFormat("HH:mm").format(cal.time)
-            AdicionarFragment.horaEscolhida = hour.toLong()
-            AdicionarFragment.minutoEscolhido = minute.toLong()
-            viewModel.horarioFinal.value = text
-        }
-        TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(
-            Calendar.MINUTE), true).show()
+        relogio().show(requireParentFragment().parentFragmentManager, "lembrete")
 
-        //Under Develpment
-//        relogioPicker()
-//        Log.d("Antes de alterar", args.item.horaInicial.toString())
-//        AdicionarFragment.horaEscolhida = relogioPicker().hora.toLong()
-//        AdicionarFragment.minutoEscolhido = relogioPicker().minuto.toLong()
-//        viewModel.horarioFinal.value = relogioPicker().horarioFinal
-//        Log.d("Depois de alterar", viewModel.horarioFinal.value.toString())
+        relogio().addOnPositiveButtonClickListener {
+            horaEscolhida = relogio().hour.toLong()
+            minutoEscolhido = relogio().minute.toLong()
+            viewModel.horarioFinal.value = "${horaEscolhida}:${minutoEscolhido}"
+
+            binding.textView?.text = viewModel.horarioFinal.value
+            Log.d("Valores Relógio", viewModel.horarioFinal.value.toString())
+        }
     }
 
         binding.alterar.setOnClickListener {

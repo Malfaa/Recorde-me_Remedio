@@ -17,6 +17,7 @@ import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -87,28 +88,21 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.textView.setOnClickListener {
-//            val cal = Calendar.getInstance()
-//            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-//                cal.set(Calendar.HOUR_OF_DAY, hour)
-//                cal.set(Calendar.MINUTE, minute)
-//                val text = SimpleDateFormat("HH:mm").format(cal.time)
-//                horaEscolhida = hour.toLong()
-//                minutoEscolhido = minute.toLong()
-//                viewModel.horarioFinal.value = text
-//            }
-//            binding.textView.text = viewModel.horarioFinal.value
-//            TimePickerDialog(this.context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
+                .setMinute(0).build()
 
-            picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").build()
+            picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
             picker.addOnPositiveButtonClickListener{
+                horaEscolhida = picker.hour.toLong()
+                minutoEscolhido = picker.minute.toLong()
+                viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
+                binding.textView.text = viewModel.horarioFinal.value
+                Log.d("Valores Relógio", viewModel.horarioFinal.value.toString())
             }
 
         }
-
-        // TODO: Arrumar aqui em cima o problema do picker, outros problemas como n aparecer já foram solucionados
-
         binding.adicionar.setOnClickListener {
             try {
                 alarme(

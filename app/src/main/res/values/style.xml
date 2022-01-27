@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/azul_primario</item>
+        <item name="colorSecondary">@color/azul_secundario</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+</resources>
