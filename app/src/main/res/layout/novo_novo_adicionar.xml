@@ -35,6 +35,7 @@
                 android:minHeight="@dimen/dimen_box_default_height"
                 android:background="@drawable/edittext_corner_radius_azul"
                 app:startIconDrawable="@drawable/ic_pill"
+                android:textSize="@dimen/font_adicao"
                 android:layout_marginTop="@dimen/distancia_item"
                 android:layout_marginEnd="@dimen/n_distancia_itens"
                 android:layout_marginStart="@dimen/n_distancia_itens"
@@ -78,6 +79,7 @@
                         android:minWidth="@dimen/dimen_box_normal_width"
                         android:layout_height="@dimen/dimen_box_default_height"
                         android:layout_gravity="center"
+                        android:textAlignment="center"
                         android:textSize="@dimen/font_adicao"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:background="@drawable/edittext_corner_radius_azul"
@@ -115,10 +117,11 @@
                         >
                         <AutoCompleteTextView
                             android:backgroundTint="@color/azul_secundario"
-                            android:id="@+id/autoComplete"
+                            android:id="@+id/autoCompleteHora"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:inputType="none"
+                            tools:ignore="LabelFor" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -134,15 +137,26 @@
                 android:textSize="@dimen/font_adicao"
                 android:text="@string/data" />
 
-            <Spinner
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dataSpinner"
                 android:layout_width="wrap_content"
-                android:minWidth="120dp"
                 android:layout_height="@dimen/dimen_box_default_height"
                 android:layout_gravity="center"
+                android:minWidth="100dp"
+                app:startIconDrawable="@drawable/ic_calendar"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
                 android:background="@drawable/edittext_corner_radius_azul"
-                android:contentDescription="@string/descricaoSpinnerData" />
+                android:contentDescription="@string/descricaoSpinnerData"
+                >
+                <AutoCompleteTextView
+                    android:backgroundTint="@color/azul_secundario"
+                    android:id="@+id/autoCompleteData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/notaText"
@@ -158,11 +172,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dimen_box_default_height"
+                android:textSize="@dimen/font_adicao"
                 android:background="@drawable/edittext_corner_radius_azul"
                 app:startIconDrawable="@drawable/ic_notes"
-                android:layout_marginStart="@dimen/distancia_item_edittext"
+                android:layout_marginStart="@dimen/n_distancia_itens"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:layout_marginEnd="@dimen/distancia_item_edittext"
+                android:layout_marginEnd="@dimen/n_distancia_itens"
                 android:layout_marginBottom="@dimen/distancia_entre_itens"
                 >
                 <com.google.android.material.textfield.TextInputEditText

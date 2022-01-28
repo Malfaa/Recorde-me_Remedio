@@ -3,7 +3,6 @@ package com.malfaa.lembrete.fragment
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +16,6 @@ import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -29,7 +27,6 @@ import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -103,6 +100,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
 
         }
+
         binding.adicionar.setOnClickListener {
             try {
                 alarme(
@@ -141,7 +139,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.getItemIdAtPosition(p2)
-
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -171,6 +168,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             alarmIntent
         )
     }
-
+// TODO: alarme e notificação
 }
 // TODO: 24/01/2022 colocar que a primeira posição da hora e data list array como inválido

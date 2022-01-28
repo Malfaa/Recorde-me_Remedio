@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/adicionarFragment"
         android:name="com.malfaa.lembrete.fragment.AdicionarFragment"
-        tools:layout="@layout/adicionar_fragment"
+        tools:layout="@layout/novo_novo_adicionar"
         android:label="AdicionarFragment" >
         <action
             android:id="@+id/action_adicionarFragment_to_mainFragment"
