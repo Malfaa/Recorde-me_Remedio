@@ -12,10 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -26,6 +28,7 @@ import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
+import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
 import java.util.*
 import kotlin.properties.Delegates
@@ -35,10 +38,10 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         var horaEscolhida: Long by Delegates.notNull()
         var minutoEscolhido: Long by Delegates.notNull()
+        val spinnerHora = MutableLiveData<Int>()
+        val remedio = MutableLiveData<String>()
+        val nota = MutableLiveData<String>()
     }
-
-    private var alarmMgr: AlarmManager? = null
-    private lateinit var alarmIntent: PendingIntent
 
     private lateinit var picker: MaterialTimePicker
 
@@ -103,11 +106,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.adicionar.setOnClickListener {
             try {
-                alarme(
-                    horaEscolhida,
-                    minutoEscolhido,
-                    conversorStringEmMinutos(binding.horaSpinner.selectedItem.toString())
-                )
                 viewModel.adicionandoLembrete(
                     ItemEntidade(
                         0,
@@ -118,14 +116,20 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         binding.campoNota.text.toString()
                     )
                 )
+
+                alarmeVar.value = true
+                spinnerHora.value = binding.horaSpinner.selectedItemPosition
+                remedio.value = binding.campoRemedio.text.toString()
+                nota.value = binding.campoNota.text.toString()
+
+
                 this.findNavController()
                     .navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
-
+                Toast.makeText(requireContext(), "Lembrete adicionado.", Toast.LENGTH_SHORT).show()
             } catch (e: Exception){
                 Log.d("error", e.toString())
             }
         }
-
 
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
@@ -144,30 +148,4 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(p0: AdapterView<*>?) {
         p0?.emptyView
     }
-
-    @SuppressLint("UnspecifiedImmutableFlag")
-    fun alarme(hora: Long, minutos: Long, horario: Long) {
-        alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(
-            requireContext(), MainFragment::class.java).let { intent ->
-            PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
-        }
-
-        // Set the alarm to start at 8:30 a.m.
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, hora.toInt())
-            set(Calendar.MINUTE, minutos.toInt())
-        }
-        // setRepeating() lets you specify a precise custom interval--in this case,
-        // 20 minutes.
-        alarmMgr?.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000
-            alarmIntent
-        )
-    }
-// TODO: alarme e notificação
 }
-// TODO: 24/01/2022 colocar que a primeira posição da hora e data list array como inválido

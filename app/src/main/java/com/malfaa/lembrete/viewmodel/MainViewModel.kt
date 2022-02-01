@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.lembrete.fragment.MainFragment
@@ -20,8 +21,9 @@ class MainViewModel(val ldao: LDao)  : ViewModel() {
     val listaLembretes = ldao.recebeInfos()
 
     companion object{
-        val deletar = MutableLiveData<Boolean>(false)
-        val alterar = MutableLiveData<Boolean>(false)
+        val deletar = MutableLiveData(false)
+        val alterar = MutableLiveData(false)
+        val alarmeVar = MutableLiveData(false)
     }
 
 
@@ -30,18 +32,4 @@ class MainViewModel(val ldao: LDao)  : ViewModel() {
             ldao.deletarLembrete(item)
         }
     }
-
-    fun alterarLembrete(item:ItemEntidade){
-        uiScope.launch {
-            _alterarLembrete(item)
-        }
-    }
-
-    suspend fun _alterarLembrete(item: ItemEntidade){
-        withContext(Dispatchers.IO){
-            val value = ldao.atualizaLembrete(item)
-            return@withContext value
-        }
-    }
-
 }
