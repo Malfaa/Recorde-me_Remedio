@@ -1,7 +1,6 @@
 package com.malfaa.lembrete.fragment
 
 import android.annotation.SuppressLint
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.malfaa.lembrete.R
+import com.malfaa.lembrete.calendario
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaEscolhida
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.minutoEscolhido
@@ -24,10 +24,9 @@ import com.malfaa.lembrete.relogio
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
+import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -87,8 +86,16 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         relogio().show(requireParentFragment().parentFragmentManager, "lembrete")
 
         relogio().addOnPositiveButtonClickListener {
-            horaEscolhida = relogio().hour.toLong()
-            minutoEscolhido = relogio().minute.toLong()
+            horaEscolhida = if(relogio().hour < 10 ) {
+                ("0"+"${relogio().hour}").toLong()
+            }else{
+                relogio().hour.toLong()
+            }
+            minutoEscolhido = if (relogio().minute < 10){
+                ("0"+"${relogio().minute}").toLong()
+            }else{
+                relogio().minute.toLong()
+            }
             viewModel.horarioFinal.value = "${horaEscolhida}:${minutoEscolhido}"
 
             binding.textView?.text = viewModel.horarioFinal.value
@@ -101,13 +108,20 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 viewModel.alterarLembrete(
                     ItemEntidade(
                         args.item.id,
-                        binding.campoRemedio.text.toString(),
+                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
+                        calendario(binding.dataSpinner.selectedItemPosition),
                         binding.horaSpinner.selectedItemPosition,
                         binding.dataSpinner.selectedItemPosition,
                         binding.campoNota.text.toString()
                     )
                 )
+            //novo
+                MainViewModel.alarmeVar.value = true
+                AdicionarFragment.spinnerHora.value = binding.horaSpinner.selectedItemPosition
+                AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
+                AdicionarFragment.nota.value = binding.campoNota.text.toString()
+
                 this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
             }catch (e: Exception){
                 Log.d("Error Alterar", e.toString())

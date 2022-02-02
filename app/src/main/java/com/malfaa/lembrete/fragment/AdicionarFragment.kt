@@ -1,10 +1,6 @@
 package com.malfaa.lembrete.fragment
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,14 +19,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
-import com.malfaa.lembrete.conversorStringEmMinutos
+import com.malfaa.lembrete.calendario
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
-import java.util.*
 import kotlin.properties.Delegates
 
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -94,8 +89,17 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
             picker.addOnPositiveButtonClickListener{
-                horaEscolhida = picker.hour.toLong()
-                minutoEscolhido = picker.minute.toLong()
+                horaEscolhida = if(picker.hour < 10 ) {
+                    ("0"+"${picker.hour}").toLong()
+                }else{
+                    picker.hour.toLong()
+                }
+                minutoEscolhido = if (picker.minute < 10){
+                    ("0"+"${picker.minute}").toLong()
+                }else{
+                    picker.minute.toLong()
+                }
+
                 viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
                 binding.textView.text = viewModel.horarioFinal.value
@@ -109,8 +113,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 viewModel.adicionandoLembrete(
                     ItemEntidade(
                         0,
-                        binding.campoRemedio.text.toString(),
+                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
+                        calendario(binding.dataSpinner.selectedItemPosition),
                         binding.horaSpinner.selectedItemPosition,
                         binding.dataSpinner.selectedItemPosition,
                         binding.campoNota.text.toString()
@@ -121,7 +126,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 spinnerHora.value = binding.horaSpinner.selectedItemPosition
                 remedio.value = binding.campoRemedio.text.toString()
                 nota.value = binding.campoNota.text.toString()
-
 
                 this.findNavController()
                     .navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
@@ -149,3 +153,5 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 }
+
+// TODO: adicionar o "customizar..."

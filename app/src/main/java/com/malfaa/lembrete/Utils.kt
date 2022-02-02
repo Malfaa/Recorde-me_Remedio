@@ -3,76 +3,22 @@ package com.malfaa.lembrete
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.app.TimePickerDialog
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.databinding.BindingAdapter
+import android.os.Build
+import android.util.Log
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.lembrete.fragment.AdicionarFragment
-import com.malfaa.lembrete.fragment.AlterarFragment
-import com.malfaa.lembrete.fragment.MainFragment
-import com.malfaa.lembrete.room.entidade.ItemEntidade
+import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 private var alarmMgr: AlarmManager? = null
 private lateinit var alarmIntent: PendingIntent
 
-
-//@SuppressLint("UnspecifiedImmutableFlag")
-//fun alarme(hora: Long, minutos: Long, horario: Long) { //mainviewmodel    horario é em millis, logo, valor tem que ser long
-//    alarmMgr = mainInstance().requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//    alarmIntent = Intent(mainInstance().requireContext(), MainFragment::class.java).let { intent ->
-//        PendingIntent.getBroadcast(mainInstance().requireContext(), 0, intent, 0)
-//    }
-//
-//    // Set the alarm to start at 8:30 a.m.
-//    val calendar: Calendar = Calendar.getInstance().apply {
-//        timeInMillis = System.currentTimeMillis()
-//        set(Calendar.HOUR_OF_DAY, hora.toInt())
-//        set(Calendar.MINUTE, minutos.toInt())
-//    }
-//
-//    // setRepeating() lets you specify a precise custom interval--in this case,
-//    // 20 minutes.
-//    alarmMgr?.setRepeating(
-//        AlarmManager.RTC_WAKEUP,
-//        calendar.timeInMillis,
-//        1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000
-//        alarmIntent
-//    )
-//}
-
 fun cancelarAlarme(){
     alarmMgr?.cancel(alarmIntent)
 }
-
-fun conversorStringEmMinutos(valor: String): Long{
-    return when(valor){
-        "4 em 4 horas" -> 240
-        "6 em 6 horas" -> 360
-        "8 em 8 horas" -> 480
-        "12 em 12 horas"-> 720
-        "24 em 24 horas" -> 1440
-        "Customizar..." -> 1
-        else -> 0
-    }
-}
-
-fun conversorStringEmId(valor: String): Int{
-    return when(valor){
-        "4 em 4 horas" -> 1
-        "6 em 6 horas" -> 2
-        "8 em 8 horas" -> 3
-        "12 em 12 horas"-> 4
-        "24 em 24 horas" -> 5
-        "Customizar..." -> 6
-        else -> 0
-    }
-}
-
-// TESTE ------------
 
 fun conversorPosEmMinutos(pos: Int): Long{
     return when(pos){
@@ -86,14 +32,13 @@ fun conversorPosEmMinutos(pos: Int): Long{
     }
 }
 
-fun conversorPosEmData(valor: Int): String{
+fun conversorPosEmData(valor: Int): String{        //3-> "1 semana"
     return when(valor){
         1 -> "5 dias"
         2 -> "7 dias"
-        3-> "1 semana"
-        4-> "2 semanas"
-        5-> "Todos os dias"
-        6-> "Customizar..."
+        3-> "14 dias"
+        4-> "Todos os dias"
+        5-> "Customizar..."
         else -> ""
     }
 }
@@ -109,8 +54,42 @@ fun conversorPosEmHoras(valor: Int): String{
     }
 }
 
+fun calendario(item: Int): String {//"1 semana" -> diaAtual.plusDays(7) //"2 semanas" -> diaAtual.plusDays(14)
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val diaAtual = LocalDate.now()
+        Log.d("Nice", "SDK superior")
+        when(item){
+            1/*"5 dias"*/ -> "${diaAtual.plusDays(5).dayOfMonth} / ${diaAtual.plusDays(5).monthValue}"
+            2/*"7 dias"*/ -> diaAtual.plusDays(7).toString()
+            3/*"14 dias"*/ -> diaAtual.plusDays(14).toString()
+            //"Todos os dias" -> diaAtual.plusDays(5) //talvez criar alguma var que altere um fun que daí escreve os diaAtual
+            else -> ""
+        }
+    }else{
+        Log.d("Bosta", "SDK inferior")
+        val calendario = Calendar.getInstance()
+
+        val valorSelecionado:Int =
+            when(item){
+                1 -> 5
+                2 -> 7
+                3 -> 14
+                else -> 0
+        }
+
+        calendario.add(Calendar.DATE, valorSelecionado)
+        calendarioParaData(calendario.time)
+    }
+}
+
+@SuppressLint("SimpleDateFormat")
+fun calendarioParaData(item: Date): String {
+    val formato = SimpleDateFormat("dd/MM")
+    return formato.format(item)
+}
+
 fun relogio(): MaterialTimePicker {
-    var picker: MaterialTimePicker =
+    val picker: MaterialTimePicker =
     MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
         .setMinute(0).build()
 
@@ -126,33 +105,3 @@ fun dataFormato(horaSistema: Long): String {
         e.toString()
     }
 }
-
-@BindingAdapter("setRemedio")
-fun TextView.setRemedio(item: String){
-    text = item
-}
-
-@BindingAdapter("setHorario")
-fun TextView.setHorario(item: String){
-    text = item
-}
-
-@BindingAdapter("setData")
-fun TextView.setData(item: String){
-    text = item
-}
-
-@BindingAdapter("setNota")
-fun TextView.setNota(item: String){
-    text = item
-}
-
-@BindingAdapter("setTexto")
-fun TextView.setHoraInicial(item: String?){
-    this.text = item ?: ""
-}
-
-// FIXME: 20/01/2022 adicionei vários setters no "item_lembrete.xml"
-//todo https://www.google.com/search?client=firefox-b-d&q=kotlin+notification+
-//todo https://www.google.com/search?client=firefox-b-d&q=kotlin+alarm+
-//todo kotlin alarm manager how to set multiple alarms

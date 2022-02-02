@@ -2,7 +2,10 @@
     <string name="app_name">Lembrete</string>
     <string name="lembrete">Lembrete</string>
     <string name="restam">Restam:</string>
+    <string name="iniciou">Iníciou às:</string>
+    <string name="termina">Termina em:</string>
     <string name="remedio">Remédio</string>
+    <string name="valor">default</string>
 
     <string name="customizar">Customizar…</string>
     <string name="quatro_horas">4 horas</string>
@@ -14,6 +17,7 @@
     <string name="cinco_dias">5 dias</string>
     <string name="sete_dias">7 dias</string>
     <string name="uma_semana">1 semana</string>
+    <string name="catorze_dias">14 dias</string>
     <string name="duas_semanas">2 semanas</string>
     <string name="todos_dias">Todos os dias</string>
 
@@ -43,7 +47,10 @@
 
     <string name="horario_restante">2 horas 34 min</string>
     <string name="data_restante">4 dias</string>
-    
+
+    <string name="termina_em">18/02</string>
+    <string name="iniciou_em">16:30</string>
+
     
     <string-array name="list_horario">
         <item />
@@ -59,8 +66,7 @@
         <item/>
         <item>@string/cinco_dias</item>
         <item>@string/sete_dias</item>
-        <item>@string/uma_semana</item>
-        <item>@string/duas_semanas</item>
+        <item>@string/catorze_dias</item>
         <item>@string/todos_dias</item>
         <item>@string/customizar</item>
     </string-array>

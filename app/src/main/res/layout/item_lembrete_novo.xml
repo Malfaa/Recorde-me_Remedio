@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+<data>
+    <variable
+        name="item"
+        type="com.malfaa.lembrete.room.entidade.ItemEntidade" />
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/lembrete"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/distancia_item_edittext"
+    android:background="@color/azul_secundario">
+
+    <TextView
+        android:id="@+id/remedio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/distancia_item"
+        android:layout_marginTop="@dimen/distancia_item_edittext"
+        android:layout_marginEnd="60dp"
+        android:maxWidth="100dp"
+        android:background="@drawable/edittext_corner_radius"
+        android:hint="@string/remedio"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/restam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/horario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/distancia_item"
+        android:background="@drawable/edittext_corner_radius"
+        android:hint="@string/seis_em_seis"
+        app:layout_constraintStart_toStartOf="@+id/remedio"
+        app:layout_constraintTop_toBottomOf="@+id/remedio" />
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:textAlignment="center"
+        android:background="@drawable/edittext_corner_radius"
+        android:hint="@string/uma_semana"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/horario"
+        app:layout_constraintStart_toStartOf="@+id/horario"
+        app:layout_constraintTop_toBottomOf="@+id/horario" />
+
+    <TextView
+        android:id="@+id/nota"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:maxLines="3"
+        android:background="@drawable/edittext_corner_radius"
+        android:hint="@string/nota"
+        app:layout_constraintBottom_toBottomOf="@+id/data"
+        app:layout_constraintEnd_toEndOf="@+id/remedio"
+        app:layout_constraintStart_toEndOf="@+id/horario"
+        app:layout_constraintTop_toBottomOf="@+id/remedio" />
+
+    <TextView
+        android:id="@+id/restam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restam"
+        app:layout_constraintBottom_toTopOf="@+id/horarioRestante"
+        app:layout_constraintEnd_toEndOf="@+id/horarioRestante"
+        app:layout_constraintStart_toStartOf="@+id/horarioRestante"
+        app:layout_constraintTop_toTopOf="@+id/remedio" />
+
+    <TextView
+        android:id="@+id/horarioRestante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/distancia_item"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edittext_corner_radius"
+        android:text="@string/horario_restante"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/dataRestante"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/dataRestante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textAlignment="center"
+        android:background="@drawable/edittext_corner_radius"
+        android:text="@string/data_restante"
+        app:layout_constraintBottom_toBottomOf="@+id/nota"
+        app:layout_constraintEnd_toEndOf="@+id/horarioRestante"
+        app:layout_constraintStart_toStartOf="@+id/horarioRestante" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -24,6 +24,8 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             binding.data.text = conversorPosEmData(item.data)
             binding.horario.text = conversorPosEmHoras(item.hora)
             binding.nota.text = item.nota
+            binding.inicioValor.text = item.horaInicial
+            binding.terminaValor.text = item.dataFinal
 
             binding.executePendingBindings()
         }
@@ -46,24 +48,6 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             return oldItem === newItem
         }
     }
-//
-//    interface onItemClickListener{
-//
-//        fun onItemClick(position: Int)
-//
-//    }
-//
-//    fun setOnClickListener(listener: onItemClickListener){
-//        aListener = listener
-//    }
-
-//    fun deletarLembrete(pos: Int){
-//        deletar = true
-//    }
-//
-//    fun alterarLembrete(pos: Int){
-//        alterar = true
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)

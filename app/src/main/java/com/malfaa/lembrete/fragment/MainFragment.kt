@@ -17,7 +17,6 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -27,11 +26,9 @@ import androidx.navigation.fragment.findNavController
 import com.malfaa.lembrete.AlarmeReceiver
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.adapters.MainAdapter
+import com.malfaa.lembrete.cancelarAlarme
 import com.malfaa.lembrete.conversorPosEmMinutos
-import com.malfaa.lembrete.conversorStringEmMinutos
 import com.malfaa.lembrete.databinding.MainFragmentBinding
-import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.nota
-import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.remedio
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.spinnerHora
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.MainViewModel
@@ -132,6 +129,7 @@ class MainFragment : Fragment() {
         construtor.setPositiveButton("Confirmar") { dialogInterface: DialogInterface, _: Int ->
             try{
                 viewModel.deletarLembrete(lembreteDestino.value!!)
+                cancelarAlarme()
                 Toast.makeText(context, "Lembrete Deletado.", Toast.LENGTH_SHORT).show()
                 dialogInterface.cancel()
             }catch (e: Exception){
@@ -159,7 +157,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    fun alarme(hora: Long, minutos: Long, horario: Long) {
+    private fun alarme(hora: Long, minutos: Long, horario: Long) {
         alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmIntent = Intent(
             requireContext(), AlarmeReceiver::class.java).let { intent ->
@@ -182,8 +180,5 @@ class MainFragment : Fragment() {
     }
 
 }
-// TODO: calendário -> pegar o período até quando irá tomar o remédio, talvez, colocar até x data (ex-> inicio:13/02  + 05dias = 18/02 output) apagar quando bater o value
 
-// TODO: item_lembrete -> arrumar p/ o novo layout (talvez esteja ou não no figma)
-
-// TODO: tracker -> talvez dê ou não, a sugestão seria ao invés de um tracker, realizar igual o do calendário. Fazer a data ínicio + dia final
+// TODO: desligar o alarme quando chegar no dia selecionado

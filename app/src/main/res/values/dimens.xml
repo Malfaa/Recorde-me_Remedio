@@ -10,6 +10,7 @@
 
     <dimen name="distancia_item_edittext">16dp</dimen>
     <dimen name="distancia_item">8dp</dimen>
+    <dimen name="distancia_item_textos">4dp</dimen>
     <dimen name="distancia_entre_remedio_e_restam">30dp</dimen>
 
     <dimen name="restam_dist_item">16dp</dimen>

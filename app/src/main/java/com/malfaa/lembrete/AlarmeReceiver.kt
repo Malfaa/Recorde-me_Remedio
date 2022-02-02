@@ -13,19 +13,19 @@ import com.malfaa.lembrete.fragment.MainFragment
 
 class AlarmeReceiver : BroadcastReceiver(){
 
-    lateinit var alarmIntent: PendingIntent
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onReceive(context: Context?, intent: Intent?) {
         alarmIntent = Intent(
-            context, MainActivity::class.java).let { intent -> // FIXME: fragment do alarme receiver -> arrumar o contexto que não está sendo attached
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            PendingIntent.getBroadcast(context, 0, intent, 0)
+            context, MainFragment::class.java).let {  // FIXME: fragment do alarme receiver -> arrumar o contexto que não está sendo attached
+            intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            PendingIntent.getBroadcast(context, 0, intent!!, 0)
         }
 
         val builder = NotificationCompat.Builder(context!!, "notificacao")
             .setSmallIcon(R.drawable.ic_clock)
-            .setContentTitle(remedio.toString())// TODO: notificacao -> a notificação recebe o valor do remédio e da nota, assim o display fica remédio(title) nota(info)
-            .setContentInfo(nota.toString())
+            .setContentTitle(remedio.value.toString())
+            .setContentText(nota.value. toString())
             .setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
