@@ -2,6 +2,7 @@ package com.malfaa.lembrete.room.entidade
 
 import android.os.Parcelable
 import android.widget.AdapterView
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -15,7 +16,9 @@ data class ItemEntidade(
     var remedio: String,
     var horaInicial: String,
     var dataFinal: String,
+    @ColumnInfo(name = "hora_id")
     var hora: Int,
+    @ColumnInfo(name = "data_id")
     var data: Int,
     var nota: String
 ): Parcelable

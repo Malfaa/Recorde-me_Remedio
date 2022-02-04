@@ -9,7 +9,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.malfaa.lembrete.fragment.MainFragment
 
-class Notificaticao : BroadcastReceiver(){
+class Notificacao : BroadcastReceiver(){
 
     private lateinit var alarmIntent: PendingIntent
 

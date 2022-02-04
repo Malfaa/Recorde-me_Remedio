@@ -14,13 +14,12 @@ class AdicionarViewModel(private val dao: LDao)  : ViewModel() {
 
     fun adicionandoLembrete(item: ItemEntidade){
         uiScope.launch {
-            dao.adicionaLembrete(_adicionandoLembrete(item))
+            _adicionandoLembrete(item)
         }
     }
-    suspend fun _adicionandoLembrete(item: ItemEntidade): ItemEntidade {
+    suspend fun _adicionandoLembrete(item: ItemEntidade){
         return withContext(Dispatchers.IO) {
-            val valor = item
-            valor
+            dao.adicionaLembrete(item)
         }
     }
 

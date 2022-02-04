@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.transition.Visibility
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
@@ -31,8 +32,8 @@ import kotlin.properties.Delegates
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
-        var horaEscolhida: Long by Delegates.notNull()
-        var minutoEscolhido: Long by Delegates.notNull()
+        lateinit var horaEscolhida: String
+        lateinit var minutoEscolhido: String
         val spinnerHora = MutableLiveData<Int>()
         val remedio = MutableLiveData<String>()
         val nota = MutableLiveData<String>()
@@ -43,6 +44,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: AdicionarFragmentBinding
     private lateinit var viewModel: AdicionarViewModel
     private lateinit var viewModelFactory: AdicionarViewModelFactory
+
+    private val customClicado = MutableLiveData(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,17 +92,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
             picker.addOnPositiveButtonClickListener{
-                horaEscolhida = if(picker.hour < 10 ) {
-                    ("0"+"${picker.hour}").toLong()
-                }else{
-                    picker.hour.toLong()
-                }
-                minutoEscolhido = if (picker.minute < 10){
-                    ("0"+"${picker.minute}").toLong()
-                }else{
-                    picker.minute.toLong()
-                }
-
+                horaEscolhida = String.format("%02d", picker.hour)
+                minutoEscolhido = String.format("%02d", picker.minute)
                 viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
                 binding.textView.text = viewModel.horarioFinal.value
@@ -135,6 +129,16 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
 
+        customClicado.observe(viewLifecycleOwner){condicao ->  // TODO: Se for assim, corrigir o ItemEntidade, que daí ele vai aceitar ao invés do id vai receber o valor... ou não, sei la ainda
+            if (condicao){
+                binding.horaSpinner.visibility = View.GONE
+                binding.horaEditText?.visibility = View.VISIBLE
+            }else{
+                binding.horaSpinner.visibility = View.VISIBLE
+                binding.horaEditText?.visibility = View.GONE
+            }
+        }
+
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
         }
@@ -147,6 +151,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.getItemIdAtPosition(p2)
+        if (p2 == 6){
+            customClicado.value = true
+        }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -154,4 +161,4 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 }
 
-// TODO: adicionar o "customizar..."
+// TODO: adicionar o "customizar..." assim que o alarme e notificação estiverem funfando

@@ -21,8 +21,7 @@ class AlterarViewModel(private val dao: LDao) : ViewModel() {
 
     private suspend fun _alterarLembrete(item: ItemEntidade){
         withContext(Dispatchers.IO){
-            val valor = dao.atualizaLembrete(item)
-            return@withContext valor
+            dao.atualizaLembrete(item)
         }
     }
 }

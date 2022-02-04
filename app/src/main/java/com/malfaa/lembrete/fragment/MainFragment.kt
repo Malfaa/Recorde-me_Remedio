@@ -85,8 +85,8 @@ class MainFragment : Fragment() {
         alarmeVar.observe(viewLifecycleOwner){condicao->
             if (condicao) {
                 alarme(
-                    AdicionarFragment.horaEscolhida,
-                    AdicionarFragment.minutoEscolhido,
+                    AdicionarFragment.horaEscolhida.toLong(),
+                    AdicionarFragment.minutoEscolhido.toLong(),
                     conversorPosEmMinutos(spinnerHora.value!!)
                 )
                 alarmeVar.value = false

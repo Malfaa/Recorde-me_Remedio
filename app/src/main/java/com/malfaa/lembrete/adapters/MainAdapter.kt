@@ -16,8 +16,6 @@ import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.deletar
 
 class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCallBack()) {
 
-//    private lateinit var aListener: onItemClickListene
-
     class ViewHolder private constructor(val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
@@ -68,7 +66,4 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             true
         }
     }
-
-
-
 }

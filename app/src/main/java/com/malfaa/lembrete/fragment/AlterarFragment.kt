@@ -49,7 +49,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         return binding.root
     }
-// mindset é primeiro o recurso, logo, var e depois o insert, logo, atribuir o valor requerido
+
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,17 +86,10 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         relogio().show(requireParentFragment().parentFragmentManager, "lembrete")
 
         relogio().addOnPositiveButtonClickListener {
-            horaEscolhida = if(relogio().hour < 10 ) {
-                ("0"+"${relogio().hour}").toLong()
-            }else{
-                relogio().hour.toLong()
-            }
-            minutoEscolhido = if (relogio().minute < 10){
-                ("0"+"${relogio().minute}").toLong()
-            }else{
-                relogio().minute.toLong()
-            }
-            viewModel.horarioFinal.value = "${horaEscolhida}:${minutoEscolhido}"
+            horaEscolhida = String.format("%02d", relogio().hour)  // TODO: alterar o adicionar com a fun relogio() caso funcione
+            minutoEscolhido = String.format("%02d", relogio().minute)
+
+            viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
             binding.textView?.text = viewModel.horarioFinal.value
             Log.d("Valores Relógio", viewModel.horarioFinal.value.toString())
@@ -116,7 +109,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         binding.campoNota.text.toString()
                     )
                 )
-            //novo
+
                 MainViewModel.alarmeVar.value = true
                 AdicionarFragment.spinnerHora.value = binding.horaSpinner.selectedItemPosition
                 AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
