@@ -96,30 +96,32 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-        binding.alterar.setOnClickListener {
-            try {
-                viewModel.alterarLembrete(
-                    ItemEntidade(
-                        args.item.id,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataSpinner.selectedItemPosition),
-                        binding.horaSpinner.selectedItemPosition,
-                        binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString()
-                    )
-                )
+        // TODO: alterar esse fragment e xml
 
-                MainViewModel.alarmeVar.value = true
-                AdicionarFragment.spinnerHora.value = binding.horaSpinner.selectedItemPosition
-                AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
-                AdicionarFragment.nota.value = binding.campoNota.text.toString()
-
-                this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
-            }catch (e: Exception){
-                Log.d("Error Alterar", e.toString())
-            }
-        }
+//        binding.alterar.setOnClickListener {
+//            try {
+//                viewModel.alterarLembrete(
+//                    ItemEntidade(
+//                        args.item.id,
+//                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
+//                        viewModel.horarioFinal.value.toString(),
+//                        calendario(binding.dataSpinner.selectedItemPosition),
+//                        binding.horaSpinner.selectedItemPosition,
+//                        binding.dataSpinner.selectedItemPosition,
+//                        binding.campoNota.text.toString()
+//                    )
+//                )
+//
+//                MainViewModel.alarmeVar.value = true
+//                AdicionarFragment.spinnerHora.value = binding.horaSpinner.selectedItemPosition
+//                AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
+//                AdicionarFragment.nota.value = binding.campoNota.text.toString()
+//
+//                this.findNavController().navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
+//            }catch (e: Exception){
+//                Log.d("Error Alterar", e.toString())
+//            }
+//        }
 
 
         binding.retornar.setOnClickListener {

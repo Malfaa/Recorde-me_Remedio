@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.transition.Visibility
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
@@ -27,7 +26,6 @@ import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
-import kotlin.properties.Delegates
 
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -45,7 +43,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel: AdicionarViewModel
     private lateinit var viewModelFactory: AdicionarViewModelFactory
 
-    private val customClicado = MutableLiveData(false)
+    private val horaCustomClicado = MutableLiveData(false)
+    private val dataCustomClicado = MutableLiveData(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,22 +101,96 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
 
+        binding.customHora?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked){
+                horaCustomClicado.value = isChecked
+                spinnerHora.value = 0
+                binding.horaSpinner.visibility = View.GONE
+                binding.horaEditText?.visibility = View.VISIBLE
+            }else{
+                horaCustomClicado.value = false
+                binding.horaEditText?.text?.isEmpty()
+                binding.horaSpinner.visibility = View.VISIBLE
+                binding.horaEditText?.visibility = View.GONE
+            }
+        }
+
+        binding.customData?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked){
+                dataCustomClicado.value = isChecked
+                binding.dataSpinner.visibility = View.GONE
+                binding.dataEditText?.visibility = View.VISIBLE
+            }else{
+                dataCustomClicado.value = false
+                binding.dataEditText?.text?.isEmpty()
+                binding.dataSpinner.visibility = View.VISIBLE
+                binding.dataEditText?.visibility = View.GONE
+            }
+        }
+
         binding.adicionar.setOnClickListener {
             try {
-                viewModel.adicionandoLembrete(
-                    ItemEntidade(
+                if(horaCustomClicado.value!! && dataCustomClicado.value!!){ //positivos
+                  viewModel.adicionandoLembrete(ItemEntidade(
+                            0,
+                            binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
+                            viewModel.horarioFinal.value.toString(),
+                            calendario(binding.dataEditText?.text.toString().toInt(),dataCustomClicado.value!!),
+                            binding.horaEditText?.text.toString().toInt(),
+                            binding.dataEditText?.text.toString().toInt(),
+                            binding.campoNota.text.toString(),
+                            horaCustomClicado.value!!,
+                            dataCustomClicado.value!!
+                        ))
+                }else if(!horaCustomClicado.value!! && dataCustomClicado.value!!){// falso positivo
+                    viewModel.adicionandoLembrete(ItemEntidade(
                         0,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataSpinner.selectedItemPosition),
+                        calendario(binding.dataEditText?.text.toString().toInt(),dataCustomClicado.value!!),
+                        binding.horaSpinner.selectedItemPosition,
+                        binding.dataEditText?.text.toString().toInt(),
+                        binding.campoNota.text.toString(),
+                        horaCustomClicado.value!!,
+                        dataCustomClicado.value!!
+                    ))
+                }else if(horaCustomClicado.value!! && !dataCustomClicado.value!!){//positvo falso
+                    viewModel.adicionandoLembrete(ItemEntidade(
+                        0,
+                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
+                        viewModel.horarioFinal.value.toString(),
+                        calendario(binding.dataSpinner.selectedItemPosition,dataCustomClicado.value!!),
+                        binding.horaEditText?.text.toString().toInt(),
+                        binding.dataSpinner.selectedItemPosition,
+                        binding.campoNota.text.toString(),
+                        horaCustomClicado.value!!,
+                        dataCustomClicado.value!!
+                    ))
+                }else{ //negativos
+                    viewModel.adicionandoLembrete(ItemEntidade(
+                        0,
+                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
+                        viewModel.horarioFinal.value.toString(),
+                        calendario(binding.dataSpinner.selectedItemPosition,dataCustomClicado.value!!),
                         binding.horaSpinner.selectedItemPosition,
                         binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString()
-                    )
-                )
+                        binding.campoNota.text.toString(),
+                        horaCustomClicado.value!!,
+                        dataCustomClicado.value!!
+                    ))
+                }
+
+                spinnerHora.value = if(binding.horaSpinner.selectedItemPosition == 0){
+                    binding.horaEditText?.text.toString().toInt()
+                }else{
+                    binding.horaSpinner.selectedItemPosition
+                }
+
+                //Em teoria consertei o que faltava, falta arrumar o fix\me do utils e ver se algum
+                //conversor vai quebrar quando for salvos os valores custom's, vendo isso, se não estiver
+                //quebrado, resolver a notificação
 
                 alarmeVar.value = true
-                spinnerHora.value = binding.horaSpinner.selectedItemPosition
                 remedio.value = binding.campoRemedio.text.toString()
                 nota.value = binding.campoNota.text.toString()
 
@@ -126,18 +199,10 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 Toast.makeText(requireContext(), "Lembrete adicionado.", Toast.LENGTH_SHORT).show()
             } catch (e: Exception){
                 Log.d("error", e.toString())
+                Toast.makeText(context, "Algum campo não preenchido.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        customClicado.observe(viewLifecycleOwner){condicao ->  // TODO: Se for assim, corrigir o ItemEntidade, que daí ele vai aceitar ao invés do id vai receber o valor... ou não, sei la ainda
-            if (condicao){
-                binding.horaSpinner.visibility = View.GONE
-                binding.horaEditText?.visibility = View.VISIBLE
-            }else{
-                binding.horaSpinner.visibility = View.VISIBLE
-                binding.horaEditText?.visibility = View.GONE
-            }
-        }
 
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
@@ -151,14 +216,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.getItemIdAtPosition(p2)
-        if (p2 == 6){
-            customClicado.value = true
-        }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         p0?.emptyView
     }
 }
-
-// TODO: adicionar o "customizar..." assim que o alarme e notificação estiverem funfando

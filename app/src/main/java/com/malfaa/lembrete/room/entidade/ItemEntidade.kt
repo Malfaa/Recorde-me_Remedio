@@ -16,9 +16,11 @@ data class ItemEntidade(
     var remedio: String,
     var horaInicial: String,
     var dataFinal: String,
-    @ColumnInfo(name = "hora_id")
     var hora: Int,
-    @ColumnInfo(name = "data_id")
     var data: Int,
-    var nota: String
+    var nota: String,
+    @ColumnInfo(name = "custom_hora")
+    var verificaHoraCustom: Boolean,
+    @ColumnInfo(name = "custom_data")
+    var verificaDataCustom: Boolean
 ): Parcelable

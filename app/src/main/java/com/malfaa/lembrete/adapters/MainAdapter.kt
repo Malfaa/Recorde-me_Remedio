@@ -19,8 +19,8 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
     class ViewHolder private constructor(val binding: ItemLembreteBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntidade) {
             binding.remedio.text = item.remedio
-            binding.data.text = conversorPosEmData(item.data)
-            binding.horario.text = conversorPosEmHoras(item.hora)
+            binding.data.text = conversorPosEmData(item.data, item.verificaDataCustom)
+            binding.horario.text = conversorPosEmHoras(item.hora, item.verificaHoraCustom)
             binding.nota.text = item.nota
             binding.inicioValor.text = item.horaInicial
             binding.terminaValor.text = item.dataFinal

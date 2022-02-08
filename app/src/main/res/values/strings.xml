@@ -6,8 +6,11 @@
     <string name="termina">Termina em:</string>
     <string name="remedio">Remédio</string>
     <string name="valor">default</string>
+    <string name="nao">Não</string>
+    <string name="sim">Sim</string>
 
-    <string name="customizar">Customizar…</string>
+    <string name="customizar_reticencias">Customizar…</string>
+    <string name="customizar">Customizar</string>
     <string name="quatro_horas">4 horas</string>
     <string name="seis_horas">6 horas</string>
     <string name="oito_horas">8 horas</string>
@@ -42,7 +45,7 @@
     <string name="quatro_em_quatro">4 em 4 horas</string>
     <string name="doze_em_doze">12 em 12 horas</string>
     <string name="oito_em_oito">8 em 8 horas</string>
-    <string name="vintequtro_em_vintequatro">24 em 24 horas</string>
+    <string name="vintequatro_em_vintequatro">24 em 24 horas</string>
 
 
     <string name="horario_restante">2 horas 34 min</string>
@@ -58,8 +61,8 @@
         <item>@string/seis_em_seis</item>
         <item>@string/oito_em_oito</item>
         <item>@string/doze_em_doze</item>
-        <item>@string/vintequtro_em_vintequatro</item>
-        <item>@string/customizar</item>
+        <item>@string/vintequatro_em_vintequatro</item>
+        <item>@string/customizar_reticencias</item>
     </string-array>
 
     <string-array name="list_datas">
@@ -68,7 +71,6 @@
         <item>@string/sete_dias</item>
         <item>@string/catorze_dias</item>
         <item>@string/todos_dias</item>
-        <item>@string/customizar</item>
     </string-array>
 
     <string name="descricaoNota">Campo onde é colocado alguma descrição adicional do lembrete.</string>

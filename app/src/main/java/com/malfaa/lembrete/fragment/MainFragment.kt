@@ -82,12 +82,12 @@ class MainFragment : Fragment() {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-        alarmeVar.observe(viewLifecycleOwner){condicao->
+        alarmeVar.observe(viewLifecycleOwner){condicao->  // FIXME: mudar o conversor p/ receber novos valores
             if (condicao) {
                 alarme(
                     AdicionarFragment.horaEscolhida.toLong(),
                     AdicionarFragment.minutoEscolhido.toLong(),
-                    conversorPosEmMinutos(spinnerHora.value!!)
+                    conversorPosEmMinutos(spinnerHora.value!!)!!
                 )
                 alarmeVar.value = false
             }
@@ -174,7 +174,7 @@ class MainFragment : Fragment() {
         alarmMgr?.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000
+            1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000  fixme mudar aqui p/ quando o valor for colocado em horas pelo custom
             alarmIntent
         )
     }
