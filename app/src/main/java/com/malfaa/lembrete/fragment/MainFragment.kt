@@ -29,7 +29,8 @@ import com.malfaa.lembrete.adapters.MainAdapter
 import com.malfaa.lembrete.cancelarAlarme
 import com.malfaa.lembrete.conversorPosEmMinutos
 import com.malfaa.lembrete.databinding.MainFragmentBinding
-import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.spinnerHora
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaParaAlarme
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
@@ -82,14 +83,22 @@ class MainFragment : Fragment() {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-        alarmeVar.observe(viewLifecycleOwner){condicao->  // FIXME: mudar o conversor p/ receber novos valores
+        alarmeVar.observe(viewLifecycleOwner){condicao->
             if (condicao) {
-                alarme(
-                    AdicionarFragment.horaEscolhida.toLong(),
-                    AdicionarFragment.minutoEscolhido.toLong(),
-                    conversorPosEmMinutos(spinnerHora.value!!)!!
-                )
+                if(horaCustomClicado.value!!){
+                    alarme(
+                        AdicionarFragment.horaEscolhida.toLong(),
+                        AdicionarFragment.minutoEscolhido.toLong(),
+                        horaParaAlarme.value?.toLong()!!
+                    )
                 alarmeVar.value = false
+                }else{
+                    alarme(
+                        AdicionarFragment.horaEscolhida.toLong(),
+                        AdicionarFragment.minutoEscolhido.toLong(),
+                        conversorPosEmMinutos(horaParaAlarme.value!!)!!
+                    )
+                }
             }
         }
 
@@ -174,7 +183,7 @@ class MainFragment : Fragment() {
         alarmMgr?.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * horario,  //60000 * (60 * 4) = 60000 * '240' = 144000000  fixme mudar aqui p/ quando o valor for colocado em horas pelo custom
+            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000  (4 x 60)
             alarmIntent
         )
     }

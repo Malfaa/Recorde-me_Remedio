@@ -20,11 +20,11 @@ fun cancelarAlarme(){
 
 fun conversorPosEmMinutos(pos: Int): Long? {
     return when(pos){
-        1 -> 240
-        2 -> 360
-        3 -> 480
-        4 -> 720
-        5 -> 1440
+        1 -> 4//240
+        2 -> 6//360
+        3 -> 8//480
+        4 -> 12//720
+        5 -> 24//1440
         6 -> 1
         else -> null
     }

@@ -32,9 +32,11 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         lateinit var horaEscolhida: String
         lateinit var minutoEscolhido: String
-        val spinnerHora = MutableLiveData<Int>()
+        val horaParaAlarme = MutableLiveData<Int>()
         val remedio = MutableLiveData<String>()
         val nota = MutableLiveData<String>()
+        val horaCustomClicado = MutableLiveData(false)
+        val dataCustomClicado = MutableLiveData(false)
     }
 
     private lateinit var picker: MaterialTimePicker
@@ -43,8 +45,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel: AdicionarViewModel
     private lateinit var viewModelFactory: AdicionarViewModelFactory
 
-    private val horaCustomClicado = MutableLiveData(false)
-    private val dataCustomClicado = MutableLiveData(false)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,7 +105,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.customHora?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 horaCustomClicado.value = isChecked
-                spinnerHora.value = 0
+                horaParaAlarme.value = 0
                 binding.horaSpinner.visibility = View.GONE
                 binding.horaEditText?.visibility = View.VISIBLE
             }else{
@@ -180,7 +181,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     ))
                 }
 
-                spinnerHora.value = if(binding.horaSpinner.selectedItemPosition == 0){
+                horaParaAlarme.value = if(binding.horaSpinner.selectedItemPosition == 0){
                     binding.horaEditText?.text.toString().toInt()
                 }else{
                     binding.horaSpinner.selectedItemPosition

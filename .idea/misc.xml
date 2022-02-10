@@ -16,16 +16,16 @@
         <entry key="app/src/main/res/drawable/ic_pill.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_plugin_icon_maior.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.2945326278659612" />
-        <entry key="app/src/main/res/layout-large/alterar_fragment.xml" value="0.16" />
+        <entry key="app/src/main/res/layout-large/alterar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout-normal/adicionar_fragment.xml" value="0.38159371492704824" />
         <entry key="app/src/main/res/layout-normal/alterar_fragment.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout-normal/novo_adicionar.xml" value="0.2" />
-        <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="1.0" />
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.75" />
-        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.5301587301587302" />
         <entry key="app/src/main/res/layout/llist_item.xml" value="0.28559213339033773" />
