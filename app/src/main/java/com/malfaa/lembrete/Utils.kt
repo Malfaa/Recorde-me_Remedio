@@ -105,11 +105,10 @@ fun calendarioParaData(item: Date): String {
 }
 
 fun relogio(): MaterialTimePicker {
-    val picker: MaterialTimePicker =
-    MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
-        .setMinute(0).build()
 
-    return picker
+    return MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+        .setTitleText("Hora em que iniciará:").setHour(12)
+        .setMinute(0).build()
 }
 
 @SuppressLint("SimpleDateFormat")

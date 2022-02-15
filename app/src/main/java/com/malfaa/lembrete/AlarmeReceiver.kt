@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -18,6 +19,9 @@ class AlarmeReceiver : BroadcastReceiver(){
 
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onReceive(context: Context?, intent: Intent?) {// FIXME: fragment do alarme receiver -> arrumar o contexto que não está sendo attached
+        try{
+
+
 //        alarmIntent = Intent(
 //            context, MainFragment::class.java).let {
 //            intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -42,5 +46,8 @@ class AlarmeReceiver : BroadcastReceiver(){
         notificationManager.notify(1, builder.build())
 
         Toast.makeText(MainFragment().requireContext(), "Alarme disparado", Toast.LENGTH_SHORT).show()
+        }catch (e: Exception){
+            Log.d(context?.toString(), e.toString())
+        }
     }
 }

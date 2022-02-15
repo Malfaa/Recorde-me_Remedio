@@ -81,8 +81,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         if(args.item.verificaDataCustom){
             dataCustomClicado.value = args.item.verificaDataCustom
-            binding.customData.isChecked
-            binding.dataEditText.setText(args.item.data)
+            //binding.customData.isChecked
+            binding.customHora.isChecked //fixme deixar toggle quando true
+            binding.dataEditText.setText(args.item.data.toString())
             binding.dataSpinner.visibility = View.GONE
             binding.dataEditText.visibility = View.VISIBLE
         }else{
@@ -94,8 +95,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         if(args.item.verificaHoraCustom){
             horaCustomClicado.value = args.item.verificaHoraCustom
-            binding.customHora.isChecked
-            binding.horaEditText.setText(args.item.hora)
+            //binding.customHora.isChecked
+            binding.customHora.isChecked//fixme aqui
+            binding.horaEditText.setText(args.item.hora.toString())
             AdicionarFragment.horaParaAlarme.value = 0
             binding.horaSpinner.visibility = View.GONE
             binding.horaEditText.visibility = View.VISIBLE

@@ -110,7 +110,6 @@
                         android:visibility="gone"
                         android:inputType="time"
                         android:textAlignment="center"
-                        android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerHora" />
 
 
@@ -191,7 +190,6 @@
                         android:visibility="gone"
                         android:inputType="number"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerData" />
 
 

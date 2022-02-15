@@ -183,11 +183,15 @@ class MainFragment : Fragment() {
         alarmMgr?.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000  (4 x 60)
+            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000
             alarmIntent
         )
+
     }
 
 }
 
 // TODO: desligar o alarme quando chegar no dia selecionado
+// TODO: remover o customizar...
+// TODO: colocar ad no programa
+// FIXME: ver se funfa o alarm com o app fechado || cel bloqueado

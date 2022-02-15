@@ -102,30 +102,30 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
 
-        binding.customHora?.setOnCheckedChangeListener { _, isChecked ->
+        binding.customHora.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 horaCustomClicado.value = isChecked
                 horaParaAlarme.value = 0
                 binding.horaSpinner.visibility = View.GONE
-                binding.horaEditText?.visibility = View.VISIBLE
+                binding.horaEditText.visibility = View.VISIBLE
             }else{
                 horaCustomClicado.value = false
-                binding.horaEditText?.text?.isEmpty()
+                binding.horaEditText.text?.isEmpty()
                 binding.horaSpinner.visibility = View.VISIBLE
-                binding.horaEditText?.visibility = View.GONE
+                binding.horaEditText.visibility = View.GONE
             }
         }
 
-        binding.customData?.setOnCheckedChangeListener { _, isChecked ->
+        binding.customData.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 dataCustomClicado.value = isChecked
                 binding.dataSpinner.visibility = View.GONE
-                binding.dataEditText?.visibility = View.VISIBLE
+                binding.dataEditText.visibility = View.VISIBLE
             }else{
                 dataCustomClicado.value = false
-                binding.dataEditText?.text?.isEmpty()
+                binding.dataEditText.text?.isEmpty()
                 binding.dataSpinner.visibility = View.VISIBLE
-                binding.dataEditText?.visibility = View.GONE
+                binding.dataEditText.visibility = View.GONE
             }
         }
 
@@ -136,9 +136,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             0,
                             binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                             viewModel.horarioFinal.value.toString(),
-                            calendario(binding.dataEditText?.text.toString().toInt(),dataCustomClicado.value!!),
-                            binding.horaEditText?.text.toString().toInt(),
-                            binding.dataEditText?.text.toString().toInt(),
+                            calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!),
+                            binding.horaEditText.text.toString().toInt(),
+                            binding.dataEditText.text.toString().toInt(),
                             binding.campoNota.text.toString(),
                             horaCustomClicado.value!!,
                             dataCustomClicado.value!!
@@ -148,9 +148,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         0,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataEditText?.text.toString().toInt(),dataCustomClicado.value!!),
+                        calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!),
                         binding.horaSpinner.selectedItemPosition,
-                        binding.dataEditText?.text.toString().toInt(),
+                        binding.dataEditText.text.toString().toInt(),
                         binding.campoNota.text.toString(),
                         horaCustomClicado.value!!,
                         dataCustomClicado.value!!
@@ -161,7 +161,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
                         calendario(binding.dataSpinner.selectedItemPosition,dataCustomClicado.value!!),
-                        binding.horaEditText?.text.toString().toInt(),
+                        binding.horaEditText.text.toString().toInt(),
                         binding.dataSpinner.selectedItemPosition,
                         binding.campoNota.text.toString(),
                         horaCustomClicado.value!!,
@@ -182,7 +182,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }
 
                 horaParaAlarme.value = if(binding.horaSpinner.selectedItemPosition == 0){
-                    binding.horaEditText?.text.toString().toInt()
+                    binding.horaEditText.text.toString().toInt()
                 }else{
                     binding.horaSpinner.selectedItemPosition
                 }

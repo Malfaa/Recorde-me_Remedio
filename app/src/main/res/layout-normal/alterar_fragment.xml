@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".fragment.AdicionarFragment">
+            tools:context=".fragment.AlterarFragment">
 
 
             <TextView
@@ -98,6 +98,7 @@
                         android:layout_height="@dimen/dimen_box_default_height"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:textAlignment="center"
+                        android:visibility="visible"
                         android:layout_gravity="center"
                         android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerHora" />
@@ -112,7 +113,6 @@
                         android:visibility="gone"
                         android:inputType="time"
                         android:textAlignment="center"
-                        android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerHora" />
 
 
@@ -176,6 +176,7 @@
                         android:drawableStart="@drawable/ic_calendar"
                         android:layout_height="@dimen/dimen_box_default_height"
                         android:textAlignment="center"
+                        android:visibility="visible"
                         android:background="@drawable/edittext_corner_radius_azul"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -191,7 +192,6 @@
                         android:visibility="gone"
                         android:inputType="number"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:background="@drawable/edittext_corner_radius_azul"
                         android:contentDescription="@string/descricaoSpinnerData" />
 
 
