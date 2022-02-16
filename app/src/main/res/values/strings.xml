@@ -62,7 +62,6 @@
         <item>@string/oito_em_oito</item>
         <item>@string/doze_em_doze</item>
         <item>@string/vintequatro_em_vintequatro</item>
-        <item>@string/customizar_reticencias</item>
     </string-array>
 
     <string-array name="list_datas">

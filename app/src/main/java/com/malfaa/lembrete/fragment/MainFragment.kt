@@ -98,6 +98,8 @@ class MainFragment : Fragment() {
                         AdicionarFragment.minutoEscolhido.toLong(),
                         conversorPosEmMinutos(horaParaAlarme.value!!)!!
                     )
+
+                    alarmeVar.value = false
                 }
             }
         }
@@ -183,7 +185,7 @@ class MainFragment : Fragment() {
         alarmMgr?.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000
+            1000 * 60 * (60 * horario/10),  //60000 * (60 * 4) = 60000 * '240' = 144000000 fixme mudei horario/10
             alarmIntent
         )
 
@@ -191,7 +193,16 @@ class MainFragment : Fragment() {
 
 }
 
-// TODO: desligar o alarme quando chegar no dia selecionado
-// TODO: remover o customizar...
 // TODO: colocar ad no programa
-// FIXME: ver se funfa o alarm com o app fechado || cel bloqueado
+/* FIXME: Registro: 5 problemas encontrados (L.P -> low problem | H.P -> high problem)
+
+           - Alarme não funciona quando o app está fechado.  (H.P)      } Talvez usar o Schedule WorkManager?
+           - Alarme não repete.  (H.P)                                  }
+
+           - Quando alterar o lembrete, os Switchs não trocam de estado, permanecem 'desligados' (L.P)
+
+           - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager
+           - Quando a hora for setada, se o próprio já ter passado, usar o dia seguinte. (L.P)     }
+           - Adicionar ao item_lembrete a data que iniciou junto ao término, talvez mudar as strings do item
+*/
+

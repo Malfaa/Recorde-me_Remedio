@@ -25,7 +25,6 @@ fun conversorPosEmMinutos(pos: Int): Long? {
         3 -> 8//480
         4 -> 12//720
         5 -> 24//1440
-        6 -> 1
         else -> null
     }
 }
@@ -52,7 +51,6 @@ fun conversorPosEmHoras(valor: Int, verifica: Boolean): String? {
             3 -> "8 em 8 horas"
             4 -> "12 em 12 horas"
             5 -> "24 em 24 horas"
-            6-> "Customizar..."
             else -> null
         }
     }else{
@@ -102,13 +100,6 @@ fun calendario(item: Int, verifica: Boolean): String {
 fun calendarioParaData(item: Date): String {
     val formato = SimpleDateFormat("dd/MM")
     return formato.format(item)
-}
-
-fun relogio(): MaterialTimePicker {
-
-    return MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-        .setTitleText("Hora em que iniciará:").setHour(12)
-        .setMinute(0).build()
 }
 
 @SuppressLint("SimpleDateFormat")

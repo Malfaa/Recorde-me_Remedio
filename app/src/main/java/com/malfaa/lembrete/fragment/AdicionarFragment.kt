@@ -91,6 +91,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
+
             picker.addOnPositiveButtonClickListener{
                 horaEscolhida = String.format("%02d", picker.hour)
                 minutoEscolhido = String.format("%02d", picker.minute)
@@ -186,10 +187,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }else{
                     binding.horaSpinner.selectedItemPosition
                 }
-
-                //Em teoria consertei o que faltava, falta arrumar o fix\me do utils e ver se algum
-                //conversor vai quebrar quando for salvos os valores custom's, vendo isso, se não estiver
-                //quebrado, resolver a notificação
 
                 alarmeVar.value = true
                 remedio.value = binding.campoRemedio.text.toString()

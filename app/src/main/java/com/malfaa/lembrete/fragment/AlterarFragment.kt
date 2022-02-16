@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.calendario
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
@@ -22,7 +24,6 @@ import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.dataCustomClicad
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaEscolhida
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.minutoEscolhido
-import com.malfaa.lembrete.relogio
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
@@ -36,6 +37,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: AlterarFragmentBinding
     private lateinit var viewModelFactory: AlterarViewModelFactory
     private val args: AlterarFragmentArgs by navArgs()
+
+    private lateinit var picker: MaterialTimePicker
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,8 +85,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         if(args.item.verificaDataCustom){
             dataCustomClicado.value = args.item.verificaDataCustom
-            //binding.customData.isChecked
-            binding.customHora.isChecked //fixme deixar toggle quando true
+            binding.customData.isChecked
             binding.dataEditText.setText(args.item.data.toString())
             binding.dataSpinner.visibility = View.GONE
             binding.dataEditText.visibility = View.VISIBLE
@@ -96,7 +99,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if(args.item.verificaHoraCustom){
             horaCustomClicado.value = args.item.verificaHoraCustom
             //binding.customHora.isChecked
-            binding.customHora.isChecked//fixme aqui
+            binding.customHora.isChecked
             binding.horaEditText.setText(args.item.hora.toString())
             AdicionarFragment.horaParaAlarme.value = 0
             binding.horaSpinner.visibility = View.GONE
@@ -110,11 +113,15 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.textView.setOnClickListener {
-            relogio().show(requireParentFragment().parentFragmentManager, "lembrete")
+            picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
+                .setMinute(0).build()
 
-            relogio().addOnPositiveButtonClickListener {
-                horaEscolhida = String.format("%02d", relogio().hour)  // TODO: alterar o adicionar com a fun relogio() caso funcione
-                minutoEscolhido = String.format("%02d", relogio().minute)
+            picker.show(requireParentFragment().parentFragmentManager, "lembrete")
+
+
+            picker.addOnPositiveButtonClickListener {
+                horaEscolhida = String.format("%02d", picker.hour)
+                minutoEscolhido = String.format("%02d", picker.minute)
                 viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
                 binding.textView.text = viewModel.horarioFinal.value

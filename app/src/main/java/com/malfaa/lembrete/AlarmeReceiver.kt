@@ -18,10 +18,8 @@ class AlarmeReceiver : BroadcastReceiver(){
     //private lateinit var alarmIntent: PendingIntent
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    override fun onReceive(context: Context?, intent: Intent?) {// FIXME: fragment do alarme receiver -> arrumar o contexto que não está sendo attached
+    override fun onReceive(context: Context?, intent: Intent?) {
         try{
-
-
 //        alarmIntent = Intent(
 //            context, MainFragment::class.java).let {
 //            intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -37,7 +35,7 @@ class AlarmeReceiver : BroadcastReceiver(){
             .setSmallIcon(R.drawable.ic_clock)
             .setContentTitle(remedio.value.toString())
             .setContentText(nota.value. toString())
-            .setAutoCancel(true)
+            //.setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)//alarmIntent
