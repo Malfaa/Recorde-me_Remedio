@@ -98,12 +98,21 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         if(args.item.verificaHoraCustom){
             horaCustomClicado.value = args.item.verificaHoraCustom
-            //binding.customHora.isChecked
-            binding.customHora.isChecked
-            binding.horaEditText.setText(args.item.hora.toString())
-            AdicionarFragment.horaParaAlarme.value = 0
-            binding.horaSpinner.visibility = View.GONE
-            binding.horaEditText.visibility = View.VISIBLE
+
+            binding.customHora.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked){
+                    horaCustomClicado.value = isChecked
+                    binding.horaEditText.setText(args.item.hora.toString())   // FIXME: ver se esse bloco funfa
+                    AdicionarFragment.horaParaAlarme.value = 0
+                    binding.horaSpinner.visibility = View.GONE
+                    binding.horaEditText.visibility = View.VISIBLE
+                }
+            }
+//            binding.horaEditText.setText(args.item.hora.toString())
+//            AdicionarFragment.horaParaAlarme.value = 0
+//            binding.horaSpinner.visibility = View.GONE
+//            binding.horaEditText.visibility = View.VISIBLE
+
         }else{
             horaCustomClicado.value = args.item.verificaHoraCustom
             binding.horaSpinner.setSelection(args.item.hora,true)

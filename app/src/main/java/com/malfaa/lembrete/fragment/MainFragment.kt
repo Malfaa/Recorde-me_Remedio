@@ -196,13 +196,13 @@ class MainFragment : Fragment() {
 // TODO: colocar ad no programa
 /* FIXME: Registro: 5 problemas encontrados (L.P -> low problem | H.P -> high problem)
 
-           - Alarme não funciona quando o app está fechado.  (H.P)      } Talvez usar o Schedule WorkManager?
-           - Alarme não repete.  (H.P)                                  }
+           - Alarme não funciona quando o app está fechado.  (H.P)       } Talvez usar o Schedule WorkManager? ou AlarmManager
+           - Alarme não repete.  (H.P)                                   }
 
            - Quando alterar o lembrete, os Switchs não trocam de estado, permanecem 'desligados' (L.P)
 
            - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager
-           - Quando a hora for setada, se o próprio já ter passado, usar o dia seguinte. (L.P)     }
+           - Quando a hora for setada, se o próprio já ter passado, usar o dia seguinte. (L.P)     }  if (hora_escolhida > hora_atual){ calendar.add(dia_atual, 1)}
            - Adicionar ao item_lembrete a data que iniciou junto ao término, talvez mudar as strings do item
 */
 
