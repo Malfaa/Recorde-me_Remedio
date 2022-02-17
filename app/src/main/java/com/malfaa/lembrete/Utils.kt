@@ -98,7 +98,7 @@ fun calendario(item: Int, verifica: Boolean): String {
 
 @SuppressLint("SimpleDateFormat")
 fun calendarioParaData(item: Date): String {
-    val formato = SimpleDateFormat("dd/MM")
+    val formato = SimpleDateFormat("dd/MM/yyyy")
     return formato.format(item)
 }
 

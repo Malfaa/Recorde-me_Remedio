@@ -14,8 +14,10 @@ data class ItemEntidade(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     var remedio: String,
+    @ColumnInfo(name = "hora_inicial")
     var horaInicial: String,
-    var dataFinal: String,
+    @ColumnInfo(name = "data_conjunto")
+    var dataConjunto: String,
     var hora: Int,
     var data: Int,
     var nota: String,

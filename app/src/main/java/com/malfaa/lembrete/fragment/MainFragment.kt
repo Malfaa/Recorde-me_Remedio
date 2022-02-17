@@ -83,7 +83,7 @@ class MainFragment : Fragment() {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-        alarmeVar.observe(viewLifecycleOwner){condicao->
+        alarmeVar.observe(viewLifecycleOwner){condicao->   // FIXME: colocar no adicionar fragment
             if (condicao) {
                 if(horaCustomClicado.value!!){
                     alarme(
@@ -203,6 +203,5 @@ class MainFragment : Fragment() {
 
            - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager
            - Quando a hora for setada, se o próprio já ter passado, usar o dia seguinte. (L.P)     }  if (hora_escolhida > hora_atual){ calendar.add(dia_atual, 1)}
-           - Adicionar ao item_lembrete a data que iniciou junto ao término, talvez mudar as strings do item
 */
 

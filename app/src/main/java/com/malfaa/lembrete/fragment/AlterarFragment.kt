@@ -19,6 +19,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.calendario
+import com.malfaa.lembrete.calendarioParaData
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.dataCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
@@ -30,6 +31,7 @@ import com.malfaa.lembrete.viewmodel.AlterarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
+import java.util.*
 
 class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -98,20 +100,11 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         if(args.item.verificaHoraCustom){
             horaCustomClicado.value = args.item.verificaHoraCustom
-
-            binding.customHora.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked){
-                    horaCustomClicado.value = isChecked
-                    binding.horaEditText.setText(args.item.hora.toString())   // FIXME: ver se esse bloco funfa
-                    AdicionarFragment.horaParaAlarme.value = 0
-                    binding.horaSpinner.visibility = View.GONE
-                    binding.horaEditText.visibility = View.VISIBLE
-                }
-            }
-//            binding.horaEditText.setText(args.item.hora.toString())
-//            AdicionarFragment.horaParaAlarme.value = 0
-//            binding.horaSpinner.visibility = View.GONE
-//            binding.horaEditText.visibility = View.VISIBLE
+            binding.customHora.isChecked
+            binding.horaEditText.setText(args.item.hora.toString())
+            AdicionarFragment.horaParaAlarme.value = 0
+            binding.horaSpinner.visibility = View.GONE
+            binding.horaEditText.visibility = View.VISIBLE
 
         }else{
             horaCustomClicado.value = args.item.verificaHoraCustom
@@ -167,55 +160,8 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.alterar.setOnClickListener {
             try {
-                if(horaCustomClicado.value!! && dataCustomClicado.value!!){ //positivos
-                    viewModel.alterarLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!),
-                        binding.horaEditText.text.toString().toInt(),
-                        binding.dataEditText.text.toString().toInt(),
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }else if(!horaCustomClicado.value!! && dataCustomClicado.value!!){// falso positivo
-                    viewModel.alterarLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!),
-                        binding.horaSpinner.selectedItemPosition,
-                        binding.dataEditText.text.toString().toInt(),
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }else if(horaCustomClicado.value!! && !dataCustomClicado.value!!){//positvo falso
-                    viewModel.alterarLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataSpinner.selectedItemPosition,dataCustomClicado.value!!),
-                        binding.horaEditText.text.toString().toInt(),
-                        binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }else{ //negativos
-                    viewModel.alterarLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        calendario(binding.dataSpinner.selectedItemPosition,dataCustomClicado.value!!),
-                        binding.horaSpinner.selectedItemPosition,
-                        binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }
+
+                // TODO: adicionar fragment add aqui
 
                 AdicionarFragment.horaParaAlarme.value = if(binding.horaSpinner.selectedItemPosition == 0){
                     binding.horaEditText.text.toString().toInt()

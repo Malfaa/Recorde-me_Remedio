@@ -23,7 +23,7 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             binding.horario.text = conversorPosEmHoras(item.hora, item.verificaHoraCustom)
             binding.nota.text = item.nota
             binding.inicioValor.text = item.horaInicial
-            binding.terminaValor.text = item.dataFinal
+            binding.terminaValor.text = item.dataConjunto
 
             binding.executePendingBindings()
         }
