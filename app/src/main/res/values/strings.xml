@@ -66,7 +66,7 @@
     </string-array>
 
     <string-array name="list_datas">
-        <item/>
+        <item />
         <item>@string/cinco_dias</item>
         <item>@string/sete_dias</item>
         <item>@string/catorze_dias</item>

@@ -105,8 +105,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         }
 
-        // TODO: when todos os dias for selecionado, colocar apenas o dia inicial e tirar o final
-
         binding.customHora.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 horaCustomClicado.value = isChecked
@@ -221,7 +219,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     ))
                 }else{ //negativos
                     val calendario = Calendar.getInstance()
-                    conjuntoDatas = if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
+                    conjuntoDatas = (if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
                         calendario.add(Calendar.DATE, 1)
                         when (binding.dataSpinner.selectedItemPosition) {
                             5 -> calendarioParaData(calendario.time)
@@ -238,19 +236,14 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         when (binding.dataSpinner.selectedItemPosition) {
                             5 -> calendarioParaData(calendario.time)
                             else -> String.format(
-                                "${calendarioParaData(calendario.time)}\n-\n${
-                                    calendarioParaData(
-                                        Calendar.getInstance().time
-                                    )
-                                }\n-\n${
-                                    calendario(
-                                        binding.dataSpinner.selectedItemPosition,
-                                        dataCustomClicado.value!!
-                                    )
-                                }"
+                                "${calendarioParaData(calendario.time)}\n-\n" +
+                                        calendario(
+                                            binding.dataSpinner.selectedItemPosition,
+                                            dataCustomClicado.value!!
+                                        )
                             )
                         }
-                    }
+                    })
                     viewModel.adicionandoLembrete(ItemEntidade(
                         0,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
@@ -302,3 +295,5 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 }
+
+// FIXME: verificar se no bd, o valor default conta como 0 ou 1, caso conte como 1, resolver
