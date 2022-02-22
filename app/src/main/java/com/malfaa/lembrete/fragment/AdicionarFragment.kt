@@ -134,10 +134,12 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.adicionar.setOnClickListener {
             try {
+                val horarioEscolhidoConcatenado = "${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
+                val horarioLocalConcatenado = "${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
                 if(horaCustomClicado.value!! && dataCustomClicado.value!!){ //positivos
                     val calendario = Calendar.getInstance()
                     conjuntoDatas =
-                        if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
+                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                             calendario.add(Calendar.DATE, 1)
                             String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }else {
@@ -159,7 +161,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }else if(!horaCustomClicado.value!! && dataCustomClicado.value!!){// hora = falso && data = positivo
                     val calendario = Calendar.getInstance()
                     conjuntoDatas =
-                        if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
+                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                             calendario.add(Calendar.DATE, 1)
                             String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }else {
@@ -180,7 +182,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }else if(horaCustomClicado.value!! && !dataCustomClicado.value!!){// hora = positvo && data = falso
                     val calendario = Calendar.getInstance()
                     conjuntoDatas =
-                        if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
+                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){ // FIXME: aqui ta bugado a lógica
                             calendario.add(Calendar.DATE, 1)
                             when (binding.dataSpinner.selectedItemPosition) {
                                 5 -> calendarioParaData(calendario.time)
@@ -204,7 +206,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                         )
                                     }"
                                 )
-                            }
+                            } // FIXME: notificacao teve gatilho as 17:56  e depois 18:57 (?), ta tudo doido, mas funfou, sei la
                         }
                     viewModel.adicionandoLembrete(ItemEntidade(
                         0,
@@ -219,7 +221,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     ))
                 }else{ //negativos
                     val calendario = Calendar.getInstance()
-                    conjuntoDatas = (if (horaEscolhida.toInt() > Calendar.HOUR_OF_DAY && minutoEscolhido.toInt() > Calendar.MINUTE){
+                    conjuntoDatas = (if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                         calendario.add(Calendar.DATE, 1)
                         when (binding.dataSpinner.selectedItemPosition) {
                             5 -> calendarioParaData(calendario.time)

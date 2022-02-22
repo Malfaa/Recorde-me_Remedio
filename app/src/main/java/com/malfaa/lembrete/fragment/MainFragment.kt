@@ -196,10 +196,11 @@ class MainFragment : Fragment() {
 // TODO: colocar ad no programa
 /* FIXME: Registro: 3 problemas encontrados (L.P -> low problem | H.P -> high problem)
 
-           - O alarme está estrnho, não sei se o horário está certo, o que inicia o alarme e os que repetem...
+           - O alarme está estranho, não sei se o horário está certo, o que inicia o alarme e os que repetem...
              e quando o app está fechado ele notifica null, tbm não sei se está nos horários devidos (H.P)
 
            - Quando alterar o lembrete, os Switchs não trocam de estado, permanecem 'desligados' (L.P)
-           - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager
+
+           - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager, talvez nem mudar por ter uma data
 */
 
