@@ -29,6 +29,7 @@ import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel
+import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
 import java.util.*
@@ -122,7 +123,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
-
             picker.addOnPositiveButtonClickListener {
                 horaEscolhida = String.format("%02d", picker.hour)
                 minutoEscolhido = String.format("%02d", picker.minute)
@@ -175,10 +175,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         }
 
                     viewModel.alterarLembrete(ItemEntidade(
-                        0,
+                        args.item.id,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
-
                         conjuntoDatas,
                         binding.horaEditText.text.toString().toInt(),
                         binding.dataEditText.text.toString().toInt(),
@@ -197,7 +196,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         }
 
                     viewModel.alterarLembrete(ItemEntidade(
-                        0,
+                        args.item.id,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
                         conjuntoDatas,
@@ -237,7 +236,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             } // FIXME: notificacao teve gatilho as 17:56  e depois 18:57 (?), ta tudo doido, mas funfou, sei la
                         }
                     viewModel.alterarLembrete(ItemEntidade(
-                        0,
+                        args.item.id,
                         binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
                         viewModel.horarioFinal.value.toString(),
                         conjuntoDatas,
@@ -275,6 +274,17 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         }
                     })
 
+                    viewModel.alterarLembrete(ItemEntidade(
+                        args.item.id,
+                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
+                        viewModel.horarioFinal.value.toString(),
+                        conjuntoDatas,
+                        binding.horaEditText.text.toString().toInt(),
+                        binding.dataSpinner.selectedItemPosition,
+                        binding.campoNota.text.toString(),
+                        horaCustomClicado.value!!,
+                        dataCustomClicado.value!!
+                    ))
                     AdicionarFragment.horaParaAlarme.value =
                         if (binding.horaSpinner.selectedItemPosition == 0) {
                             binding.horaEditText.text.toString().toInt()
@@ -282,7 +292,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             binding.horaSpinner.selectedItemPosition
                         }
 
-                    MainViewModel.alarmeVar.value = true
+                    alarmeVar.value = true
                     AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
                     AdicionarFragment.nota.value = binding.campoNota.text.toString()
 
