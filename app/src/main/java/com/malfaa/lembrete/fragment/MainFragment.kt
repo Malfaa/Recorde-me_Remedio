@@ -156,6 +156,8 @@ class MainFragment : Fragment() {
         alerta.show()
     }
 
+    // fixme aqui p/ baixo vai apagar se pa
+
     private fun criandoCanalDeNotificacao(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val nome = "LembreteNotificacao"
@@ -181,16 +183,16 @@ class MainFragment : Fragment() {
             set(Calendar.HOUR_OF_DAY, hora.toInt())
             set(Calendar.MINUTE, minutos.toInt())
         }
-        
+
+        //alarmMgr.setExactAndAllowWhileIdle()
+
         alarmMgr?.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000
+            1000 * 60 /* * (60 * horario)*/,  //60000 * (60 * 4) = 60000 * '240' = 144000000   setExactAndAllowWhileIdle()
             alarmIntent
         )
-
-    }
-
+    } // fixme retorna null, não cancela o alarme que foi colocado nele
 }
 
 // TODO: colocar ad no programa
@@ -198,6 +200,8 @@ class MainFragment : Fragment() {
 
            - O alarme está estranho, não sei se o horário está certo, o que inicia o alarme e os que repetem...
              e quando o app está fechado ele notifica null, tbm não sei se está nos horários devidos (H.P)
+
+           - Fazer o alarme funcionar enquanto o app estiver fechado (onDestroy())
 
            - Quando alterar o lembrete, os Switchs não trocam de estado, permanecem 'desligados' (L.P)
 
