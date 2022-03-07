@@ -31,6 +31,8 @@ import com.malfaa.lembrete.conversorPosEmMinutos
 import com.malfaa.lembrete.databinding.MainFragmentBinding
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaParaAlarme
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.nota
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.remedio
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
@@ -172,10 +174,10 @@ class MainFragment : Fragment() {
 
     private fun alarme(hora: Long, minutos: Long, horario: Long) {
         alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(
-            requireContext(), AlarmeReceiver::class.java).let { intent ->
+        alarmIntent = Intent(//fixme mudei aqui
+            requireContext(), AlarmeReceiver(remedio.value.toString(),nota.value.toString())::class.java).let { intent ->
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
+            PendingIntent.getActivity/* <- mudei aqui */(requireContext(), 0, intent, 0)
         }
 
         val calendar: Calendar = Calendar.getInstance().apply {

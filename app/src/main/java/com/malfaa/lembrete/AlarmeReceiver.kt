@@ -12,8 +12,9 @@ import androidx.core.app.NotificationManagerCompat
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.nota
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.remedio
 import com.malfaa.lembrete.fragment.MainFragment
-
-class AlarmeReceiver : BroadcastReceiver(){
+import com.malfaa.lembrete.room.entidade.ItemEntidade
+//mudei aqui abaixo
+class AlarmeReceiver(val remedio:String, val nota:String) : BroadcastReceiver(){
 
     //private lateinit var alarmIntent: PendingIntent
 
@@ -25,16 +26,19 @@ class AlarmeReceiver : BroadcastReceiver(){
 //            intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 //            PendingIntent.getBroadcast(context, 0, intent!!, 0)
 //        }
-        val alarmIntent = Intent(context, MainActivity::class.java).apply {
+        val alarmIntent = Intent(context, MainFragment::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-
+// FIXME: mudei linha 32 / usar o id do lembrete pra adicionar o alarme
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context,0,alarmIntent,0)  //Intent.FLAG_ACTIVITY_NEW_TASK
 
         val builder = NotificationCompat.Builder(context!!, "notificacao")
+            // FIXME: talvez pegar direto do banco de dados os valores, pq aqui quando destruído o
+            //  app, as variáveis são apagadas, resultando em retornar null
             .setSmallIcon(R.drawable.ic_clock)
-            .setContentTitle(remedio.value.toString())
-            .setContentText(nota.value. toString())
+            //mudei aqui abaixo
+            .setContentTitle(remedio/*remedio.value.toString()*/) //aqui
+            .setContentText(nota/*nota.value. toString()*/) // aqui
             //.setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

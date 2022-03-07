@@ -14,7 +14,7 @@ import java.util.*
 private var alarmMgr: AlarmManager? = null
 private lateinit var alarmIntent: PendingIntent
 
-fun cancelarAlarme(){
+fun cancelarAlarme(){//colocar um parâmetro aqui pra cancelar via id?
     alarmMgr?.cancel(alarmIntent)
 }
 

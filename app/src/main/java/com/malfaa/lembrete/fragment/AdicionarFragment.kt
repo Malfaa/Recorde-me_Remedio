@@ -39,6 +39,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val nota = MutableLiveData<String>()
         val horaCustomClicado = MutableLiveData(false)
         val dataCustomClicado = MutableLiveData(false)
+        val idParaAlarme = MutableLiveData<Int>()
     }
 
     private lateinit var picker: MaterialTimePicker
@@ -134,8 +135,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.adicionar.setOnClickListener {
             try {
-                val horarioEscolhidoConcatenado = "${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
-                val horarioLocalConcatenado = "${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
+                val horarioEscolhidoConcatenado = horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
+                val horarioLocalConcatenado = Calendar.HOUR_OF_DAY + Calendar.MINUTE//"${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
                 if(horaCustomClicado.value!! && dataCustomClicado.value!!){ //positivos
                     val calendario = Calendar.getInstance()
                     conjuntoDatas =
@@ -257,6 +258,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         horaCustomClicado.value!!,
                         dataCustomClicado.value!!
                     ))
+
                 }
 
                 horaParaAlarme.value = if(binding.horaSpinner.selectedItemPosition == 0){
@@ -266,6 +268,10 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }
 
                 alarmeVar.value = true
+
+                //aqui
+                //passa aqui o id para alarme
+
                 remedio.value = binding.campoRemedio.text.toString()
                 nota.value = binding.campoNota.text.toString()
 
