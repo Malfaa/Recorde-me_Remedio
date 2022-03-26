@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/distancia_item_edittext"
-        android:background="@color/azul_secundario">
+        style="@style/fundo">
 
 
         <TextView

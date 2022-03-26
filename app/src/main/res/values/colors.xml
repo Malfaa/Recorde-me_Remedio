@@ -3,6 +3,16 @@
     <color name= "azul_primario">#5DA4F8</color>
     <color name= "azul_secundario">#C2DDFC</color>
     <color name= "cinza_texto">#535252</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="dark_primary">#424242</color>
+    <color name="dark_primary_light">#6d6d6d</color>
+
+    <color name="dark_secondary">#6a5549</color>
+    <color name="dark_secondary_light">#998175</color>
+
+    <color name="cream_text">#FFEFCB</color>
+    
 </resources>
