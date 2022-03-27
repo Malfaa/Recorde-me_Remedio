@@ -142,9 +142,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     conjuntoDatas =
                         if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                             calendario.add(Calendar.DATE, 1)
-                            String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
+                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }else {
-                            String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
+                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }
 
                     viewModel.adicionandoLembrete(ItemEntidade(
@@ -164,9 +164,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     conjuntoDatas =
                         if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                             calendario.add(Calendar.DATE, 1)
-                            String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
+                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }else {
-                            String.format("${calendarioParaData(calendario.time)}\n-\n${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
+                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
                         }
 
                     viewModel.adicionandoLembrete(ItemEntidade(
@@ -188,7 +188,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             when (binding.dataSpinner.selectedItemPosition) {
                                 5 -> calendarioParaData(calendario.time)
                                 else -> String.format(
-                                    "${calendarioParaData(calendario.time)}\n-\n${
+                                    "${calendarioParaData(calendario.time)} - ${
                                         calendario(
                                             binding.dataSpinner.selectedItemPosition,
                                             dataCustomClicado.value!!
@@ -200,7 +200,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             when (binding.dataSpinner.selectedItemPosition) {
                                 5 -> calendarioParaData(calendario.time)
                                 else -> String.format(
-                                    "${calendarioParaData(calendario.time)}\n-\n${
+                                    "${calendarioParaData(calendario.time)} - ${
                                         calendario(
                                             binding.dataSpinner.selectedItemPosition,
                                             dataCustomClicado.value!!
@@ -227,7 +227,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         when (binding.dataSpinner.selectedItemPosition) {
                             5 -> calendarioParaData(calendario.time)
                             else -> String.format(
-                                "${calendarioParaData(calendario.time)}\n-\n${
+                                "${calendarioParaData(calendario.time)} - ${
                                     calendario(
                                         binding.dataSpinner.selectedItemPosition,
                                         dataCustomClicado.value!!
@@ -239,7 +239,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         when (binding.dataSpinner.selectedItemPosition) {
                             5 -> calendarioParaData(calendario.time)
                             else -> String.format(
-                                "${calendarioParaData(calendario.time)}\n-\n" +
+                                "${calendarioParaData(calendario.time)} - " +
                                         calendario(
                                             binding.dataSpinner.selectedItemPosition,
                                             dataCustomClicado.value!!

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="lembrete_shape" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerRadius">4dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    
+    <style name="floating_shape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+    </style>
+</resources>

@@ -2,24 +2,32 @@
     <!-- Base application theme. -->
     <style name="Theme.Lembrete" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/dark_primary</item>
-        <item name="colorPrimaryVariant">@color/dark_primary_light</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/night_primary</item>
+        <item name="colorPrimaryVariant">@color/night_primary_light</item>
+
+        <item name="colorOnPrimary">@color/cream_text</item><!--white-->
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/dark_secondary</item>
-        <item name="colorSecondaryVariant">@color/dark_secondary_light</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_light</item>
+
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="background">@style/fundo</item>
+        <item name="android:colorBackground">@color/night_primary_dark</item>
     </style>
 
-    <style name="fundo" parent="Theme.MaterialComponents">
-        <item name="android:backgroundTint">@color/dark_primary</item>
+    <style name="textView" parent="TextAppearance.AppCompat">
+        <item name="android:background">@drawable/night_text_view_drawable</item>
+        <item name="android:layout_marginTop">@dimen/distancia_item</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_textos</item>
     </style>
 
-    <style name="bar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:colorPrimary">@color/white</item>
+    <style name="lembrete" parent="">
+        <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item</item>
+        <item name="android:layout_marginEnd">@dimen/distancia_item</item>
+        <item name="android:background">@drawable/night_lembrete_text_view_drawable</item>
+        <item name="android:orientation">vertical</item>
     </style>
 </resources>

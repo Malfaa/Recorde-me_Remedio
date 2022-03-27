@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name= "azul_primario">#5DA4F8</color>
-    <color name= "azul_secundario">#C2DDFC</color>
-    <color name= "cinza_texto">#535252</color>
+    <color name= "day_primary">#eceff1</color>
+    <color name= "day_primary_light">#ffffff</color>
+    <color name= "day_primary_dark">#babdbe</color>
+
+    <color name="night_primary">#424242</color>
+    <color name="night_primary_light">#6d6d6d</color>
+    <color name="night_primary_dark">#1b1b1b</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
-    <color name="dark_primary">#424242</color>
-    <color name="dark_primary_light">#6d6d6d</color>
 
-    <color name="dark_secondary">#6a5549</color>
-    <color name="dark_secondary_light">#998175</color>
+    <color name="secondary">#6a5549</color>
+    <color name="secondary_light">#998175</color>
+    <color name="secondary_dark">#3e2c21</color>
 
     <color name="cream_text">#FFEFCB</color>
     

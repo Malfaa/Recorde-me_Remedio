@@ -8,108 +8,106 @@
             type="com.malfaa.lembrete.room.entidade.ItemEntidade" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lembrete"
+        style="@style/lembrete"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distancia_item_edittext"
-        style="@style/fundo">
+        android:layout_height="wrap_content">
 
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/remedio"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/s_distancia_itens"
-            android:layout_marginTop="@dimen/distancia_item"
-            android:layout_marginEnd="@dimen/n_distancia_itens"
-            android:background="@drawable/edittext_corner_radius"
-            android:text="@string/remedio"
-            app:layout_constraintEnd_toStartOf="@+id/inicio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/remedio"
+            android:textSize="16sp"
+            android:layout_marginEnd="@dimen/distancia_item_textos"
+            style="@style/textView"
+            />
 
-        <TextView
-            android:id="@+id/inicio"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/primeiro_box_horizontal"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/n_distancia_itens"
-            android:text="@string/iniciou"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/remedio" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/inicioValor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_corner_radius"
-            android:minWidth="@dimen/dimen_box_normal_width"
-            android:text="@string/iniciou_em"
-            android:layout_marginTop="@dimen/distancia_item_textos"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/inicio"
-            app:layout_constraintStart_toStartOf="@+id/inicio"
-            app:layout_constraintTop_toBottomOf="@+id/inicio" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/horario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                style="@style/textView"
+                android:hint="@string/seis_em_seis"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                style="@style/textView"
+                android:layout_marginBottom="@dimen/distancia_item"
+                android:hint="@string/uma_semana" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/textView"
+                android:minWidth="206dp"
+                android:maxWidth="206dp"
+                android:maxLines="2"
+                android:hint="@string/nota"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
-            android:id="@+id/termina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distancia_item"
-            android:text="@string/termina"
-            app:layout_constraintEnd_toEndOf="@+id/inicioValor"
-            app:layout_constraintStart_toStartOf="@+id/inicioValor"
-            app:layout_constraintTop_toBottomOf="@+id/inicioValor" />
-
-        <TextView
-            android:id="@+id/terminaValor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distancia_item_textos"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/segundo_box_horizontal"
+            android:orientation="horizontal"
             android:layout_marginBottom="@dimen/distancia_item"
-            android:background="@drawable/edittext_corner_radius"
-            android:textAlignment="center"
-            android:text="@string/termina_em"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/termina"
-            app:layout_constraintStart_toStartOf="@+id/termina"
-            app:layout_constraintTop_toBottomOf="@+id/termina" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/horario"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_corner_radius"
-            android:layout_marginTop="@dimen/distancia_item_edittext"
-            android:text="@string/seis_em_seis"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="@+id/remedio"
-            app:layout_constraintTop_toTopOf="@+id/nota" />
 
-        <TextView
-            android:id="@+id/data"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distancia_item"
-            android:background="@drawable/edittext_corner_radius"
-            android:text="@string/uma_semana"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@+id/nota"
-            app:layout_constraintEnd_toEndOf="@+id/horario"
-            app:layout_constraintStart_toStartOf="@+id/horario"
-            app:layout_constraintTop_toBottomOf="@+id/horario" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/bloco_vertical_interior"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/distancia_item_textos"
+                    android:text="@string/iniciou"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/inicioValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/dimen_box_normal_width"
+                    android:text="@string/iniciou_em"
+                    style="@style/textView"
+                    android:textAlignment="center"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
-            android:id="@+id/nota"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/distancia_item"
-            android:layout_marginTop="@dimen/distancia_item"
-            android:background="@drawable/edittext_corner_radius"
-            android:text="@string/nota"
-            app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
-            app:layout_constraintEnd_toEndOf="@+id/remedio"
-            app:layout_constraintStart_toEndOf="@+id/horario"
-            app:layout_constraintTop_toBottomOf="@+id/remedio" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/bloco_vertical_interior_dois"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/distancia_item_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/termina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/distancia_item_textos"
+                    android:text="@string/termina" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/terminaValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textView"
+                    android:textAlignment="center"
+                    android:text="@string/termina_em"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
