@@ -183,7 +183,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }else if(horaCustomClicado.value!! && !dataCustomClicado.value!!){// hora = positvo && data = falso
                     val calendario = Calendar.getInstance()
                     conjuntoDatas =
-                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){ // FIXME: aqui ta bugado a lógica
+                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
                             calendario.add(Calendar.DATE, 1)
                             when (binding.dataSpinner.selectedItemPosition) {
                                 5 -> calendarioParaData(calendario.time)
@@ -207,7 +207,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                         )
                                     }"
                                 )
-                            } // FIXME: notificacao teve gatilho as 17:56  e depois 18:57 (?), ta tudo doido, mas funfou, sei la
+                            }
                         }
                     viewModel.adicionandoLembrete(ItemEntidade(
                         0,
@@ -303,5 +303,3 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         p0?.emptyView
     }
 }
-
-// FIXME: verificar se no bd, o valor default conta como 0 ou 1, caso conte como 1, resolver

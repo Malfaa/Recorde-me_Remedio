@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.Lembrete" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/day_primary_dark</item>
+        <item name="colorPrimary">@color/day_primary_variant</item>
         <item name="colorPrimaryVariant">@color/day_primary</item>
 
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/secondary_light</item>
@@ -14,22 +14,39 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">@color/day_primary</item>
+        <item name="android:colorBackground">@color/grey_bg</item>
+
+        <item name="floatingActionButtonSurfaceStyle">@style/floating_shape</item>
     </style>
     
-    <style name="textView" parent="TextAppearance.AppCompat">
-        <item name="android:background">@drawable/day_text_view_drawable</item>
+    <style name="text_view" parent="TextAppearance.AppCompat">
+
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
         <item name="android:layout_marginStart">@dimen/distancia_item_textos</item>
         <item name="android:textColor">@color/secondary_dark</item>
     </style>
 
-    <style name="lembrete" parent="ShapeAppearance.Material3.LargeComponent">
+    <style name="nota_text_view" parent="TextAppearance.AppCompat">
+        <item name="android:background">@drawable/day_text_view_drawable</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:layout_marginTop">@dimen/distancia_item</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_textos</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="lembrete" parent="">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
         <item name="android:layout_marginStart">@dimen/distancia_item</item>
         <item name="android:layout_marginEnd">@dimen/distancia_item</item>
         <item name="android:background">@drawable/day_lembrete_text_view_drawable</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
+        <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
+        <item name="android:background">@drawable/day_add_alt_text_box</item>
+
     </style>
 
     <style name="text_dentro_box" parent="TextAppearance.AppCompat">

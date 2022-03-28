@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dimen_box_default_height"
-                android:background="@drawable/edittext_corner_radius_azul"
+                android:background="@drawable/night_add_alt_text_box"
                 app:startIconDrawable="@drawable/ic_pill"
                 android:textSize="@dimen/font_adicao"
                 android:layout_marginTop="@dimen/distancia_item"
@@ -42,7 +42,7 @@
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/campoRemedio"
-                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:background="@drawable/night_add_alt_text_box"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +82,7 @@
                         android:textAlignment="center"
                         android:textSize="@dimen/font_adicao"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:background="@drawable/edittext_corner_radius_azul"
+                        android:background="@drawable/night_add_alt_text_box"
                         android:text="" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -113,7 +113,7 @@
                         app:startIconDrawable="@drawable/ic_time"
                         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:background="@drawable/edittext_corner_radius_azul"
+                        android:background="@drawable/night_add_alt_text_box"
                         >
                         <AutoCompleteTextView
                             android:backgroundTint="@color/azul_secundario"
@@ -146,7 +146,7 @@
                 app:startIconDrawable="@drawable/ic_calendar"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:background="@drawable/edittext_corner_radius_azul"
+                android:background="@drawable/night_add_alt_text_box"
                 android:contentDescription="@string/descricaoSpinnerData"
                 >
                 <AutoCompleteTextView
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dimen_box_default_height"
                 android:textSize="@dimen/font_adicao"
-                android:background="@drawable/edittext_corner_radius_azul"
+                android:background="@drawable/night_add_alt_text_box"
                 app:startIconDrawable="@drawable/ic_notes"
                 android:layout_marginStart="@dimen/n_distancia_itens"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -182,7 +182,7 @@
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/campoNota"
-                    android:background="@drawable/edittext_corner_radius_azul"
+                    android:background="@drawable/night_add_alt_text_box"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </com.google.android.material.textfield.TextInputLayout>

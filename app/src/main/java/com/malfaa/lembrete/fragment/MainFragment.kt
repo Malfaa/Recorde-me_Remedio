@@ -85,7 +85,7 @@ class MainFragment : Fragment() {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-        alarmeVar.observe(viewLifecycleOwner){condicao->   // FIXME: colocar no adicionar fragment
+        alarmeVar.observe(viewLifecycleOwner){condicao->
             if (condicao) {
                 if(horaCustomClicado.value!!){
                     alarme(
@@ -158,7 +158,6 @@ class MainFragment : Fragment() {
         alerta.show()
     }
 
-    // fixme aqui p/ baixo vai apagar se pa
 
     private fun criandoCanalDeNotificacao(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -194,19 +193,5 @@ class MainFragment : Fragment() {
             1000 * 60 /* * (60 * horario)*/,  //60000 * (60 * 4) = 60000 * '240' = 144000000   setExactAndAllowWhileIdle()
             alarmIntent
         )
-    } // fixme retorna null, não cancela o alarme que foi colocado nele
+    }
 }
-
-// TODO: colocar ad no programa
-/* FIXME: Registro: 3 problemas encontrados (L.P -> low problem | H.P -> high problem)
-
-           - O alarme está estranho, não sei se o horário está certo, o que inicia o alarme e os que repetem...
-             e quando o app está fechado ele notifica null, tbm não sei se está nos horários devidos (H.P)
-
-           - Fazer o alarme funcionar enquanto o app estiver fechado (onDestroy())
-
-           - Quando alterar o lembrete, os Switchs não trocam de estado, permanecem 'desligados' (L.P)
-
-           - O dia setado quando adicionado não tem aplicação nenhuma dentro do app      (H.P)     } Usar um dia como setter? Não sei como se aplica ao Schedule WorkManager, talvez nem mudar por ter uma data
-*/
-

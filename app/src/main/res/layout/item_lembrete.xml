@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -21,7 +20,7 @@
             android:hint="@string/remedio"
             android:textSize="16sp"
             android:layout_marginEnd="@dimen/distancia_item_textos"
-            style="@style/textView"
+            style="@style/text_view"
             />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -35,21 +34,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                style="@style/textView"
+                style="@style/text_view"
                 android:hint="@string/seis_em_seis"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                style="@style/textView"
+                style="@style/text_view"
                 android:layout_marginBottom="@dimen/distancia_item"
                 android:hint="@string/uma_semana" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/nota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/textView"
+                style="@style/text_view"
                 android:minWidth="206dp"
                 android:maxWidth="206dp"
                 android:maxLines="2"
@@ -81,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:minWidth="@dimen/dimen_box_normal_width"
                     android:text="@string/iniciou_em"
-                    style="@style/textView"
+                    style="@style/text_view"
                     android:textAlignment="center"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -102,7 +101,7 @@
                     android:id="@+id/terminaValor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/textView"
+                    style="@style/text_view"
                     android:textAlignment="center"
                     android:text="@string/termina_em"/>
             </androidx.appcompat.widget.LinearLayoutCompat>

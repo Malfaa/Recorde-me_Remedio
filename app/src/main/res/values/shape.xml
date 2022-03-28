@@ -6,6 +6,10 @@
     </style>
     
     <style name="floating_shape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">cut</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="android:topLeftRadius">20dp</item>
+        <item name="android:topRightRadius">0dp</item>
+        <item name="android:bottomRightRadius">0dp</item>
+        <item name="android:bottomLeftRadius">0dp</item>
     </style>
 </resources>
