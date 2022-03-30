@@ -16,7 +16,7 @@
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/grey_bg</item>
 
-        <item name="floatingActionButtonSurfaceStyle">@style/floating_shape</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
     </style>
     
     <style name="text_view" parent="TextAppearance.AppCompat">
