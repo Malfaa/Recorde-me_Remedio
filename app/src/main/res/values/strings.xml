@@ -73,6 +73,12 @@
         <item>@string/todos_dias</item>
     </string-array>
 
+    <string-array name="menu_main">
+        <item>Adicionar Lembrete</item>
+        <item>Alterar Lembrete</item>
+        <item>Remover Lembrete</item>
+    </string-array>
+
     <string name="descricaoNota">Campo onde é colocado alguma descrição adicional do lembrete.</string>
     <string name="descricaoSpinnerData">Campo de escolha das datas que serão selecionadas.</string>
     <string name="descricaoSpinnerHora">Campo de escolha dos horarios que serão selecionados.</string>
