@@ -14,13 +14,13 @@ abstract class LDatabase: RoomDatabase(){
 
     companion object{
         @Volatile
-        private var INSTANCE: com.malfaa.lembrete.room.LDatabase? = null
+        private var INSTANCE: LDatabase? = null
 
-        fun recebaDatabase(context: Context): com.malfaa.lembrete.room.LDatabase {
+        fun recebaDatabase(context: Context): LDatabase {
             return (INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    com.malfaa.lembrete.room.LDatabase::class.java,
+                    LDatabase::class.java,
                     "database"
                 ).addCallback(DatabaseCallback()).build()
                 INSTANCE = instance

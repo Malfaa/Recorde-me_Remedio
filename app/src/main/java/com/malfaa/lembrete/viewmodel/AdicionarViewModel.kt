@@ -2,11 +2,12 @@ package com.malfaa.lembrete.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.LDao
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import kotlinx.coroutines.*
 
-class AdicionarViewModel(private val dao: LDao)  : ViewModel() {
+class AdicionarViewModel(private val repository: ItemRepository)  : ViewModel() {
     val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
 
@@ -14,12 +15,7 @@ class AdicionarViewModel(private val dao: LDao)  : ViewModel() {
 
     fun adicionandoLembrete(item: ItemEntidade){
         uiScope.launch {
-            _adicionandoLembrete(item)
-        }
-    }
-    suspend fun _adicionandoLembrete(item: ItemEntidade){
-        return withContext(Dispatchers.IO) {
-            dao.adicionaLembrete(item)
+            repository._adicionandoLembrete(item)
         }
     }
 

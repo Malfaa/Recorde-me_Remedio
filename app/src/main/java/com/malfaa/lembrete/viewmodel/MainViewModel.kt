@@ -1,24 +1,21 @@
 package com.malfaa.lembrete.viewmodel
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.malfaa.lembrete.fragment.MainFragment
-import com.malfaa.lembrete.room.LDao
+import androidx.lifecycle.asLiveData
+import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.entidade.ItemEntidade
-import kotlinx.coroutines.*
-import java.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class MainViewModel(val ldao: LDao)  : ViewModel() {
+class MainViewModel(private val repository: ItemRepository)  : ViewModel() {
 
     val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    val listaLembretes = ldao.recebeInfos()
+    val listaLembretes = repository.recebeItem.asLiveData()// aqui
 
     companion object{
         val deletar = MutableLiveData(false)
@@ -29,7 +26,7 @@ class MainViewModel(val ldao: LDao)  : ViewModel() {
 
     fun deletarLembrete(item: ItemEntidade){
         uiScope.launch {
-            ldao.deletarLembrete(item)
+            repository._deletarLembrete(item)
         }
     }
 }
