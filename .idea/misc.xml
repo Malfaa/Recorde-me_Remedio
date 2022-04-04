@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.5" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.21668177697189483" />
         <entry key="app/src/main/res/layout/llist_item.xml" value="0.28559213339033773" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.33" />

@@ -12,4 +12,16 @@
         <item name="android:bottomRightRadius">0dp</item>
         <item name="android:bottomLeftRadius">0dp</item>
     </style>
+
+    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginEnd">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+
+    </style>
+
 </resources>

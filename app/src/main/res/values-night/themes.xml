@@ -46,4 +46,12 @@
         <item name="android:background">@drawable/night_lembrete_text_view_drawable</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="card_lembrete" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_marginEnd">@dimen/distancia_item_edittext</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>
