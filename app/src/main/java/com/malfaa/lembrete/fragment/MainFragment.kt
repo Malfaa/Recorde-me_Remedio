@@ -23,6 +23,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.malfaa.lembrete.AlarmeReceiver
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.adapters.MainAdapter
@@ -63,19 +67,29 @@ class MainFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Lembrar"
         criandoCanalDeNotificacao()
 
+        MobileAds.initialize(requireContext()){}
+
+        //var mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+
+        //https://developers.google.com/admob/android/banner
+
         return binding.root
     }
     //val notificationManager: NotificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
-        val datasource = com.malfaa.lembrete.room.LDatabase.recebaDatabase(application).meuDao()
+        val datasource = com.malfaa.lembrete.room.LDatabase.recebaDatabase(application).repository()
 
         viewModelFactory = MainViewModelFactory(datasource)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
+
+        ad()
 
         viewModel.listaLembretes.observe(viewLifecycleOwner){
             adapter.submitList(it.toMutableList())
@@ -123,14 +137,41 @@ class MainFragment : Fragment() {
             }
         }
 
-
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             val a = Intent(Intent.ACTION_MAIN)
             a.addCategory(Intent.CATEGORY_HOME)
             a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(a)
         }
+
         callback.isEnabled
+    }
+
+    private fun ad(){
+        binding.adView.adListener = object : AdListener(){
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+        }
     }
 
     private fun alertDialogDeletarContato(){
@@ -157,7 +198,6 @@ class MainFragment : Fragment() {
         val alerta = construtor.create()
         alerta.show()
     }
-
 
     private fun criandoCanalDeNotificacao(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

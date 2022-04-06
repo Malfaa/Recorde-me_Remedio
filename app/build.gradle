@@ -67,4 +67,6 @@ dependencies {
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+    //AdMob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
 }

@@ -28,7 +28,6 @@ import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.minutoEscolhido
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AlterarViewModel
-import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
@@ -63,7 +62,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
-        val dataSource = LDatabase.recebaDatabase(application).meuDao()
+        val dataSource = LDatabase.recebaDatabase(application).repository()
 
         viewModelFactory = AlterarViewModelFactory(dataSource)
         viewModel = ViewModelProvider(this, viewModelFactory)[AlterarViewModel::class.java]
@@ -90,7 +89,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         if(args.item.verificaDataCustom){
             dataCustomClicado.value = args.item.verificaDataCustom
+
             binding.customData.isChecked
+
             binding.dataEditText.setText(args.item.data.toString())
             binding.dataSpinner.visibility = View.GONE
             binding.dataEditText.visibility = View.VISIBLE
@@ -103,7 +104,9 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         if(args.item.verificaHoraCustom){
             horaCustomClicado.value = args.item.verificaHoraCustom
-            binding.customHora.isChecked
+
+            binding.customHora.isEnabled
+
             binding.horaEditText.setText(args.item.hora.toString())
             AdicionarFragment.horaParaAlarme.value = 0
             binding.horaSpinner.visibility = View.GONE

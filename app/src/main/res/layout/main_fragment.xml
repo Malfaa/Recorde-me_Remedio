@@ -39,5 +39,18 @@
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_lembrete_novo" />
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            android:layout_marginStart="@dimen/distancia_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!-- Trocar linha 49 pelo ID próprio -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
