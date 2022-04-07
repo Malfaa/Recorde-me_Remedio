@@ -65,7 +65,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
-        val dataSource = LDatabase.recebaDatabase(application).meuDao()
+        val dataSource = LDatabase.recebaDatabase(application).repository()
 
         viewModelFactory = AdicionarViewModelFactory(dataSource)
         viewModel = ViewModelProvider(this, viewModelFactory)[AdicionarViewModel::class.java]

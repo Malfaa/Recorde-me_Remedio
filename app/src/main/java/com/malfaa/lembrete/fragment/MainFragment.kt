@@ -7,8 +7,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.transition.AutoTransition
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -32,6 +35,7 @@ import com.malfaa.lembrete.R
 import com.malfaa.lembrete.adapters.MainAdapter
 import com.malfaa.lembrete.cancelarAlarme
 import com.malfaa.lembrete.conversorPosEmMinutos
+import com.malfaa.lembrete.databinding.ItemLembreteBinding
 import com.malfaa.lembrete.databinding.MainFragmentBinding
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaParaAlarme
@@ -51,11 +55,14 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModelFactory: MainViewModelFactory
 
+    private lateinit var itemBinding: ItemLembreteBinding
+
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
 
     companion object{
         val lembreteDestino = MutableLiveData<ItemEntidade>()
+        val expandValue = MutableLiveData<Boolean>()
     }
 
     override fun onCreateView(
@@ -68,8 +75,6 @@ class MainFragment : Fragment() {
         criandoCanalDeNotificacao()
 
         MobileAds.initialize(requireContext()){}
-
-        //var mAdView = binding.adView
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
@@ -89,16 +94,30 @@ class MainFragment : Fragment() {
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
 
+        //AdMob function
         ad()
 
+        //RecyclerView população
         viewModel.listaLembretes.observe(viewLifecycleOwner){
             adapter.submitList(it.toMutableList())
         }
 
-        binding.adicionarLembrete.setOnClickListener {
-            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+        //Expand Button
+        expandValue.observe(viewLifecycleOwner){
+            if(itemBinding.notaBox.visibility == View.GONE){
+                expandValue.value = false
+                androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
+                itemBinding.notaBox.visibility = View.VISIBLE
+                itemBinding.expand.setImageResource(R.drawable.ic_expand_less)
+            }else{
+                expandValue.value = false
+                androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
+                itemBinding.notaBox.visibility = View.GONE
+                itemBinding.expand.setImageResource(R.drawable.ic_expand_more)
+            }
         }
 
+        //Adição Alarme
         alarmeVar.observe(viewLifecycleOwner){condicao->
             if (condicao) {
                 if(horaCustomClicado.value!!){
@@ -120,6 +139,10 @@ class MainFragment : Fragment() {
             }
         }
 
+        //Navegação p/ outros fragments
+        binding.adicionarLembrete.setOnClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+        }
         alterar.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
                 this.findNavController().navigate(
@@ -130,20 +153,19 @@ class MainFragment : Fragment() {
                 Log.d("Valor", lembreteDestino.value.toString())
             }
         }
-
         deletar.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
                 alertDialogDeletarContato()
             }
         }
 
+        //Callback
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             val a = Intent(Intent.ACTION_MAIN)
             a.addCategory(Intent.CATEGORY_HOME)
             a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(a)
         }
-
         callback.isEnabled
     }
 

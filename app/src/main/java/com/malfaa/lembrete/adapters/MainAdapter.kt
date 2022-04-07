@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.malfaa.lembrete.conversorPosEmData
 import com.malfaa.lembrete.conversorPosEmHoras
 import com.malfaa.lembrete.databinding.ItemLembreteBinding
+import com.malfaa.lembrete.fragment.MainFragment.Companion.expandValue
 import com.malfaa.lembrete.fragment.MainFragment.Companion.lembreteDestino
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
@@ -55,15 +56,22 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
         val item = getItem(position)
         holder.bind(item)
 
+        //Alterar Lembrete
         holder.binding.lembrete.setOnClickListener {
             lembreteDestino.value = item
             alterar.value = true
         }
 
+        //Apagar Lembrete
         holder.binding.lembrete.setOnLongClickListener{
             lembreteDestino.value = item
             deletar.value = true
             true
+        }
+
+        //Expandir Nota
+        holder.binding.expand.setOnClickListener {
+            expandValue.value = true
         }
     }
 }

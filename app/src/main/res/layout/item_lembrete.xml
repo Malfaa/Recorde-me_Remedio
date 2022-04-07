@@ -20,10 +20,11 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" >
+            android:layout_width="match_parent" >
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/remedio"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/remedio"
                 android:textSize="16sp"
@@ -34,12 +35,14 @@
                 android:id="@+id/segundo_box_horizontal"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/distancia_item"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/bloco_vertical"
                     android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/distancia_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatTextView
@@ -66,6 +69,8 @@
                     android:orientation="vertical"
                     android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginTop="@dimen/distancia_item"
+                    android:layout_marginBottom="@dimen/distancia_item"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatTextView
@@ -92,6 +97,8 @@
                     android:orientation="vertical"
                     android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginTop="@dimen/distancia_item"
+                    android:layout_marginBottom="@dimen/distancia_item"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatTextView
@@ -108,9 +115,38 @@
                         android:textAlignment="center"
                         android:text="@string/termina_em"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <ImageButton
+                    android:id="@+id/expand"
+                    android:layout_marginStart="@dimen/distancia_item_edittext"
+                    android:layout_marginEnd="@dimen/distancia_item"
+                    android:layout_marginTop="@dimen/distancia_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_expand_more"
+                    style="@style/expand_button"
+                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/nota_box"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distancia_item"
+                android:layout_marginBottom="@dimen/distancia_item">
+                <TextView
+                    android:id="@+id/nota"
+                    android:text="@string/nota"
+                    style="@style/nota_text_view"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     </com.google.android.material.card.MaterialCardView>
 </layout>
