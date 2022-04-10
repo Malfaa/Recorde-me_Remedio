@@ -7,10 +7,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +45,7 @@ import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.deletar
 import com.malfaa.lembrete.viewmodelfactory.MainViewModelFactory
+import java.lang.String
 import java.util.*
 
 class MainFragment : Fragment() {
@@ -71,7 +70,7 @@ class MainFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "Lembrar"
+        (activity as AppCompatActivity).supportActionBar?.title = "Lembre-me"
         criandoCanalDeNotificacao()
 
         MobileAds.initialize(requireContext()){}
@@ -173,26 +172,32 @@ class MainFragment : Fragment() {
         binding.adView.adListener = object : AdListener(){
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
+                Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
+                val error = String.format(
+                    "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
+                Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdOpened() {
                 // Code to be executed when an ad opens an overlay that
                 // covers the screen.
+                Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
+                Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
+                Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 

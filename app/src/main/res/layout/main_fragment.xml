@@ -51,6 +51,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete"
             app:layout_constraintStart_toStartOf="parent" />
-        <!-- Trocar linha 49 pelo ID próprio -->
+        <!-- Trocar linha 49 pelo ID próprio
+         Linha 49 está id de ad teste
+
+         ca-app-pub-3295333534958164/4908034529
+
+         -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

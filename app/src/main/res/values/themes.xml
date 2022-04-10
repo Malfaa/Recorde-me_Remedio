@@ -22,7 +22,7 @@
     <style name="text_view" parent="TextAppearance.AppCompat">
 
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item_textos</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item</item>
         <item name="android:textColor">@color/secondary_dark</item>
     </style>
 

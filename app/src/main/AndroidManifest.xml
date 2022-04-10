@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Lembrete">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
+            android:value="ca-app-pub-3295333534958164~5090214968"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
