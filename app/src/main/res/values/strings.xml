@@ -40,6 +40,7 @@
     <string name="alterar_lembrete">Alterar Lembrete</string>
     <string name="deletar_lembrete">Deletar Lembrete</string>
     <string name="deletar_descricao">Tem certeza que deseja deletar este lembrete?</string>
+    <string name="expandir">Expandir</string>
 
     <string name="seis_em_seis">6 em 6 horas</string>
     <string name="quatro_em_quatro">4 em 4 horas</string>

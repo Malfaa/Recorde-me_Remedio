@@ -39,13 +39,13 @@ import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicad
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaParaAlarme
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.nota
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.remedio
+import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.MainViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.deletar
 import com.malfaa.lembrete.viewmodelfactory.MainViewModelFactory
-import java.lang.String
 import java.util.*
 
 class MainFragment : Fragment() {
@@ -85,9 +85,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
-        val datasource = com.malfaa.lembrete.room.LDatabase.recebaDatabase(application).repository()
+        val datasource = com.malfaa.lembrete.room.LDatabase.recebaDatabase(application).meuDao()
 
-        viewModelFactory = MainViewModelFactory(datasource)
+        viewModelFactory = MainViewModelFactory(ItemRepository(datasource))
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         val adapter = MainAdapter()
@@ -172,7 +172,7 @@ class MainFragment : Fragment() {
         binding.adView.adListener = object : AdListener(){
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
-                Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {

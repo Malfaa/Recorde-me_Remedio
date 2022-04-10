@@ -1,8 +1,6 @@
 package com.malfaa.lembrete.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.room.Dao
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import kotlinx.coroutines.flow.Flow
 

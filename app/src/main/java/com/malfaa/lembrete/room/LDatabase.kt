@@ -9,8 +9,8 @@ import com.malfaa.lembrete.room.entidade.ItemEntidade
 
 @Database(entities = [ItemEntidade::class], version = 1, exportSchema = false)
 abstract class LDatabase: RoomDatabase(){
-    //abstract fun meuDao(): LDao
-    abstract fun repository(): ItemRepository
+    abstract fun meuDao(): LDao
+    //abstract fun repository(): ItemRepository
 
     private class DatabaseCallback : RoomDatabase.Callback()
 

@@ -22,6 +22,7 @@ import com.malfaa.lembrete.R
 import com.malfaa.lembrete.calendario
 import com.malfaa.lembrete.calendarioParaData
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
+import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
@@ -65,9 +66,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
-        val dataSource = LDatabase.recebaDatabase(application).repository()
+        val dataSource = LDatabase.recebaDatabase(application).meuDao()
 
-        viewModelFactory = AdicionarViewModelFactory(dataSource)
+        viewModelFactory = AdicionarViewModelFactory(ItemRepository(dataSource))
         viewModel = ViewModelProvider(this, viewModelFactory)[AdicionarViewModel::class.java]
 
         ArrayAdapter.createFromResource(
