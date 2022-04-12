@@ -70,7 +70,7 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
         }
 
         //Expandir Nota
-        holder.binding.expand.setOnClickListener {
+        holder.binding.expand?.setOnClickListener {
             expandValue.value = true
         }
     }

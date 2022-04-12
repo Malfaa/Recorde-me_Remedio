@@ -126,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_expand_more"
                     style="@style/expand_button"
-                     />
+                    android:contentDescription="@string/expandir" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat

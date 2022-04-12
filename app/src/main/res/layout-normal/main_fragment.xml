@@ -16,8 +16,6 @@
             android:id="@+id/adicionarLembrete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
             style="@style/AppShapeAppearance.SmallComponent"

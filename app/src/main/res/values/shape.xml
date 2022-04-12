@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="lembrete_shape" parent="ShapeAppearance.Material3.LargeComponent">
-        <item name="cornerRadius">4dp</item>
-        <item name="cornerFamily">rounded</item>
-    </style>
-    
     <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="android:topLeftRadius">14dp</item>
-        <item name="android:topRightRadius">0dp</item>
-        <item name="android:bottomRightRadius">0dp</item>
-        <item name="android:bottomLeftRadius">0dp</item>
+        <item name="cornerSize">14dp</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
         <item name="android:layout_marginEnd">@dimen/distancia_item_edittext</item>
         <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>

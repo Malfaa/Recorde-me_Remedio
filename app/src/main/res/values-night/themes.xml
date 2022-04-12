@@ -14,7 +14,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        
         <item name="android:colorBackground">@color/night_primary_dark</item>
+        <item name="floatingActionButtonStyle">@style/FloatingAction</item>
+        <item name="cardViewStyle">@style/card_lembrete</item>
+
     </style>
 
     <style name="text_view" parent="TextAppearance.AppCompat">
@@ -53,5 +57,9 @@
         <item name="android:layout_marginEnd">@dimen/distancia_item_edittext</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="FloatingAction" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/AppShapeAppearance.SmallComponent</item>
     </style>
 </resources>

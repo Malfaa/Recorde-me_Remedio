@@ -103,16 +103,16 @@ class MainFragment : Fragment() {
 
         //Expand Button
         expandValue.observe(viewLifecycleOwner){
-            if(itemBinding.notaBox.visibility == View.GONE){
+            if(itemBinding.notaBox?.visibility == View.GONE){
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox.visibility = View.VISIBLE
-                itemBinding.expand.setImageResource(R.drawable.ic_expand_less)
+                itemBinding.notaBox?.visibility = View.VISIBLE
+                itemBinding.expand?.setImageResource(R.drawable.ic_expand_less)
             }else{
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox.visibility = View.GONE
-                itemBinding.expand.setImageResource(R.drawable.ic_expand_more)
+                itemBinding.notaBox?.visibility = View.GONE
+                itemBinding.expand?.setImageResource(R.drawable.ic_expand_more)
             }
         }
 

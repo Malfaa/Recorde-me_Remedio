@@ -42,7 +42,6 @@
                     android:id="@+id/bloco_vertical"
                     android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/distancia_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatTextView
@@ -67,7 +66,6 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/bloco_vertical_interior"
                     android:orientation="vertical"
-                    android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginTop="@dimen/distancia_item"
                     android:layout_marginBottom="@dimen/distancia_item"
                     android:layout_gravity="center"
@@ -77,13 +75,13 @@
                         android:id="@+id/inicio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
                         android:layout_marginStart="@dimen/distancia_item_textos"
                         android:text="@string/iniciou"/>
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/inicioValor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/distancia_item_textos"
                         android:minWidth="@dimen/dimen_box_normal_width"
                         android:text="@string/iniciou_em"
                         style="@style/text_view"
@@ -95,7 +93,6 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/bloco_vertical_interior_dois"
                     android:orientation="vertical"
-                    android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginTop="@dimen/distancia_item"
                     android:layout_marginBottom="@dimen/distancia_item"
                     android:layout_gravity="center"
@@ -119,14 +116,14 @@
 
                 <ImageButton
                     android:id="@+id/expand"
-                    android:layout_marginStart="@dimen/distancia_item_edittext"
+                    android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginEnd="@dimen/distancia_item"
                     android:layout_marginTop="@dimen/distancia_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_expand_more"
                     style="@style/expand_button"
-                     />
+                    android:contentDescription="@string/expandir" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
