@@ -135,6 +135,7 @@
                         android:id="@+id/customHora"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:textOff="@string/nao"
                         android:textOn="@string/sim" />
 
@@ -213,6 +214,7 @@
                         android:id="@+id/customData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:textOff="@string/nao"
                         android:textOn="@string/sim" />
 
@@ -248,7 +250,7 @@
                 android:id="@+id/caixaDosBotoes"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/distancia_item"
+                android:layout_marginBottom="@dimen/lembrete_dist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -270,6 +272,11 @@
                     android:text="@string/alterar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adicionar_adView"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 </layout>

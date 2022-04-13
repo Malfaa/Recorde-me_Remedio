@@ -8,6 +8,14 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <style name="AppShapeAppearance.SmallComponent.smallayout" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">14dp</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
     <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
         <item name="android:layout_marginEnd">@dimen/distancia_item_edittext</item>

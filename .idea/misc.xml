@@ -29,13 +29,13 @@
         <entry key="app/src/main/res/layout-large/adicionar_fragment.xml" value="0.21" />
         <entry key="app/src/main/res/layout-large/alterar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout-large/item_lembrete.xml" value="0.2" />
-        <entry key="app/src/main/res/layout-large/main_fragment.xml" value="0.15" />
+        <entry key="app/src/main/res/layout-large/main_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout-normal/adicionar_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-normal/alterar_fragment.xml" value="0.67" />
+        <entry key="app/src/main/res/layout-normal/alterar_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout-normal/item_lembrete.xml" value="0.25" />
         <entry key="app/src/main/res/layout-normal/main_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout-normal/novo_adicionar.xml" value="0.2" />
-        <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="0.9342657342657342" />
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout-small/item_lembrete.xml" value="0.33" />
         <entry key="app/src/main/res/layout-small/main_fragment.xml" value="1.25" />

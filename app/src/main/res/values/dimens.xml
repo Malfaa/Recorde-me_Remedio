@@ -6,6 +6,7 @@
     <dimen name="lembrete_font_size">24sp</dimen>
 
     <dimen name="font_adicao">20sp</dimen>
+    <dimen name="font_adicao_small">16sp</dimen>
     <dimen name="font_adicao_large">30sp</dimen>
 
     <dimen name="distancia_item_edittext">16dp</dimen>
@@ -26,6 +27,9 @@
 
     <dimen name="dimen_box_large_height">60dp</dimen>
     <dimen name="dimen_box_large_width">150dp</dimen>
+
+    <dimen name="dimen_box_small_height">36dp</dimen>
+    <dimen name="dimen_box_small_width">90dp</dimen>
 
     <dimen name="dimen_box_normal_width">80dp</dimen>
 

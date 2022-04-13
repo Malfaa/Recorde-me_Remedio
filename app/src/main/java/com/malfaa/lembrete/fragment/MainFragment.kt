@@ -226,6 +226,7 @@ class MainFragment : Fragment() {
         alerta.show()
     }
 
+    //Alarme
     private fun criandoCanalDeNotificacao(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val nome = "LembreteNotificacao"
@@ -237,7 +238,6 @@ class MainFragment : Fragment() {
             gerenciadorNotificacao?.createNotificationChannel(canal)
         }
     }
-
     private fun alarme(hora: Long, minutos: Long, horario: Long) {
         alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmIntent = Intent(//fixme mudei aqui

@@ -14,7 +14,6 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/adicionarLembrete"
-            style="@style/AppShapeAppearance.SmallComponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/distancia_item_edittext"
@@ -22,9 +21,12 @@
             android:clickable="true"
             android:contentDescription="@string/adicionar"
             android:focusable="true"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toTopOf="@+id/adView"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:shapeAppearanceOverlay="@style/AppShapeAppearance.SmallComponent.smallayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

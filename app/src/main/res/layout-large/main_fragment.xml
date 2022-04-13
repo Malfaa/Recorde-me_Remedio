@@ -14,11 +14,8 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/adicionarLembrete"
-            style="@style/AppShapeAppearance.SmallComponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/distancia_entre_itens"
-            android:layout_marginBottom="@dimen/distancia_entre_itens"
             android:clickable="true"
             android:contentDescription="@string/adicionar"
             android:focusable="true"
