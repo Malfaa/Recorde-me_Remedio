@@ -9,6 +9,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.AutoTransition
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -93,6 +95,17 @@ class MainFragment : Fragment() {
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
 
+        /*val displayMetrics = DisplayMetrics()
+        if (displayMetrics.widthPixels > 600) {
+            binding.recyclerview.apply {
+                layoutManager = GridLayoutManager(context, 2)
+            }
+        } else if (displayMetrics.widthPixels > 1200){
+            binding.recyclerview.apply {
+                layoutManager = GridLayoutManager(context, 3)
+            }
+        }*/
+
         //AdMob function
         ad()
 
@@ -102,19 +115,19 @@ class MainFragment : Fragment() {
         }
 
         //Expand Button
-        expandValue.observe(viewLifecycleOwner){
-            if(itemBinding.notaBox?.visibility == View.GONE){
+        /*expandValue.observe(viewLifecycleOwner){
+            if(itemBinding.notaBox.visibility == View.GONE){
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox?.visibility = View.VISIBLE
-                itemBinding.expand?.setImageResource(R.drawable.ic_expand_less)
+                itemBinding.notaBox.visibility = View.VISIBLE
+                itemBinding.expand.setImageResource(R.drawable.ic_expand_less)
             }else{
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox?.visibility = View.GONE
-                itemBinding.expand?.setImageResource(R.drawable.ic_expand_more)
+                itemBinding.notaBox.visibility = View.GONE
+                itemBinding.expand.setImageResource(R.drawable.ic_expand_more)
             }
-        }
+        }*/
 
         //Adição Alarme
         alarmeVar.observe(viewLifecycleOwner){condicao->
@@ -125,7 +138,7 @@ class MainFragment : Fragment() {
                         AdicionarFragment.minutoEscolhido.toLong(),
                         horaParaAlarme.value?.toLong()!!
                     )
-                alarmeVar.value = false
+                    alarmeVar.value = false
                 }else{
                     alarme(
                         AdicionarFragment.horaEscolhida.toLong(),
@@ -168,38 +181,38 @@ class MainFragment : Fragment() {
         callback.isEnabled
     }
 
-    private fun ad(){
-        binding.adView.adListener = object : AdListener(){
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
-            }
+private fun ad(){
+    binding.adView.adListener = object : AdListener(){
+        override fun onAdLoaded() {
+            // Code to be executed when an ad finishes loading.
+            //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+        }
 
-            override fun onAdFailedToLoad(adError : LoadAdError) {
-                // Code to be executed when an ad request fails.
-                val error = String.format(
-                    "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
-                Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
-            }
+        override fun onAdFailedToLoad(adError : LoadAdError) {
+            // Code to be executed when an ad request fails.
+            val error = String.format(
+                "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
+            Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
+        }
 
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-                Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
-            }
+        override fun onAdOpened() {
+            // Code to be executed when an ad opens an overlay that
+            // covers the screen.
+            Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
+        }
 
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-                Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
-            }
+        override fun onAdClicked() {
+            // Code to be executed when the user clicks on an ad.
+            Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
+        }
 
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-                Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
-            }
+        override fun onAdClosed() {
+            // Code to be executed when the user is about to return
+            // to the app after tapping on an ad.
+            Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
         }
     }
+}
 
     private fun alertDialogDeletarContato(){
         val construtor = AlertDialog.Builder(requireActivity())
@@ -226,18 +239,18 @@ class MainFragment : Fragment() {
         alerta.show()
     }
 
-    //Alarme
-    private fun criandoCanalDeNotificacao(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val nome = "LembreteNotificacao"
-            val descricao = "Canal de notificacao p/ lembretes"
-            val importancia = NotificationManager.IMPORTANCE_HIGH
-            val canal = NotificationChannel("notificacao", nome, importancia).apply { description = descricao }
-            val gerenciadorNotificacao = getSystemService(requireContext(), NotificationManager::class.java)
+//Alarme
+private fun criandoCanalDeNotificacao(){
+    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        val nome = "LembreteNotificacao"
+        val descricao = "Canal de notificacao p/ lembretes"
+        val importancia = NotificationManager.IMPORTANCE_HIGH
+        val canal = NotificationChannel("notificacao", nome, importancia).apply { description = descricao }
+        val gerenciadorNotificacao = getSystemService(requireContext(), NotificationManager::class.java)
 
-            gerenciadorNotificacao?.createNotificationChannel(canal)
-        }
+        gerenciadorNotificacao?.createNotificationChannel(canal)
     }
+}
     private fun alarme(hora: Long, minutos: Long, horario: Long) {
         alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmIntent = Intent(//fixme mudei aqui

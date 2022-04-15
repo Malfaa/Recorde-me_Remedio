@@ -18,7 +18,6 @@
         <item name="android:colorBackground">@color/grey_bg</item>
         <item name="floatingActionButtonStyle">@style/FloatingAction</item>
         <item name="cardViewStyle">@style/card_lembrete</item>
-
         <item name="imageButtonStyle">@style/ImageButton</item>
 
     </style>
@@ -26,16 +25,21 @@
     <style name="text_view" parent="TextAppearance.AppCompat">
 
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item</item>
         <item name="android:textColor">@color/secondary_dark</item>
     </style>
 
     <style name="nota_text_view" parent="TextAppearance.AppCompat">
-        <item name="android:background">@drawable/day_text_view_drawable</item>
+        <!--item name="android:background">@drawable/day_text_view_drawable</item-->
         <item name="android:maxLines">4</item>
+        <item name="autoSizeMinTextSize">14sp</item>
+        <item name="autoSizeMaxTextSize">18sp</item>
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item_textos</item>
+        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="caixa_expandida" parent="Widget.MaterialComponents.CardView">
+        <item name="android:background">@color/caixa_expandida_bg_light</item>
     </style>
 
     <style name="lembrete" parent="">
@@ -48,7 +52,7 @@
 
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
+        <!--item name="android:layout_marginStart">@dimen/distancia_item_edittext</item-->
         <item name="android:background">@drawable/day_add_alt_text_box</item>
 
     </style>

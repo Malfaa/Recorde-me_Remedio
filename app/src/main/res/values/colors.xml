@@ -21,6 +21,9 @@
     <color name="grey_bg">#eceff1</color>
     <color name= "cinza_texto">#535252</color>
 
+    <color name= "caixa_expandida_bg_light">#CDC7C4</color>
+    <color name= "caixa_expandida_bg_dark">#3A3939</color>
+
     <!--Segunda Paleta-->
     <color name= "day_primary">#215a88</color>
     <color name= "day_primary_variant">#885021</color>

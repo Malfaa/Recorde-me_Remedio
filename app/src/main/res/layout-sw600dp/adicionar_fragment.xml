@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.malfaa.lembrete.viewmodel.AlterarViewModel" />
+            type="com.malfaa.lembrete.viewmodel.AdicionarViewModel" />
     </data>
 
     <ScrollView
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".fragment.AlterarFragment">
+            tools:context=".fragment.AdicionarFragment">
 
 
             <TextView
@@ -102,13 +102,12 @@
                         android:id="@+id/horaEditText"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_box_default_height"
-                        android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:layout_gravity="center"
-                        android:minWidth="50dp"
-                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/distancia_item_edittext"
                         android:inputType="time"
+                        android:minWidth="50dp"
                         android:textAlignment="center"
-                        android:contentDescription="@string/descricaoSpinnerHora" />
+                        android:visibility="gone" />
 
 
 
@@ -127,8 +126,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/distancia_entre_itens"
-                        android:textSize="@dimen/font_adicao"
-                        android:text="@string/customizar"/>
+                        android:text="@string/customizar"
+                        android:textColor="#616161"
+                        android:textSize="@dimen/font_adicao" />
 
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -137,7 +137,8 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:textOff="@string/nao"
-                        android:textOn="@string/sim" />
+                        android:textOn="@string/sim"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -181,14 +182,13 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/dataEditText"
                         android:layout_width="wrap_content"
-                        android:minWidth="120dp"
                         android:layout_height="@dimen/dimen_box_default_height"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:visibility="gone"
-                        android:inputType="number"
                         android:layout_marginTop="@dimen/distancia_item_edittext"
-                        android:contentDescription="@string/descricaoSpinnerData" />
+                        android:inputType="number"
+                        android:minWidth="120dp"
+                        android:textAlignment="center"
+                        android:visibility="gone" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -216,7 +216,8 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:textOff="@string/nao"
-                        android:textOn="@string/sim" />
+                        android:textOn="@string/sim"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -264,12 +265,12 @@
                     android:text="@string/retornar" />
 
                 <Button
-                    android:id="@+id/alterar"
+                    android:id="@+id/adicionar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/distancia_entre_itens"
                     android:layout_marginEnd="@dimen/distancia_entre_remedio_e_restam"
-                    android:text="@string/alterar"/>
+                    android:text="@string/adicionar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
             <com.google.android.gms.ads.AdView

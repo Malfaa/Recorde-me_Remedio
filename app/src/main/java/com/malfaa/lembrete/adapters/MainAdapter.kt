@@ -2,10 +2,13 @@ package com.malfaa.lembrete.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
+import com.malfaa.lembrete.R
 import com.malfaa.lembrete.conversorPosEmData
 import com.malfaa.lembrete.conversorPosEmHoras
 import com.malfaa.lembrete.databinding.ItemLembreteBinding
@@ -70,8 +73,19 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
         }
 
         //Expandir Nota
-        holder.binding.expand?.setOnClickListener {
-            expandValue.value = true
+        holder.binding.expand.setOnClickListener {
+            //expandValue.value = true
+            if(holder.binding.notaBox.visibility == View.GONE){
+                expandValue.value = false
+                androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
+                holder.binding.notaBox.visibility = View.VISIBLE
+                holder.binding.expand.setImageResource(R.drawable.ic_expand_less)
+            }else{
+                expandValue.value = false
+                androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
+                holder.binding.notaBox.visibility = View.GONE
+                holder.binding.expand.setImageResource(R.drawable.ic_expand_more)
+            }
         }
     }
 }

@@ -5,8 +5,8 @@
 
     <dimen name="lembrete_font_size">24sp</dimen>
 
-    <dimen name="font_adicao">20sp</dimen>
-    <dimen name="font_adicao_small">16sp</dimen>
+    <dimen name="font_adicao">16sp</dimen>
+    <dimen name="font_adicao_small">12sp</dimen>
     <dimen name="font_adicao_large">30sp</dimen>
 
     <dimen name="distancia_item_edittext">16dp</dimen>
