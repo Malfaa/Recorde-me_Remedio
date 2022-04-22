@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/distancia_item_edittext"
                 android:maxLines="1"
+                android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:maxWidth="100dp"
                 android:autofillHints="no"
                 android:textAlignment="center"
@@ -58,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:minWidth="@dimen/dimen_box_default_width"
                 android:layout_height="@dimen/dimen_box_default_height"
+                android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao"
                 style="@style/adc_alt_textview"
@@ -240,6 +242,7 @@
                 android:layout_marginBottom="@dimen/distancia_entre_itens"
                 android:maxLines="1"
                 android:maxWidth="100dp"
+                android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:drawableStart="@drawable/ic_notes"
                 style="@style/adc_alt_textview"
                 android:ems="10"
@@ -274,10 +277,14 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
             <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adicionar_adView"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/distancia_entre_itens"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 </layout>

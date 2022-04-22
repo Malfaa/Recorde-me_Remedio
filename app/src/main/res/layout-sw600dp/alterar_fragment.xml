@@ -27,7 +27,7 @@
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/remedio"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,20 +57,21 @@
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/hora_inicial"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                 app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
 
             <TextView
                 android:id="@+id/textView"
                 style="@style/adc_alt_textview"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
+                android:layout_height="@dimen/dimen_box_large_height"
                 android:minWidth="@dimen/dimen_box_default_width"
                 android:text=""
                 android:textAlignment="center"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                 app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
 
@@ -82,7 +83,7 @@
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/hora"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -90,7 +91,7 @@
             <Spinner
                 android:id="@+id/horaSpinner"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
+                android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -125,7 +126,7 @@
                 android:layout_gravity="center"
                 android:text="@string/customizar"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao_small"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
                 app:layout_constraintHorizontal_bias="0.483"
                 app:layout_constraintStart_toEndOf="@+id/textView"
@@ -136,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:minHeight="48dp"
+                android:minHeight="@dimen/dimen_box_large_height"
                 android:textOff="@string/nao"
                 android:textOn="@string/sim"
                 app:layout_constraintEnd_toEndOf="@+id/customTextHora"
@@ -152,7 +153,7 @@
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/data"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/horaText"
                 app:layout_constraintStart_toStartOf="@+id/horaText"
                 app:layout_constraintTop_toBottomOf="@+id/customHora" />
@@ -160,7 +161,7 @@
             <Spinner
                 android:id="@+id/dataSpinner"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
+                android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
                 android:backgroundTint="@color/secondary"
@@ -195,7 +196,7 @@
                 android:layout_gravity="center"
                 android:text="@string/customizar"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao_small"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/customTextHora"
                 app:layout_constraintStart_toStartOf="@+id/customTextHora"
                 app:layout_constraintTop_toTopOf="@+id/data" />
@@ -205,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:minHeight="48dp"
+                android:minHeight="@dimen/dimen_box_large_height"
                 android:textOff="@string/nao"
                 android:textOn="@string/sim"
                 app:layout_constraintEnd_toEndOf="@+id/customTextData"
@@ -220,7 +221,7 @@
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/nota"
                 android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                 app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                 app:layout_constraintTop_toBottomOf="@+id/dataSpinner" />
@@ -229,7 +230,8 @@
                 android:id="@+id/campoNota"
                 style="@style/adc_alt_textview"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/l_distancia_itens"
+                android:layout_height="@dimen/dimen_box_large_height"
+                android:textSize="@dimen/font_adicao_large"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
                 android:drawableStart="@drawable/ic_notes"
                 android:ems="10"
