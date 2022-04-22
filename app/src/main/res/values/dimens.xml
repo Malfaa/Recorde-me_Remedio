@@ -36,4 +36,7 @@
     <dimen name="dimen_box_default_width">100dp</dimen>
     <dimen name="dimen_box_default_height">48dp</dimen>
 
+    <dimen name="spinner_dimen">135dp</dimen>
+    <dimen name="spinner_dimen_large">150dp</dimen>
+
 </resources>

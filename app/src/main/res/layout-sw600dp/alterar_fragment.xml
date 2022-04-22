@@ -35,7 +35,7 @@
                 android:id="@+id/campoRemedio"
                 style="@style/adc_alt_textview"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_marginEnd="@dimen/distancia_item_edittext"
                 android:autofillHints="no"
                 android:drawableStart="@drawable/ic_pill"
@@ -90,10 +90,9 @@
 
             <Spinner
                 android:id="@+id/horaSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/spinner_dimen_large"
                 android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
                 android:backgroundTint="@color/secondary"
                 android:contentDescription="@string/descricaoSpinnerHora"
@@ -102,7 +101,7 @@
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/horaText"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/horaText" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -160,7 +159,7 @@
 
             <Spinner
                 android:id="@+id/dataSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/spinner_dimen_large"
                 android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -248,7 +247,8 @@
                 android:id="@+id/retornar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/distancia_entre_itens"
+                android:layout_marginStart="@dimen/l_distancia_itens"
+                android:textSize="@dimen/font_adicao"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:backgroundTint="@color/night_primary_light"
                 android:text="@string/retornar"
@@ -261,9 +261,10 @@
                 android:id="@+id/alterar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/distancia_entre_itens"
+                android:layout_marginStart="@dimen/l_distancia_itens"
+                android:textSize="@dimen/font_adicao"
                 android:text="@string/alterar"
-                app:layout_constraintEnd_toEndOf="@+id/campoNota"
+                app:layout_constraintStart_toEndOf="@+id/retornar"
                 app:layout_constraintTop_toTopOf="@+id/retornar" />
 
             <com.google.android.gms.ads.AdView

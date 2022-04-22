@@ -272,7 +272,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 ads:adSize="SMART_BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                ads:adUnitId="@string/banner_google"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
