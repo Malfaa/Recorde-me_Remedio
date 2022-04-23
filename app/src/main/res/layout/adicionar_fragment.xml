@@ -9,274 +9,284 @@
             type="com.malfaa.lembrete.viewmodel.AdicionarViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/adicionar_adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:context=".fragment.AdicionarFragment">
+
+                <TextView
+                    android:id="@+id/remedioTexto"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/distancia_item_edittext"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:text="@string/remedio"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/campoRemedio"
+                    style="@style/adc_alt_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/distancia_item_edittext"
+                    android:autofillHints="no"
+                    android:drawableStart="@drawable/ic_pill"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:maxWidth="100dp"
+                    android:maxLines="1"
+                    android:minHeight="@dimen/dimen_box_default_height"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/remedioTexto"
+                    app:layout_constraintTop_toBottomOf="@id/remedioTexto"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/horaInicialText"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:text="@string/hora_inicial"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/adc_alt_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_box_default_height"
+                    android:minWidth="@dimen/dimen_box_default_width"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintStart_toStartOf="@+id/remedioTexto"
+                    app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
+
+                <TextView
+                    android:id="@+id/horaText"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:text="@string/hora"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <Spinner
+                    android:id="@+id/horaSpinner"
+                    android:layout_width="@dimen/spinner_dimen"
+                    android:layout_height="@dimen/dimen_box_default_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:backgroundTint="@color/secondary"
+                    android:contentDescription="@string/descricaoSpinnerHora"
+                    android:minWidth="@dimen/dimen_box_default_width"
+                    android:textAlignment="center"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/horaText" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/horaEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_box_default_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:inputType="time"
+                    android:minWidth="@dimen/spinner_dimen"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/horaText"
+                    app:layout_constraintStart_toStartOf="@+id/horaText"
+                    app:layout_constraintTop_toBottomOf="@+id/horaText" />
+
+                <TextView
+                    android:id="@+id/customTextHora"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/customizar"
+                    android:textSize="@dimen/font_adicao_small"
+                    app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
+                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/horaText" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/customHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:minHeight="48dp"
+                    android:textOff="@string/nao"
+                    android:textOn="@string/sim"
+                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
+                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
+                    app:layout_constraintTop_toBottomOf="@+id/customTextHora"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                <TextView
+                    android:id="@+id/data"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:text="@string/data"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintEnd_toEndOf="@+id/horaText"
+                    app:layout_constraintStart_toStartOf="@+id/horaText"
+                    app:layout_constraintTop_toBottomOf="@+id/customHora" />
+
+                <Spinner
+                    android:id="@+id/dataSpinner"
+                    android:layout_width="@dimen/spinner_dimen"
+                    android:layout_height="@dimen/dimen_box_default_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:backgroundTint="@color/secondary"
+                    android:contentDescription="@string/descricaoSpinnerData"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:minWidth="@dimen/dimen_box_default_width"
+                    android:textAlignment="center"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
+                    app:layout_constraintStart_toStartOf="@+id/horaSpinner"
+                    app:layout_constraintTop_toBottomOf="@+id/data" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/dataEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_box_default_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:inputType="number"
+                    android:minWidth="@dimen/spinner_dimen"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
+                    app:layout_constraintStart_toStartOf="@+id/horaSpinner"
+                    app:layout_constraintTop_toBottomOf="@+id/data" />
+
+                <TextView
+                    android:id="@+id/customTextData"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/customizar"
+                    android:textSize="@dimen/font_adicao_small"
+                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
+                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
+                    app:layout_constraintTop_toTopOf="@+id/data" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/customData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:minHeight="48dp"
+                    android:textOff="@string/nao"
+                    android:textOn="@string/sim"
+                    app:layout_constraintEnd_toEndOf="@+id/customTextData"
+                    app:layout_constraintStart_toStartOf="@+id/customTextData"
+                    app:layout_constraintTop_toBottomOf="@+id/customTextData"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/notaText"
+                    style="@style/textView_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:text="@string/nota"
+                    android:textSize="@dimen/font_adicao"
+                    app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
+                    app:layout_constraintStart_toStartOf="@+id/remedioTexto"
+                    app:layout_constraintTop_toBottomOf="@+id/dataSpinner" />
+
+                <EditText
+                    android:id="@+id/campoNota"
+                    style="@style/adc_alt_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/l_distancia_itens"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:drawableStart="@drawable/ic_notes"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxWidth="100dp"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
+                    app:layout_constraintStart_toStartOf="@+id/campoRemedio"
+                    app:layout_constraintTop_toBottomOf="@+id/notaText"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/retornar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/distancia_entre_itens"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:backgroundTint="@color/night_primary_light"
+                    android:text="@string/retornar"
+                    android:textColor="#F5F5F5"
+                    app:layout_constraintStart_toStartOf="@+id/campoNota"
+                    app:layout_constraintTop_toBottomOf="@+id/campoNota"
+                    tools:ignore="TextContrastCheck" />
+
+                <Button
+                    android:id="@+id/adicionar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/distancia_entre_itens"
+                    android:text="@string/adicionar"
+                    app:layout_constraintEnd_toEndOf="@+id/campoNota"
+                    app:layout_constraintTop_toTopOf="@+id/retornar" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adicionar_adView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".fragment.AdicionarFragment">
+            android:layout_gravity="center"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/banner_google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/remedioTexto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/distancia_item_edittext"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:text="@string/remedio"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/campoRemedio"
-                style="@style/adc_alt_textview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/distancia_item_edittext"
-                android:autofillHints="no"
-                android:drawableStart="@drawable/ic_pill"
-                android:ems="10"
-                android:paddingStart="10dp"
-                android:inputType="text"
-                android:maxWidth="100dp"
-                android:maxLines="1"
-                android:minHeight="@dimen/dimen_box_default_height"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                app:layout_constraintTop_toBottomOf="@id/remedioTexto"
-                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/horaInicialText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:text="@string/hora_inicial"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/adc_alt_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
-                android:minWidth="@dimen/dimen_box_default_width"
-                android:text=""
-                android:textAlignment="center"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
-
-            <TextView
-                android:id="@+id/horaText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:text="@string/hora"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <Spinner
-                android:id="@+id/horaSpinner"
-                android:layout_width="@dimen/spinner_dimen"
-                android:layout_height="@dimen/dimen_box_default_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:backgroundTint="@color/secondary"
-                android:contentDescription="@string/descricaoSpinnerHora"
-                android:minWidth="@dimen/dimen_box_default_width"
-                android:textAlignment="center"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/horaEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:inputType="time"
-                android:minWidth="@dimen/spinner_dimen"
-                android:textAlignment="center"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/horaText"
-                app:layout_constraintStart_toStartOf="@+id/horaText"
-                app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
-            <TextView
-                android:id="@+id/customTextHora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/customizar"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao_small"
-                app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/horaText" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/customHora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:minHeight="48dp"
-                android:textOff="@string/nao"
-                android:textOn="@string/sim"
-                app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                app:layout_constraintTop_toBottomOf="@+id/customTextHora"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
-
-            <TextView
-                android:id="@+id/data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:text="@string/data"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintEnd_toEndOf="@+id/horaText"
-                app:layout_constraintStart_toStartOf="@+id/horaText"
-                app:layout_constraintTop_toBottomOf="@+id/customHora" />
-
-            <Spinner
-                android:id="@+id/dataSpinner"
-                android:layout_width="@dimen/spinner_dimen"
-                android:layout_height="@dimen/dimen_box_default_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:backgroundTint="@color/secondary"
-                android:contentDescription="@string/descricaoSpinnerData"
-                android:drawableStart="@drawable/ic_calendar"
-                android:minWidth="@dimen/dimen_box_default_width"
-                android:textAlignment="center"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
-                app:layout_constraintStart_toStartOf="@+id/horaSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/data" />
-
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/dataEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_box_default_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:inputType="number"
-                android:minWidth="@dimen/spinner_dimen"
-                android:textAlignment="center"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
-                app:layout_constraintStart_toStartOf="@+id/horaSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/data" />
-
-            <TextView
-                android:id="@+id/customTextData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/customizar"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao_small"
-                app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                app:layout_constraintTop_toTopOf="@+id/data" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/customData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:minHeight="48dp"
-                android:textOff="@string/nao"
-                android:textOn="@string/sim"
-                app:layout_constraintEnd_toEndOf="@+id/customTextData"
-                app:layout_constraintStart_toStartOf="@+id/customTextData"
-                app:layout_constraintTop_toBottomOf="@+id/customTextData"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <TextView
-                android:id="@+id/notaText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:text="@string/nota"
-                android:textColor="#616161"
-                android:textSize="@dimen/font_adicao"
-                app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
-                app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                app:layout_constraintTop_toBottomOf="@+id/dataSpinner" />
-
-            <EditText
-                android:id="@+id/campoNota"
-                style="@style/adc_alt_textview"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/l_distancia_itens"
-                android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:drawableStart="@drawable/ic_notes"
-                android:ems="10"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:maxWidth="100dp"
-                android:maxLines="1"
-                app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
-                app:layout_constraintStart_toStartOf="@+id/campoRemedio"
-                app:layout_constraintTop_toBottomOf="@+id/notaText"
-                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/retornar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/distancia_entre_itens"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                android:backgroundTint="@color/night_primary_light"
-                android:text="@string/retornar"
-                android:textColor="#F5F5F5"
-                app:layout_constraintStart_toStartOf="@+id/campoNota"
-                app:layout_constraintTop_toBottomOf="@+id/campoNota"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
-                android:id="@+id/adicionar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/distancia_entre_itens"
-                android:text="@string/adicionar"
-                app:layout_constraintEnd_toEndOf="@+id/campoNota"
-                app:layout_constraintTop_toTopOf="@+id/retornar" />
-
-            <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adicionar_adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/banner_google"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/retornar" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

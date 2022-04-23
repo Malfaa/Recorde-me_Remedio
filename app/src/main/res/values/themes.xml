@@ -7,7 +7,7 @@
 
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/day_primary</item>
         <item name="colorSecondaryVariant">@color/secondary_light</item>
 
         <item name="colorOnSecondary">@color/black</item>
@@ -55,6 +55,10 @@
         <!--item name="android:layout_marginStart">@dimen/distancia_item_edittext</item-->
         <item name="android:background">@drawable/day_add_alt_text_box</item>
 
+    </style>
+
+    <style name="textView_text_color" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="text_dentro_box" parent="TextAppearance.AppCompat">

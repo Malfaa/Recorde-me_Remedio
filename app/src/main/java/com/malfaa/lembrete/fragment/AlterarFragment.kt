@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,6 +16,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.lembrete.R
@@ -56,6 +61,10 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         bindingInfos()
 
+        MobileAds.initialize(requireContext()){}
+        val adRequest = AdRequest.Builder().build()
+        binding.alterarAdView.loadAd(adRequest)
+
         return binding.root
     }
 
@@ -69,6 +78,8 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel = ViewModelProvider(this, viewModelFactory)[AlterarViewModel::class.java]
 
         alterar.value = false
+
+        ad()
 
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -330,5 +341,37 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.campoRemedio.setText(args.item.remedio)
         binding.campoNota.setText(args.item.nota)
         binding.textView.text = args.item.horaInicial
+    }
+    private fun ad(){
+        binding.alterarAdView.adListener = object : AdListener(){
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                // Code to be executed when an ad request fails.
+                val error = String.format(
+                    "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
+                Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+                Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.Lembrete" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/night_primary_variant</item>
+        <item name="colorPrimary">@color/day_primary_variant</item>
         <item name="colorPrimaryVariant">@color/night_primary</item>
 
         <item name="colorOnPrimary">@color/cream_text</item><!--white-->
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/night_primary</item>
         <item name="colorSecondaryVariant">@color/secondary_light</item>
 
         <item name="colorOnSecondary">@color/black</item>
@@ -24,13 +24,15 @@
     <style name="text_view" parent="TextAppearance.AppCompat">
 
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item</item>
+        <!--item name="android:layout_marginStart">@dimen/distancia_item</item-->
         <item name="android:textColor">@color/cream_text</item>
     </style>
 
     <style name="nota_text_view" parent="TextAppearance.AppCompat">
         <!--item name="android:background">@drawable/night_text_view_drawable</item-->
         <item name="android:maxLines">4</item>
+        <item name="autoSizeMinTextSize">14sp</item>
+        <item name="autoSizeMaxTextSize">18sp</item>
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
         <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
         <item name="android:textColor">@color/cream_text</item>
@@ -42,9 +44,13 @@
 
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
-        <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
+        <!--item name="android:layout_marginStart">@dimen/distancia_item_edittext</item-->
         <item name="android:background">@drawable/night_add_alt_text_box</item>
 
+    </style>
+
+    <style name="textView_text_color" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/cream_text</item>
     </style>
 
     <style name="lembrete" parent="">
@@ -66,4 +72,6 @@
     <style name="FloatingAction" parent="Widget.Design.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/AppShapeAppearance.SmallComponent</item>
     </style>
+
+
 </resources>

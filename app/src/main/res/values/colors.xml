@@ -25,8 +25,8 @@
     <color name= "caixa_expandida_bg_dark">#3A3939</color>
 
     <!--Segunda Paleta-->
-    <color name= "day_primary">#215a88</color>
-    <color name= "day_primary_variant">#885021</color>
+    <color name= "day_primary">#215a88</color><!--#215a88-->
+    <color name= "day_primary_variant">#00b186</color><!--#885021-->
 
     <color name="night_primary">#218883</color>
     <color name="night_primary_variant">#885021</color>
