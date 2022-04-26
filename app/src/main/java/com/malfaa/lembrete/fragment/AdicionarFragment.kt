@@ -44,7 +44,6 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val nota = MutableLiveData<String>()
         val horaCustomClicado = MutableLiveData(false)
         val dataCustomClicado = MutableLiveData(false)
-        val idParaAlarme = MutableLiveData<Int>()
     }
 
     private lateinit var picker: MaterialTimePicker
@@ -145,156 +144,207 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.adicionar.setOnClickListener {
-            try {
-                val horarioEscolhidoConcatenado = horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
-                val horarioLocalConcatenado = Calendar.HOUR_OF_DAY + Calendar.MINUTE//"${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
-                if(horaCustomClicado.value!! && dataCustomClicado.value!!){ //positivos
-                    val calendario = Calendar.getInstance()
-                    conjuntoDatas =
-                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
-                            calendario.add(Calendar.DATE, 1)
-                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
-                        }else {
-                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
-                        }
-
-                    viewModel.adicionandoLembrete(ItemEntidade(
-                            0,
-                            binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                            viewModel.horarioFinal.value.toString(),
-
-                            conjuntoDatas,
-                            binding.horaEditText.text.toString().toInt(),
-                            binding.dataEditText.text.toString().toInt(),
-                            binding.campoNota.text.toString(),
-                            horaCustomClicado.value!!,
-                            dataCustomClicado.value!!
-                        ))
-                }else if(!horaCustomClicado.value!! && dataCustomClicado.value!!){// hora = falso && data = positivo
-                    val calendario = Calendar.getInstance()
-                    conjuntoDatas =
-                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
-                            calendario.add(Calendar.DATE, 1)
-                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
-                        }else {
-                            String.format("${calendarioParaData(calendario.time)} - ${calendario(binding.dataEditText.text.toString().toInt(),dataCustomClicado.value!!)}")
-                        }
-
-                    viewModel.adicionandoLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        conjuntoDatas,
-                        binding.horaSpinner.selectedItemPosition,
-                        binding.dataEditText.text.toString().toInt(),
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }else if(horaCustomClicado.value!! && !dataCustomClicado.value!!){// hora = positvo && data = falso
-                    val calendario = Calendar.getInstance()
-                    conjuntoDatas =
-                        if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
-                            calendario.add(Calendar.DATE, 1)
-                            when (binding.dataSpinner.selectedItemPosition) {
-                                5 -> calendarioParaData(calendario.time)
-                                else -> String.format(
+            if (binding.textView.text.isEmpty()
+                || binding.remedioTexto.text.isEmpty()
+                || (binding.horaEditText.text.isNullOrEmpty() && binding.horaSpinner.selectedItemPosition == 0)
+                || (binding.customData.text.isNullOrEmpty() && binding.dataSpinner.selectedItemPosition == 0)
+            ) {
+                Toast.makeText(context, "Preencha os campos necessários.", Toast.LENGTH_SHORT).show()
+            } else {
+                try {
+                    val horarioEscolhidoConcatenado =
+                        horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
+                    val horarioLocalConcatenado =
+                        Calendar.HOUR_OF_DAY + Calendar.MINUTE//"${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
+                    if (horaCustomClicado.value!! && dataCustomClicado.value!!) { //positivos
+                        val calendario = Calendar.getInstance()
+                        conjuntoDatas =
+                            if (horarioEscolhidoConcatenado < horarioLocalConcatenado) {
+                                calendario.add(Calendar.DATE, 1)
+                                String.format(
                                     "${calendarioParaData(calendario.time)} - ${
                                         calendario(
-                                            binding.dataSpinner.selectedItemPosition,
+                                            binding.dataEditText.text.toString().toInt(),
+                                            dataCustomClicado.value!!
+                                        )
+                                    }"
+                                )
+                            } else {
+                                String.format(
+                                    "${calendarioParaData(calendario.time)} - ${
+                                        calendario(
+                                            binding.dataEditText.text.toString().toInt(),
                                             dataCustomClicado.value!!
                                         )
                                     }"
                                 )
                             }
-                        }else {
-                            when (binding.dataSpinner.selectedItemPosition) {
-                                5 -> calendarioParaData(calendario.time)
-                                else -> String.format(
+
+                        viewModel.adicionandoLembrete(
+                            ItemEntidade(
+                                0,
+                                binding.campoRemedio.text.toString()
+                                    .replaceFirstChar { it.uppercase() },
+                                viewModel.horarioFinal.value.toString(),
+                                conjuntoDatas,
+                                binding.horaEditText.text.toString().toInt(),
+                                binding.dataEditText.text.toString().toInt(),
+                                binding.campoNota.text.toString(),
+                                horaCustomClicado.value!!,
+                                dataCustomClicado.value!!
+                            )
+                        )
+                    } else if (!horaCustomClicado.value!! && dataCustomClicado.value!!) {// hora = falso && data = positivo
+                        val calendario = Calendar.getInstance()
+                        conjuntoDatas =
+                            if (horarioEscolhidoConcatenado < horarioLocalConcatenado) {
+                                calendario.add(Calendar.DATE, 1)
+                                String.format(
                                     "${calendarioParaData(calendario.time)} - ${
                                         calendario(
-                                            binding.dataSpinner.selectedItemPosition,
+                                            binding.dataEditText.text.toString().toInt(),
+                                            dataCustomClicado.value!!
+                                        )
+                                    }"
+                                )
+                            } else {
+                                String.format(
+                                    "${calendarioParaData(calendario.time)} - ${
+                                        calendario(
+                                            binding.dataEditText.text.toString().toInt(),
                                             dataCustomClicado.value!!
                                         )
                                     }"
                                 )
                             }
-                        }
-                    viewModel.adicionandoLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        conjuntoDatas,
-                        binding.horaEditText.text.toString().toInt(),
-                        binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
-                }else{ //negativos
-                    val calendario = Calendar.getInstance()
-                    conjuntoDatas = (if (horarioEscolhidoConcatenado < horarioLocalConcatenado){
-                        calendario.add(Calendar.DATE, 1)
-                        when (binding.dataSpinner.selectedItemPosition) {
-                            5 -> calendarioParaData(calendario.time)
-                            else -> String.format(
-                                "${calendarioParaData(calendario.time)} - ${
-                                    calendario(
-                                        binding.dataSpinner.selectedItemPosition,
-                                        dataCustomClicado.value!!
+
+                        viewModel.adicionandoLembrete(
+                            ItemEntidade(
+                                0,
+                                binding.campoRemedio.text.toString()
+                                    .replaceFirstChar { it.uppercase() },
+                                viewModel.horarioFinal.value.toString(),
+                                conjuntoDatas,
+                                binding.horaSpinner.selectedItemPosition,
+                                binding.dataEditText.text.toString().toInt(),
+                                binding.campoNota.text.toString(),
+                                horaCustomClicado.value!!,
+                                dataCustomClicado.value!!
+                            )
+                        )
+                    } else if (horaCustomClicado.value!! && !dataCustomClicado.value!!) {// hora = positvo && data = falso
+                        val calendario = Calendar.getInstance()
+                        conjuntoDatas =
+                            if (horarioEscolhidoConcatenado < horarioLocalConcatenado) {
+                                calendario.add(Calendar.DATE, 1)
+                                when (binding.dataSpinner.selectedItemPosition) {
+                                    5 -> calendarioParaData(calendario.time)
+                                    else -> String.format(
+                                        "${calendarioParaData(calendario.time)} - ${
+                                            calendario(
+                                                binding.dataSpinner.selectedItemPosition,
+                                                dataCustomClicado.value!!
+                                            )
+                                        }"
                                     )
-                                }"
+                                }
+                            } else {
+                                when (binding.dataSpinner.selectedItemPosition) {
+                                    5 -> calendarioParaData(calendario.time)
+                                    else -> String.format(
+                                        "${calendarioParaData(calendario.time)} - ${
+                                            calendario(
+                                                binding.dataSpinner.selectedItemPosition,
+                                                dataCustomClicado.value!!
+                                            )
+                                        }"
+                                    )
+                                }
+                            }
+                        viewModel.adicionandoLembrete(
+                            ItemEntidade(
+                                0,
+                                binding.campoRemedio.text.toString()
+                                    .replaceFirstChar { it.uppercase() },
+                                viewModel.horarioFinal.value.toString(),
+                                conjuntoDatas,
+                                binding.horaEditText.text.toString().toInt(),
+                                binding.dataSpinner.selectedItemPosition,
+                                binding.campoNota.text.toString(),
+                                horaCustomClicado.value!!,
+                                dataCustomClicado.value!!
                             )
-                        }
-                    }else {
-                        when (binding.dataSpinner.selectedItemPosition) {
-                            5 -> calendarioParaData(calendario.time)
-                            else -> String.format(
-                                "${calendarioParaData(calendario.time)} - " +
-                                        calendario(
-                                            binding.dataSpinner.selectedItemPosition,
-                                            dataCustomClicado.value!!
-                                        )
+                        )
+                    } else { //negativos
+                        val calendario = Calendar.getInstance()
+                        conjuntoDatas =
+                            (if (horarioEscolhidoConcatenado < horarioLocalConcatenado) {
+                                calendario.add(Calendar.DATE, 1)
+                                when (binding.dataSpinner.selectedItemPosition) {
+                                    5 -> calendarioParaData(calendario.time)
+                                    else -> String.format(
+                                        "${calendarioParaData(calendario.time)} - ${
+                                            calendario(
+                                                binding.dataSpinner.selectedItemPosition,
+                                                dataCustomClicado.value!!
+                                            )
+                                        }"
+                                    )
+                                }
+                            } else {
+                                when (binding.dataSpinner.selectedItemPosition) {
+                                    5 -> calendarioParaData(calendario.time)
+                                    else -> String.format(
+                                        "${calendarioParaData(calendario.time)} - " +
+                                                calendario(
+                                                    binding.dataSpinner.selectedItemPosition,
+                                                    dataCustomClicado.value!!
+                                                )
+                                    )
+                                }
+                            })
+                        viewModel.adicionandoLembrete(
+                            ItemEntidade(
+                                0,
+                                binding.campoRemedio.text.toString()
+                                    .replaceFirstChar { it.uppercase() },
+                                viewModel.horarioFinal.value.toString(),
+                                conjuntoDatas,
+                                binding.horaSpinner.selectedItemPosition,
+                                binding.dataSpinner.selectedItemPosition,
+                                binding.campoNota.text.toString(),
+                                horaCustomClicado.value!!,
+                                dataCustomClicado.value!!
                             )
-                        }
-                    })
-                    viewModel.adicionandoLembrete(ItemEntidade(
-                        0,
-                        binding.campoRemedio.text.toString().replaceFirstChar { it.uppercase() },
-                        viewModel.horarioFinal.value.toString(),
-                        conjuntoDatas,
-                        binding.horaSpinner.selectedItemPosition,
-                        binding.dataSpinner.selectedItemPosition,
-                        binding.campoNota.text.toString(),
-                        horaCustomClicado.value!!,
-                        dataCustomClicado.value!!
-                    ))
+                        )
 
+                    }
+
+                    horaParaAlarme.value = if (binding.horaSpinner.selectedItemPosition == 0) {
+                        binding.horaEditText.text.toString().toInt()
+                    } else {
+                        binding.horaSpinner.selectedItemPosition
+                    }
+
+                    alarmeVar.value = true
+
+                    //aqui
+                    //passa aqui o id para alarme
+
+                    remedio.value = binding.campoRemedio.text.toString()
+                    nota.value = binding.campoNota.text.toString()
+
+                    this.findNavController()
+                        .navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
+                    Toast.makeText(requireContext(), "Lembrete adicionado.", Toast.LENGTH_SHORT)
+                        .show()
+                } catch (e: Exception) {
+                    Log.d("error", e.toString())
+                    Toast.makeText(context, "Algum campo não preenchido.", Toast.LENGTH_SHORT)
+                        .show()
                 }
-
-                horaParaAlarme.value = if(binding.horaSpinner.selectedItemPosition == 0){
-                    binding.horaEditText.text.toString().toInt()
-                }else{
-                    binding.horaSpinner.selectedItemPosition
-                }
-
-                alarmeVar.value = true
-
-                //aqui
-                //passa aqui o id para alarme
-
-                remedio.value = binding.campoRemedio.text.toString()
-                nota.value = binding.campoNota.text.toString()
-
-                this.findNavController()
-                    .navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())
-                Toast.makeText(requireContext(), "Lembrete adicionado.", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception){
-                Log.d("error", e.toString())
-                Toast.makeText(context, "Algum campo não preenchido.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         binding.retornar.setOnClickListener {
             this.findNavController().navigate(AdicionarFragmentDirections.actionAdicionarFragmentToMainFragment())

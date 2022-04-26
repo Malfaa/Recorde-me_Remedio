@@ -8,10 +8,19 @@
             name="viewModel"
             type="com.malfaa.lembrete.viewmodel.AdicionarViewModel" />
     </data>
+    
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/adicionar_adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,15 +30,18 @@
 
             <TextView
                 android:id="@+id/remedioTexto"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:drawablePadding="@dimen/padding_drawable_edittext"
                 android:layout_marginStart="@dimen/distancia_item_edittext"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/remedio"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:drawableStartCompat="@drawable/ic_pill"/>
 
             <EditText
                 android:id="@+id/campoRemedio"
@@ -38,7 +50,6 @@
                 android:layout_height="@dimen/dimen_box_large_height"
                 android:layout_marginEnd="@dimen/distancia_item_edittext"
                 android:autofillHints="no"
-                android:drawableStart="@drawable/ic_pill"
                 android:ems="10"
                 android:inputType="text"
                 android:maxWidth="100dp"
@@ -52,16 +63,19 @@
 
             <TextView
                 android:id="@+id/horaInicialText"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/hora_inicial"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
+                android:drawablePadding="@dimen/padding_drawable_edittext"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
+                app:layout_constraintTop_toBottomOf="@+id/campoRemedio"
+                app:drawableStartCompat="@drawable/ic_time" />
 
             <TextView
                 android:id="@+id/textView"
@@ -77,14 +91,17 @@
 
             <TextView
                 android:id="@+id/horaText"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
+                android:drawablePadding="@dimen/padding_drawable_edittext"
                 android:text="@string/hora"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
+                app:drawableStartCompat="@drawable/ic_timer"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -120,11 +137,11 @@
 
             <TextView
                 android:id="@+id/customTextHora"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/customizar"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
                 app:layout_constraintHorizontal_bias="0.483"
@@ -146,16 +163,19 @@
 
             <TextView
                 android:id="@+id/data"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
+                android:drawablePadding="@dimen/padding_drawable_edittext"
                 android:text="@string/data"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/horaText"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/horaText"
-                app:layout_constraintTop_toBottomOf="@+id/customHora" />
+                app:layout_constraintTop_toBottomOf="@+id/customHora"
+                app:drawableStartCompat="@drawable/ic_calendar" />
 
             <Spinner
                 android:id="@+id/dataSpinner"
@@ -190,11 +210,11 @@
 
             <TextView
                 android:id="@+id/customTextData"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/customizar"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/customTextHora"
                 app:layout_constraintStart_toStartOf="@+id/customTextHora"
@@ -215,29 +235,32 @@
 
             <TextView
                 android:id="@+id/notaText"
+                style="@style/textView_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:text="@string/nota"
-                android:textColor="#616161"
                 android:textSize="@dimen/font_adicao_large"
+                android:textAlignment="center"
+                android:drawablePadding="@dimen/padding_drawable_edittext"
                 app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                app:layout_constraintTop_toBottomOf="@+id/dataSpinner" />
+                app:layout_constraintTop_toBottomOf="@+id/dataSpinner"
+                app:drawableStartCompat="@drawable/ic_notes"/>
 
             <EditText
                 android:id="@+id/campoNota"
                 style="@style/adc_alt_textview"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dimen_box_large_height"
-                android:textSize="@dimen/font_adicao_large"
                 android:layout_marginTop="@dimen/distancia_item_edittext"
-                android:drawableStart="@drawable/ic_notes"
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxWidth="100dp"
                 android:maxLines="1"
+                android:textSize="@dimen/font_adicao_large"
                 app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
                 app:layout_constraintStart_toStartOf="@+id/campoRemedio"
                 app:layout_constraintTop_toBottomOf="@+id/notaText"
@@ -248,11 +271,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l_distancia_itens"
-                android:textSize="@dimen/font_adicao"
                 android:layout_marginTop="@dimen/distancia_entre_itens"
                 android:backgroundTint="@color/night_primary_light"
                 android:text="@string/retornar"
                 android:textColor="#F5F5F5"
+                android:textSize="@dimen/font_adicao"
                 app:layout_constraintStart_toStartOf="@+id/campoNota"
                 app:layout_constraintTop_toBottomOf="@+id/campoNota"
                 tools:ignore="TextContrastCheck" />
@@ -262,24 +285,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l_distancia_itens"
-                android:textSize="@dimen/font_adicao"
                 android:text="@string/adicionar"
+                android:textSize="@dimen/font_adicao"
                 app:layout_constraintStart_toEndOf="@+id/retornar"
                 app:layout_constraintTop_toTopOf="@+id/retornar" />
 
-            <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adicionar_adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/distancia_entre_itens"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/retornar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adicionar_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="@string/banner_google"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

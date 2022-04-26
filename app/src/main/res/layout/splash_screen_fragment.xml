@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/logo_dist_top"
-            android:src="@drawable/ic_icone"
+            style="@style/splash_screen"
             android:contentDescription="@string/lembrete" />
 
         <TextView

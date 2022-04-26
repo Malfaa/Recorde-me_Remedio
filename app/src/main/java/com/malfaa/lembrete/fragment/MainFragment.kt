@@ -95,7 +95,7 @@ class MainFragment : Fragment() {
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
 
-        /*val displayMetrics = DisplayMetrics()
+        val displayMetrics = DisplayMetrics()
         if (displayMetrics.widthPixels > 600) {
             binding.recyclerview.apply {
                 layoutManager = GridLayoutManager(context, 2)
@@ -104,7 +104,7 @@ class MainFragment : Fragment() {
             binding.recyclerview.apply {
                 layoutManager = GridLayoutManager(context, 3)
             }
-        }*/
+        }
 
         //AdMob function
         ad()

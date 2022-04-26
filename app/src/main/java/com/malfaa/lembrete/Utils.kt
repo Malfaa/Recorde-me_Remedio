@@ -64,17 +64,17 @@ fun calendario(item: Int, verifica: Boolean): String {
     return if (!verifica) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val diaAtual = LocalDate.now()
-            Log.d("Nice", "SDK superior")
+            Log.d("28+", "SDK superior")
             when (item) {
                 1/*"5 dias"*/ -> "${diaAtual.plusDays(5).dayOfMonth} / ${diaAtual.plusDays(5).monthValue}"
-                2/*"7 dias"*/ -> diaAtual.plusDays(7).toString()
-                3/*"14 dias"*/ -> diaAtual.plusDays(14).toString()
+                2/*"7 dias"*/ -> "${diaAtual.plusDays(7).dayOfMonth} / ${diaAtual.plusDays(7).monthValue}"
+                3/*"14 dias"*/-> "${diaAtual.plusDays(14).dayOfMonth} / ${diaAtual.plusDays(14).monthValue}"
                 //"Todos os dias" -> diaAtual.plusDays(5) //talvez criar alguma var que altere um fun que daí escreve os diaAtual
                 else -> ""
             }
         }
         else {
-            Log.d("Bosta", "SDK inferior")
+            Log.d("28-", "SDK inferior")
             val calendario = Calendar.getInstance()
 
             val valorSelecionado: Int =
@@ -98,7 +98,7 @@ fun calendario(item: Int, verifica: Boolean): String {
 
 @SuppressLint("SimpleDateFormat")
 fun calendarioParaData(item: Date): String {
-    val formato = SimpleDateFormat("dd/MM/yyyy")
+    val formato = SimpleDateFormat("dd/MM")
     return formato.format(item)
 }
 

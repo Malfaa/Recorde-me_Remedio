@@ -25,7 +25,11 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
             binding.remedio.text = item.remedio
             binding.data.text = conversorPosEmData(item.data, item.verificaDataCustom)
             binding.horario.text = conversorPosEmHoras(item.hora, item.verificaHoraCustom)
-            binding.nota.text = item.nota
+            if (item.nota.isEmpty()){
+                binding.expand.visibility = View.GONE
+            }else{
+                binding.nota.text = item.nota
+            }
             binding.inicioValor.text = item.horaInicial
             binding.terminaValor.text = item.dataConjunto
 
@@ -79,12 +83,12 @@ class MainAdapter: ListAdapter<ItemEntidade, MainAdapter.ViewHolder>(ItemDiffCal
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
                 holder.binding.notaBox.visibility = View.VISIBLE
-                holder.binding.expand.setImageResource(R.drawable.ic_expand_less)
+                holder.binding.expand.setBackgroundResource(R.drawable.ic_expand_less)
             }else{
                 expandValue.value = false
                 androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
                 holder.binding.notaBox.visibility = View.GONE
-                holder.binding.expand.setImageResource(R.drawable.ic_expand_more)
+                holder.binding.expand.setBackgroundResource(R.drawable.ic_expand_more)
             }
         }
     }

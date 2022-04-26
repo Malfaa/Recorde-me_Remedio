@@ -16,12 +16,12 @@
     <color name="secondary_light">#998175</color>
     <color name="secondary_dark">#3e2c21</color>
 
-    <color name="cream_text">#FFEFCB</color>
+    <color name="text_color_dark">#E6E6E6</color>
 
     <color name="grey_bg">#eceff1</color>
     <color name= "cinza_texto">#535252</color>
 
-    <color name= "caixa_expandida_bg_light">#CDC7C4</color>
+    <color name= "caixa_expandida_bg_light">#EAE6E4</color>
     <color name= "caixa_expandida_bg_dark">#3A3939</color>
 
     <!--Segunda Paleta-->

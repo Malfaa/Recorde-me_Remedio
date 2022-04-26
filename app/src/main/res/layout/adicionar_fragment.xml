@@ -34,10 +34,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/distancia_item_edittext"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:gravity="center"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:text="@string/remedio"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableStartCompat="@drawable/ic_pill" />
 
                 <EditText
                     android:id="@+id/campoRemedio"
@@ -46,14 +49,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/distancia_item_edittext"
                     android:autofillHints="no"
-                    android:drawableStart="@drawable/ic_pill"
                     android:ems="10"
                     android:inputType="text"
                     android:maxWidth="100dp"
                     android:maxLines="1"
                     android:minHeight="@dimen/dimen_box_default_height"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:paddingStart="@dimen/padding_edittext"
+                    android:paddingEnd="@dimen/padding_edittext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                     app:layout_constraintTop_toBottomOf="@id/remedioTexto"
@@ -66,10 +68,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:text="@string/hora_inicial"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:gravity="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintEnd_toEndOf="@+id/textView"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/remedioTexto"
+                    app:layout_constraintTop_toBottomOf="@+id/campoRemedio"
+                    app:drawableStartCompat="@drawable/ic_time" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -91,10 +97,13 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:text="@string/hora"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:drawableStartCompat="@drawable/ic_timer"/>
 
                 <Spinner
                     android:id="@+id/horaSpinner"
@@ -114,16 +123,17 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/horaEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="time"
-                    android:minWidth="@dimen/spinner_dimen"
+                    android:minWidth="@dimen/dimen_box_default_height"
                     android:textAlignment="center"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@+id/horaText"
-                    app:layout_constraintStart_toStartOf="@+id/horaText"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
 
                 <TextView
@@ -161,9 +171,13 @@
                     android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:text="@string/data"
                     android:textSize="@dimen/font_adicao"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="@+id/horaText"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horaText"
-                    app:layout_constraintTop_toBottomOf="@+id/customHora" />
+                    app:layout_constraintTop_toBottomOf="@+id/customHora"
+                    app:drawableStartCompat="@drawable/ic_calendar" />
 
                 <Spinner
                     android:id="@+id/dataSpinner"
@@ -177,14 +191,15 @@
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:textAlignment="center"
                     android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
-                    app:layout_constraintStart_toStartOf="@+id/horaSpinner"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dataEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -192,8 +207,9 @@
                     android:minWidth="@dimen/spinner_dimen"
                     android:textAlignment="center"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@+id/horaSpinner"
-                    app:layout_constraintStart_toStartOf="@+id/horaSpinner"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <TextView
@@ -229,9 +245,13 @@
                     android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:text="@string/nota"
                     android:textSize="@dimen/font_adicao"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/dataSpinner" />
+                    app:layout_constraintTop_toBottomOf="@+id/customData"
+                    app:drawableStartCompat="@drawable/ic_notes" />
 
                 <EditText
                     android:id="@+id/campoNota"
@@ -239,7 +259,6 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/l_distancia_itens"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:drawableStart="@drawable/ic_notes"
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="text"
