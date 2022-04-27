@@ -1,6 +1,7 @@
 package com.malfaa.lembrete.fragment
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,9 +23,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.lembrete.R
-import com.malfaa.lembrete.calendario
-import com.malfaa.lembrete.calendarioParaData
+import com.malfaa.lembrete.*
 import com.malfaa.lembrete.databinding.AdicionarFragmentBinding
 import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.LDatabase
@@ -32,6 +31,7 @@ import com.malfaa.lembrete.room.entidade.ItemEntidade
 import com.malfaa.lembrete.viewmodel.AdicionarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
+import java.time.LocalDateTime
 import java.util.*
 
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -98,9 +98,16 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         ad()
 
-        binding.textView.setOnClickListener {
-            picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setTitleText("Hora em que iniciará:").setHour(12)
-                .setMinute(0).build()
+        binding.horarioInicial.setOnClickListener { //todo pegar horário atual
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
+                    .setMinute(LocalDateTime.now().minute).build()
+            }else{
+                picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
+                    .setMinute(minutoFormato(Date().time)).build()
+            }
 
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 
@@ -110,7 +117,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 minutoEscolhido = String.format("%02d", picker.minute)
                 viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
-                binding.textView.text = viewModel.horarioFinal.value
+                binding.horarioInicial.text = viewModel.horarioFinal.value
                 Log.d("Valores Relógio", viewModel.horarioFinal.value.toString())
             }
 
@@ -144,7 +151,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.adicionar.setOnClickListener {
-            if (binding.textView.text.isEmpty()
+            if (binding.horarioInicial.text.isEmpty()
                 || binding.remedioTexto.text.isEmpty()
                 || (binding.horaEditText.text.isNullOrEmpty() && binding.horaSpinner.selectedItemPosition == 0)
                 || (binding.customData.text.isNullOrEmpty() && binding.dataSpinner.selectedItemPosition == 0)
@@ -369,6 +376,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
                 //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+                binding.adicionarAdView.resume()
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
@@ -387,12 +395,15 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             override fun onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
                 Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
+                binding.adicionarAdView.pause()
+
             }
 
             override fun onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
                 Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
+                binding.adicionarAdView.destroy()
             }
         }
     }

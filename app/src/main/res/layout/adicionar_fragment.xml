@@ -18,8 +18,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/adicionar_adView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,13 +36,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/distancia_item_edittext"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:gravity="center"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:gravity="center"
                     android:text="@string/remedio"
                     android:textSize="@dimen/font_adicao"
+                    app:drawableStartCompat="@drawable/ic_pill"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:drawableStartCompat="@drawable/ic_pill" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/campoRemedio"
@@ -56,6 +58,7 @@
                     android:minHeight="@dimen/dimen_box_default_height"
                     android:paddingStart="@dimen/padding_edittext"
                     android:paddingEnd="@dimen/padding_edittext"
+                    android:textSize="@dimen/font_adicao"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                     app:layout_constraintTop_toBottomOf="@id/remedioTexto"
@@ -67,18 +70,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:text="@string/hora_inicial"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:gravity="center"
+                    android:text="@string/hora_inicial"
                     android:textSize="@dimen/font_adicao"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:drawableStartCompat="@drawable/ic_time"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/campoRemedio"
-                    app:drawableStartCompat="@drawable/ic_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/campoRemedio" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/horarioInicial"
                     style="@style/adc_alt_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
@@ -96,14 +99,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:text="@string/hora"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:text="@string/hora"
                     android:textSize="@dimen/font_adicao"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:drawableStartCompat="@drawable/ic_timer"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
-                    app:drawableStartCompat="@drawable/ic_timer"/>
+                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
+                    app:layout_constraintTop_toBottomOf="@+id/horarioInicial" />
 
                 <Spinner
                     android:id="@+id/horaSpinner"
@@ -114,11 +117,10 @@
                     android:backgroundTint="@color/secondary"
                     android:contentDescription="@string/descricaoSpinnerHora"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:textAlignment="center"
                     android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -129,11 +131,10 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="time"
                     android:minWidth="@dimen/dimen_box_default_height"
-                    android:textAlignment="center"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
 
                 <TextView
@@ -146,7 +147,7 @@
                     android:textSize="@dimen/font_adicao_small"
                     app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
                     app:layout_constraintHorizontal_bias="0.483"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toEndOf="@+id/horarioInicial"
                     app:layout_constraintTop_toTopOf="@+id/horaText" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -169,15 +170,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:text="@string/data"
-                    android:textSize="@dimen/font_adicao"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:gravity="center"
+                    android:text="@string/data"
+                    android:textSize="@dimen/font_adicao"
+                    app:drawableStartCompat="@drawable/ic_calendar"
                     app:layout_constraintEnd_toEndOf="@+id/horaText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horaText"
-                    app:layout_constraintTop_toBottomOf="@+id/customHora"
-                    app:drawableStartCompat="@drawable/ic_calendar" />
+                    app:layout_constraintTop_toBottomOf="@+id/customHora" />
 
                 <Spinner
                     android:id="@+id/dataSpinner"
@@ -189,11 +190,10 @@
                     android:contentDescription="@string/descricaoSpinnerData"
                     android:drawableStart="@drawable/ic_calendar"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:textAlignment="center"
                     android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
 
@@ -205,11 +205,10 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
-                    android:textAlignment="center"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <TextView
@@ -243,15 +242,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
-                    android:text="@string/nota"
-                    android:textSize="@dimen/font_adicao"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:gravity="center"
+                    android:text="@string/nota"
+                    android:textSize="@dimen/font_adicao"
+                    app:drawableStartCompat="@drawable/ic_notes"
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/customData"
-                    app:drawableStartCompat="@drawable/ic_notes" />
+                    app:layout_constraintTop_toBottomOf="@+id/customData" />
 
                 <EditText
                     android:id="@+id/campoNota"
@@ -277,9 +276,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/distancia_entre_itens"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:layout_marginBottom="@dimen/distancia_entre_itens"
                     android:backgroundTint="@color/night_primary_light"
                     android:text="@string/retornar"
                     android:textColor="#F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/campoNota"
                     app:layout_constraintTop_toBottomOf="@+id/campoNota"
                     tools:ignore="TextContrastCheck" />
@@ -296,6 +297,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adicionar_adView"
             android:layout_width="wrap_content"

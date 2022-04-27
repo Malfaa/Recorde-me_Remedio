@@ -12,16 +12,19 @@
         android:layout_height="match_parent"
         tools:context=".fragment.MainFragment">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adicionarLembrete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/adicionarLembrete_land"
+            style="@style/Botao"
+            android:layout_width="@dimen/dimen_box_large_width"
+            android:layout_height="@dimen/dimen_box_large_height"
             android:clickable="true"
+            android:contentDescription="@string/novo_lembrete"
             android:focusable="true"
-            android:src="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/novo_lembrete"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/adicionar" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

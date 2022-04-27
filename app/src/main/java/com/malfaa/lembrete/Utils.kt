@@ -66,9 +66,9 @@ fun calendario(item: Int, verifica: Boolean): String {
             val diaAtual = LocalDate.now()
             Log.d("28+", "SDK superior")
             when (item) {
-                1/*"5 dias"*/ -> "${diaAtual.plusDays(5).dayOfMonth} / ${diaAtual.plusDays(5).monthValue}"
-                2/*"7 dias"*/ -> "${diaAtual.plusDays(7).dayOfMonth} / ${diaAtual.plusDays(7).monthValue}"
-                3/*"14 dias"*/-> "${diaAtual.plusDays(14).dayOfMonth} / ${diaAtual.plusDays(14).monthValue}"
+                1/*"5 dias"*/ -> stringFormat(diaAtual.plusDays(5).dayOfMonth)+ "/" + stringFormat(diaAtual.plusDays(5).monthValue)
+                2/*"7 dias"*/ -> stringFormat(diaAtual.plusDays(7).dayOfMonth)+ "/" + stringFormat(diaAtual.plusDays(7).monthValue)
+                3/*"14 dias"*/-> stringFormat(diaAtual.plusDays(14).dayOfMonth)+ "/" + stringFormat(diaAtual.plusDays(14).monthValue)
                 //"Todos os dias" -> diaAtual.plusDays(5) //talvez criar alguma var que altere um fun que daí escreve os diaAtual
                 else -> ""
             }
@@ -102,12 +102,25 @@ fun calendarioParaData(item: Date): String {
     return formato.format(item)
 }
 
+fun stringFormat(dia:Int):String{
+    return String.format("%02d",dia)
+}
+
 @SuppressLint("SimpleDateFormat")
-fun dataFormato(horaSistema: Long): String {
+fun horaFormato(horaSistema: Long): Int {
     return try {
         val formato = SimpleDateFormat("HH:mm")
-        formato.format(horaSistema)
+        formato.format(horaSistema).toInt()
     }catch (e: Exception) {
-        e.toString()
+        Log.d("error", "$e")
+    }
+
+}@SuppressLint("SimpleDateFormat")
+fun minutoFormato(horaSistema: Long): Int {
+    return try {
+        val formato = SimpleDateFormat("mm")
+        formato.format(horaSistema).toInt()
+    }catch (e: Exception) {
+        Log.d("error", "$e")
     }
 }

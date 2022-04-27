@@ -1,5 +1,6 @@
 package com.malfaa.lembrete.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -25,12 +26,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.transition.AutoTransition
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.malfaa.lembrete.AlarmeReceiver
+import com.malfaa.lembrete.AlarmReceiver
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.adapters.MainAdapter
 import com.malfaa.lembrete.cancelarAlarme
@@ -73,13 +73,12 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = "Lembre-me"
-        criandoCanalDeNotificacao()
 
         MobileAds.initialize(requireContext()){}
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
-        //https://developers.google.com/admob/android/banner
+        criandoCanalDeNotificacao()
 
         return binding.root
     }
@@ -114,23 +113,7 @@ class MainFragment : Fragment() {
             adapter.submitList(it.toMutableList())
         }
 
-        //Expand Button
-        /*expandValue.observe(viewLifecycleOwner){
-            if(itemBinding.notaBox.visibility == View.GONE){
-                expandValue.value = false
-                androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox.visibility = View.VISIBLE
-                itemBinding.expand.setImageResource(R.drawable.ic_expand_less)
-            }else{
-                expandValue.value = false
-                androidx.transition.TransitionManager.beginDelayedTransition(itemBinding.lembrete, AutoTransition())
-                itemBinding.notaBox.visibility = View.GONE
-                itemBinding.expand.setImageResource(R.drawable.ic_expand_more)
-            }
-        }*/
-
-        //Adição Alarme
-        alarmeVar.observe(viewLifecycleOwner){condicao->
+        alarmeVar.observe(viewLifecycleOwner){condicao->   // FIXME: colocar no adicionar fragment
             if (condicao) {
                 if(horaCustomClicado.value!!){
                     alarme(
@@ -152,9 +135,14 @@ class MainFragment : Fragment() {
         }
 
         //Navegação p/ outros fragments
-        binding.adicionarLembrete.setOnClickListener {
+        binding.adicionarLembrete?.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
+        binding.adicionarLembreteLand?.setOnClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+        }
+
+
         alterar.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
                 this.findNavController().navigate(
@@ -181,38 +169,90 @@ class MainFragment : Fragment() {
         callback.isEnabled
     }
 
-private fun ad(){
-    binding.adView.adListener = object : AdListener(){
-        override fun onAdLoaded() {
-            // Code to be executed when an ad finishes loading.
-            //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
-        }
+    private fun criandoCanalDeNotificacao(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val nome = "recorde-meRemedio"
+            val descricao = "Canal de notificacao p/ lembretes"
+            val importancia = NotificationManager.IMPORTANCE_HIGH
+            val canal = NotificationChannel("recorde-meremedio", nome, importancia).apply { description = descricao }
+            val gerenciadorNotificacao = getSystemService(requireContext(), NotificationManager::class.java)
 
-        override fun onAdFailedToLoad(adError : LoadAdError) {
-            // Code to be executed when an ad request fails.
-            val error = String.format(
-                "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
-            Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
-        }
-
-        override fun onAdOpened() {
-            // Code to be executed when an ad opens an overlay that
-            // covers the screen.
-            Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
-        }
-
-        override fun onAdClicked() {
-            // Code to be executed when the user clicks on an ad.
-            Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
-        }
-
-        override fun onAdClosed() {
-            // Code to be executed when the user is about to return
-            // to the app after tapping on an ad.
-            Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
+            gerenciadorNotificacao?.createNotificationChannel(canal)
         }
     }
-}
+
+    fun alarme(hora: Long, minutos: Long, horario: Long){
+        alarmMgr = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(
+            requireContext(), AlarmReceiver(remedio.value.toString(),nota.value.toString())::class.java).let { intent ->
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            PendingIntent.getActivity(requireContext(), 0, intent, 0)
+        } // TODO: Ideia, logo acima, pede p/ colocar o id, o id seria bom pegar o valor id inserido no bd, que assim é possível ter múltiplas notificações de lembretes. A ideia talvez seja pegar do bd o id, nome e nota.
+
+        // Set the alarm to start at 8:30 a.m.
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, hora.toInt())
+            set(Calendar.MINUTE, minutos.toInt())
+        }
+
+        // setRepeating() lets you specify a precise custom interval--in this case,
+        // 20 minutes.
+        alarmMgr!!.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000   setExactAndAllowWhileIdle()
+            alarmIntent
+        )
+    }
+
+    /*fun removerAlarme(){
+        val alarmManager =
+            context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+        val pendingIntent =
+            PendingIntent.getService(context, requestId, intent,
+                PendingIntent.FLAG_NO_CREATE)
+        if (pendingIntent != null && alarmManager != null) {
+            alarmManager.cancel(pendingIntent)
+        }
+    }*/
+
+    private fun ad(){
+        binding.adView.adListener = object : AdListener(){
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+                binding.adView.resume()
+            }
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                // Code to be executed when an ad request fails.
+                val error = String.format(
+                    "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
+                Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Toast.makeText(context, "Ad opened.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
+                binding.adView.pause()
+
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+                Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
+                binding.adView.destroy()
+            }
+        }
+    }
 
     private fun alertDialogDeletarContato(){
         val construtor = AlertDialog.Builder(requireActivity())
@@ -237,41 +277,5 @@ private fun ad(){
 
         val alerta = construtor.create()
         alerta.show()
-    }
-
-//Alarme
-private fun criandoCanalDeNotificacao(){
-    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-        val nome = "LembreteNotificacao"
-        val descricao = "Canal de notificacao p/ lembretes"
-        val importancia = NotificationManager.IMPORTANCE_HIGH
-        val canal = NotificationChannel("notificacao", nome, importancia).apply { description = descricao }
-        val gerenciadorNotificacao = getSystemService(requireContext(), NotificationManager::class.java)
-
-        gerenciadorNotificacao?.createNotificationChannel(canal)
-    }
-}
-    private fun alarme(hora: Long, minutos: Long, horario: Long) {
-        alarmMgr = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(//fixme mudei aqui
-            requireContext(), AlarmeReceiver(remedio.value.toString(),nota.value.toString())::class.java).let { intent ->
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            PendingIntent.getActivity/* <- mudei aqui */(requireContext(), 0, intent, 0)
-        }
-
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, hora.toInt())
-            set(Calendar.MINUTE, minutos.toInt())
-        }
-
-        //alarmMgr.setExactAndAllowWhileIdle()
-
-        alarmMgr?.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            1000 * 60 /* * (60 * horario)*/,  //60000 * (60 * 4) = 60000 * '240' = 144000000   setExactAndAllowWhileIdle()
-            alarmIntent
-        )
     }
 }

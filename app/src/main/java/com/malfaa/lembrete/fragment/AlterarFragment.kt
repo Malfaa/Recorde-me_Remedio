@@ -134,7 +134,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.horaEditText.visibility = View.GONE
         }
 
-        binding.textView.setOnClickListener {
+        binding.horarioInicial.setOnClickListener {
             picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
                 .setTitleText("Hora em que iniciará:").setHour(12)
                 .setMinute(0).build()
@@ -146,7 +146,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 minutoEscolhido = String.format("%02d", picker.minute)
                 viewModel.horarioFinal.value = "$horaEscolhida:$minutoEscolhido"
 
-                binding.textView.text = viewModel.horarioFinal.value
+                binding.horarioInicial.text = viewModel.horarioFinal.value
                 Log.d("Valores Relógio", viewModel.horarioFinal.value.toString())
             }
         }
@@ -179,7 +179,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.alterar.setOnClickListener {
-            /* if (binding.textView.text.isEmpty()
+            /* if (binding.horarioInicial.text.isEmpty()
                 || binding.remedioTexto.text.isEmpty()
                 || (binding.horaEditText.text.isNullOrEmpty() && binding.horaSpinner.selectedItemPosition == 0)
                 || (binding.customData.text.isNullOrEmpty() && binding.dataSpinner.selectedItemPosition == 0)
@@ -401,13 +401,14 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun bindingInfos(){
         binding.campoRemedio.setText(args.item.remedio)
         binding.campoNota.setText(args.item.nota)
-        binding.textView.text = args.item.horaInicial
+        binding.horarioInicial.text = args.item.horaInicial
     }
     private fun ad(){
         binding.alterarAdView.adListener = object : AdListener(){
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
                 //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
+                binding.alterarAdView.resume()
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
@@ -426,12 +427,15 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             override fun onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
                 Toast.makeText(context, "Ad Clicked.", Toast.LENGTH_SHORT).show()
+                binding.alterarAdView.pause()
+
             }
 
             override fun onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
                 Toast.makeText(context, "Ad closed.", Toast.LENGTH_SHORT).show()
+                binding.alterarAdView.destroy()
             }
         }
     }

@@ -56,7 +56,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textSize="@dimen/font_adicao" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/horarioInicial"
             android:layout_width="wrap_content"
             android:minWidth="@dimen/dimen_box_default_width"
             android:layout_height="@dimen/dimen_box_default_height"

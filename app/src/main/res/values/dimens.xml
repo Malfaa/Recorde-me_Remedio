@@ -36,8 +36,11 @@
     <dimen name="dimen_box_default_width">100dp</dimen>
     <dimen name="dimen_box_default_height">48dp</dimen>
 
-    <dimen name="spinner_dimen">145dp</dimen>
-    <dimen name="spinner_dimen_large">150dp</dimen>
+    <dimen name="spinner_dimen">150dp</dimen>
+    <dimen name="spinner_dimen_large">180dp</dimen>
+
+    <dimen name="spinner_dimen_sw600dp">190dp</dimen>
+    <dimen name="spinner_dimen_sw600dp_large">220dp</dimen>
 
     <dimen name="padding_edittext">10dp</dimen>
 
@@ -48,4 +51,8 @@
     <dimen name="distancia_nota_item">2dp</dimen>
 
     <dimen name="item_width">380dp</dimen>
+
+    <dimen name="item_sw600dp_width">480dp</dimen>
+
+    <dimen name="font_item_large">20sp</dimen>
 </resources>

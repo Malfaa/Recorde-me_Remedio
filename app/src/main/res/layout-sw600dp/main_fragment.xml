@@ -13,7 +13,7 @@
         tools:context=".fragment.MainFragment">
 
         <Button
-            android:id="@+id/adicionarLembrete"
+            android:id="@+id/adicionarLembrete_land"
             style="@style/Botao"
             android:layout_width="@dimen/dimen_box_large_width"
             android:layout_height="@dimen/dimen_box_large_height"
@@ -33,7 +33,7 @@
             android:layout_marginEnd="@dimen/s_distancia_itens"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@+id/adView"
-            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete"
+            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete_land"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
