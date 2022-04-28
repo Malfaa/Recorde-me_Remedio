@@ -54,5 +54,7 @@
 
     <dimen name="item_sw600dp_width">480dp</dimen>
 
+    <dimen name="item_width_small">310dp</dimen>
+
     <dimen name="font_item_large">20sp</dimen>
 </resources>

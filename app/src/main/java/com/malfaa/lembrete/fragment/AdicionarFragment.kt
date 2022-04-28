@@ -44,6 +44,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val nota = MutableLiveData<String>()
         val horaCustomClicado = MutableLiveData(false)
         val dataCustomClicado = MutableLiveData(false)
+        var requestRandomCode:Int = 0
     }
 
     private lateinit var picker: MaterialTimePicker
@@ -154,7 +155,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             if (binding.horarioInicial.text.isEmpty()
                 || binding.remedioTexto.text.isEmpty()
                 || (binding.horaEditText.text.isNullOrEmpty() && binding.horaSpinner.selectedItemPosition == 0)
-                || (binding.customData.text.isNullOrEmpty() && binding.dataSpinner.selectedItemPosition == 0)
+                || (binding.dataEditText.text.isNullOrEmpty() && binding.dataSpinner.selectedItemPosition == 0)
             ) {
                 Toast.makeText(context, "Preencha os campos necessários.", Toast.LENGTH_SHORT).show()
             } else {
@@ -163,6 +164,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
                     val horarioLocalConcatenado =
                         Calendar.HOUR_OF_DAY + Calendar.MINUTE//"${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
+                    requestRandomCode = RandomUtil.getRandomInt()
                     if (horaCustomClicado.value!! && dataCustomClicado.value!!) { //positivos
                         val calendario = Calendar.getInstance()
                         conjuntoDatas =
@@ -198,7 +200,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                 binding.dataEditText.text.toString().toInt(),
                                 binding.campoNota.text.toString(),
                                 horaCustomClicado.value!!,
-                                dataCustomClicado.value!!
+                                dataCustomClicado.value!!,
+                                requestRandomCode
                             )
                         )
                     } else if (!horaCustomClicado.value!! && dataCustomClicado.value!!) {// hora = falso && data = positivo
@@ -236,7 +239,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                 binding.dataEditText.text.toString().toInt(),
                                 binding.campoNota.text.toString(),
                                 horaCustomClicado.value!!,
-                                dataCustomClicado.value!!
+                                dataCustomClicado.value!!,
+                                requestRandomCode
                             )
                         )
                     } else if (horaCustomClicado.value!! && !dataCustomClicado.value!!) {// hora = positvo && data = falso
@@ -279,7 +283,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                 binding.dataSpinner.selectedItemPosition,
                                 binding.campoNota.text.toString(),
                                 horaCustomClicado.value!!,
-                                dataCustomClicado.value!!
+                                dataCustomClicado.value!!,
+                                requestRandomCode
                             )
                         )
                     } else { //negativos
@@ -321,7 +326,8 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                 binding.dataSpinner.selectedItemPosition,
                                 binding.campoNota.text.toString(),
                                 horaCustomClicado.value!!,
-                                dataCustomClicado.value!!
+                                dataCustomClicado.value!!,
+                                requestRandomCode
                             )
                         )
 

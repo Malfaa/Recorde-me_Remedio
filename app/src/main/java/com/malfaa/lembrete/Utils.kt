@@ -1,21 +1,16 @@
 package com.malfaa.lembrete
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.os.Build
 import android.util.Log
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 
-private var alarmMgr: AlarmManager? = null
-private lateinit var alarmIntent: PendingIntent
-
-fun cancelarAlarme(){//colocar um parâmetro aqui pra cancelar via id?
-    alarmMgr?.cancel(alarmIntent)
+object RandomUtil{
+    private val seed = AtomicInteger()
+    fun getRandomInt() = seed.getAndIncrement() + System.currentTimeMillis().toInt()
 }
 
 fun conversorPosEmMinutos(pos: Int): Long? {
@@ -123,4 +118,6 @@ fun minutoFormato(horaSistema: Long): Int {
     }catch (e: Exception) {
         Log.d("error", "$e")
     }
+
+
 }

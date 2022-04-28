@@ -30,6 +30,7 @@ import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.dataCustomClicad
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaEscolhida
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.minutoEscolhido
+import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.requestRandomCode
 import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
@@ -99,40 +100,39 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         if (args.item.verificaDataCustom) {
-            dataCustomClicado.value = args.item.verificaDataCustom
+//            dataCustomClicado.value = args.item.verificaDataCustom
 
-            binding.customData.isChecked
+//            binding.customData.isChecked
 
             binding.dataEditText.setText(args.item.data.toString())
-            binding.dataSpinner.visibility = View.GONE
-            binding.dataEditText.visibility = View.VISIBLE
+//            binding.dataSpinner.visibility = View.GONE
+//            binding.dataEditText.visibility = View.VISIBLE
         } else {
-            dataCustomClicado.value = args.item.verificaDataCustom
+//            dataCustomClicado.value = args.item.verificaDataCustom
             binding.dataSpinner.setSelection(args.item.data, true)
             binding.dataEditText.text?.isEmpty()
-            binding.dataSpinner.visibility = View.VISIBLE
-            binding.dataEditText.visibility = View.GONE
+//            binding.dataSpinner.visibility = View.VISIBLE
+//            binding.dataEditText.visibility = View.GONE
         }
 
         ad()
 
+
         if (args.item.verificaHoraCustom) {
-            horaCustomClicado.value = args.item.verificaHoraCustom
-
-            binding.customHora.isEnabled
-
+//            horaCustomClicado.value = args.item.verificaHoraCustom
             binding.horaEditText.setText(args.item.hora.toString())
             AdicionarFragment.horaParaAlarme.value = 0
-            binding.horaSpinner.visibility = View.GONE
-            binding.horaEditText.visibility = View.VISIBLE
+//            binding.horaSpinner.visibility = View.GONE
+//            binding.horaEditText.visibility = View.VISIBLE
 
         } else {
-            horaCustomClicado.value = args.item.verificaHoraCustom
+//            horaCustomClicado.value = args.item.verificaHoraCustom
             binding.horaSpinner.setSelection(args.item.hora, true)
             binding.horaEditText.text?.isEmpty()
-            binding.horaSpinner.visibility = View.VISIBLE
-            binding.horaEditText.visibility = View.GONE
+//            binding.horaSpinner.visibility = View.VISIBLE
+//            binding.horaEditText.visibility = View.GONE
         }
+
 
         binding.horarioInicial.setOnClickListener {
             picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
@@ -217,17 +217,17 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     viewModel.alterarLembrete(
                         ItemEntidade(
-                            0,
+                            args.item.id,
                             binding.campoRemedio.text.toString()
                                 .replaceFirstChar { it.uppercase() },
                             viewModel.horarioFinal.value.toString(),
-
                             conjuntoDatas,
                             binding.horaEditText.text.toString().toInt(),
                             binding.dataEditText.text.toString().toInt(),
                             binding.campoNota.text.toString(),
                             horaCustomClicado.value!!,
-                            dataCustomClicado.value!!
+                            dataCustomClicado.value!!,
+                            args.item.requestCode
                         )
                     )
                 } else if (!horaCustomClicado.value!! && dataCustomClicado.value!!) {// hora = falso && data = positivo
@@ -256,7 +256,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     viewModel.alterarLembrete(
                         ItemEntidade(
-                            0,
+                            args.item.id,
                             binding.campoRemedio.text.toString()
                                 .replaceFirstChar { it.uppercase() },
                             viewModel.horarioFinal.value.toString(),
@@ -265,7 +265,8 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             binding.dataEditText.text.toString().toInt(),
                             binding.campoNota.text.toString(),
                             horaCustomClicado.value!!,
-                            dataCustomClicado.value!!
+                            dataCustomClicado.value!!,
+                            args.item.requestCode
                         )
                     )
                 } else if (horaCustomClicado.value!! && !dataCustomClicado.value!!) {// hora = positvo && data = falso
@@ -299,7 +300,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         }
                     viewModel.alterarLembrete(
                         ItemEntidade(
-                            0,
+                            args.item.id,
                             binding.campoRemedio.text.toString()
                                 .replaceFirstChar { it.uppercase() },
                             viewModel.horarioFinal.value.toString(),
@@ -308,7 +309,8 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             binding.dataSpinner.selectedItemPosition,
                             binding.campoNota.text.toString(),
                             horaCustomClicado.value!!,
-                            dataCustomClicado.value!!
+                            dataCustomClicado.value!!,
+                            args.item.requestCode
                         )
                     )
                 } else { //negativos
@@ -340,7 +342,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     })
                     viewModel.alterarLembrete(
                         ItemEntidade(
-                            0,
+                            args.item.id,
                             binding.campoRemedio.text.toString()
                                 .replaceFirstChar { it.uppercase() },
                             viewModel.horarioFinal.value.toString(),
@@ -349,7 +351,8 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             binding.dataSpinner.selectedItemPosition,
                             binding.campoNota.text.toString(),
                             horaCustomClicado.value!!,
-                            dataCustomClicado.value!!
+                            dataCustomClicado.value!!,
+                            args.item.requestCode
                         )
                     )
 

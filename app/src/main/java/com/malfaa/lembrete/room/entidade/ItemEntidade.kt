@@ -24,5 +24,6 @@ data class ItemEntidade(
     @ColumnInfo(name = "custom_hora")
     var verificaHoraCustom: Boolean,
     @ColumnInfo(name = "custom_data")
-    var verificaDataCustom: Boolean
+    var verificaDataCustom: Boolean,
+    var requestCode: Int
 ): Parcelable
