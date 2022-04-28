@@ -12,11 +12,11 @@
     <dimen name="distancia_item_edittext">16dp</dimen>
     <dimen name="distancia_item">8dp</dimen>
     <dimen name="distancia_item_textos">4dp</dimen>
-    <dimen name="distancia_entre_remedio_e_restam">30dp</dimen>
 
     <dimen name="restam_dist_item">16dp</dimen>
 
     <dimen name="distancia_entre_itens">40dp</dimen>
+    <dimen name="distancia_entre_itens_seg">30dp</dimen>
 
     <dimen name="distancia_para_item_junto_as_caixas">55dp</dimen>
     <dimen name="distancia_para_item_junto_as_caixas_text">62dp</dimen>

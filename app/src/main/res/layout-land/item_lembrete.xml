@@ -11,8 +11,13 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
         style="@style/AppShapeAppearance.MediumComponent"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/item_width"
         android:layout_height="wrap_content">
+        <!--android:layout_marginStart="@dimen/distancia_item_edittext"
+        android:layout_marginEnd="@dimen/distancia_item_edittext"
+        android:layout_marginTop="@dimen/distancia_item_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

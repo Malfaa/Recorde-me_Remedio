@@ -272,7 +272,7 @@
                     android:id="@+id/retornar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/distancia_entre_itens"
+                    android:layout_marginStart="@dimen/distancia_entre_itens_seg"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:layout_marginBottom="@dimen/distancia_entre_itens"
                     android:backgroundTint="@color/night_primary_light"
@@ -285,13 +285,12 @@
 
                 <Button
                     android:id="@+id/alterar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/distancia_entre_itens"
-                    android:layout_marginEnd="@dimen/distancia_entre_itens"
+                    android:layout_marginEnd="@dimen/distancia_entre_itens_seg"
                     android:text="@string/alterar"
                     app:layout_constraintEnd_toEndOf="@+id/campoNota"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/retornar"
                     app:layout_constraintTop_toTopOf="@+id/retornar" />
 

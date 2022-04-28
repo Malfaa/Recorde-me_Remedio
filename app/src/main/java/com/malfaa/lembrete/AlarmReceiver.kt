@@ -14,18 +14,18 @@ import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.requestRandomCod
 import com.malfaa.lembrete.fragment.MainFragment
 
 class AlarmReceiver: BroadcastReceiver(){
-    @SuppressLint("LaunchActivityFromNotification")
+    @SuppressLint("LaunchActivityFromNotification", "UnspecifiedImmutableFlag")
     override fun onReceive(context: Context?, intent: Intent?) {
         val alarmIntent = Intent(context, MainFragment::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK// or Intent.FLAG_ACTIVITY_CLEAR_TASK //todo aqui
         }
         val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context,
-            requestRandomCode,alarmIntent,0)  //Intent.FLAG_ACTIVITY_NEW_TASK
+            requestRandomCode,alarmIntent,PendingIntent.FLAG_ONE_SHOT and PendingIntent.FLAG_NO_CREATE)//todo aqui
 
         val builder = NotificationCompat.Builder(context!!, "recorde-meremedio")
             .setSmallIcon(R.drawable.ic_clock)
-            .setContentTitle("Remedio"/*remedio.value.toString()*/) //aqui
-            .setContentText("nota"/*nota.value.toString()*/) // aqui  //todo aqui e acima funciona normal se predefinido o texto
+            .setContentTitle(remedio.value.toString()) //aqui
+            .setContentText(nota.value.toString()) // aqui  //todo aqui e acima funciona normal se predefinido o texto
             //.setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

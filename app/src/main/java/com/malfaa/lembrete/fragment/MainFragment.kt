@@ -172,48 +172,6 @@ class MainFragment : Fragment() {
         }
     }//todo aqui ta funcionando
 
-//    fun alarme(hora: Long, minutos: Long, horario: Long){
-//        alarmMgr = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        alarmIntent = Intent(
-//            requireContext(), AlarmReceiver(remedio.value.toString(),nota.value.toString(), 1)::class.java).let { intent ->
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            PendingIntent.getActivity(requireContext(), 0, intent, 0)
-//        } // TODO: Ideia, logo acima, pede p/ colocar o id, o id seria bom pegar o valor id inserido no bd, que assim é possível ter múltiplas notificações de lembretes. A ideia talvez seja pegar do bd o id, nome e nota.
-//
-//        // Set the alarm to start at 8:30 a.m.
-//        val calendar: Calendar = Calendar.getInstance().apply {
-//            timeInMillis = System.currentTimeMillis()
-//            set(Calendar.HOUR_OF_DAY, hora.toInt())
-//            set(Calendar.MINUTE, minutos.toInt())
-//        }
-//
-//        // setRepeating() lets you specify a precise custom interval--in this case,
-//        // 20 minutes.
-//        alarmMgr!!.setRepeating(
-//            AlarmManager.RTC_WAKEUP,
-//            calendar.timeInMillis,
-//            1000 * 60 * (60 * horario),  //60000 * (60 * 4) = 60000 * '240' = 144000000   setExactAndAllowWhileIdle()
-//            alarmIntent
-//        )
-//    }
-
-//    fun removerAlarme(){
-////        val alarmManager =
-////            context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
-////        val pendingIntent =
-////            PendingIntent.getService(context, requestId, intent,
-////                PendingIntent.FLAG_NO_CREATE)
-//        alarmMgr = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//
-//        val pendingIntent =
-//            PendingIntent.getService(context, requestId, alarmIntent,
-//                PendingIntent.FLAG_NO_CREATE)
-//
-//        if (pendingIntent != null && alarmManager != null) {
-//            alarmManager.cancel(pendingIntent)
-//        }
-//    }
-
     private fun ad(){
         binding.adView.adListener = object : AdListener(){
             override fun onAdLoaded() {
