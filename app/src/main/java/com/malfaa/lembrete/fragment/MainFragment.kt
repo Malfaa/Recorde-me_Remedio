@@ -170,7 +170,7 @@ class MainFragment : Fragment() {
 
             gerenciadorNotificacao?.createNotificationChannel(canal)
         }
-    }//todo aqui ta funcionando
+    }
 
     private fun ad(){
         binding.adView.adListener = object : AdListener(){

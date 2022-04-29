@@ -367,9 +367,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     alarmeVar.value = true
 
-                    //aqui
-                    //passa aqui o id para alarme
-
                     AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
                     AdicionarFragment.nota.value = binding.campoNota.text.toString()
 
