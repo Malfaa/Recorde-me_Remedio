@@ -33,6 +33,7 @@ import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodelfactory.AdicionarViewModelFactory
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.properties.Delegates
 
 class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -44,7 +45,7 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val nota = MutableLiveData<String>()
         val horaCustomClicado = MutableLiveData(false)
         val dataCustomClicado = MutableLiveData(false)
-        var requestRandomCode:Int = 0
+        var requestRandomCode by Delegates.notNull<Int>()
     }
 
     private lateinit var picker: MaterialTimePicker
@@ -100,12 +101,12 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ad()
 
         binding.horarioInicial.setOnClickListener { //todo pegar horário atual
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+            picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
                     .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
                     .setMinute(LocalDateTime.now().minute).build()
             }else{
-                picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+                MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
                     .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
                     .setMinute(minutoFormato(Date().time)).build()
             }
@@ -164,7 +165,9 @@ class AdicionarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
                     val horarioLocalConcatenado =
                         Calendar.HOUR_OF_DAY + Calendar.MINUTE//"${Calendar.HOUR_OF_DAY}"+"${Calendar.MINUTE}".toInt()
+
                     requestRandomCode = RandomUtil.getRandomInt()
+
                     if (horaCustomClicado.value!! && dataCustomClicado.value!!) { //positivos
                         val calendario = Calendar.getInstance()
                         conjuntoDatas =

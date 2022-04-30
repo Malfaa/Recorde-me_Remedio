@@ -1,6 +1,7 @@
 package com.malfaa.lembrete.fragment
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,9 +23,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.lembrete.R
-import com.malfaa.lembrete.calendario
-import com.malfaa.lembrete.calendarioParaData
+import com.malfaa.lembrete.*
 import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.dataCustomClicado
 import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
@@ -38,6 +37,7 @@ import com.malfaa.lembrete.viewmodel.AlterarViewModel
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alarmeVar
 import com.malfaa.lembrete.viewmodel.MainViewModel.Companion.alterar
 import com.malfaa.lembrete.viewmodelfactory.AlterarViewModelFactory
+import java.time.LocalDateTime
 import java.util.*
 
 class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -135,9 +135,15 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 
         binding.horarioInicial.setOnClickListener {
-            picker = MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Hora em que iniciará:").setHour(12)
-                .setMinute(0).build()
+            picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
+                    .setMinute(LocalDateTime.now().minute).build()
+            }else{
+                MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
+                    .setMinute(minutoFormato(Date().time)).build()
+            }
 
             picker.show(requireParentFragment().parentFragmentManager, "lembrete")
 

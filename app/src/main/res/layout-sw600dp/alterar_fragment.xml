@@ -109,6 +109,7 @@
 
                 <Spinner
                     android:id="@+id/horaSpinner"
+                    style="@style/spinnerFont"
                     android:layout_width="@dimen/spinner_dimen_sw600dp_large"
                     android:layout_height="@dimen/dimen_box_large_height"
                     android:layout_gravity="center"
@@ -116,7 +117,6 @@
                     android:backgroundTint="@color/secondary"
                     android:contentDescription="@string/descricaoSpinnerHora"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:textSize="@dimen/font_adicao_large"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="@+id/horaText"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -189,7 +189,7 @@
                     android:contentDescription="@string/descricaoSpinnerData"
                     android:drawableStart="@drawable/ic_calendar"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:textSize="@dimen/font_adicao_large"
+                    style="@style/spinnerFont"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"

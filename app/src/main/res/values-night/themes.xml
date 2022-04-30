@@ -40,7 +40,7 @@
     </style>
 
     <style name="caixa_expandida" parent="Widget.MaterialComponents.CardView">
-        <item name="android:background">@color/caixa_expandida_bg_dark</item>
+        <item name="android:background">@drawable/outline_nota_item_lembrete</item>
     </style>
 
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
