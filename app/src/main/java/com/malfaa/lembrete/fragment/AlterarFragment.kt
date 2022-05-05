@@ -373,9 +373,6 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     alarmeVar.value = true
 
-                    AdicionarFragment.remedio.value = binding.campoRemedio.text.toString()
-                    AdicionarFragment.nota.value = binding.campoNota.text.toString()
-
                     this.findNavController()
                         .navigate(AlterarFragmentDirections.actionAlterarFragmentToMainFragment())
                     Toast.makeText(requireContext(), "Lembrete alterado.", Toast.LENGTH_SHORT).show()

@@ -1,14 +1,11 @@
 package com.malfaa.lembrete.fragment
 
-import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,21 +17,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.malfaa.lembrete.R
 import com.malfaa.lembrete.adapters.MainAdapter
-import com.malfaa.lembrete.conversorPosEmMinutos
-import com.malfaa.lembrete.databinding.ItemLembreteBinding
 import com.malfaa.lembrete.databinding.MainFragmentBinding
-import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaCustomClicado
-import com.malfaa.lembrete.fragment.AdicionarFragment.Companion.horaParaAlarme
 import com.malfaa.lembrete.repository.ItemRepository
 import com.malfaa.lembrete.room.LDatabase
 import com.malfaa.lembrete.room.entidade.ItemEntidade
@@ -47,13 +40,14 @@ import com.malfaa.lembrete.viewmodelfactory.MainViewModelFactory
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: MainFragmentBinding
-    private lateinit var viewModelFactory: MainViewModelFactory
+    private lateinit var viewModel        :MainViewModel
+    private lateinit var binding          :MainFragmentBinding
+    private lateinit var viewModelFactory :MainViewModelFactory
 
     companion object{
-        val lembreteDestino = MutableLiveData<ItemEntidade>()
-        val expandValue = MutableLiveData<Boolean>()
+        val lembreteDestino             = MutableLiveData<ItemEntidade>()
+        val expandValue                 = MutableLiveData<Boolean>()
+        lateinit var viewlifeCycleOwner   :LifecycleOwner
     }
 
     override fun onCreateView(
@@ -72,7 +66,7 @@ class MainFragment : Fragment() {
 
         return binding.root
     }
-    //val notificationManager: NotificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
@@ -84,16 +78,7 @@ class MainFragment : Fragment() {
         val adapter = MainAdapter()
         binding.recyclerview.adapter = adapter
 
-        val displayMetrics = DisplayMetrics()
-        if (displayMetrics.widthPixels > 600) {
-            binding.recyclerview.apply {
-                layoutManager = GridLayoutManager(context, 2)
-            }
-        } else if (displayMetrics.widthPixels > 1200){
-            binding.recyclerview.apply {
-                layoutManager = GridLayoutManager(context, 3)
-            }
-        }
+        viewlifeCycleOwner = viewLifecycleOwner
 
         //AdMob function
         ad()
@@ -103,24 +88,10 @@ class MainFragment : Fragment() {
             adapter.submitList(it.toMutableList())
         }
 
-        alarmeVar.observe(viewLifecycleOwner){condicao->   // FIXME: colocar no adicionar fragment
+        alarmeVar.observe(viewLifecycleOwner){condicao->
             if (condicao) {
-                if(horaCustomClicado.value!!){
-                    AlarmService(requireContext()).alarme(
-                        AdicionarFragment.horaEscolhida.toLong(),
-                        AdicionarFragment.minutoEscolhido.toLong(),
-                        horaParaAlarme.value?.toLong()!!
-                    )
-                    alarmeVar.value = false
-                }else{
-                    AlarmService(requireContext()).alarme(
-                        AdicionarFragment.horaEscolhida.toLong(),
-                        AdicionarFragment.minutoEscolhido.toLong(),
-                        conversorPosEmMinutos(horaParaAlarme.value!!)!!
-                    )
-
-                    alarmeVar.value = false
-                }
+                viewModel.adicionarAlarmeItens(requireContext())
+                alarmeVar.value = false
             }
         }
 
@@ -131,7 +102,6 @@ class MainFragment : Fragment() {
         binding.adicionarLembreteLand?.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
-
 
         alterar.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
