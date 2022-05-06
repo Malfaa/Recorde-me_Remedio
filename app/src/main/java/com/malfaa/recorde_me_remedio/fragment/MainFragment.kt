@@ -25,9 +25,9 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.malfaa.lembrete.R
-import com.malfaa.lembrete.databinding.MainFragmentBinding
+import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.adapters.MainAdapter
+import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.repository.ItemRepository
 import com.malfaa.recorde_me_remedio.room.LDatabase
 import com.malfaa.recorde_me_remedio.room.entidade.ItemEntidade
@@ -41,7 +41,7 @@ import com.malfaa.recorde_me_remedio.viewmodelfactory.MainViewModelFactory
 class MainFragment : Fragment() {
 
     private lateinit var viewModel        :MainViewModel
-    private lateinit var binding          :MainFragmentBinding
+    private lateinit var binding          : MainFragmentBinding
     private lateinit var viewModelFactory :MainViewModelFactory
 
     companion object{

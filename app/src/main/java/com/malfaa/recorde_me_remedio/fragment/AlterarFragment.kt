@@ -23,9 +23,8 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.lembrete.R
-import com.malfaa.lembrete.databinding.AlterarFragmentBinding
 import com.malfaa.recorde_me_remedio.*
+import com.malfaa.recorde_me_remedio.databinding.AlterarFragmentBinding
 import com.malfaa.recorde_me_remedio.fragment.AdicionarFragment.Companion.dataCustomClicado
 import com.malfaa.recorde_me_remedio.fragment.AdicionarFragment.Companion.horaCustomClicado
 import com.malfaa.recorde_me_remedio.fragment.AdicionarFragment.Companion.horaEscolhida
