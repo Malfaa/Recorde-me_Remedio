@@ -88,4 +88,18 @@
 
     <string name="banner_ad_unit">ca-app-pub-3295333534958164/4908034529</string>
     <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="nota_um">
+        Fique atento à data que foi estabelecida quando foi criado o lembrete,
+        assim que chegar na data final, o lembrete continuará sendo notificado. Sendo assim, é
+        necessário remove-lo manualmente.
+    </string>
+    <string name="nota_dois">
+        O alarme notifica quando o dispositivo está ativo ou quando não está no modo Soneca. É
+        recomendado durante as noites colocar algum alarme que o faça acordar!
+    </string>
+    <string name="nota_tres">
+        Este app foi criado por um estudante de Dispositivos Móveis, se seu caso é mais grave,
+        recomenda-se usar outro app ou despertadores nativos do celular.
+    </string>
 </resources>

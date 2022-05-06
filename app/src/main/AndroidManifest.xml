@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.malfaa.lembrete">
+    package="com.malfaa.recorde_me_remedio">
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -17,7 +16,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3295333534958164~5090214968"/>
         <activity
-            android:name=".MainActivity"
+            android:name="com.malfaa.recorde_me_remedio.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".receiver.BootReceiver"
+        <receiver android:name="com.malfaa.recorde_me_remedio.receiver.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -33,7 +32,7 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receiver.AlarmReceiver" android:enabled="true"/>
+        <receiver android:name="com.malfaa.recorde_me_remedio.receiver.AlarmReceiver" android:enabled="true"/>
 
     </application>
 </manifest>
