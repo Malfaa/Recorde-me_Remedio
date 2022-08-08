@@ -18,4 +18,10 @@ class AlterarViewModel(private val repository: ItemRepository) : ViewModel() {
         }
     }
 
+    //todo encapsular e usar databinding no xml p/ passar os dados via viewmodel e xml
+
+//    val currentTimeString = Transformations.map(currentTime) { time ->
+//        DateUtils.formatElapsedTime(time)
+//    }
+
 }

@@ -191,7 +191,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
             ) {
                 Toast.makeText(context, "Preencha os campos necessários.", Toast.LENGTH_SHORT).show()
             } else {
-                try {
+                try {//todo trocar todas essas partes e usar no viemodel  (livedata transformation map) até o --------
                     val horarioEscolhidoConcatenado =
                         horaEscolhida.toInt() + minutoEscolhido.toInt()//"${horaEscolhida.toInt()}"+"${minutoEscolhido.toInt()}".toInt()
                     val horarioLocalConcatenado =
@@ -219,7 +219,7 @@ class AlterarFragment : Fragment(), AdapterView.OnItemSelectedListener {
                                     }"
                                 )
                             }
-
+                        //------------------------------------------------------------
                         viewModel.alterarLembrete(
                             ItemEntidade(
                                 args.item.id,

@@ -2,9 +2,13 @@ package com.malfaa.recorde_me_remedio.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -35,7 +39,6 @@ class MainViewModel(private val repository: ItemRepository)  : ViewModel() {
 
     }
 
-
     fun deletarLembrete(item: ItemEntidade){
         uiScope.launch {
             repository._deletarLembrete(item)
@@ -54,6 +57,20 @@ class MainViewModel(private val repository: ItemRepository)  : ViewModel() {
                 lembretes.last()
             }
         }}
+
+    //Alarme bloco
+    fun criandoCanalDeNotificacao(context: Context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val nome = "recorde-meRemedio"
+            val descricao = "Canal de notificacao p/ lembretes"
+            val importancia = NotificationManager.IMPORTANCE_HIGH
+            val canal = NotificationChannel("recorde-meremedio", nome, importancia).apply { description = descricao }
+            val gerenciadorNotificacao =
+                ContextCompat.getSystemService(context, NotificationManager::class.java)
+
+            gerenciadorNotificacao?.createNotificationChannel(canal)
+        }
+    }
 
     @SuppressLint("UnspecifiedImmutableFlag")
     fun adicionarAlarmeItens(context: Context) {

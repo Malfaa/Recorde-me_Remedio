@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.malfaa.recorde_me_remedio.viewmodel.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +48,7 @@
             ads:adSize="SMART_BANNER"
             ads:adUnitId="@string/banner_google"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete_land"
+            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

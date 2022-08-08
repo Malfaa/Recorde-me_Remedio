@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
-        criandoCanalDeNotificacao()
+        viewModel.criandoCanalDeNotificacao(requireContext())
 
         return binding.root
     }
@@ -127,19 +127,6 @@ class MainFragment : Fragment() {
             startActivity(a)
         }
         callback.isEnabled
-    }
-
-    //Alarme bloco
-    private fun criandoCanalDeNotificacao(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val nome = "recorde-meRemedio"
-            val descricao = "Canal de notificacao p/ lembretes"
-            val importancia = NotificationManager.IMPORTANCE_HIGH
-            val canal = NotificationChannel("recorde-meremedio", nome, importancia).apply { description = descricao }
-            val gerenciadorNotificacao = getSystemService(requireContext(), NotificationManager::class.java)
-
-            gerenciadorNotificacao?.createNotificationChannel(canal)
-        }
     }
 
     // TODO: Criar um database perfil, que terá uma var boolean que identificará se foi aceito os termos ou não, caso seja, não mostrar a tela de termos. A ideia é deixar o usuário com informação à respeito dos defeitos do app, que estão descrevidos nas notas 1..3
