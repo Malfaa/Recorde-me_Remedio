@@ -23,16 +23,13 @@ class MainAdapter(private val clickListener: RemedioListener, private val longCl
 
     class ViewHolder private constructor(val binding: ItemRemedioBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Remedio, clickListener: RemedioListener, longClickListener: LongRemedioListener) {
-//            binding.remedio.text = item.remedio
-//            binding.data.text = conversorPosEmData(item.data, item.verificaDataCustom)
-//            binding.horario.text = conversorPosEmHoras(item.hora, item.verificaHoraCustom)
+
 //            if (item.nota.isEmpty()){
 //                binding.expand.visibility = View.GONE
 //            }else{
 //                binding.nota.text = item.nota
 //            }
-//            binding.inicioValor.text = item.horaInicial
-//            binding.terminaValor.text = item.dataConjunto
+
 
             binding.item = item
             binding.clickListener = clickListener

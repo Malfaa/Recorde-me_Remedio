@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -33,36 +34,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_item"
-                android:text="@string/remedio"
+                android:text="@{item.remedio}"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/remedio"/>
 
-
+            <!--                android:text="@{item.hora}"-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/horario"
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/seis_em_seis"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
+                app:hora="@{item.hora}"
+                app:verificaHora="@{item.verificaHoraCustom}"
                 app:layout_constraintStart_toStartOf="@id/remedio"
-                app:layout_constraintTop_toBottomOf="@id/remedio" />
+                app:layout_constraintTop_toBottomOf="@id/remedio"
+                tools:text="@string/seis_em_seis"/>
 
+<!--       android:text="@{item.data}"-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/data"
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/uma_semana"
+                app:data="@{item.data}"
+                app:verificaData="@{item.verificaDataCustom}"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"
-                app:layout_constraintTop_toBottomOf="@+id/horario" />
+                app:layout_constraintTop_toBottomOf="@+id/horario"
+                tools:text="@string/uma_semana"/>
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -81,13 +88,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/dimen_box_normal_width"
-                android:text="@string/iniciou_em"
+                android:text="@{item.horaInicial}"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/inicio"
                 app:layout_constraintStart_toStartOf="@id/inicio"
-                app:layout_constraintTop_toBottomOf="@id/inicio" />
+                app:layout_constraintTop_toBottomOf="@id/inicio"
+                tools:text = "@string/iniciou_em"/>
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -100,17 +108,20 @@
                 app:layout_constraintStart_toEndOf="@id/inicio"
                 app:layout_constraintTop_toTopOf="@id/inicio" />
 
+<!--            android:text="@{item.dataConjunto}"-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/terminaValor"
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/termina_em"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
+                app:calendario="@{item.dataConjunto}"
+                app:verificaCalendario="@{item.verificaDataCustom}"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
                 app:layout_constraintStart_toStartOf="@id/termina"
-                app:layout_constraintTop_toBottomOf="@id/termina" />
+                app:layout_constraintTop_toBottomOf="@id/termina"
+                tools:text = "@string/termina_em"/>
 
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -150,12 +161,13 @@
                     android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginEnd="@dimen/distancia_item"
                     android:layout_marginBottom="@dimen/distancia_item"
-                    android:text="@string/nota"
+                    android:text="@{item.nota}"
                     android:textSize="@dimen/font_adicao_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text = "@string/nota"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
