@@ -7,14 +7,14 @@ import com.malfaa.recorde_me_remedio.Constantes
 @Dao
 interface RemedioDao {
     @Query("SELECT * FROM ${Constantes.TABLE_NAME}")
-    fun recebeInfos(): LiveData<List<Remedio>>
+    fun getRemedios(): LiveData<List<Remedio>>
 
     @Insert
-    suspend fun adicionarLembrete(item: Remedio)
+    suspend fun adicionarRemedio(item: Remedio)
 
     @Update
-    suspend fun atualizarLembrete(item: Remedio)
+    suspend fun atualizarRemedio(item: Remedio)
 
     @Delete
-    suspend fun deletarLembrete(item: Remedio)
+    suspend fun deletarRemedio(item: Remedio)
 }
