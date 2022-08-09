@@ -6,11 +6,19 @@
         <variable
             name="item"
             type="com.malfaa.recorde_me_remedio.local.Remedio" />
+        <variable
+            name="clickListener"
+            type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener" />
+        <variable
+            name="longClickListener"
+            type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.LongRemedioListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
         style="@style/AppShapeAppearance.MediumComponent"
+        android:onLongClick="@{() -> clickListener.onClick(item)}"
+        android:onClick="@{() -> longClickListener.onLongClick(item)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

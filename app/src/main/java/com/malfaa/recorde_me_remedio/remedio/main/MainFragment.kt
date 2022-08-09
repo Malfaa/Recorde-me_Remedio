@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
+import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.*
 import com.malfaa.recorde_me_remedio.repository.Repository
 
 class MainFragment : Fragment() {
@@ -18,8 +19,6 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels{
         MainViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())))
     }
-
-//    private val adapter = MainAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +37,22 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = MainAdapter(
+            RemedioListener { remedio ->
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToAlterarFragment(remedio)
+                )
+            },
+            LongRemedioListener {
+                //todo chama função de deletar
+            }
+        )
 
-//        binding.recyclerview.adapter = adapter
+        binding.recyclerview.adapter = adapter
 
         viewModel.listaRemedio.observe(viewLifecycleOwner){
             remedios ->
-//            adapter.submitList(remedios)
+            adapter.submitList(remedios)
         }
 
         //Navegar até Adicionar
@@ -56,9 +65,9 @@ class MainFragment : Fragment() {
 
 
         //Navega até Alterar
-        viewModel.recebeRemedio.observe(viewLifecycleOwner){
-                id ->
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlterarFragment(id))
-        }
+//        viewModel.recebeRemedio.observe(viewLifecycleOwner){
+//                id ->
+//            findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlterarFragment(id))
+//        }
     }
 }
