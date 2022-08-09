@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.malfaa.recorde_me_remedio.room.entidade.ItemEntidade" />
+            type="com.malfaa.recorde_me_remedio.local.Remedio" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
