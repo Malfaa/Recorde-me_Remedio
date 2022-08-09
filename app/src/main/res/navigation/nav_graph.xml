@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.malfaa.recorde_me_remedio.fragment.SplashScreen"
+        android:name="com.malfaa.recorde_me_remedio.inicial.SplashScreen"
         android:label="splash_screen_fragment"
         tools:layout="@layout/splash_screen_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.malfaa.recorde_me_remedio.fragment.MainFragment"
+        android:name="com.malfaa.recorde_me_remedio.remedio.main.MainFragment"
         tools:layout="@layout/main_fragment"
         android:label="MainFragment" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/adicionarFragment"
-        android:name="com.malfaa.recorde_me_remedio.fragment.AdicionarFragment"
+        android:name="com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment"
         tools:layout="@layout/adicionar_fragment"
         android:label="AdicionarFragment" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/alterarFragment"
-        android:name="com.malfaa.recorde_me_remedio.fragment.AlterarFragment"
+        android:name="com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment"
         android:label="alterar_fragment"
         tools:layout="@layout/alterar_fragment" >
         <action
