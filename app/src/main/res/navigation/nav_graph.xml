@@ -53,6 +53,6 @@
             app:exitAnim="@anim/slide_esquerda_out" />
         <argument
             android:name="item"
-            app:argType="com.malfaa.lembrete.room.entidade.ItemEntidade" />
+            app:argType="com.malfaa.recorde_me_remedio.local.Remedio" />
     </fragment>
 </navigation>

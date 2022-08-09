@@ -5,15 +5,14 @@
     <data>
         <variable
             name="item"
-            type="com.malfaa.recorde_me_remedio.room.entidade.ItemEntidade" />
+            type="com.malfaa.recorde_me_remedio.local.Remedio" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
-        android:layout_width="@dimen/item_sw600dp_width"
-        android:layout_height="wrap_content"
         style="@style/AppShapeAppearance.MediumComponent"
-        >
+        android:layout_width="@dimen/item_width"
+        android:layout_height="wrap_content">
         <!--android:layout_marginStart="@dimen/distancia_item_edittext"
         android:layout_marginEnd="@dimen/distancia_item_edittext"
         android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -21,9 +20,9 @@
         android:layout_height="wrap_content"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginBottom="@dimen/padding_edittext"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_marginBottom="@dimen/padding_edittext">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/remedio"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_item"
                 android:text="@string/remedio"
-                android:textSize="@dimen/font_item_large"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,9 +41,9 @@
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_item_large"
                 android:text="@string/seis_em_seis"
                 android:textAlignment="center"
+                android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintStart_toStartOf="@id/remedio"
                 app:layout_constraintTop_toBottomOf="@id/remedio" />
 
@@ -54,9 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="@dimen/font_item_large"
                 android:text="@string/uma_semana"
                 android:textAlignment="center"
+                android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"
@@ -67,11 +66,11 @@
                 android:id="@+id/inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_item_large"
                 android:layout_marginStart="@dimen/distancia_item_textos"
                 android:text="@string/iniciou"
-                app:layout_constraintTop_toTopOf="@id/horario"
-                app:layout_constraintStart_toEndOf="@id/horario" />
+                android:textSize="@dimen/font_adicao_small"
+                app:layout_constraintStart_toEndOf="@id/horario"
+                app:layout_constraintTop_toTopOf="@id/horario" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/inicioValor"
@@ -81,7 +80,7 @@
                 android:minWidth="@dimen/dimen_box_normal_width"
                 android:text="@string/iniciou_em"
                 android:textAlignment="center"
-                android:textSize="@dimen/font_item_large"
+                android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/inicio"
                 app:layout_constraintStart_toStartOf="@id/inicio"
@@ -92,9 +91,9 @@
                 android:id="@+id/termina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_item_large"
                 android:layout_marginStart="@dimen/distancia_item"
                 android:text="@string/termina"
+                android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintStart_toEndOf="@id/inicio"
                 app:layout_constraintTop_toTopOf="@id/inicio" />
 
@@ -104,8 +103,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/termina_em"
-                android:textSize="@dimen/font_item_large"
                 android:textAlignment="center"
+                android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
                 app:layout_constraintStart_toStartOf="@id/termina"
                 app:layout_constraintTop_toBottomOf="@id/termina" />
@@ -113,14 +112,14 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/expand"
-                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/ic_expand_more"
                 android:contentDescription="@string/expandir"
                 android:maxWidth="60dp"
                 android:minWidth="50dp"
                 android:minHeight="48dp"
-                android:background="@drawable/ic_expand_more"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/remedio"
                 app:layout_constraintStart_toEndOf="@+id/termina"
@@ -149,13 +148,12 @@
                     android:layout_marginEnd="@dimen/distancia_item"
                     android:layout_marginBottom="@dimen/distancia_item"
                     android:text="@string/nota"
-                    android:textSize="@dimen/font_item_large"
+                    android:textSize="@dimen/font_adicao_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
