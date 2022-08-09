@@ -3,33 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".fragment.SplashScreen">
 
+        <ImageView
+            android:id="@+id/frame"
+            style="@style/frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/lembrete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
 
         <ImageView
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
+            android:id="@+id/clock"
+            style="@style/clock"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/logo_dist_top"
-            style="@style/splash_screen"
-            android:contentDescription="@string/lembrete" />
+            android:contentDescription="@string/lembrete"
+            app:layout_constraintBottom_toBottomOf="@+id/frame"
+            app:layout_constraintEnd_toEndOf="@+id/frame"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="@+id/frame"
+            app:layout_constraintTop_toTopOf="@+id/frame"
+            app:layout_constraintVertical_bias="0.19999999" />
 
         <TextView
             android:id="@+id/lembrete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="@string/app_name"
             android:textSize="@dimen/lembrete_font_size"
-            android:layout_marginTop="@dimen/lembrete_dist"
-            android:text="@string/app_name" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.40" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

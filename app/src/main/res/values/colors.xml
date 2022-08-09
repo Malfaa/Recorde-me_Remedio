@@ -31,4 +31,8 @@
     <color name="night_primary">#218883</color>
     <color name="night_primary_variant">#885021</color>
 
+
+    <!--    Frame Backgroung-->
+    <color name="frame_bg">#322F2F</color>
+
 </resources>
