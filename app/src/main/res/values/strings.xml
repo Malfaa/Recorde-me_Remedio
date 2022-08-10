@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Recorde-me Remédio</string>
-    <string name="lembrete">Lembre-me!</string>
+    <string name="remedio_lembrar">Lembre-me!</string>
     <string name="restam">Restam:</string>
     <string name="iniciou">Hora Inicial:</string>
     <string name="termina">Início-Término:</string>
     <string name="remedio">Remédio</string>
+    <string name="clock">Relógio</string>
     <string name="valor">default</string>
     <string name="nao">Não</string>
     <string name="sim">Sim</string>
@@ -30,16 +31,17 @@
     <string name="hora_inicial">Iniciar em</string>
 
     <string name="lembrar">Lembrar</string>
-    <string name="novo_lembrete">Novo Lembrete</string>
+    <string name="novo_remedio">Novo Remedio</string>
+    <string name="novo_item">Novo Item</string>
     <string name="adicionar">Adicionar</string>
     <string name="alterar">Alterar</string>
     <string name="retornar">Retornar</string>
     <string name="deletar">Deletar</string>
     <string name="cancelar">Cancelar</string>
     <string name="horario">12:00</string>
-    <string name="alterar_lembrete">Alterar Lembrete</string>
-    <string name="deletar_lembrete">Deletar Lembrete</string>
-    <string name="deletar_descricao">Tem certeza que deseja deletar este lembrete?</string>
+    <string name="alterar_remedio">Alterar Remedio</string>
+    <string name="deletar_remedio">Deletar Remedio</string>
+    <string name="deletar_descricao">Tem certeza que deseja deletar este item?</string>
     <string name="expandir">Expandir</string>
 
     <string name="seis_em_seis">6 em 6 horas</string>
@@ -58,12 +60,12 @@
 
 
     <string-array name="menu_main">
-        <item>Adicionar Lembrete</item>
-        <item>Alterar Lembrete</item>
-        <item>Remover Lembrete</item>
+        <item>Adicionar Remedio</item>
+        <item>Alterar Remedio</item>
+        <item>Remover Remedio</item>
     </string-array>
 
-    <string name="descricaoNota">Campo onde é colocado alguma descrição adicional do lembrete.</string>
+    <string name="descricaoNota">Campo onde é colocado alguma descrição adicional do remedio.</string>
     <string name="descricaoSpinnerData">Campo de escolha das datas que serão selecionadas.</string>
     <string name="descricaoSpinnerHora">Campo de escolha dos horarios que serão selecionados.</string>
 
@@ -73,8 +75,8 @@
     <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
 
     <string name="nota_um">
-        Fique atento à data que foi estabelecida quando foi criado o lembrete,
-        assim que chegar na data final, o lembrete continuará sendo notificado. Sendo assim, é
+        Fique atento à data que foi estabelecida quando foi criado o remedio,
+        assim que chegar na data final, o remedio continuará sendo notificado. Sendo assim, é
         necessário remove-lo manualmente.
     </string>
     <string name="nota_dois">

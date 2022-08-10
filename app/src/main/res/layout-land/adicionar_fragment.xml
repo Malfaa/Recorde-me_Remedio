@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.malfaa.recorde_me_remedio.viewmodel.AdicionarViewModel" />
+            type="com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

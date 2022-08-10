@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.malfaa.recorde_me_remedio.viewmodel.AlterarViewModel" />
+            type="com.malfaa.recorde_me_remedio.remedio.alterar.AlterarViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
