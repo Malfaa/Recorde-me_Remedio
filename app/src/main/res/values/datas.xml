@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="datas">
+        <item />
+        <item>@string/cinco_dias</item>
+        <item>@string/sete_dias</item>
+        <item>@string/catorze_dias</item>
+        <item>@string/todos_dias</item>
+    </string-array>
+</resources>

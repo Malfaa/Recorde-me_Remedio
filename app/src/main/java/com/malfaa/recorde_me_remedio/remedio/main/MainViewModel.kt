@@ -1,7 +1,5 @@
 package com.malfaa.recorde_me_remedio.remedio.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.malfaa.recorde_me_remedio.local.Remedio

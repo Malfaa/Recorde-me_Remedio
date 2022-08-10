@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="horarios">
+        <item />
+        <item>@string/quatro_em_quatro</item>
+        <item>@string/seis_em_seis</item>
+        <item>@string/oito_em_oito</item>
+        <item>@string/doze_em_doze</item>
+        <item>@string/vintequatro_em_vintequatro</item>
+    </string-array>
+</resources>

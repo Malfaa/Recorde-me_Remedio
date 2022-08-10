@@ -3,7 +3,10 @@ package com.malfaa.recorde_me_remedio
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import androidx.appcompat.widget.AppCompatSpinner
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableField
 import java.time.LocalDate
 import java.util.*
 
@@ -80,5 +83,18 @@ fun calendario(item: Int, verifica: Boolean): String {
 fun notaView(view:View, nota:String){
     if (nota.isEmpty()){
         view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("clicks")
+fun listenClicks(spinner: AppCompatSpinner, result: ObservableField<Int>) {
+    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+
+        }
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            result.set(parent?.getItemAtPosition(position) as Int)
+        }
     }
 }

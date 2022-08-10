@@ -13,7 +13,7 @@ data class Remedio(
     @ColumnInfo(name = "hora_inicial")
     var horaInicial: String,
     @ColumnInfo(name = "data_conjunto")
-    var dataConjunto: String,
+    var dataSomada: String,
     var hora: Int,
     var data: Int,
     var nota: String,

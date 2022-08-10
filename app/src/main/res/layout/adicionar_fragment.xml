@@ -6,7 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.malfaa.recorde_me_remedio.viewmodel.AdicionarViewModel" />
+            type="com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel" />
+        <variable
+            name="item"
+            type="com.malfaa.recorde_me_remedio.local.Remedio" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,6 +50,7 @@
                 <EditText
                     android:id="@+id/campoRemedio"
                     style="@style/adc_alt_textview"
+                    android:text="@={item.remedio}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/distancia_item_edittext"
@@ -86,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:text=""
+                    android:text="@={item.horaInicial}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
@@ -108,16 +112,18 @@
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horarioInicial" />
 
-                <Spinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/horaSpinner"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:entries="@array/horarios"
                     android:backgroundTint="@color/secondary"
                     android:contentDescription="@string/descricaoSpinnerHora"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
+                    app:clicks="@={item.hora}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -132,6 +138,7 @@
                     android:inputType="time"
                     android:minWidth="@dimen/dimen_box_default_height"
                     android:visibility="gone"
+                    android:text="@={`` + item.hora}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -158,6 +165,7 @@
                     android:minHeight="48dp"
                     android:textOff="@string/nao"
                     android:textOn="@string/sim"
+                    android:checked="@={item.verificaHoraCustom}"
                     app:layout_constraintEnd_toEndOf="@+id/customTextHora"
                     app:layout_constraintStart_toStartOf="@+id/customTextHora"
                     app:layout_constraintTop_toBottomOf="@+id/customTextHora"
@@ -189,8 +197,10 @@
                     android:backgroundTint="@color/secondary"
                     android:contentDescription="@string/descricaoSpinnerData"
                     android:drawableStart="@drawable/ic_calendar"
+                    android:entries="@array/datas"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
+                    app:clicks="@={item.data}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -206,6 +216,7 @@
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
                     android:visibility="gone"
+                    android:text="@={`` + item.data}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -231,6 +242,7 @@
                     android:minHeight="48dp"
                     android:textOff="@string/nao"
                     android:textOn="@string/sim"
+                    android:checked="@={item.verificaDataCustom}"
                     app:layout_constraintEnd_toEndOf="@+id/customTextData"
                     app:layout_constraintStart_toStartOf="@+id/customTextData"
                     app:layout_constraintTop_toBottomOf="@+id/customTextData"
@@ -259,6 +271,7 @@
                     android:layout_height="@dimen/l_distancia_itens"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:ems="10"
+                    android:text="@={item.nota}"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:maxWidth="100dp"
@@ -293,6 +306,7 @@
                     android:layout_marginStart="@dimen/distancia_entre_itens"
                     android:layout_marginEnd="@dimen/distancia_entre_itens_seg"
                     android:text="@string/adicionar"
+                    android:onClick="@{() -> viewModel.adicionarRemedio(item)}"
                     app:layout_constraintEnd_toEndOf="@+id/campoNota"
                     app:layout_constraintStart_toEndOf="@+id/retornar"
                     app:layout_constraintTop_toTopOf="@+id/retornar" />

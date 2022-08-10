@@ -56,23 +56,6 @@
     <string name="inicia_todosdias">12/02</string>
     <string name="iniciou_em">16:30</string>
 
-    
-    <string-array name="list_horario">
-        <item />
-        <item>@string/quatro_em_quatro</item>
-        <item>@string/seis_em_seis</item>
-        <item>@string/oito_em_oito</item>
-        <item>@string/doze_em_doze</item>
-        <item>@string/vintequatro_em_vintequatro</item>
-    </string-array>
-
-    <string-array name="list_datas">
-        <item />
-        <item>@string/cinco_dias</item>
-        <item>@string/sete_dias</item>
-        <item>@string/catorze_dias</item>
-        <item>@string/todos_dias</item>
-    </string-array>
 
     <string-array name="menu_main">
         <item>Adicionar Lembrete</item>

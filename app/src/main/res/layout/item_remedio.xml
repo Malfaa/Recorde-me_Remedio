@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
-                app:calendario="@{item.dataConjunto}"
+                app:calendario="@{item.dataSomada}"
                 app:verificaCalendario="@{item.verificaDataCustom}"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
                 app:layout_constraintStart_toStartOf="@id/termina"
