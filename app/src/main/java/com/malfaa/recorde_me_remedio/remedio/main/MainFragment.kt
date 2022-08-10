@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = MainFragmentBinding.inflate(inflater,container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.lembrete)
+        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.remedio_lembrar)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

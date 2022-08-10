@@ -2,10 +2,11 @@ package com.malfaa.recorde_me_remedio.local
 
 import android.os.Parcelable
 import androidx.room.*
+import com.malfaa.recorde_me_remedio.Constantes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "remedio")
+@Entity(tableName = Constantes.TABLE_NAME)
 data class Remedio(
     @PrimaryKey(autoGenerate = true)
     val id: Long,

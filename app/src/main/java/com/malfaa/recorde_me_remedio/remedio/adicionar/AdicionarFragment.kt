@@ -32,7 +32,7 @@ class AdicionarFragment : Fragment()  {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = AdicionarFragmentBinding.inflate(inflater,container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.novo_lembrete)
+        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.novo_remedio)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
