@@ -188,7 +188,7 @@
                     app:layout_constraintStart_toStartOf="@+id/horaText"
                     app:layout_constraintTop_toBottomOf="@+id/customHora" />
 
-                <Spinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/dataSpinner"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"

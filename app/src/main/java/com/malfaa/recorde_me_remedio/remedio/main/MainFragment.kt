@@ -2,16 +2,22 @@ package com.malfaa.recorde_me_remedio.remedio.main
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
+import com.malfaa.recorde_me_remedio.admob.admob.ad
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
@@ -34,8 +40,14 @@ class MainFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = MainFragmentBinding.inflate(inflater,container, false)
 
+        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.lembrete)
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        MobileAds.initialize(requireContext()){}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         return binding.root
     }
@@ -54,10 +66,12 @@ class MainFragment : Fragment() {
             }
         )
 
+        ad(binding, requireContext())
+
         binding.recyclerview.adapter = adapter
 
         viewModel.listaRemedio.observe(viewLifecycleOwner){
-            remedios ->
+                remedios ->
             adapter.submitList(remedios)
         }
 
@@ -69,7 +83,14 @@ class MainFragment : Fragment() {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
 
-
+        //Callback
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            val a = Intent(Intent.ACTION_MAIN)
+            a.addCategory(Intent.CATEGORY_HOME)
+            a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(a)
+        }
+        callback.isEnabled
     }
 
     private fun alertDialogDeletarContato(remedio: Remedio){

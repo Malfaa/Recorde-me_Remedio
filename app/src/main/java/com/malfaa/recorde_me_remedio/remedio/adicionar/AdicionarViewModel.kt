@@ -1,5 +1,7 @@
 package com.malfaa.recorde_me_remedio.remedio.adicionar
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.malfaa.recorde_me_remedio.local.Remedio
@@ -8,9 +10,14 @@ import kotlinx.coroutines.launch
 
 class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
 
+    private val _navegarDeVolta = MutableLiveData(false)
+    val navegarDeVolta : LiveData<Boolean>
+        get() = _navegarDeVolta
+
     fun adicionarRemedio(item: Remedio){
         viewModelScope.launch {
             repositorio.adicionandoLembrete(item)
+            _navegarDeVolta.value = true
         }
     }
 }
