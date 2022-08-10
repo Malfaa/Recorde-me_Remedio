@@ -21,16 +21,8 @@ class MainAdapter(private val clickListener: RemedioListener, private val longCl
         holder.bind(getItem(position), clickListener, longClickListener)
     }
 
-    class ViewHolder private constructor(val binding: ItemRemedioBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: ItemRemedioBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Remedio, clickListener: RemedioListener, longClickListener: LongRemedioListener) {
-
-//            if (item.nota.isEmpty()){
-//                binding.expand.visibility = View.GONE
-//            }else{
-//                binding.nota.text = item.nota
-//            }
-
-
             binding.item = item
             binding.clickListener = clickListener
             binding.longClickListener = longClickListener

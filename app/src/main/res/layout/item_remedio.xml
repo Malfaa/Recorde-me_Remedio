@@ -134,6 +134,7 @@
                 android:minWidth="50dp"
                 android:minHeight="48dp"
                 android:visibility="visible"
+                app:notaValue="@{item.nota}"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/remedio"
                 app:layout_constraintStart_toEndOf="@+id/termina"

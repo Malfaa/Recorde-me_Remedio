@@ -2,6 +2,7 @@ package com.malfaa.recorde_me_remedio
 
 import android.os.Build
 import android.util.Log
+import android.view.View
 import androidx.databinding.BindingAdapter
 import java.time.LocalDate
 import java.util.*
@@ -75,11 +76,9 @@ fun calendario(item: Int, verifica: Boolean): String {
     }
 }
 
-//@BindingAdapter("notaView")
-//fun notaView(view: View, nota: Boolean?){
-//    if (item.nota.isEmpty()){
-//                binding.expand.visibility = View.GONE
-//            }else{
-//                binding.nota.text = item.nota
-//            }
-//}
+@BindingAdapter("notaValue","notaView")
+fun notaView(view:View, nota:String){
+    if (nota.isEmpty()){
+        view.visibility = View.GONE
+    }
+}
