@@ -1,13 +1,19 @@
 package com.malfaa.recorde_me_remedio.remedio.main
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
+import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.*
 import com.malfaa.recorde_me_remedio.repository.Repository
@@ -43,8 +49,8 @@ class MainFragment : Fragment() {
                     MainFragmentDirections.actionMainFragmentToAlterarFragment(remedio)
                 )
             },
-            LongRemedioListener {
-                //todo chama função de deletar
+            LongRemedioListener {remedio ->
+                alertDialogDeletarContato(remedio)
             }
         )
 
@@ -64,10 +70,29 @@ class MainFragment : Fragment() {
         }
 
 
-        //Navega até Alterar
-//        viewModel.recebeRemedio.observe(viewLifecycleOwner){
-//                id ->
-//            findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlterarFragment(id))
-//        }
+    }
+
+    private fun alertDialogDeletarContato(remedio: Remedio){
+        val construtor = AlertDialog.Builder(requireActivity())
+
+        construtor.setTitle(R.string.deletar)
+        construtor.setMessage(R.string.deletar_descricao)
+        construtor.setPositiveButton("Confirmar") { dialogInterface: DialogInterface, _: Int ->
+            try{
+                viewModel.deletarRemedio(remedio)
+//                AlarmService(requireContext()).removerAlarme(remedio.requestCode)
+                Toast.makeText(context, "Lembrete Deletado.", Toast.LENGTH_SHORT).show()
+                dialogInterface.cancel()
+            }catch (e: Exception){
+                Log.d("Error Del", e.toString())
+            }
+        }
+        construtor.setNegativeButton("Cancelar"){
+                dialogInterface:DialogInterface, _: Int ->
+            dialogInterface.cancel()
+        }
+
+        val alerta = construtor.create()
+        alerta.show()
     }
 }
