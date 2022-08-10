@@ -4,47 +4,46 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableField
 import java.time.LocalDate
 import java.util.*
 
-@BindingAdapter("data", "verificaData", requireAll = true)
-fun conversorPosEmData(data: Int, verificaData: Boolean): String? {
-    return if(!verificaData){
+@BindingAdapter("conversorPosEmData", "verificaData", requireAll = true)
+fun conversorPosEmData(textView : TextView, data: Int, verificaData: Boolean) {
+    if(!verificaData){
         when(data){
-            1 -> "5 dias"
-            2 -> "7 dias"
-            3-> "14 dias"
-            4-> "Todos os dias"
-            else -> null
+            1 -> textView.text = "5 dias"
+            2 -> textView.text = "7 dias"
+            3-> textView.text = "14 dias"
+            4-> textView.text = "Todos os dias"
         }
     }else{
-        "$data dias"
+        textView.text = "$data dias"
     }
 }
 
-@BindingAdapter("hora", "verificaHora", requireAll = true)
-fun conversorPosEmHoras(valor: Int, verifica: Boolean): String? {
-    return if(!verifica){
+@BindingAdapter("conversorPosEmHoras", "verificaHora", requireAll = true)
+fun conversorPosEmHoras(textView : TextView, valor: Int, verifica: Boolean) {
+    if(!verifica){
         when(valor){
             //0 -> null
-            1 -> "4 em 4 horas"
-            2 -> "6 em 6 horas"
-            3 -> "8 em 8 horas"
-            4 -> "12 em 12 horas"
-            5 -> "24 em 24 horas"
-            else -> null
+            1 -> textView.text = "4 em 4 horas"
+            2 -> textView.text = "6 em 6 horas"
+            3 -> textView.text = "8 em 8 horas"
+            4 -> textView.text = "12 em 12 horas"
+            5 -> textView.text = "24 em 24 horas"
         }
     }else{
-        "$valor em $valor horas"
+        textView.text = "$valor em $valor horas"
     }
 }
 
 @BindingAdapter("calendario", "verificaCalendario", requireAll = true)
-fun calendario(item: Int, verifica: Boolean): String {
-    return if (!verifica) {
+fun calendario(textView : TextView, item: Int, verifica: Boolean){
+    if (!verifica) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val diaAtual = LocalDate.now()
             Log.d("28+", "SDK superior")
@@ -53,7 +52,6 @@ fun calendario(item: Int, verifica: Boolean): String {
                 2/*"7 dias"*/ -> stringFormat(diaAtual.plusDays(7).dayOfMonth)+ "/" + stringFormat(diaAtual.plusDays(7).monthValue)
                 3/*"14 dias"*/-> stringFormat(diaAtual.plusDays(14).dayOfMonth)+ "/" + stringFormat(diaAtual.plusDays(14).monthValue)
                 //"Todos os dias" -> diaAtual.plusDays(5) //talvez criar alguma var que altere um fun que daí escreve os diaAtual
-                else -> ""
             }
         }
         else {
@@ -75,11 +73,11 @@ fun calendario(item: Int, verifica: Boolean): String {
         val calendario = Calendar.getInstance()
 
         calendario.add(Calendar.DATE, item)
-        calendarioParaData(calendario.time)
+        textView.text = calendarioParaData(calendario.time)
     }
 }
 
-@BindingAdapter("notaValue","notaView")
+@BindingAdapter("notaValue")
 fun notaView(view:View, nota:String){
     if (nota.isEmpty()){
         view.visibility = View.GONE

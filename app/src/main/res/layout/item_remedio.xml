@@ -13,6 +13,9 @@
         <variable
             name="longClickListener"
             type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.LongRemedioListener" />
+        <variable
+            name="utils"
+            type="com.malfaa.recorde_me_remedio.UtilsKt" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -48,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
-                app:hora="@{item.hora}"
+                app:conversorPosEmHoras="@{item.hora}"
                 app:verificaHora="@{item.verificaHoraCustom}"
                 app:layout_constraintStart_toStartOf="@id/remedio"
                 app:layout_constraintTop_toBottomOf="@id/remedio"
@@ -61,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:data="@{item.data}"
+                app:conversorPosEmData="@{item.data}"
                 app:verificaData="@{item.verificaDataCustom}"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
@@ -116,13 +119,13 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
-                app:calendario="@{item.dataSomada}"
-                app:verificaCalendario="@{item.verificaDataCustom}"
+                android:text="@{() -> utils.calendario(item.dataSomada, item.verificaDataCustom)}"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
                 app:layout_constraintStart_toStartOf="@id/termina"
                 app:layout_constraintTop_toBottomOf="@id/termina"
                 tools:text = "@string/termina_em"/>
-
+        <!--criar um método que faz igual a versão antiga do Adicionar Fragment.
+        Basicamente é pegar o valor e passar pro conjunto-->
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/expand"
