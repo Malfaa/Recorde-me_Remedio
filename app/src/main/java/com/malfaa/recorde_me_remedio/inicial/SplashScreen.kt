@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.databinding.SplashScreenFragmentBinding
-import com.malfaa.recorde_me_remedio.fragment.SplashScreenDirections
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : Fragment(){

@@ -1,16 +1,11 @@
 package com.malfaa.recorde_me_remedio
 
 import android.annotation.SuppressLint
-import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableField
-import java.time.LocalDate
-import java.util.*
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("conversorPosEmData", "verificaData", requireAll = true)
@@ -51,8 +46,8 @@ fun notaValue(view:View, nota:String){
     }
 }
 
-@BindingAdapter("clicks")
-fun listenClicks(spinner: AppCompatSpinner, result: Int) {// FIXME: erro aqui
+@BindingAdapter("listenClicks")
+fun listenClicks(spinner: AppCompatSpinner, result: Int) {// FIXME: erro aqui e depois continuar ALTERAR
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -63,3 +58,20 @@ fun listenClicks(spinner: AppCompatSpinner, result: Int) {// FIXME: erro aqui
         }
     }
 }
+
+//object BindingUtils {
+//
+//    private const val ON_LONG_CLICK = "android:onLongClick"
+//
+//    @JvmStatic
+//    @BindingAdapter(ON_LONG_CLICK)
+//    fun setOnLongClickListener(
+//        view: View,
+//        longClickListener: (Remedio) -> Unit
+//    ) {
+//        view.setOnLongClickListener {
+//            fun onLongClick(remedio: Remedio)=longClickListener(remedio)
+//            true
+//        }
+//    }
+//}
