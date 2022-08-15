@@ -21,8 +21,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
         style="@style/AppShapeAppearance.MediumComponent"
-        android:onLongClick="@{() -> clickListener.onClick(item)}"
-        android:onClick="@{() -> longClickListener.onLongClick(item)}"
+        android:onClick="@{() ->  clickListener.onClick(item)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -51,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
-                app:conversorPosEmHoras="@{item.hora}"
+                app:conversorPosEmHoras="@{item.horaEmHora}"
                 app:verificaHora="@{item.verificaHoraCustom}"
                 app:layout_constraintStart_toStartOf="@id/remedio"
                 app:layout_constraintTop_toBottomOf="@id/remedio"
@@ -64,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:conversorPosEmData="@{item.data}"
+                app:conversorPosEmData="@{item.periodoDias}"
                 app:verificaData="@{item.verificaDataCustom}"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
@@ -91,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/dimen_box_normal_width"
-                android:text="@{item.horaInicial}"
+                android:text="@{item.horaComeco}"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
@@ -118,14 +117,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:text="@{@string/data_somada(item.primeiroDia, item.ultimoDia)"
                 android:textSize="@dimen/font_adicao_small"
-                android:text="@{utils.calendario(item.dataSomada, item.verificaDataCustom)}"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
                 app:layout_constraintStart_toStartOf="@id/termina"
                 app:layout_constraintTop_toBottomOf="@id/termina"
                 tools:text = "@string/termina_em"/>
-        <!--criar um método que faz igual a versão antiga do Adicionar Fragment.
-        Basicamente é pegar o valor e passar pro conjunto-->
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/expand"

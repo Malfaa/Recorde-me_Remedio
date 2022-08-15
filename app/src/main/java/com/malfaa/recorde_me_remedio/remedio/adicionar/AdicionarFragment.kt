@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
+import com.malfaa.recorde_me_remedio.diaFinal
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.repository.Repository
 
@@ -54,6 +55,14 @@ class AdicionarFragment : Fragment()  {
         }
         binding.retornar.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        viewModel.diaFinal.observe(viewLifecycleOwner){
+            condicao ->
+            if (condicao){
+                diaFinal(binding.customData.isChecked, binding.dataSpinner, binding.dataEditText)
+                viewModel.diaFinalRetornaEstado()
+            }
         }
 
     }

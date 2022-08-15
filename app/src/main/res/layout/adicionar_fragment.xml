@@ -91,7 +91,7 @@
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:onClick="@{() -> viewModel.picker()}"
-                    android:text="@={item.horaInicial}"
+                    android:text="@={item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
@@ -127,7 +127,7 @@
                     android:contentDescription="@string/descricaoSpinnerHora"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
-                    app:listenClicks="@{item.hora}"
+                    app:listenClicks="@{item.horaEmHora}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -142,7 +142,7 @@
                     android:inputType="time"
                     android:minWidth="@dimen/dimen_box_default_height"
                     android:visibility="gone"
-                    android:text="@={`` + item.hora}"
+                    android:text="@={`` + item.horaEmHora}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -192,7 +192,7 @@
                     app:layout_constraintStart_toStartOf="@+id/horaText"
                     app:layout_constraintTop_toBottomOf="@+id/customHora" />
 
-                <androidx.appcompat.widget.AppCompatSpinner
+                <Spinner
                     android:id="@+id/dataSpinner"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
@@ -204,7 +204,7 @@
                     android:entries="@array/datas"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
-                    app:listenClicks="@{item.data}"
+                    app:listenClicks="@{item.periodoDias}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -220,7 +220,7 @@
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
                     android:visibility="gone"
-                    android:text="@={`` + item.data}"
+                    android:text="@={`` + item.periodoDias}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"

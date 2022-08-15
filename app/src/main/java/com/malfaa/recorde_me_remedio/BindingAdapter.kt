@@ -3,8 +3,8 @@ package com.malfaa.recorde_me_remedio
 import android.annotation.SuppressLint
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Spinner
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatSpinner
 import androidx.databinding.BindingAdapter
 
 @SuppressLint("SetTextI18n")
@@ -47,7 +47,7 @@ fun notaValue(view:View, nota:String){
 }
 
 @BindingAdapter("listenClicks")
-fun listenClicks(spinner: AppCompatSpinner, result: Int) {
+fun listenClicks(spinner: Spinner, result: Int) {
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {
 

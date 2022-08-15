@@ -87,4 +87,6 @@
         Este app foi criado por um estudante de Dispositivos Móveis, se seu caso é mais grave,
         recomenda-se usar outro app ou despertadores nativos do celular.
     </string>
+
+    <string name="data_somada">%s - %s</string>
 </resources>

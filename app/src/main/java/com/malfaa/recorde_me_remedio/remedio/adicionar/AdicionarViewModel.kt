@@ -21,6 +21,14 @@ class AdicionarViewModel(private val repositorio: Repository, private val frag: 
     companion object{
         var horaInicial : String = ""
         var minutoInicial : String = ""
+        lateinit var diaFinal : String
+    }
+    private val _diaFinal = MutableLiveData(false)
+    val diaFinal : LiveData<Boolean>
+        get() = _diaFinal
+
+    fun diaFinalRetornaEstado(){
+        _diaFinal.postValue(false)
     }
 
     private val _navegarDeVolta = MutableLiveData(false)
@@ -28,15 +36,13 @@ class AdicionarViewModel(private val repositorio: Repository, private val frag: 
         get() = _navegarDeVolta
 
     fun adicionarRemedio(item: Remedio){
+        _diaFinal.postValue(true)
         viewModelScope.launch {
             repositorio.adicionandoLembrete(item)
             _navegarDeVolta.value = true
         }
     }
 
-    //calendario aqui
-
-    // {
     //Chama o picker e coloca o valor no textview horarioInicial
     fun picker():String{
         var horaFinal = ""
@@ -62,9 +68,6 @@ class AdicionarViewModel(private val repositorio: Repository, private val frag: 
         return horaFinal
     }
 
-    //Utils.kt
 
-
-    // }
 
 }
