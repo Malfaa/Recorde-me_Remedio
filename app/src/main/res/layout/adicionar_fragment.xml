@@ -90,11 +90,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
+                    android:onClick="@{() -> viewModel.picker()}"
                     android:text="@={item.horaInicial}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                     app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
+                <!--colocar a fun para o picker, lógica aqui é o onClick chamar
+                a função, que retornará o valor p/ o textView que irá inserir
+                de resposta co text por meio de two-way-databinding-->
 
                 <TextView
                     android:id="@+id/horaText"

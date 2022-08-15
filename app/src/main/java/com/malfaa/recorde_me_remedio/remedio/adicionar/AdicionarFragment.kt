@@ -17,7 +17,7 @@ class AdicionarFragment : Fragment()  {
     private lateinit var binding : AdicionarFragmentBinding
 
     private val viewModel: AdicionarViewModel by viewModels{
-        AdicionarViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())))
+        AdicionarViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())), requireParentFragment().parentFragmentManager)
     }
 
     companion object{

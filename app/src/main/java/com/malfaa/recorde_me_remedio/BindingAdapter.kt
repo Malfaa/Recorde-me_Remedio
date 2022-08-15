@@ -47,7 +47,7 @@ fun notaValue(view:View, nota:String){
 }
 
 @BindingAdapter("listenClicks")
-fun listenClicks(spinner: AppCompatSpinner, result: Int) {// FIXME: erro aqui e depois continuar ALTERAR
+fun listenClicks(spinner: AppCompatSpinner, result: Int) {
     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {
 
