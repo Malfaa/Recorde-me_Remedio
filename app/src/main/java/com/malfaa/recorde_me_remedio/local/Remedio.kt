@@ -21,10 +21,6 @@ data class Remedio(
     @ColumnInfo(name = "hora_comeco")
     var horaComeco: String,
     var nota: String?,
-    @ColumnInfo(name = "custom_hora")
-    var verificaHoraCustom: Boolean = false,
-    @ColumnInfo(name = "custom_data")
-    var verificaDataCustom: Boolean = false
 //    var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel

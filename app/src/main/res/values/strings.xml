@@ -89,6 +89,12 @@
     </string>
 
     <string name="data_somada">%s - %s</string>
+    <string name="horas">%d em %d hora(s)</string>
+    <string name="horas_hint">8 em 8 hora(s)</string>
+<!--    %d em %d hora(s)-->
+    <string name="dias">%d dia(s)</string>
+    <string name="dias_hint">5 dia(s)</string>
+<!--    %d dia(s)-->
 
     <string name="dica_data">Dias</string>
     <string name="dica_horas">Horas</string>

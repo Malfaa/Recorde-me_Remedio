@@ -130,23 +130,6 @@
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horarioInicial" />
 
-                <Spinner
-                    android:id="@+id/horaSpinner"
-                    android:layout_width="@dimen/spinner_dimen"
-                    android:layout_height="@dimen/dimen_box_default_height"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:entries="@array/horarios"
-                    android:backgroundTint="@color/secondary"
-                    android:contentDescription="@string/descricaoSpinnerHora"
-                    android:minWidth="@dimen/dimen_box_default_width"
-                    android:visibility="visible"
-                    android:selectedItemPosition="@={item.horaEmHora}"
-                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/horaEditText"
                     android:layout_width="@dimen/spinner_dimen"
@@ -155,41 +138,31 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="numberDecimal"
                     android:minWidth="@dimen/dimen_box_default_height"
-                    android:visibility="gone"
                     android:text="@={`` + item.horaEmHora}"
                     android:hint="@string/dica_horas"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
-<!--colocar stringformat aqui pra aparecer o valor mais a palavra dias-->
-                <TextView
-                    android:id="@+id/customTextHora"
-                    style="@style/textView_text_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/customizar"
-                    android:textSize="@dimen/font_adicao_small"
-                    app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
-                    app:layout_constraintHorizontal_bias="0.483"
-                    app:layout_constraintStart_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toTopOf="@+id/horaText" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/customHora"
+                <TextView
+                    android:id="@+id/horasText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:minHeight="48dp"
-                    android:textOff="@string/nao"
-                    android:textOn="@string/sim"
-                    android:checked="@={item.verificaHoraCustom}"
-                    android:onClick="@{() -> viewModel.visibilidadeHora()}"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                    app:layout_constraintTop_toBottomOf="@+id/customTextHora"
-                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+                    android:layout_height="0dp"
+                    android:text="@{@string/horas(item.horaEmHora)}"
+                    android:hint="@string/horas_hint"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/font_adicao"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/dimen_box_small_width"
+                    app:layout_constraintTop_toTopOf="@+id/horaEditText"
+                    app:layout_constraintBottom_toBottomOf="@+id/horaEditText"
+                    app:layout_constraintStart_toEndOf="@+id/horaEditText" />
+
+
+
+                <!--colocar stringformat aqui pra aparecer o valor mais a palavra dias-->
 
                 <TextView
                     android:id="@+id/data"
@@ -206,25 +179,8 @@
                     app:layout_constraintEnd_toEndOf="@+id/horaText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horaText"
-                    app:layout_constraintTop_toBottomOf="@+id/customHora" />
+                    app:layout_constraintTop_toBottomOf="@+id/horaEditText" />
 
-                <Spinner
-                    android:id="@+id/dataSpinner"
-                    android:layout_width="@dimen/spinner_dimen"
-                    android:layout_height="@dimen/dimen_box_default_height"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:backgroundTint="@color/secondary"
-                    android:contentDescription="@string/descricaoSpinnerData"
-                    android:drawableStart="@drawable/ic_calendar"
-                    android:entries="@array/datas"
-                    android:minWidth="@dimen/dimen_box_default_width"
-                    android:visibility="visible"
-                    android:selectedItemPosition="@={item.periodoDias}"
-                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dataEditText"
@@ -234,7 +190,6 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
-                    android:visibility="gone"
                     android:text="@={`` + item.periodoDias}"
                     android:hint="@string/dica_data"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
@@ -243,39 +198,27 @@
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <TextView
-                    android:id="@+id/customTextData"
-                    style="@style/textView_text_color"
+                    android:id="@+id/diasText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/customizar"
-                    android:textSize="@dimen/font_adicao_small"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                    app:layout_constraintTop_toTopOf="@+id/data" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/customData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:minHeight="48dp"
-                    android:textOff="@string/nao"
-                    android:textOn="@string/sim"
-                    android:checked="@={item.verificaDataCustom}"
-                    android:onClick="@{() -> viewModel.visibilidadeData()}"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextData"
-                    app:layout_constraintStart_toStartOf="@+id/customTextData"
-                    app:layout_constraintTop_toBottomOf="@+id/customTextData"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dimen_box_small_width"
+                    android:gravity="center"
+                    android:hint="@string/dias_hint"
+                    android:text="@{@string/dias(item.periodoDias)}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/dataEditText"
+                    app:layout_constraintStart_toEndOf="@+id/dataEditText"
+                    app:layout_constraintTop_toTopOf="@+id/dataEditText" />
 
                 <TextView
                     android:id="@+id/notaText"
                     style="@style/textView_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:gravity="center"
                     android:text="@string/nota"
                     android:textSize="@dimen/font_adicao"
@@ -283,7 +226,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/customData" />
+                    app:layout_constraintTop_toBottomOf="@+id/dataEditText" />
 
                 <EditText
                     android:id="@+id/campoNota"
