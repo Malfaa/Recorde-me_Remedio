@@ -3,8 +3,6 @@ package com.malfaa.recorde_me_remedio
 import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.EditText
-import android.widget.Spinner
-import androidx.appcompat.widget.AppCompatSpinner
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,32 +25,11 @@ fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
     }
 }
 
-fun calendario(item: Int, verifica: Boolean): String{
+fun calendario(item: Int): String{
     val calendario = Calendar.getInstance()
-    val recebeValorEConfigura: Int
 
-    val valorSelecionado: Int =
-        when (item) {
-            1 -> 5
-            2 -> 7
-            3 -> 14
-            else -> 0
-        }
-
-    recebeValorEConfigura = when(verifica){
-        true -> valorSelecionado
-        false -> item
-    }
-
-    calendario.add(Calendar.DATE, recebeValorEConfigura)
+    calendario.add(Calendar.DATE, item)
     return calendarioParaData(calendario.time)
-}
-
-fun retornaHoraDataMetodo(verificaCustom:Boolean, spinner: Spinner, text:EditText): Int{
-    return when(verificaCustom){
-        true -> text.text.toString().toInt()
-        false -> spinner.selectedItemPosition
-    }
 }
 
 fun diaAtual():String{
@@ -61,9 +38,9 @@ fun diaAtual():String{
     return calendarioParaData(calendar.time)
 }
 
-fun diaFinal(verificaCustomData: Boolean, spinnerData: Spinner, editTextData: EditText):String{
+fun diaFinal(editTextData: EditText):String{
     //AdicionarViewModel.diaFinal = calendario(retornaHoraDataMetodo(verificaCustomData, spinnerData, editTextData),verificaCustomData)
-    return calendario(retornaHoraDataMetodo(verificaCustomData, spinnerData, editTextData),verificaCustomData)
+    return calendario(editTextData.toString().toInt())
 }
 
 @SuppressLint("SimpleDateFormat")
@@ -96,4 +73,3 @@ fun minutoFormato(horaSistema: Long): Int {
         Log.d("error", "$e")
     }
 }
-

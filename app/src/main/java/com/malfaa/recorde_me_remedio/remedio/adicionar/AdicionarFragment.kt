@@ -2,7 +2,6 @@ package com.malfaa.recorde_me_remedio.remedio.adicionar
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,39 +66,13 @@ class AdicionarFragment : Fragment()  {
         viewModel.diaFinal.observe(viewLifecycleOwner){
             condicao ->
             if (condicao){
-                binding.diaFinal!!.text = diaFinal(binding.customData.isChecked, binding.dataSpinner, binding.dataEditText)
+                binding.diaFinal!!.text = diaFinal(binding.dataEditText)
                 viewModel.diaFinalRetornaEstado()
             }
         }
 
         binding.horarioInicial.setOnClickListener {
             picker()
-        }
-
-        viewModel.visibilidadeHora.observe(viewLifecycleOwner){
-            condicao ->
-            if (condicao){
-                binding.horaSpinner.visibility = View.GONE
-                binding.horaEditText.visibility = View.VISIBLE
-            }else{
-                binding.horaSpinner.visibility = View.VISIBLE
-                binding.horaEditText.visibility = View.GONE
-                binding.horaEditText.text?.isEmpty()
-            }
-        }
-
-        viewModel.visibilidadeData.observe(viewLifecycleOwner){
-                condicao ->
-            if (condicao){
-                binding.customData.isChecked = true
-                binding.dataSpinner.visibility = View.GONE
-                binding.dataEditText.visibility = View.VISIBLE
-            }else{
-                binding.customData.isChecked = false
-                binding.dataSpinner.visibility = View.VISIBLE
-                binding.dataEditText.visibility = View.GONE
-                binding.dataEditText.text?.isEmpty()
-            }
         }
 
     }

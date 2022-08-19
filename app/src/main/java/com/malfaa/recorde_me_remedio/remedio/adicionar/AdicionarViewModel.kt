@@ -27,15 +27,6 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     val navegarDeVolta : LiveData<Boolean>
         get() = _navegarDeVolta
 
-    private val _visibilidadeHora = MutableLiveData(false)
-    val visibilidadeHora : LiveData<Boolean>
-        get() = _visibilidadeHora
-
-    private val _visibilidadeData = MutableLiveData(false)
-    val visibilidadeData : LiveData<Boolean>
-        get() = _visibilidadeData
-
-
     fun adicionarRemedio(item: Remedio){
         _diaFinal.value = true
         viewModelScope.launch {
@@ -44,20 +35,11 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
         }
     }
 
-    fun visibilidadeHora(){
-        if (visibilidadeHora.value == true){
-            _visibilidadeHora.postValue(false)
-        }else{
-            _visibilidadeHora.postValue(true)
-        }
-
-    }
-
-    fun visibilidadeData(){
-        if (visibilidadeData.value == true){
-            _visibilidadeData.postValue(false)
-        }else{
-            _visibilidadeData.postValue(true)
-        }
-    }
 }
+
+// TODO: Abaixo do Período, colocar uma caixa de marcação (checkbox) que deixará o próprio período 
+//  "infinito"(todos os dias) até remove-lo. Ele deixará não editável o EditText
+// TODO: Colocar background branco nos edittexts
+// TODO: Alterar todos os layouts p/ a nova arquitetura
+// TODO: Tirar todo o código linkado ao que foi removido no commit #f2660150 em BindingAdapter, Utils e item_remedio
+// TODO: Ver como configurar o primeiro 'todo'
