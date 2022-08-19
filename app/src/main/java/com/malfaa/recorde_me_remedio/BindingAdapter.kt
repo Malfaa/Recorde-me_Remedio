@@ -40,8 +40,8 @@ fun conversorPosEmHoras(textView : TextView, valor: Int, verifica: Boolean) {
 }
 
 @BindingAdapter("notaValue")
-fun notaValue(view:View, nota:String){
-    if (nota.isEmpty()){
+fun notaValue(view:View, nota:String?){
+    if (nota.isNullOrEmpty()){
         view.visibility = View.GONE
     }
 }

@@ -89,4 +89,7 @@
     </string>
 
     <string name="data_somada">%s - %s</string>
+
+    <string name="dica_data">Dias</string>
+    <string name="dica_horas">Horas</string>
 </resources>

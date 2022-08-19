@@ -4,9 +4,9 @@ import com.malfaa.recorde_me_remedio.local.Remedio
 
 interface IRepository {
 
-    suspend fun adicionandoLembrete(item: Remedio)
+    suspend fun adicionandoRemedio(item: Remedio)
 
-    suspend fun alterarLembrete(item: Remedio)
+    suspend fun alterarRemedio(item: Remedio)
 
-    suspend fun deletarLembrete(item: Remedio)
+    suspend fun deletarRemedio(item: Remedio)
 }

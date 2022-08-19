@@ -12,7 +12,7 @@ class MainViewModel(private val repositorio: Repository) : ViewModel() {
 
     fun deletarRemedio(item: Remedio) {
         viewModelScope.launch {
-            repositorio.deletarLembrete(item)
+            repositorio.deletarRemedio(item)
         }
     }
 

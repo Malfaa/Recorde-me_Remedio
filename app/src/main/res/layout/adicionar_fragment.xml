@@ -16,6 +16,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/primeirodia"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@={item.primeiroDia}"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/diaFinal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@={item.ultimoDia}"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -90,15 +108,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:onClick="@{() -> viewModel.picker()}"
                     android:text="@={item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
-                <!--colocar a fun para o picker, lógica aqui é o onClick chamar
-                a função, que retornará o valor p/ o textView que irá inserir
-                de resposta co text por meio de two-way-databinding-->
+                    app:layout_constraintTop_toBottomOf="@+id/horaInicialText"/>
 
                 <TextView
                     android:id="@+id/horaText"
@@ -116,7 +130,7 @@
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horarioInicial" />
 
-                <androidx.appcompat.widget.AppCompatSpinner
+                <Spinner
                     android:id="@+id/horaSpinner"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
@@ -127,7 +141,7 @@
                     android:contentDescription="@string/descricaoSpinnerHora"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
-                    app:listenClicks="@{item.horaEmHora}"
+                    android:selectedItemPosition="@={item.horaEmHora}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -139,15 +153,16 @@
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:inputType="time"
+                    android:inputType="numberDecimal"
                     android:minWidth="@dimen/dimen_box_default_height"
                     android:visibility="gone"
                     android:text="@={`` + item.horaEmHora}"
+                    android:hint="@string/dica_horas"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
+<!--colocar stringformat aqui pra aparecer o valor mais a palavra dias-->
                 <TextView
                     android:id="@+id/customTextHora"
                     style="@style/textView_text_color"
@@ -170,6 +185,7 @@
                     android:textOff="@string/nao"
                     android:textOn="@string/sim"
                     android:checked="@={item.verificaHoraCustom}"
+                    android:onClick="@{() -> viewModel.visibilidadeHora()}"
                     app:layout_constraintEnd_toEndOf="@+id/customTextHora"
                     app:layout_constraintStart_toStartOf="@+id/customTextHora"
                     app:layout_constraintTop_toBottomOf="@+id/customTextHora"
@@ -204,12 +220,11 @@
                     android:entries="@array/datas"
                     android:minWidth="@dimen/dimen_box_default_width"
                     android:visibility="visible"
-                    app:listenClicks="@{item.periodoDias}"
+                    android:selectedItemPosition="@={item.periodoDias}"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
-
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dataEditText"
@@ -221,6 +236,7 @@
                     android:minWidth="@dimen/spinner_dimen"
                     android:visibility="gone"
                     android:text="@={`` + item.periodoDias}"
+                    android:hint="@string/dica_data"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -247,6 +263,7 @@
                     android:textOff="@string/nao"
                     android:textOn="@string/sim"
                     android:checked="@={item.verificaDataCustom}"
+                    android:onClick="@{() -> viewModel.visibilidadeData()}"
                     app:layout_constraintEnd_toEndOf="@+id/customTextData"
                     app:layout_constraintStart_toStartOf="@+id/customTextData"
                     app:layout_constraintTop_toBottomOf="@+id/customTextData"

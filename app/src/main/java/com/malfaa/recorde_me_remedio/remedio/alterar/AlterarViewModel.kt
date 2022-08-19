@@ -10,7 +10,7 @@ class AlterarViewModel(private val repositorio: Repository): ViewModel() {
 
     fun alterarRemedio(item: Remedio){
         viewModelScope.launch {
-            repositorio.alterarLembrete(item)
+            repositorio.alterarRemedio(item)
         }
     }
 

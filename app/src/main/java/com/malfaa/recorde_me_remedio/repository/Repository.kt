@@ -9,19 +9,19 @@ class Repository(private val database: RemedioDatabase) : IRepository {
 
     val recebeItem = database.dao.getRemedios()
 
-    override suspend fun adicionandoLembrete(item: Remedio){
+    override suspend fun adicionandoRemedio(item: Remedio){
         return withContext(Dispatchers.IO) {
             database.dao.adicionarRemedio(item)
         }
     }
 
-    override suspend fun alterarLembrete(item:Remedio){
+    override suspend fun alterarRemedio(item:Remedio){
         return withContext(Dispatchers.IO){
             database.dao.atualizarRemedio(item)
         }
     }
 
-    override suspend fun deletarLembrete(item:Remedio){
+    override suspend fun deletarRemedio(item:Remedio){
         return withContext(Dispatchers.IO){
             database.dao.deletarRemedio(item)
         }

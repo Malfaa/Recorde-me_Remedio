@@ -20,18 +20,19 @@ data class Remedio(
     var periodoDias: Int,
     @ColumnInfo(name = "hora_comeco")
     var horaComeco: String,
-    var nota: String,
+    var nota: String?,
     @ColumnInfo(name = "custom_hora")
-    var verificaHoraCustom: Boolean,
+    var verificaHoraCustom: Boolean = false,
     @ColumnInfo(name = "custom_data")
-    var verificaDataCustom: Boolean,
-    var requestCode: Int
+    var verificaDataCustom: Boolean = false
+//    var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel
     @ColumnInfo(name = "primeiro_dia")
-    var primeiroDia: String = diaAtual()
+    lateinit var primeiroDia: String
+
     @IgnoredOnParcel
     @ColumnInfo(name = "ultimo_dia")
-    var ultimoDia: String = AdicionarViewModel.diaFinal
+    lateinit var ultimoDia: String
 
 }

@@ -1,22 +1,14 @@
 package com.malfaa.recorde_me_remedio.remedio.adicionar
 
-import android.os.Build
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.recorde_me_remedio.horaFormato
 import com.malfaa.recorde_me_remedio.local.Remedio
-import com.malfaa.recorde_me_remedio.minutoFormato
 import com.malfaa.recorde_me_remedio.repository.Repository
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
-import java.util.*
 
-class AdicionarViewModel(private val repositorio: Repository, private val frag: FragmentManager): ViewModel(){
+class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
 
     companion object{
         var horaInicial : String = ""
@@ -35,39 +27,37 @@ class AdicionarViewModel(private val repositorio: Repository, private val frag: 
     val navegarDeVolta : LiveData<Boolean>
         get() = _navegarDeVolta
 
+    private val _visibilidadeHora = MutableLiveData(false)
+    val visibilidadeHora : LiveData<Boolean>
+        get() = _visibilidadeHora
+
+    private val _visibilidadeData = MutableLiveData(false)
+    val visibilidadeData : LiveData<Boolean>
+        get() = _visibilidadeData
+
+
     fun adicionarRemedio(item: Remedio){
-        _diaFinal.postValue(true)
+        _diaFinal.value = true
         viewModelScope.launch {
-            repositorio.adicionandoLembrete(item)
+            repositorio.adicionandoRemedio(item)
             _navegarDeVolta.value = true
         }
     }
 
-    //Chama o picker e coloca o valor no textview horarioInicial
-    fun picker():String{
-        var horaFinal = ""
-        val picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
-                .setMinute(LocalDateTime.now().minute).build()
+    fun visibilidadeHora(){
+        if (visibilidadeHora.value == true){
+            _visibilidadeHora.postValue(false)
         }else{
-            MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
-                .setMinute(minutoFormato(Date().time)).build()
+            _visibilidadeHora.postValue(true)
         }
 
-        picker.show(frag, "remedio")
-
-        picker.addOnPositiveButtonClickListener{
-            horaInicial = String.format("%02d", picker.hour)
-            minutoInicial = String.format("%02d", picker.minute)
-            horaFinal = "$horaInicial:$minutoInicial"
-
-        }
-
-        return horaFinal
     }
 
-
-
+    fun visibilidadeData(){
+        if (visibilidadeData.value == true){
+            _visibilidadeData.postValue(false)
+        }else{
+            _visibilidadeData.postValue(true)
+        }
+    }
 }

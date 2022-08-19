@@ -61,8 +61,9 @@ fun diaAtual():String{
     return calendarioParaData(calendar.time)
 }
 
-fun diaFinal(verificaCustomData: Boolean, spinnerData: Spinner, editTextData: EditText){
-    AdicionarViewModel.diaFinal = calendario(retornaHoraDataMetodo(verificaCustomData, spinnerData, editTextData),verificaCustomData)
+fun diaFinal(verificaCustomData: Boolean, spinnerData: Spinner, editTextData: EditText):String{
+    //AdicionarViewModel.diaFinal = calendario(retornaHoraDataMetodo(verificaCustomData, spinnerData, editTextData),verificaCustomData)
+    return calendario(retornaHoraDataMetodo(verificaCustomData, spinnerData, editTextData),verificaCustomData)
 }
 
 @SuppressLint("SimpleDateFormat")
