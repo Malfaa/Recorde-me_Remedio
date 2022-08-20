@@ -39,7 +39,4 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
 
 // TODO: Abaixo do Período, colocar uma caixa de marcação (checkbox) que deixará o próprio período 
 //  "infinito"(todos os dias) até remove-lo. Ele deixará não editável o EditText
-// TODO: Colocar background branco nos edittexts
 // TODO: Alterar todos os layouts p/ a nova arquitetura
-// TODO: Tirar todo o código linkado ao que foi removido no commit #f2660150 em BindingAdapter, Utils e item_remedio
-// TODO: Ver como configurar o primeiro 'todo'

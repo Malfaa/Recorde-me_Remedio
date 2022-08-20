@@ -132,6 +132,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/horaEditText"
+                    style="@style/adc_alt_textview"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:layout_gravity="center"
@@ -186,6 +187,7 @@
                     android:id="@+id/dataEditText"
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_default_height"
+                    style="@style/adc_alt_textview"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
@@ -217,8 +219,8 @@
                     style="@style/textView_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:layout_marginTop="@dimen/distancia_entre_itens"
+                    android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:gravity="center"
                     android:text="@string/nota"
                     android:textSize="@dimen/font_adicao"
@@ -226,7 +228,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/dataEditText" />
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
                 <EditText
                     android:id="@+id/campoNota"
@@ -274,6 +276,17 @@
                     app:layout_constraintEnd_toEndOf="@+id/campoNota"
                     app:layout_constraintStart_toEndOf="@+id/retornar"
                     app:layout_constraintTop_toTopOf="@+id/retornar" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:text="@string/todos_dias"
+                    app:layout_constraintEnd_toEndOf="@+id/dataEditText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/dataEditText"
+                    app:layout_constraintTop_toBottomOf="@+id/dataEditText" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

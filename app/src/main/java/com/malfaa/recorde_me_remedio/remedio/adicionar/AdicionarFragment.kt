@@ -20,14 +20,14 @@ import com.malfaa.recorde_me_remedio.repository.Repository
 import java.time.LocalDateTime
 import java.util.*
 
-class AdicionarFragment : Fragment()  {
-    private lateinit var binding : AdicionarFragmentBinding
+class AdicionarFragment : Fragment() {
+    private lateinit var binding: AdicionarFragmentBinding
 
-    private val viewModel: AdicionarViewModel by viewModels{
+    private val viewModel: AdicionarViewModel by viewModels {
         AdicionarViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())))
     }
 
-    companion object{
+    companion object {
         const val EDITOR_TEXT_INSTANCE = "EDITOR_TEXT_INSTANCE"
     }
 
@@ -37,9 +37,10 @@ class AdicionarFragment : Fragment()  {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = AdicionarFragmentBinding.inflate(inflater,container, false)
+        binding = AdicionarFragmentBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.novo_remedio)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            requireContext().getString(R.string.novo_remedio)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -50,12 +51,12 @@ class AdicionarFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             binding.item = savedInstanceState.getParcelable(EDITOR_TEXT_INSTANCE)
         }
 
-        viewModel.navegarDeVolta.observe(viewLifecycleOwner){condicao ->
-            if (condicao){
+        viewModel.navegarDeVolta.observe(viewLifecycleOwner) { condicao ->
+            if (condicao) {
                 findNavController().popBackStack()
             }
         }
@@ -63,9 +64,8 @@ class AdicionarFragment : Fragment()  {
             findNavController().popBackStack()
         }
 
-        viewModel.diaFinal.observe(viewLifecycleOwner){
-            condicao ->
-            if (condicao){
+        viewModel.diaFinal.observe(viewLifecycleOwner) { condicao ->
+            if (condicao) {
                 binding.diaFinal!!.text = diaFinal(binding.dataEditText)
                 viewModel.diaFinalRetornaEstado()
             }
@@ -75,6 +75,11 @@ class AdicionarFragment : Fragment()  {
             picker()
         }
 
+        binding.checkBox?.setOnClickListener {
+            binding.dataEditText.isEnabled = false
+            //como repetir indefinidamente
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,13 +87,13 @@ class AdicionarFragment : Fragment()  {
         outState.putParcelable(EDITOR_TEXT_INSTANCE, binding.item)
     }
 
-    private fun picker(){
+    private fun picker() {
         var horaFinal: String
         val picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
                 .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
                 .setMinute(LocalDateTime.now().minute).build()
-        }else{
+        } else {
             MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
                 .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
                 .setMinute(minutoFormato(Date().time)).build()
@@ -96,7 +101,7 @@ class AdicionarFragment : Fragment()  {
 
         picker.show(requireParentFragment().parentFragmentManager, "remedio")
 
-        picker.addOnPositiveButtonClickListener{
+        picker.addOnPositiveButtonClickListener {
             horaInicial = String.format("%02d", picker.hour)
             minutoInicial = String.format("%02d", picker.minute)
             horaFinal = "$horaInicial:$minutoInicial"
