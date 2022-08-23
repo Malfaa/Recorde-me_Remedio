@@ -2,10 +2,13 @@ package com.malfaa.recorde_me_remedio.remedio.main
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
+import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.databinding.ItemRemedioBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
@@ -27,6 +30,18 @@ class MainAdapter(private val clickListener: RemedioListener) : ListAdapter<Reme
             remedioItem.value = item
             deletar.value = true
             true
+        }
+        //Expandir Nota
+        holder.binding.expand.setOnClickListener {
+            if(holder.binding.notaBox.visibility == View.GONE){
+                androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
+                holder.binding.notaBox.visibility = View.VISIBLE
+                holder.binding.expand.setBackgroundResource(R.drawable.ic_expand_less)
+            }else{
+                androidx.transition.TransitionManager.beginDelayedTransition(holder.binding.lembrete, AutoTransition())
+                holder.binding.notaBox.visibility = View.GONE
+                holder.binding.expand.setBackgroundResource(R.drawable.ic_expand_more)
+            }
         }
     }
 
