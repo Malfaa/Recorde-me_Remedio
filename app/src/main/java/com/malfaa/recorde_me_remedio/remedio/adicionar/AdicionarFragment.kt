@@ -13,6 +13,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.recorde_me_remedio.*
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
+import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.horaInicial
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.minutoInicial
@@ -58,26 +59,40 @@ class AdicionarFragment : Fragment() {
         viewModel.navegarDeVolta.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {
                 findNavController().popBackStack()
+                viewModel.navegarDeVoltaFeito()
             }
         }
         binding.retornar.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        viewModel.diaFinal.observe(viewLifecycleOwner) { condicao ->
-            if (condicao) {
-                binding.diaFinal!!.text = diaFinal(binding.dataEditText)
-                viewModel.diaFinalRetornaEstado()
-            }
-        }
-
         binding.horarioInicial.setOnClickListener {
             picker()
         }
 
-        binding.checkBox?.setOnClickListener {
-            binding.dataEditText.isEnabled = false
-            //como repetir indefinidamente
+        binding.adicionar.setOnClickListener{
+            val remedio = Remedio(
+                0,
+                binding.campoRemedio.text.toString(),
+                binding.horaEditText.text.toString().toInt(),
+                binding.dataEditText.text.toString().toInt(),
+                binding.horarioInicial.text.toString(),
+                binding.campoNota.text.toString()
+            ).apply {
+                primeiroDia = diaAtual()
+                ultimoDia = diaFinal(binding.dataEditText.text.toString())
+            }
+
+            viewModel.adicionarRemedio(remedio)
+        }
+
+        viewModel.checkBox.observe(viewLifecycleOwner){
+                condicao ->
+            when(condicao){
+                true -> binding.dataEditText.isEnabled = false
+                false -> binding.dataEditText.isEnabled = true
+
+            }
         }
 
     }
@@ -105,8 +120,7 @@ class AdicionarFragment : Fragment() {
             horaInicial = String.format("%02d", picker.hour)
             minutoInicial = String.format("%02d", picker.minute)
             horaFinal = "$horaInicial:$minutoInicial"
-            binding.horarioInicial.text = horaFinal //talvez aqui
-            binding.primeirodia!!.text = diaAtual()
+            binding.horarioInicial.text = horaFinal
         }
     }
 

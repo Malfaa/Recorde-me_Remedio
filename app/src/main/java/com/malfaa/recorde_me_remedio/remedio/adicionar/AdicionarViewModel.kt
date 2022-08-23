@@ -13,30 +13,22 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     companion object{
         var horaInicial : String = ""
         var minutoInicial : String = ""
-        lateinit var diaFinal : String
     }
-    private val _diaFinal = MutableLiveData(false)
-    val diaFinal : LiveData<Boolean>
-        get() = _diaFinal
 
-    fun diaFinalRetornaEstado(){
-        _diaFinal.postValue(false)
-    }
+    val checkBox = MutableLiveData(false)
 
     private val _navegarDeVolta = MutableLiveData(false)
     val navegarDeVolta : LiveData<Boolean>
         get() = _navegarDeVolta
 
-    fun adicionarRemedio(item: Remedio){
-        _diaFinal.value = true
+    fun adicionarRemedio(item:Remedio){
         viewModelScope.launch {
             repositorio.adicionandoRemedio(item)
             _navegarDeVolta.value = true
         }
     }
 
+    fun navegarDeVoltaFeito(){
+        _navegarDeVolta.value = false
+    }
 }
-
-// TODO: Abaixo do Período, colocar uma caixa de marcação (checkbox) que deixará o próprio período 
-//  "infinito"(todos os dias) até remove-lo. Ele deixará não editável o EditText
-// TODO: Alterar todos os layouts p/ a nova arquitetura

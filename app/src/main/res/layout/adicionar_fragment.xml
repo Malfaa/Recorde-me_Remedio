@@ -16,24 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/primeirodia"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@={item.primeiroDia}"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/diaFinal"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@={item.ultimoDia}"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -68,7 +50,6 @@
                 <EditText
                     android:id="@+id/campoRemedio"
                     style="@style/adc_alt_textview"
-                    android:text="@={item.remedio}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/distancia_item_edittext"
@@ -108,7 +89,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:text="@={item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
@@ -139,18 +119,16 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="numberDecimal"
                     android:minWidth="@dimen/dimen_box_default_height"
-                    android:text="@={`` + item.horaEmHora}"
                     android:hint="@string/dica_horas"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toBottomOf="@+id/horaText" />
+                    app:layout_constraintTop_toBottomOf="@+id/horaText"/>
 
                 <TextView
                     android:id="@+id/horasText"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:text="@{@string/horas(item.horaEmHora)}"
                     android:hint="@string/horas_hint"
                     android:textAlignment="center"
                     android:textStyle="bold"
@@ -160,10 +138,6 @@
                     app:layout_constraintTop_toTopOf="@+id/horaEditText"
                     app:layout_constraintBottom_toBottomOf="@+id/horaEditText"
                     app:layout_constraintStart_toEndOf="@+id/horaEditText" />
-
-
-
-                <!--colocar stringformat aqui pra aparecer o valor mais a palavra dias-->
 
                 <TextView
                     android:id="@+id/data"
@@ -192,7 +166,6 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
-                    android:text="@={`` + item.periodoDias}"
                     android:hint="@string/dica_data"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -206,7 +179,6 @@
                     android:layout_marginStart="@dimen/dimen_box_small_width"
                     android:gravity="center"
                     android:hint="@string/dias_hint"
-                    android:text="@{@string/dias(item.periodoDias)}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     android:textStyle="bold"
@@ -237,7 +209,6 @@
                     android:layout_height="@dimen/l_distancia_itens"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:ems="10"
-                    android:text="@={item.nota}"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:maxWidth="100dp"
@@ -272,7 +243,6 @@
                     android:layout_marginStart="@dimen/distancia_entre_itens"
                     android:layout_marginEnd="@dimen/distancia_entre_itens_seg"
                     android:text="@string/adicionar"
-                    android:onClick="@{() -> viewModel.adicionarRemedio(item)}"
                     app:layout_constraintEnd_toEndOf="@+id/campoNota"
                     app:layout_constraintStart_toEndOf="@+id/retornar"
                     app:layout_constraintTop_toTopOf="@+id/retornar" />
@@ -283,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:text="@string/todos_dias"
+                    android:checked="@={viewModel.checkBox}"
                     app:layout_constraintEnd_toEndOf="@+id/dataEditText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/dataEditText"
