@@ -30,7 +30,7 @@
         <entry key="app/src/main/res/drawable/ic_timer.xml" value="0.3305" />
         <entry key="app/src/main/res/drawable/night_add_alt_text_box.xml" value="0.3305" />
         <entry key="app/src/main/res/drawable/outline_nota_item_lembrete.xml" value="0.3305" />
-        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.2945326278659612" />
+        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout-land/alterar_fragment.xml" value="0.30335097001763667" />
         <entry key="app/src/main/res/layout-land/item_lembrete.xml" value="0.7175675675675676" />
         <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.11197916666666667" />
@@ -43,7 +43,7 @@
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.4188087774294671" />
         <entry key="app/src/main/res/layout-small/item_lembrete.xml" value="0.25" />
         <entry key="app/src/main/res/layout-small/item_remedio.xml" value="0.22489539748953974" />
-        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw600dp/alterar_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw600dp/item_lembrete.xml" value="0.6764331210191082" />
         <entry key="app/src/main/res/layout-sw600dp/item_remedio.xml" value="0.1" />

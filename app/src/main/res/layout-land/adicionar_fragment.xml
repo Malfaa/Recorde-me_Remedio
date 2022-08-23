@@ -108,22 +108,6 @@
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horarioInicial" />
 
-                <Spinner
-                    android:id="@+id/horaSpinner"
-                    android:layout_width="@dimen/spinner_dimen_large"
-                    android:layout_height="@dimen/dimen_box_default_height"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:backgroundTint="@color/secondary"
-                    android:contentDescription="@string/descricaoSpinnerHora"
-                    android:minWidth="@dimen/dimen_box_default_width"
-                    android:textSize="@dimen/font_adicao"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/horaEditText"
                     android:layout_width="@dimen/spinner_dimen"
@@ -132,37 +116,10 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="time"
                     android:minWidth="@dimen/dimen_box_default_height"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
-
-                <TextView
-                    android:id="@+id/customTextHora"
-                    style="@style/textView_text_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/customizar"
-                    android:textSize="@dimen/font_adicao"
-                    app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
-                    app:layout_constraintHorizontal_bias="0.483"
-                    app:layout_constraintStart_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toTopOf="@+id/horaText" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/customHora"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:minHeight="48dp"
-                    android:textOff="@string/nao"
-                    android:textOn="@string/sim"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                    app:layout_constraintTop_toBottomOf="@+id/customTextHora"
-                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
                 <TextView
                     android:id="@+id/data"
@@ -179,25 +136,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/horaText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horaText"
-                    app:layout_constraintTop_toBottomOf="@+id/customHora" />
-
-                <Spinner
-                    android:id="@+id/dataSpinner"
-                    android:layout_width="@dimen/spinner_dimen_large"
-                    android:layout_height="@dimen/dimen_box_default_height"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:backgroundTint="@color/secondary"
-                    android:contentDescription="@string/descricaoSpinnerData"
-                    android:drawableStart="@drawable/ic_calendar"
-                    android:minWidth="@dimen/dimen_box_default_width"
-                    android:visibility="visible"
-                    android:textSize="@dimen/font_adicao"
-                    app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/horarioInicial"
-                    app:layout_constraintTop_toBottomOf="@+id/data" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/horaEditText" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dataEditText"
@@ -207,53 +146,26 @@
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
-
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <TextView
-                    android:id="@+id/customTextData"
-                    style="@style/textView_text_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/customizar"
-                    android:textSize="@dimen/font_adicao"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextHora"
-                    app:layout_constraintStart_toStartOf="@+id/customTextHora"
-                    app:layout_constraintTop_toTopOf="@+id/data" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/customData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:minHeight="48dp"
-                    android:textOff="@string/nao"
-                    android:textOn="@string/sim"
-                    app:layout_constraintEnd_toEndOf="@+id/customTextData"
-                    app:layout_constraintStart_toStartOf="@+id/customTextData"
-                    app:layout_constraintTop_toBottomOf="@+id/customTextData"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
                     android:id="@+id/notaText"
                     style="@style/textView_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/distancia_entre_itens"
                     android:drawablePadding="@dimen/padding_drawable_edittext"
                     android:gravity="center"
                     android:text="@string/nota"
                     android:textSize="@dimen/font_adicao"
+                    android:layout_marginTop="@dimen/distancia_entre_itens"
                     app:drawableStartCompat="@drawable/ic_notes"
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/customData" />
+                    app:layout_constraintTop_toBottomOf="@+id/dataEditText" />
 
                 <EditText
                     android:id="@+id/campoNota"

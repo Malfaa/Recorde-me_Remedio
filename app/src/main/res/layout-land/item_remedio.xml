@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="item"
             type="com.malfaa.recorde_me_remedio.local.Remedio" />
+        <variable
+            name="clickListener"
+            type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener" />
+        <variable
+            name="longClickListener"
+            type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.LongRemedioListener" />
+        <variable
+            name="utils"
+            type="com.malfaa.recorde_me_remedio.UtilsKt" />
     </data>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
         style="@style/AppShapeAppearance.MediumComponent"
+        android:onClick="@{() ->  clickListener.onClick(item)}"
         android:layout_width="@dimen/item_width"
         android:layout_height="wrap_content">
-        <!--android:layout_marginStart="@dimen/distancia_item_edittext"
-        android:layout_marginEnd="@dimen/distancia_item_edittext"
-        android:layout_marginTop="@dimen/distancia_item_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,10 +35,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_item"
-                android:text="@string/remedio"
+                android:text="@{item.remedio}"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/remedio"/>
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -41,7 +47,8 @@
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/seis_em_seis"
+                android:text="@{@string/horas(item.horaEmHora,item.horaEmHora)}"
+                tools:text="@string/seis_em_seis"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintStart_toStartOf="@id/remedio"
@@ -53,7 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/uma_semana"
+                android:text="@{@string/dias(item.periodoDias)}"
+                tools:text="@string/uma_semana"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
@@ -78,7 +86,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/dimen_box_normal_width"
-                android:text="@string/iniciou_em"
+                android:text="@{item.horaComeco}"
+                tools:text = "@string/iniciou_em"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
@@ -102,7 +111,8 @@
                 style="@style/text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/termina_em"
+                android:text="@{@string/data_somada(item.primeiroDia, item.ultimoDia)}"
+                tools:text = "@string/termina_em"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintEnd_toEndOf="@+id/termina"
@@ -120,6 +130,7 @@
                 android:minWidth="50dp"
                 android:minHeight="48dp"
                 android:visibility="visible"
+                app:notaValue="@{item.nota}"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/remedio"
                 app:layout_constraintStart_toEndOf="@+id/termina"
@@ -147,7 +158,8 @@
                     android:layout_marginStart="@dimen/distancia_item"
                     android:layout_marginEnd="@dimen/distancia_item"
                     android:layout_marginBottom="@dimen/distancia_item"
-                    android:text="@string/nota"
+                    android:text="@{item.nota}"
+                    tools:text = "@string/nota"
                     android:textSize="@dimen/font_adicao_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
