@@ -11,9 +11,6 @@
             name="clickListener"
             type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener" />
         <variable
-            name="longClickListener"
-            type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.LongRemedioListener" />
-        <variable
             name="utils"
             type="com.malfaa.recorde_me_remedio.UtilsKt" />
     </data>

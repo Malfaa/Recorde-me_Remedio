@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.malfaa.recorde_me_remedio.databinding.ItemRemedioBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
+import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
+import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
 
-class MainAdapter(private val clickListener: RemedioListener, private val longClickListener: LongRemedioListener) : ListAdapter<Remedio, MainAdapter.ViewHolder>(ItemDiffCallBack()){
+class MainAdapter(private val clickListener: RemedioListener) : ListAdapter<Remedio, MainAdapter.ViewHolder>(ItemDiffCallBack()){
 
     //onCreate & onBind
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,15 +20,20 @@ class MainAdapter(private val clickListener: RemedioListener, private val longCl
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), clickListener, longClickListener)
+        val item = getItem(position)
+        holder.bind(item, clickListener)
+
+        holder.binding.lembrete.setOnLongClickListener {
+            remedioItem.value = item
+            deletar.value = true
+            true
+        }
     }
 
-    class ViewHolder private constructor(private val binding: ItemRemedioBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Remedio, clickListener: RemedioListener, longClickListener: LongRemedioListener) {
+    class ViewHolder private constructor(val binding: ItemRemedioBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Remedio, clickListener: RemedioListener) {
             binding.item = item
             binding.clickListener = clickListener
-            binding.longClickListener = longClickListener
-
 
             binding.executePendingBindings()
         }
@@ -52,9 +59,5 @@ class MainAdapter(private val clickListener: RemedioListener, private val longCl
 
     class RemedioListener(val clickListener: (Remedio) -> Unit) {
         fun onClick(remedio: Remedio) = clickListener(remedio)
-    }
-
-    class LongRemedioListener(val longClickListener: (Remedio) -> Unit){
-        fun onLongClick(remedio: Remedio) = longClickListener(remedio)
     }
 }

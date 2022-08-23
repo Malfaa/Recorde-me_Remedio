@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -71,20 +72,25 @@ class AdicionarFragment : Fragment() {
         }
 
         binding.adicionar.setOnClickListener{
-            val remedio = Remedio(
-                0,
-                binding.campoRemedio.text.toString(),
-                binding.horaEditText.text.toString().toInt(),
-                binding.dataEditText.text.toString().toInt(),
-                binding.horarioInicial.text.toString(),
-                binding.campoNota.text.toString()
-            ).apply {
-                primeiroDia = diaAtual()
-                ultimoDia = diaFinal(binding.dataEditText.text.toString())
-            }
+            try{
+                val remedio = Remedio(
+                    0,
+                    binding.campoRemedio.text.toString(),
+                    binding.horaEditText.text.toString().toInt(),
+                    binding.dataEditText.text.toString().toInt(),
+                    binding.horarioInicial.text.toString(),
+                    binding.campoNota.text.toString()
+                //binding.todosOsDias.isChecked
+                ).apply {
+                    primeiroDia = diaAtual()
+                    ultimoDia = diaFinal(binding.dataEditText.text.toString())
+                }
 
-            viewModel.adicionarRemedio(remedio)
-        }
+                viewModel.adicionarRemedio(remedio)
+            }catch (e:Exception){
+                Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
+            }
+        }// TODO: ideia é quando o checkBox estiver marcado, ele muda o dataEditText pro valor que refere à todos_os_dias
 
         viewModel.checkBox.observe(viewLifecycleOwner){
                 condicao ->

@@ -22,6 +22,8 @@ import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.*
+import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
+import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
 import com.malfaa.recorde_me_remedio.repository.Repository
 
 class MainFragment : Fragment() {
@@ -56,13 +58,11 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = MainAdapter(
-            RemedioListener { remedio ->
+            RemedioListener{
+                    remedio ->
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToAlterarFragment(remedio)
                 )
-            },
-            LongRemedioListener {remedio ->
-                alertDialogDeletarContato(remedio)
             }
         )
 
@@ -81,6 +81,14 @@ class MainFragment : Fragment() {
         }
         binding.adicionarLembreteLand?.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+        }
+
+        deletar.observe(viewLifecycleOwner){
+                condicao ->
+            if(condicao){
+                alertDialogDeletarContato(remedioItem.value!!)
+            }
+
         }
 
         //Callback
