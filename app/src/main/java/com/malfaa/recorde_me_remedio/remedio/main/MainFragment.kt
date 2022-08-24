@@ -66,6 +66,8 @@ class MainFragment : Fragment() {
             }
         )
 
+        // TODO: permission
+
         ad(binding, requireContext())
 
         binding.recyclerview.adapter = adapter

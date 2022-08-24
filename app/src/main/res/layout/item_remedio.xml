@@ -116,21 +116,33 @@
                 app:layout_constraintTop_toBottomOf="@id/termina"
                 tools:text = "@string/termina_em"/>
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/expand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_expand_more"
-                android:contentDescription="@string/expandir"
-                android:maxWidth="60dp"
-                android:minWidth="50dp"
-                android:minHeight="48dp"
-                android:visibility="visible"
-                app:notaValue="@{item.nota}"
-                app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
-                app:layout_constraintEnd_toEndOf="@+id/remedio"
-                app:layout_constraintStart_toEndOf="@+id/termina"
-                app:layout_constraintTop_toTopOf="@id/termina" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/expand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_expand_more"
+                    android:contentDescription="@string/expandir"
+                    android:maxWidth="60dp"
+                    android:minWidth="50dp"
+                    android:minHeight="48dp"
+                    android:visibility="visible"
+                    app:notaValue="@{item.nota}"
+                    app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
+                    app:layout_constraintEnd_toEndOf="@+id/remedio"
+                    app:layout_constraintStart_toEndOf="@+id/termina"
+                    app:layout_constraintTop_toTopOf="@id/termina"/>
+
+<!--            <androidx.constraintlayout.motion.widget.MotionLayout-->
+<!--            android:id="@+id/motion_layout"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/terminaValor"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/remedio"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/termina"-->
+<!--            app:layout_constraintTop_toTopOf="@id/termina"-->
+<!--            app:layoutDescription="@xml/item_remedio_scene">-->
+<!--            </androidx.constraintlayout.motion.widget.MotionLayout>-->
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nota_box"

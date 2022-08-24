@@ -108,7 +108,7 @@ class AdicionarFragment : Fragment() {
         outState.putParcelable(EDITOR_TEXT_INSTANCE, binding.item)
     }
 
-    private fun picker() {
+    fun picker() {
         var horaFinal: String
         val picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)

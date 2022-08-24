@@ -2,7 +2,6 @@ package com.malfaa.recorde_me_remedio
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.EditText
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import java.text.SimpleDateFormat
 import java.util.*

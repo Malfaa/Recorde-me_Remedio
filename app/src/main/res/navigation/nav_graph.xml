@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/alterarFragment"
-        android:name="com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment"
+        android:name="com.malfaa.recorde_me_remedio.remedio.alterar.AlterarFragment"
         android:label="alterar_fragment"
         tools:layout="@layout/alterar_fragment" >
         <action
@@ -53,6 +53,7 @@
             app:exitAnim="@anim/slide_esquerda_out" />
         <argument
             android:name="item"
+            app:nullable="false"
             app:argType="com.malfaa.recorde_me_remedio.local.Remedio" />
     </fragment>
 </navigation>
