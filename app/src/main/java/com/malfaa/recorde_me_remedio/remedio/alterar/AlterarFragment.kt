@@ -16,6 +16,7 @@ import com.malfaa.recorde_me_remedio.diaAtual
 import com.malfaa.recorde_me_remedio.diaFinal
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
+import com.malfaa.recorde_me_remedio.picker
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
 import com.malfaa.recorde_me_remedio.repository.Repository
@@ -87,7 +88,7 @@ class AlterarFragment : Fragment()  {
         }
 
         binding.horarioInicial.setOnClickListener {
-            AdicionarFragment().picker()
+            picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
         viewModel.checkBox.observe(viewLifecycleOwner){

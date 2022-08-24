@@ -22,6 +22,7 @@ class AlterarViewModel(private val repositorio: Repository): ViewModel() {
     fun alterarRemedio(item: Remedio){
         viewModelScope.launch {
             repositorio.alterarRemedio(item)
+            _navegarDeVolta.value = true
         }
     }
 

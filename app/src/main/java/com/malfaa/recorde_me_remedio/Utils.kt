@@ -1,9 +1,15 @@
 package com.malfaa.recorde_me_remedio
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.util.Log
+import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -45,6 +51,29 @@ fun diaFinal(editTextData: String):String{
 fun calendarioParaData(item: Date): String {
     val formato = SimpleDateFormat("dd/MM")
     return formato.format(item)
+}
+
+fun picker(frag: FragmentManager, text: TextView) {
+    var horaFinal: String
+    val picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+            .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
+            .setMinute(LocalDateTime.now().minute).build()
+    } else {
+        MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
+            .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
+            .setMinute(minutoFormato(Date().time)).build()
+    }
+
+    picker.show(frag, "remedio")
+
+    picker.addOnPositiveButtonClickListener {
+        AdicionarViewModel.horaInicial = String.format("%02d", picker.hour)
+        AdicionarViewModel.minutoInicial = String.format("%02d", picker.minute)
+        horaFinal = "${AdicionarViewModel.horaInicial}:${AdicionarViewModel.minutoInicial}"
+
+        text.text = horaFinal
+    }
 }
 
 fun stringFormat(dia:Int):String{

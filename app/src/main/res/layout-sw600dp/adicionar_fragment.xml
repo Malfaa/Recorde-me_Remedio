@@ -88,7 +88,6 @@
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_large_height"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:text=""
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao_large"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
@@ -115,6 +114,7 @@
                     android:id="@+id/horaEditText"
                     android:layout_width="@dimen/spinner_dimen_sw600dp_large"
                     android:layout_height="@dimen/dimen_box_default_height"
+                    android:textSize="@dimen/font_adicao_large"
                     style="@style/adc_alt_textview"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
@@ -162,6 +162,7 @@
                     android:layout_width="@dimen/spinner_dimen_sw600dp_large"
                     style="@style/adc_alt_textview"
                     android:layout_height="@dimen/dimen_box_default_height"
+                    android:textSize="@dimen/font_adicao_large"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:inputType="number"
@@ -171,6 +172,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
                     app:layout_constraintTop_toBottomOf="@+id/data" />
+
                 <TextView
                     android:id="@+id/diasText"
                     android:layout_width="wrap_content"

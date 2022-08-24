@@ -1,6 +1,5 @@
 package com.malfaa.recorde_me_remedio.remedio.adicionar
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.recorde_me_remedio.*
+import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
+import com.malfaa.recorde_me_remedio.diaAtual
+import com.malfaa.recorde_me_remedio.diaFinal
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
-import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.horaInicial
-import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.minutoInicial
+import com.malfaa.recorde_me_remedio.picker
 import com.malfaa.recorde_me_remedio.repository.Repository
-import java.time.LocalDateTime
-import java.util.*
 
 class AdicionarFragment : Fragment() {
     private lateinit var binding: AdicionarFragmentBinding
@@ -68,7 +64,7 @@ class AdicionarFragment : Fragment() {
         }
 
         binding.horarioInicial.setOnClickListener {
-            picker()
+            picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
         binding.adicionar.setOnClickListener{
@@ -107,27 +103,4 @@ class AdicionarFragment : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putParcelable(EDITOR_TEXT_INSTANCE, binding.item)
     }
-
-    fun picker() {
-        var horaFinal: String
-        val picker = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
-                .setMinute(LocalDateTime.now().minute).build()
-        } else {
-            MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
-                .setMinute(minutoFormato(Date().time)).build()
-        }
-
-        picker.show(requireParentFragment().parentFragmentManager, "remedio")
-
-        picker.addOnPositiveButtonClickListener {
-            horaInicial = String.format("%02d", picker.hour)
-            minutoInicial = String.format("%02d", picker.minute)
-            horaFinal = "$horaInicial:$minutoInicial"
-            binding.horarioInicial.text = horaFinal
-        }
-    }
-
 }
