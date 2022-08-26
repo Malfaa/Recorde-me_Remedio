@@ -1,6 +1,5 @@
 package com.malfaa.recorde_me_remedio.remedio.adicionar
 
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.malfaa.recorde_me_remedio.repository.Repository

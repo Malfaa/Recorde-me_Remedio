@@ -98,4 +98,6 @@
 
     <string name="dica_data">Dias</string>
     <string name="dica_horas">Horas</string>
+
+    <string name="remedio_notification_channel_id" translatable="false">remedio_channel</string>
 </resources>

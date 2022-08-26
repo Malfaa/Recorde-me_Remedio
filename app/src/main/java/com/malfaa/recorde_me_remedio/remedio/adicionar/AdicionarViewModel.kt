@@ -13,6 +13,7 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     companion object{
         var horaInicial : String = ""
         var minutoInicial : String = ""
+        val item_para_alarme = MutableLiveData<Remedio>()
     }
 
     val checkBox = MutableLiveData(false)
@@ -24,6 +25,7 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     fun adicionarRemedio(item:Remedio){
         viewModelScope.launch {
             repositorio.adicionandoRemedio(item)
+            item_para_alarme.value = item
             _navegarDeVolta.value = true
         }
     }
@@ -31,4 +33,5 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     fun navegarDeVoltaFeito(){
         _navegarDeVolta.value = false
     }
+    fun getUniqueId() = ((System.currentTimeMillis() % 10000).toInt())
 }

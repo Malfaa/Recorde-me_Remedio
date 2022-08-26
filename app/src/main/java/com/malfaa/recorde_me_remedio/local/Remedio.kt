@@ -1,10 +1,10 @@
 package com.malfaa.recorde_me_remedio.local
 
 import android.os.Parcelable
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.malfaa.recorde_me_remedio.Constantes
-import com.malfaa.recorde_me_remedio.diaAtual
-import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -22,7 +22,7 @@ data class Remedio(
     var horaComeco: String,
     var nota: String?,
     //var todosOsDias: Boolean = false
-//    var requestCode: Int
+    var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel
     @ColumnInfo(name = "primeiro_dia")

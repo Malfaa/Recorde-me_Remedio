@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.malfaa.recorde_me_remedio.R
+import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
 import com.malfaa.recorde_me_remedio.diaAtual
 import com.malfaa.recorde_me_remedio.diaFinal
@@ -75,12 +76,15 @@ class AdicionarFragment : Fragment() {
                     binding.horaEditText.text.toString().toInt(),
                     binding.dataEditText.text.toString().toInt(),
                     binding.horarioInicial.text.toString(),
-                    binding.campoNota.text.toString()
+                    binding.campoNota.text.toString(),
+                    viewModel.getUniqueId()
                 //binding.todosOsDias.isChecked
                 ).apply {
                     primeiroDia = diaAtual()
                     ultimoDia = diaFinal(binding.dataEditText.text.toString())
                 }
+
+                AlarmeService().adicionarAlarme(requireContext(), remedio)
 
                 viewModel.adicionarRemedio(remedio)
             }catch (e:Exception){

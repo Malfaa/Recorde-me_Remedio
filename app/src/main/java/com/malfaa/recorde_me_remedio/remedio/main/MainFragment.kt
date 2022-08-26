@@ -18,10 +18,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.admob.admob.ad
+import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
-import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.*
+import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
 import com.malfaa.recorde_me_remedio.repository.Repository
@@ -51,6 +52,8 @@ class MainFragment : Fragment() {
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
+        viewModel.criandoCanalDeNotificacao(requireContext())
+
         return binding.root
     }
 
@@ -67,7 +70,6 @@ class MainFragment : Fragment() {
         )
 
         // TODO: permission
-
         ad(binding, requireContext())
 
         binding.recyclerview.adapter = adapter
@@ -111,7 +113,7 @@ class MainFragment : Fragment() {
         construtor.setPositiveButton("Confirmar") { dialogInterface: DialogInterface, _: Int ->
             try{
                 viewModel.deletarRemedio(remedio)
-//                AlarmService(requireContext()).removerAlarme(remedio.requestCode)
+                AlarmeService().removerAlarme(requireContext(), remedio)
                 Toast.makeText(context, "Lembrete Deletado.", Toast.LENGTH_SHORT).show()
                 dialogInterface.cancel()
             }catch (e: Exception){
