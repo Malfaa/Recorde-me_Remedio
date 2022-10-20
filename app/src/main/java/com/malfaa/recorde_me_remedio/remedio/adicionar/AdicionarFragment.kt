@@ -84,13 +84,13 @@ class AdicionarFragment : Fragment() {
                     ultimoDia = diaFinal(binding.dataEditText.text.toString())
                 }
 
-                AlarmeService().adicionarAlarme(requireContext(), remedio)
+                AlarmeService().adicionarAlarme(requireContext(), remedio, null)
 
                 viewModel.adicionarRemedio(remedio)
             }catch (e:Exception){
                 Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
             }
-        }// TODO: ideia é quando o checkBox estiver marcado, ele muda o dataEditText pro valor que refere à todos_os_dias
+        }
 
         viewModel.checkBox.observe(viewLifecycleOwner){
                 condicao ->

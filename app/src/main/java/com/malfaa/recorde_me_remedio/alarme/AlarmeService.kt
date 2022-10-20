@@ -6,7 +6,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.core.os.bundleOf
+import com.malfaa.recorde_me_remedio.Constantes.INTENT_ACTION
+import com.malfaa.recorde_me_remedio.Constantes.INTENT_BUNDLE
 import com.malfaa.recorde_me_remedio.local.Remedio
+import java.util.*
 
 class AlarmeService {
 
@@ -15,36 +19,96 @@ class AlarmeService {
     private lateinit var notifyPendingIntent: PendingIntent
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun adicionarAlarme(context:Context, item: Remedio) {
-            alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            notifyIntent = Intent(context, AlarmeReceiver::class.java)
+    fun adicionarAlarme(context:Context, item: Remedio, valor: Int?) {
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
+            action = INTENT_ACTION
+            putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
+        }
 
-            notifyPendingIntent = PendingIntent.getBroadcast(
-                context.applicationContext,
-                item.requestCode,
-                notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-            )
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //hora.toInt()
+            set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//minutos.toInt()
+        }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(
+
+        notifyPendingIntent = PendingIntent.getBroadcast(
+            context.applicationContext,
+            item.requestCode,
+            notifyIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        when(valor){
+            null -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        calendar.timeInMillis,
+                        notifyPendingIntent
+                    )
+                }else{alarmManager.setExact(
                     AlarmManager.RTC_WAKEUP,
-                    100000,
+                    calendar.timeInMillis,
                     notifyPendingIntent
-                )
-            } else {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    100000,
-                    notifyPendingIntent
-                )
+                )}
+            }
+            else -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()), //pega o agora e soma equação
+                        notifyPendingIntent
+                    )
 
-        }// TODO: Corrigir o tempo e colocar reschedule 
+                } else {
+                    alarmManager.setExact(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
+                        notifyPendingIntent
+                    )
+                }
+            }
+        }
+
+/*
+if (valor != null){
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+alarmManager.setExactAndAllowWhileIdle(
+AlarmManager.RTC_WAKEUP,
+System.currentTimeMillis() + (1000 * 60 * (60 * item.horaEmHora).toLong()), //pega o agora e soma 3
+notifyPendingIntent
+)
+
+} else {
+alarmManager.setExact(
+AlarmManager.RTC_WAKEUP,
+System.currentTimeMillis() + (1000 * 60 * (60 * item.horaEmHora).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
+notifyPendingIntent
+)
+}
+}else {
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+alarmManager.setExactAndAllowWhileIdle(
+AlarmManager.RTC_WAKEUP,
+calendar.timeInMillis,
+notifyPendingIntent
+)//quando começar, colocar o reschedule -> 1000 * 60 * (60 * item.horaEmHora).toLong()
+
+} else {
+alarmManager.setExact(
+AlarmManager.RTC_WAKEUP,
+calendar.timeInMillis,
+notifyPendingIntent
+)
+}
+}
+*/
+
+
     }
 
-    // TODO: verificar se mesmo fechado funciona, colocar reboot permission tbm 
-
-    // TODO: criar vários alarmes
     @SuppressLint("UnspecifiedImmutableFlag")
     fun removerAlarme(context:Context, item: Remedio){
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager

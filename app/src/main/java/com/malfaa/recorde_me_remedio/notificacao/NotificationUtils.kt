@@ -11,7 +11,7 @@ import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.local.Remedio
 
 @SuppressLint("LaunchActivityFromNotification", "UnspecifiedImmutableFlag")
-fun NotificationManager.sendNotification(remedio: Remedio, applicationContext: Context) {
+fun NotificationManager.sendNotification(applicationContext: Context, remedio: Remedio) {
     // Create the content intent for the notification, which launches
     // this activity
     val intent = Intent(applicationContext, MainActivity::class.java)

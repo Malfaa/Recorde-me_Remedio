@@ -24,18 +24,18 @@
             </intent-filter>
         </activity>
 
-<!--        <receiver android:name="com.malfaa.recorde_me_remedio.receiver.BootReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
-
         <receiver
             android:name=".alarme.AlarmeReceiver"
             android:enabled="true"
+            android:exported="false"/>
+
+        <receiver
+            android:name=".alarme.BootReceiver"
+            android:enabled="true"
             android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
 
     </application>
