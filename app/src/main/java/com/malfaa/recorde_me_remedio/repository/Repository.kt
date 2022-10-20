@@ -9,6 +9,12 @@ class Repository(private val database: RemedioDatabase) : IRepository {
 
     val recebeItem = database.dao.getRemedios()
 
+    override suspend fun retornaUltimoDia(): List<String> {
+        return withContext(Dispatchers.IO) {
+            database.dao.getUltimoDia()
+        }
+    }
+
     override suspend fun adicionandoRemedio(item: Remedio){
         return withContext(Dispatchers.IO) {
             database.dao.adicionarRemedio(item)

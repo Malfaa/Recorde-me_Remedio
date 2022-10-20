@@ -9,6 +9,9 @@ interface RemedioDao {
     @Query("SELECT * FROM ${Constantes.TABLE_NAME}")
     fun getRemedios(): LiveData<List<Remedio>>
 
+    @Query("SELECT ultimo_dia FROM ${Constantes.TABLE_NAME}")
+    suspend fun getUltimoDia(): List<String>
+
     @Insert
     suspend fun adicionarRemedio(item: Remedio)
 

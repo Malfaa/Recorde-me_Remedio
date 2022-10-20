@@ -21,7 +21,8 @@ data class Remedio(
     @ColumnInfo(name = "hora_comeco")
     var horaComeco: String,
     var nota: String?,
-    //var todosOsDias: Boolean = false
+    @ColumnInfo(name = "todos_Dias")
+    var todosOsDias: Boolean = false,
     var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel

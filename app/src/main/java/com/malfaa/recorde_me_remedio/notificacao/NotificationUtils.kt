@@ -33,6 +33,29 @@ fun NotificationManager.sendNotification(applicationContext: Context, remedio: R
     notify(remedio.requestCode, builder.build())
 }
 
+@SuppressLint("UnspecifiedImmutableFlag")
+fun NotificationManager.sendLastDayNotification(applicationContext: Context) {
+    // Create the content intent for the notification, which launches
+    // this activity
+    val intent = Intent(applicationContext, MainActivity::class.java)
+    val pendingIntent: PendingIntent = PendingIntent.getActivity(
+        applicationContext,
+        0,
+        intent,
+        PendingIntent.FLAG_ONE_SHOT)
+
+    // Build the notification
+    val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.remedio_notification_channel_id))
+        .setSmallIcon(R.drawable.ic_clock)
+        .setContentTitle(applicationContext.resources.getString(R.string.ultimo_dia_titulo))
+        .setContentText(applicationContext.resources.getString(R.string.ultimo_dia_nota))
+        .setContentIntent(pendingIntent)
+        .setAutoCancel(true)
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+    notify(0, builder.build())
+}
+
 fun NotificationManager.cancelNotification(requestCode:Int){
     cancel(requestCode)
 }
