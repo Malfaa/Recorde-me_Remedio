@@ -30,6 +30,7 @@
     <string name="data">Período</string>
     <string name="hora_inicial">Iniciar em</string>
 
+<!--    Overhaul strings-->
     <string name="lembrar">Lembrar</string>
     <string name="novo_remedio">Novo Remedio</string>
     <string name="novo_item">Novo Item</string>
@@ -58,7 +59,7 @@
     <string name="inicia_todosdias">12/02</string>
     <string name="iniciou_em">16:30</string>
 
-
+<!--    Menu -->
     <string-array name="menu_main">
         <item>Adicionar Remedio</item>
         <item>Alterar Remedio</item>
@@ -71,6 +72,7 @@
 
     <string name="descricao_hora_inicial">Escolha qual horário o alarme terá seu ínicio.</string>
 
+<!--    Ad Strings-->
     <string name="banner_ad_unit">ca-app-pub-3295333534958164/4908034529</string>
     <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
 
@@ -88,6 +90,7 @@
         recomenda-se usar outro app ou despertadores nativos do celular.
     </string>
 
+<!--    Formatações-->
     <string name="data_somada">%s - %s</string>
     <string name="horas">%d em %d hora(s)</string>
     <string name="horas_hint">8 em 8 hora(s)</string>
@@ -100,4 +103,12 @@
     <string name="dica_horas">Horas</string>
 
     <string name="remedio_notification_channel_id" translatable="false">remedio_channel</string>
+
+<!--    WorkManager-->
+    <string name="ultimo_dia_titulo">Último Dia!</string>
+    <string name="ultimo_dia_nota">Verifique dentro do app qual remédio acabará hoje!\n Não se esqueça de removê-lo!</string>
+
+<!--    Alterar Strings-->
+    <string name="eram">Anteriormente eram:</string>
+
 </resources>

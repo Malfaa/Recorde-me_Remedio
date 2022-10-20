@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.malfaa.recorde_me_remedio.remedio.alterar.AlterarViewModel" />
+        <variable
+            name="item"
+            type="com.malfaa.recorde_me_remedio.local.Remedio" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,18 +129,50 @@
                     app:layout_constraintTop_toBottomOf="@+id/horaText" />
 
                 <TextView
-                    android:id="@+id/horasText"
+                    android:id="@+id/anteriormente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/eram"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/campoRemedio"
+                    app:layout_constraintHorizontal_bias="0.8"
+                    app:layout_constraintStart_toEndOf="@+id/horaInicialText"
+                    app:layout_constraintTop_toTopOf="@+id/horaInicialText" />
+
+                <TextView
+                    android:id="@+id/eraInicial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/iniciou_em"
+                    android:text="@{viewModel.item.horaComeco}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
+                    app:layout_constraintEnd_toEndOf="@+id/anteriormente"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/anteriormente"
+                    app:layout_constraintTop_toTopOf="@+id/horarioInicial" />
+
+                <TextView
+                    android:id="@+id/eraHorasText"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:hint="@string/horas_hint"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/font_adicao"
                     android:gravity="center"
-                    android:layout_marginStart="@dimen/dimen_box_small_width"
-                    app:layout_constraintTop_toTopOf="@+id/horaEditText"
+                    android:hint="@string/horas_hint"
+                    android:text="@{String.format(@string/horas, viewModel.item.horaEmHora,viewModel.item.horaEmHora)}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/horaEditText"
-                    app:layout_constraintStart_toEndOf="@+id/horaEditText" />
+                    app:layout_constraintEnd_toEndOf="@+id/eraInicial"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/eraInicial"
+                    app:layout_constraintTop_toTopOf="@+id/horaEditText" />
 
                 <TextView
                     android:id="@+id/data"
@@ -173,17 +208,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/data" />
 
                 <TextView
-                    android:id="@+id/diasText"
+                    android:id="@+id/eraDiasText"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginStart="@dimen/dimen_box_small_width"
                     android:gravity="center"
                     android:hint="@string/dias_hint"
+                    android:text="@{String.format(@string/dias, viewModel.item.periodoDias)}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/dataEditText"
-                    app:layout_constraintStart_toEndOf="@+id/dataEditText"
+                    app:layout_constraintEnd_toEndOf="@+id/eraInicial"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/eraInicial"
                     app:layout_constraintTop_toTopOf="@+id/dataEditText" />
 
                 <TextView

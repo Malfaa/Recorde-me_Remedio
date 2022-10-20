@@ -4,67 +4,49 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38697916666666665" />
-        <entry key="app/src/main/res/drawable/day_add_alt_text_box.xml" value="0.1725" />
-        <entry key="app/src/main/res/drawable/day_lembrete_text_view_drawable.xml" value="0.3305" />
-        <entry key="app/src/main/res/drawable/day_text_view_drawable.xml" value="0.359" />
+        <entry key="app/src/main/res/drawable/day_add_alt_text_box.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/day_add_alt_text_box_disabled.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/edittext_corner_radius.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/edittext_corner_radius_azul.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.3495" />
         <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.3640625" />
-        <entry key="app/src/main/res/drawable/ic_clock_night.xml" value="0.359" />
+        <entry key="app/src/main/res/drawable/ic_clock_night.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/ic_dropdown.xml" value="0.3495" />
-        <entry key="app/src/main/res/drawable/ic_expand_less.xml" value="0.3305" />
-        <entry key="app/src/main/res/drawable/ic_expand_more.xml" value="0.3595" />
-        <entry key="app/src/main/res/drawable/ic_frame.xml" value="0.359" />
-        <entry key="app/src/main/res/drawable/ic_frame_night.xml" value="0.359" />
         <entry key="app/src/main/res/drawable/ic_icone.xml" value="0.38697916666666665" />
-        <entry key="app/src/main/res/drawable/ic_icone_dark.xml" value="0.1725" />
-        <entry key="app/src/main/res/drawable/ic_icone_light.xml" value="0.1725" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.359" />
+        <entry key="app/src/main/res/drawable/ic_icone_launcher.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2025" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/ic_notes.xml" value="0.3495" />
         <entry key="app/src/main/res/drawable/ic_pill.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_plugin_icon_maior.xml" value="0.38697916666666665" />
-        <entry key="app/src/main/res/drawable/ic_time.xml" value="0.3305" />
-        <entry key="app/src/main/res/drawable/ic_timer.xml" value="0.3305" />
-        <entry key="app/src/main/res/drawable/night_add_alt_text_box.xml" value="0.3305" />
-        <entry key="app/src/main/res/drawable/outline_nota_item_lembrete.xml" value="0.3305" />
-        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-land/alterar_fragment.xml" value="0.30335097001763667" />
-        <entry key="app/src/main/res/layout-land/item_lembrete.xml" value="0.7175675675675676" />
-        <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.11197916666666667" />
-        <entry key="app/src/main/res/layout-land/main_fragment.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable/night_text_view_drawable.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/outline_nota_item_lembrete.xml" value="0.3765" />
+        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.2945326278659612" />
+        <entry key="app/src/main/res/layout-land/alterar_fragment.xml" value="0.31790123456790126" />
+        <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.31790123456790126" />
         <entry key="app/src/main/res/layout-large/alterar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout-normal/adicionar_fragment.xml" value="0.38159371492704824" />
         <entry key="app/src/main/res/layout-normal/alterar_fragment.xml" value="0.67" />
         <entry key="app/src/main/res/layout-normal/novo_adicionar.xml" value="0.2" />
         <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="1.0" />
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.4188087774294671" />
-        <entry key="app/src/main/res/layout-small/item_lembrete.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-small/item_remedio.xml" value="0.22489539748953974" />
-        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout-sw600dp/alterar_fragment.xml" value="0.33" />
-        <entry key="app/src/main/res/layout-sw600dp/item_lembrete.xml" value="0.6764331210191082" />
-        <entry key="app/src/main/res/layout-sw600dp/item_remedio.xml" value="0.1" />
-        <entry key="app/src/main/res/layout-sw600dp/main_fragment.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.5301587301587302" />
-        <entry key="app/src/main/res/layout/item_remedio.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_remedio.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/llist_item.xml" value="0.28559213339033773" />
-        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/novo_adc_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/novo_adicionar.xml" value="0.22" />
         <entry key="app/src/main/res/layout/novo_novo_adicionar.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/splash_screen_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/splash_screen_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/teste_adicionar.xml" value="0.28559213339033773" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.191" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.359" />
-        <entry key="app/src/main/res/xml/motion_scene.xml" value="0.3567708333333333" />
       </map>
     </option>
   </component>
@@ -73,12 +55,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.14" />
-      </ProjectState>
-    </option>
   </component>
 </project>

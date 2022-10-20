@@ -31,6 +31,9 @@
     <color name="night_primary">#218883</color>
     <color name="night_primary_variant">#885021</color>
 
+<!--    Day Text Box (DTB)-->
+    <color name="dtb">#807BBFB1</color>
+
 
     <!--    Frame Backgroung-->
     <color name="frame_bg">#322F2F</color>
