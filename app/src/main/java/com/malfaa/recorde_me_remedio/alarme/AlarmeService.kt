@@ -71,43 +71,65 @@ class AlarmeService {
                 }
             }
         }
+    }
 
 /*
-if (valor != null){
+fun rebootAlarme(context:Context, item: List<Remedio>, valor: Int?){
+alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
+action = INTENT_ACTION
+putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
+}
+
+val calendar: Calendar = Calendar.getInstance().apply {
+timeInMillis = System.currentTimeMillis()
+set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //hora.toInt()
+set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//minutos.toInt()
+}
+
+
+notifyPendingIntent = PendingIntent.getBroadcast(
+context.applicationContext,
+item.requestCode,
+notifyIntent,
+PendingIntent.FLAG_UPDATE_CURRENT
+)
+
+for(i in list){
+when(valor){
+null -> {
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 alarmManager.setExactAndAllowWhileIdle(
 AlarmManager.RTC_WAKEUP,
-System.currentTimeMillis() + (1000 * 60 * (60 * item.horaEmHora).toLong()), //pega o agora e soma 3
+calendar.timeInMillis,
+notifyPendingIntent
+)
+}else{alarmManager.setExact(
+AlarmManager.RTC_WAKEUP,
+calendar.timeInMillis,
+notifyPendingIntent
+)}
+}
+else -> {
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+alarmManager.setExactAndAllowWhileIdle(
+AlarmManager.RTC_WAKEUP,
+System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()), //pega o agora e soma equação
 notifyPendingIntent
 )
 
 } else {
 alarmManager.setExact(
 AlarmManager.RTC_WAKEUP,
-System.currentTimeMillis() + (1000 * 60 * (60 * item.horaEmHora).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
-notifyPendingIntent
-)
-}
-}else {
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-alarmManager.setExactAndAllowWhileIdle(
-AlarmManager.RTC_WAKEUP,
-calendar.timeInMillis,
-notifyPendingIntent
-)//quando começar, colocar o reschedule -> 1000 * 60 * (60 * item.horaEmHora).toLong()
-
-} else {
-alarmManager.setExact(
-AlarmManager.RTC_WAKEUP,
-calendar.timeInMillis,
+System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
 notifyPendingIntent
 )
 }
 }
+}
+}
+}// p/ todos os alarmes
 */
-
-
-    }
 
     @SuppressLint("UnspecifiedImmutableFlag")
     fun removerAlarme(context:Context, item: Remedio){
