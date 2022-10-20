@@ -1,16 +1,19 @@
 package com.malfaa.recorde_me_remedio.remedio.alterar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.malfaa.recorde_me_remedio.R
+import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AlterarFragmentBinding
 import com.malfaa.recorde_me_remedio.diaAtual
 import com.malfaa.recorde_me_remedio.diaFinal
@@ -25,9 +28,7 @@ class AlterarFragment : Fragment()  {
 
     private val args: AlterarFragmentArgs by navArgs()
 
-    private val viewModel: AlterarViewModel by viewModels{
-        AlterarViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())))
-    }
+    private val viewModel: AlterarViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +46,7 @@ class AlterarFragment : Fragment()  {
         return binding.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,19 +65,38 @@ class AlterarFragment : Fragment()  {
 
         binding.alterar.setOnClickListener{
             try{
-                val remedio = Remedio(
-                    args.item.id,
-                    binding.campoRemedio.text.toString(),
-                    binding.horaEditText.text.toString().toInt(),
-                    binding.dataEditText.text.toString().toInt(),
-                    binding.horarioInicial.text.toString(),
-                    binding.campoNota.text.toString(),
-                    args.item.requestCode
-                    //binding.todosOsDias.isChecked
-                ).apply {
-                    primeiroDia = diaAtual()
-                    ultimoDia = diaFinal(binding.dataEditText.text.toString())
+                val remedio: Remedio
+                when(binding.checkBox!!.isChecked) {
+                    false -> remedio = Remedio(
+                        args.item.id,
+                        binding.campoRemedio.text.toString(),
+                        binding.horaEditText.text.toString().toInt(),
+                        binding.dataEditText.text.toString().toInt(),
+                        binding.horarioInicial.text.toString(),
+                        binding.campoNota.text.toString(),
+                        binding.checkBox!!.isChecked,
+                        args.item.requestCode
+
+                    ).apply {
+                        primeiroDia = diaAtual()
+                        ultimoDia = diaFinal(binding.dataEditText.text.toString())
+                    }
+                    true -> remedio = Remedio(
+                        args.item.id,
+                        binding.campoRemedio.text.toString(),
+                        binding.horaEditText.text.toString().toInt(),
+                        999999999,
+                        binding.horarioInicial.text.toString(),
+                        binding.campoNota.text.toString(),
+                        binding.checkBox!!.isChecked,
+                        args.item.requestCode
+                    ).apply {
+                        primeiroDia = diaAtual()
+                        ultimoDia = "-"// diaFinal("999999999")
+                    }
                 }
+
+                AlarmeService().adicionarAlarme(requireContext(), remedio, null)
 
                 viewModel.alterarRemedio(remedio)
             }catch (e:Exception){
@@ -94,8 +115,17 @@ class AlterarFragment : Fragment()  {
         viewModel.checkBox.observe(viewLifecycleOwner){
                 condicao ->
             when(condicao){
-                true -> binding.dataEditText.isEnabled = false
-                false -> binding.dataEditText.isEnabled = true
+                true ->
+                    binding.dataEditText.apply {
+                        isEnabled = false
+                        background = context.getDrawable(R.drawable.day_add_alt_text_box_disabled)
+
+                    }
+                false ->
+                    binding.dataEditText.apply {
+                        isEnabled = true
+                        background = context.getDrawable(R.drawable.day_add_alt_text_box)
+                    }
 
             }
         }

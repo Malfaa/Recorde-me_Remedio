@@ -45,47 +45,54 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-ads-lite:21.1.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    var lifecycle_version = "2.5.1"
-    var room_version = "2.4.3"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    testImplementation "org.junit.jupiter:junit-jupiter"
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.core:core-ktx:1.8.0"
+    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "com.google.android.material:material:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
 
     //Testes
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     //JUnit4
     testImplementation "androidx.test:core-ktx:1.4.0"
-    testImplementation "org.robolectric:robolectric:4.8"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "androidx.test.ext:junit-ktx:1.1.3"
 
     //Coroutine teste
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
-    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
     // InstantTaskExecutorRule class
-    testImplementation 'androidx.arch.core:core-testing:2.1.0'
-    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation "androidx.arch.core:core-testing:$instantTaskExecutorRule"
+    androidTestImplementation "androidx.arch.core:core-testing:$instantTaskExecutorRule"
 
     //Mockito
-    testImplementation 'org.mockito:mockito-core:3.0.0'
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     //Room
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin Test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    // Jetpack Compose
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
+    // Testing
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
 
     //ViewModel
@@ -95,5 +102,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     //AdMob
-    implementation 'com.google.android.gms:play-services-ads:21.1.0'
+    implementation "com.google.android.gms:play-services-ads:$adMob"
+    implementation "com.google.android.gms:play-services-ads-lite:$adMob"
+
+    //Workmanager
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 }

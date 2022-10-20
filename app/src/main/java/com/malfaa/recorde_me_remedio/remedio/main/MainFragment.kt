@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -21,26 +20,22 @@ import com.malfaa.recorde_me_remedio.admob.admob.ad
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
-import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
-import com.malfaa.recorde_me_remedio.repository.Repository
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding : MainFragmentBinding
+    private val viewModel: MainViewModel by viewModel()
 
-    private val viewModel: MainViewModel by viewModels{
-        MainViewModelFactory(Repository(RemedioDatabase.getInstance(requireContext())))
-    }
+    private lateinit var binding : MainFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
         binding = MainFragmentBinding.inflate(inflater,container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.remedio_lembrar)
@@ -48,7 +43,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        MobileAds.initialize(requireContext()){}
+        MobileAds.initialize(requireContext())
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
@@ -69,7 +64,6 @@ class MainFragment : Fragment() {
             }
         )
 
-        // TODO: permission
         ad(binding, requireContext())
 
         binding.recyclerview.adapter = adapter
@@ -91,8 +85,8 @@ class MainFragment : Fragment() {
                 condicao ->
             if(condicao){
                 alertDialogDeletarContato(remedioItem.value!!)
+                deletar.value = false
             }
-
         }
 
         //Callback
