@@ -181,15 +181,17 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:hint="@string/dias_hint"
-                    android:text="@{String.format(@string/dias, viewModel.item.periodoDias)}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     android:textStyle="bold"
+                    app:alterarAnteriormente="@{viewModel.item}"
                     app:layout_constraintBottom_toBottomOf="@+id/dataEditText"
                     app:layout_constraintEnd_toEndOf="@+id/eraInicial"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/eraInicial"
                     app:layout_constraintTop_toTopOf="@+id/dataEditText" />
+<!--                                    android:text="@{String.format(@string/dias, viewModel.item.periodoDias)}"
+-->
 
                 <TextView
                     android:id="@+id/notaText"

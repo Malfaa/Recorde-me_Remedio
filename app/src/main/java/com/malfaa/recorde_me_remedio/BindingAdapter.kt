@@ -6,6 +6,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.malfaa.recorde_me_remedio.local.Remedio
 
 @BindingAdapter("notaValue")
 fun notaValue(view:View, nota:String?){
@@ -23,4 +24,14 @@ fun mudaExemplo(editText: EditText, textView: TextView){
 @BindingAdapter("todososdias")
 fun todososdias(textView: TextView, item: Boolean){
     if(item) textView.text = "Todos os Dias"
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("alterarAnteriormente")
+fun alterarAnteriormente(textView: TextView, item: Remedio){
+    if (item.todosOsDias){
+        textView.text = "Todos os Dias"
+    }else{
+        textView.text = String.format("%d dia(s)", item.periodoDias)
+    }
 }
