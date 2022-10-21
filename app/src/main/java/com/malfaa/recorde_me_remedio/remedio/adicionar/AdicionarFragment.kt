@@ -1,18 +1,18 @@
 package com.malfaa.recorde_me_remedio.remedio.adicionar
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.res.colorResource
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
@@ -20,6 +20,7 @@ import com.malfaa.recorde_me_remedio.diaAtual
 import com.malfaa.recorde_me_remedio.diaFinal
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.picker
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdicionarFragment : Fragment() {
     private lateinit var binding: AdicionarFragmentBinding
@@ -70,13 +71,41 @@ class AdicionarFragment : Fragment() {
             picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
+        viewModel.checkBox.observe(viewLifecycleOwner){
+                condicao ->
+            when(condicao){
+                true ->{
+                    binding.dataEditText.isEnabled = false
+                    when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                        Configuration.UI_MODE_NIGHT_YES -> {
+                            binding.dataEditText.background = requireContext().getDrawable(R.drawable.night_add_alt_text_box_disabled)
+                        }
+                        Configuration.UI_MODE_NIGHT_NO -> {
+                            binding.dataEditText.background = requireContext().getDrawable(R.drawable.day_add_alt_text_box_disabled)
+                        }
+                    }
+                }
+                false ->{
+                    binding.dataEditText.isEnabled = true
+                    when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                        Configuration.UI_MODE_NIGHT_YES -> {
+                            binding.dataEditText.background = requireContext().getDrawable(R.drawable.night_add_alt_text_box)
+                        }
+                        Configuration.UI_MODE_NIGHT_NO -> {
+                            binding.dataEditText.background = requireContext().getDrawable(R.drawable.day_add_alt_text_box)
+                        }
+                    }
+                }
+            }
+        }
+
         binding.adicionar.setOnClickListener{
             try{
                 val remedio: Remedio
                 when(binding.checkBox!!.isChecked){
                     false ->remedio = Remedio(
                         0,
-                        binding.campoRemedio.text.toString(),
+                        binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         binding.dataEditText.text.toString().toInt(),
                         binding.horarioInicial.text.toString(),
@@ -90,7 +119,7 @@ class AdicionarFragment : Fragment() {
                     true -> {
                         remedio = Remedio(
                             0,
-                            binding.campoRemedio.text.toString(),
+                            binding.campoRemedio.text.toString().uppercase(),
                             binding.horaEditText.text.toString().toInt(),
                             999999999,
                             binding.horarioInicial.text.toString(),
@@ -109,27 +138,9 @@ class AdicionarFragment : Fragment() {
                 viewModel.adicionarRemedio(remedio)
             }catch (e:Exception){
                 Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
+                Log.e("AdicionarFragment",e.message!!)
             }
         }
-
-        viewModel.checkBox.observe(viewLifecycleOwner){
-                condicao ->
-            when(condicao){
-                true ->
-                    binding.dataEditText.apply {
-                        isEnabled = false
-                        background = context.getDrawable(R.drawable.day_add_alt_text_box_disabled)
-
-                    }
-                false ->
-                    binding.dataEditText.apply {
-                        isEnabled = true
-                        background = context.getDrawable(R.drawable.day_add_alt_text_box)
-                    }
-
-            }
-        }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

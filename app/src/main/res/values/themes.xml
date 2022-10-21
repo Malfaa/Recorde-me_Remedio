@@ -50,7 +50,6 @@
 
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/margin_top_for_hora_inicial</item>
-        <!--item name="android:layout_marginStart">@dimen/distancia_item_edittext</item-->
         <item name="android:background">@drawable/day_add_alt_text_box</item>
 
     </style>

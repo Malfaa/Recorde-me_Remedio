@@ -33,12 +33,21 @@ class AlarmeService {
         }
 
 
-        notifyPendingIntent = PendingIntent.getBroadcast(
-            context.applicationContext,
-            item.requestCode,
-            notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        notifyPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }else{
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
 
         when(valor){
             null -> {
@@ -73,7 +82,7 @@ class AlarmeService {
         }
     }
 
-/*
+    /*
 fun rebootAlarme(context:Context, item: List<Remedio>, valor: Int?){
 alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
@@ -134,14 +143,25 @@ notifyPendingIntent
     @SuppressLint("UnspecifiedImmutableFlag")
     fun removerAlarme(context:Context, item: Remedio){
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        notifyIntent = Intent(context, AlarmeReceiver::class.java)
+        notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
+            action = INTENT_ACTION //fixme o problema pode ser aqui dos alarmes não serem excluídos
+        }
 
-        notifyPendingIntent = PendingIntent.getBroadcast(
-            context.applicationContext,
-            item.requestCode,
-            notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        notifyPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE //FLAG_UPDATE_CURRENT
+            )
+        }else{
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
 
         alarmManager.cancel(notifyPendingIntent)
     }

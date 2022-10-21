@@ -10,9 +10,10 @@ import kotlinx.coroutines.launch
 
 class AlterarViewModel(private val repositorio: Repository): ViewModel() {
 
-    val checkBox = MutableLiveData(false)
 
     val item = MutableLiveData<Remedio>()
+
+    val checkBox = MutableLiveData<Boolean>()
 
     private val _navegarDeVolta = MutableLiveData(false)
     val navegarDeVolta : LiveData<Boolean>
