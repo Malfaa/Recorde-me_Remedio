@@ -8,6 +8,7 @@ import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import com.malfaa.recorde_me_remedio.remedio.alterar.AlterarViewModel
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel
 import com.malfaa.recorde_me_remedio.repository.Repository
+import com.malfaa.recorde_me_remedio.utils.Constantes
 import com.malfaa.recorde_me_remedio.workmanager.VerificaDiaENotifica
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

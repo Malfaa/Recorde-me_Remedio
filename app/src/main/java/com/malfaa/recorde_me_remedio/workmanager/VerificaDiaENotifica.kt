@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.malfaa.recorde_me_remedio.calendarioParaData
+import com.malfaa.recorde_me_remedio.utils.calendarioParaData
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.notificacao.sendLastDayNotification
 import com.malfaa.recorde_me_remedio.repository.Repository

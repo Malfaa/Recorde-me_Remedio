@@ -2,7 +2,7 @@ package com.malfaa.recorde_me_remedio.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.malfaa.recorde_me_remedio.Constantes
+import com.malfaa.recorde_me_remedio.utils.Constantes
 
 @Dao
 interface RemedioDao {
