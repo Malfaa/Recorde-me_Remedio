@@ -1,4 +1,4 @@
-package com.malfaa.recorde_me_remedio
+package com.malfaa.recorde_me_remedio.utils
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -11,22 +11,17 @@ import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
-import java.util.concurrent.atomic.AtomicInteger
-
-object RandomUtil{
-    private val seed = AtomicInteger()
-    fun getRandomInt() = seed.getAndIncrement() + System.currentTimeMillis().toInt()
-}
+import java.util.concurrent.TimeUnit
 
 fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
-    val horarioEscolhidoConcatenado = hora+minuto
+    val horarioEscolhidoConcatenado = hora+minuto +15 //15 min de atraso
     val horarioLocalConcatenado =
         Calendar.HOUR_OF_DAY + Calendar.MINUTE
 
-    return if (horarioEscolhidoConcatenado < horarioLocalConcatenado) {
-        1
-    }else{
+    return if (horarioEscolhidoConcatenado > horarioLocalConcatenado) { //  19:15 19:00
         0
+    }else{// 19:00 19:15
+        1
     }
 }
 
@@ -41,6 +36,15 @@ fun diaAtual():String{
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()))
     return calendarioParaData(calendar.time)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun diaAtualFormatado():String{
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()))
+
+    val formato = SimpleDateFormat("yyyy/MM/dd")
+    return formato.format(calendar.time)
 }
 
 fun diaFinal(editTextData: String):String{
@@ -90,13 +94,31 @@ fun horaFormato(horaSistema: Long): Int {
     }
 
 }
-
 @SuppressLint("SimpleDateFormat")
 fun minutoFormato(horaSistema: Long): Int {
     return try {
         val formato = SimpleDateFormat("mm")
         formato.format(horaSistema).toInt()
     } catch (e: Exception) {
+        Log.d("error", "$e")
+    }
+}
+
+@SuppressLint("SimpleDateFormat")
+fun tempoEmMilissegundos(hora: Int, minuto: Int):Long {//"2014/10/29 18:10:45"
+    val myDate = "${diaAtualFormatado()} $hora:$minuto:00"
+    val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    val date: Date= sdf.parse(myDate) as Date
+
+    return date.time * 1000
+}
+
+@SuppressLint("SimpleDateFormat")
+fun minutoParaAlarme(horaSistema: Long): Int {
+    return try {
+        val formato = SimpleDateFormat("HH:mm")
+        formato.format(horaSistema).substringAfter(":").toInt()
+    }catch (e: Exception) {
         Log.d("error", "$e")
     }
 }

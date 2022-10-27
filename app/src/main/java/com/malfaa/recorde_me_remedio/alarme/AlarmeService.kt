@@ -7,9 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.os.bundleOf
-import com.malfaa.recorde_me_remedio.Constantes.INTENT_ACTION
-import com.malfaa.recorde_me_remedio.Constantes.INTENT_BUNDLE
 import com.malfaa.recorde_me_remedio.local.Remedio
+import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_ACTION
+import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
 import java.util.*
 
 class AlarmeService {
@@ -27,9 +27,8 @@ class AlarmeService {
         }
 
         val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //hora.toInt()
-            set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//minutos.toInt()
+            set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //item.horaComeco.substringBefore(":").toInt()
+            set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//item.horaComeco.substringAfter(":").toInt()
         }
 
 
@@ -57,11 +56,13 @@ class AlarmeService {
                         calendar.timeInMillis,
                         notifyPendingIntent
                     )
-                }else{alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    notifyPendingIntent
-                )}
+                }else{
+                    alarmManager.setExact(
+                        AlarmManager.RTC_WAKEUP,
+                        calendar.timeInMillis,
+                        notifyPendingIntent
+                    )
+                }
             }
             else -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -82,69 +83,11 @@ class AlarmeService {
         }
     }
 
-    /*
-fun rebootAlarme(context:Context, item: List<Remedio>, valor: Int?){
-alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
-action = INTENT_ACTION
-putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
-}
-
-val calendar: Calendar = Calendar.getInstance().apply {
-timeInMillis = System.currentTimeMillis()
-set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //hora.toInt()
-set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//minutos.toInt()
-}
-
-
-notifyPendingIntent = PendingIntent.getBroadcast(
-context.applicationContext,
-item.requestCode,
-notifyIntent,
-PendingIntent.FLAG_UPDATE_CURRENT
-)
-
-for(i in list){
-when(valor){
-null -> {
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-alarmManager.setExactAndAllowWhileIdle(
-AlarmManager.RTC_WAKEUP,
-calendar.timeInMillis,
-notifyPendingIntent
-)
-}else{alarmManager.setExact(
-AlarmManager.RTC_WAKEUP,
-calendar.timeInMillis,
-notifyPendingIntent
-)}
-}
-else -> {
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-alarmManager.setExactAndAllowWhileIdle(
-AlarmManager.RTC_WAKEUP,
-System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()), //pega o agora e soma equação
-notifyPendingIntent
-)
-
-} else {
-alarmManager.setExact(
-AlarmManager.RTC_WAKEUP,
-System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
-notifyPendingIntent
-)
-}
-}
-}
-}
-}// p/ todos os alarmes
-*/
-
     @SuppressLint("UnspecifiedImmutableFlag")
     fun removerAlarme(context:Context, item: Remedio){
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
-            action = INTENT_ACTION //fixme o problema pode ser aqui dos alarmes não serem excluídos
+            action = INTENT_ACTION
         }
 
         notifyPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -20,6 +20,8 @@ data class Remedio(
     var periodoDias: Int,
     @ColumnInfo(name = "hora_comeco")
     var horaComeco: String,
+    @ColumnInfo(name = "hora_comeco_em_millis")
+    var horaComecoEmMillis: Long,
     var nota: String?,
     @ColumnInfo(name = "todos_Dias")
     var todosOsDias: Boolean = false,

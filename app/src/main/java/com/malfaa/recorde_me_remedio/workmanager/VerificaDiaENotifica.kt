@@ -30,7 +30,6 @@ class VerificaDiaENotifica (private val context: Context, params: WorkerParamete
                 }
             }
 
-
             Result.success()
         }catch (e:Exception){
             Result.retry()

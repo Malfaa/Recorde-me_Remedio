@@ -14,11 +14,13 @@ import androidx.navigation.fragment.navArgs
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AlterarFragmentBinding
-import com.malfaa.recorde_me_remedio.diaAtual
-import com.malfaa.recorde_me_remedio.diaFinal
+import com.malfaa.recorde_me_remedio.utils.diaAtual
+import com.malfaa.recorde_me_remedio.utils.diaFinal
 import com.malfaa.recorde_me_remedio.local.Remedio
-import com.malfaa.recorde_me_remedio.picker
+import com.malfaa.recorde_me_remedio.utils.picker
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
+import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
+import com.malfaa.recorde_me_remedio.utils.tempoEmMilissegundos
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlterarFragment : Fragment()  {
@@ -109,7 +111,8 @@ class AlterarFragment : Fragment()  {
                         binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         binding.dataEditText.text.toString().toInt(),
-                        binding.horarioInicial.text.toString(),
+                        binding.horarioInicial.text.toString(),//hora
+                        tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()),
                         binding.campoNota.text.toString(),
                         binding.checkBox!!.isChecked,
                         args.item.requestCode
@@ -123,7 +126,8 @@ class AlterarFragment : Fragment()  {
                         binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         999999999,
-                        binding.horarioInicial.text.toString(),
+                        binding.horarioInicial.text.toString(),//hora
+                        tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()),
                         binding.campoNota.text.toString(),
                         binding.checkBox!!.isChecked,
                         args.item.requestCode

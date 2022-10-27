@@ -39,17 +39,17 @@
             tools:listitem="@layout/item_remedio" />
 
         <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
-            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/distancia_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="@string/banner_google"
+            android:layout_marginEnd="@dimen/distancia_item_edittext"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/banner_google"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/adicionarLembrete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

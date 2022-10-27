@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.repository.Repository
 import kotlinx.coroutines.launch
+import java.sql.Time
+import java.util.*
 
 class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
 

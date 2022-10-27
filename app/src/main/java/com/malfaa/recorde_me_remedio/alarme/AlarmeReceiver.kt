@@ -5,8 +5,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
-import com.malfaa.recorde_me_remedio.Constantes.INTENT_ACTION
-import com.malfaa.recorde_me_remedio.Constantes.INTENT_BUNDLE
+import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_ACTION
+import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.notificacao.sendNotification
 
@@ -27,18 +27,5 @@ class AlarmeReceiver: BroadcastReceiver() {
             AlarmeService().adicionarAlarme(context, item, item.horaEmHora)
 
         }
-
-        if (intent.action != Intent.ACTION_BOOT_COMPLETED) {
-            val item = intent.getBundleExtra(INTENT_BUNDLE)?.getParcelable<Remedio>(INTENT_BUNDLE)
-
-//            notificationManager.sendNotification(
-//                context,
-//                item!!
-//            )
-            AlarmeService().adicionarAlarme(context, item!!, item.horaEmHora)
-
-
-        }
     }
-
 }
