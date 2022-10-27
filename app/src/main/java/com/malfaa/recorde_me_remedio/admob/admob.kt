@@ -19,7 +19,7 @@ object admob {
                 // Code to be executed when an ad request fails.
                 val error = String.format(
                     "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
-                Toast.makeText(context, "Ad failed to load, error: $error.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Ad failed to load", Toast.LENGTH_SHORT).show()//, error: $error.
             }
 
             override fun onAdOpened() {

@@ -4,7 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.malfaa.recorde_me_remedio.Constantes
+import com.malfaa.recorde_me_remedio.utils.Constantes
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 

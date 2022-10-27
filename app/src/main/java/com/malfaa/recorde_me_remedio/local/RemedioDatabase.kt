@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.malfaa.recorde_me_remedio.Constantes
+import com.malfaa.recorde_me_remedio.utils.Constantes
 
 @Database(entities = [Remedio::class], version = 1, exportSchema = false)
 abstract class RemedioDatabase : RoomDatabase() {

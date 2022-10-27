@@ -288,15 +288,16 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/iniciou_em"
-                    android:text="@{viewModel.item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     android:textStyle="bold"
+                    android:text="@{viewModel.item.horaComeco}"
                     app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
                     app:layout_constraintEnd_toEndOf="@+id/anteriormente"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/anteriormente"
                     app:layout_constraintTop_toTopOf="@+id/horarioInicial" />
+<!--                app:horario="@{item}"-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

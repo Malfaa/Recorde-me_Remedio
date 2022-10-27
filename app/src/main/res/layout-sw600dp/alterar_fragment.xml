@@ -86,7 +86,6 @@
                     android:layout_width="@dimen/spinner_dimen"
                     android:layout_height="@dimen/dimen_box_large_height"
                     android:minWidth="@dimen/dimen_box_default_width"
-                    android:text="@{viewModel.item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao_large"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
@@ -116,7 +115,6 @@
                     android:layout_gravity="center"
                     android:textSize="@dimen/font_adicao_large"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:text="@{`` + viewModel.item.horaEmHora}"
                     android:inputType="time"
                     android:minWidth="50dp"
                     android:hint="@string/dica_horas"
@@ -145,15 +143,16 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/iniciou_em"
-                    android:text="@{viewModel.item.horaComeco}"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao_large"
                     android:textStyle="bold"
+                    android:text="@{viewModel.item.horaComeco}"
                     app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
                     app:layout_constraintEnd_toEndOf="@+id/anteriormente"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/anteriormente"
                     app:layout_constraintTop_toTopOf="@+id/horarioInicial" />
+<!--                app:horario="@{item}"-->
 
                 <TextView
                     android:id="@+id/eraHorasText"
@@ -257,6 +256,7 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:text="@{viewModel.item.nota}"
                     android:maxWidth="100dp"
                     android:paddingStart="@dimen/padding_edittext"
                     android:paddingEnd="@dimen/padding_edittext"

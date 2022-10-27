@@ -12,7 +12,7 @@
             type="com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener" />
         <variable
             name="utils"
-            type="com.malfaa.recorde_me_remedio.UtilsKt" />
+            type="com.malfaa.recorde_me_remedio.utils.UtilsKt" />
     </data>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/lembrete"
@@ -84,13 +84,15 @@
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/dimen_box_normal_width"
                 android:text="@{item.horaComeco}"
-                tools:text = "@string/iniciou_em"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/inicio"
                 app:layout_constraintStart_toStartOf="@id/inicio"
-                app:layout_constraintTop_toBottomOf="@id/inicio" />
+                app:layout_constraintTop_toBottomOf="@id/inicio"
+                tools:text = "@string/iniciou_em"/>
+<!--            app:horario="@{item}"-->
+
 
 
             <androidx.appcompat.widget.AppCompatTextView
