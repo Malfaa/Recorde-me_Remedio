@@ -102,20 +102,20 @@ class AdicionarFragment : Fragment() {
         binding.adicionar.setOnClickListener{
             try{
                 val remedio: Remedio
+                val horas = tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt())
                 when(binding.checkBox!!.isChecked){
                     false ->remedio = Remedio(
                         0,
                         binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         binding.dataEditText.text.toString().toInt(),
-                        binding.horarioInicial.text.toString(),//hora
-                        tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt()),
+                        horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox!!.isChecked,
                         viewModel.getUniqueId()
                     ).apply {
-                        primeiroDia = diaAtual()
-                        ultimoDia = diaFinal(binding.dataEditText.text.toString())
+                        primeiroDia = diaAtual(horas)
+                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas)
                     }
                     true -> {
                         remedio = Remedio(
@@ -123,13 +123,12 @@ class AdicionarFragment : Fragment() {
                             binding.campoRemedio.text.toString().uppercase(),
                             binding.horaEditText.text.toString().toInt(),
                             999999999,
-                            binding.horarioInicial.text.toString(),//hora
-                            tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt()),
+                            horas,
                             binding.campoNota.text.toString(),
                             binding.checkBox!!.isChecked,
                             viewModel.getUniqueId()
                         ).apply {
-                            primeiroDia = diaAtual()
+                            primeiroDia = diaAtual(horas)
                             ultimoDia = "-"//diaFinal("999999999")
                         }
                     }
