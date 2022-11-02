@@ -105,34 +105,33 @@ class AlterarFragment : Fragment()  {
         binding.alterar.setOnClickListener{
             try{
                 val remedio: Remedio
+                val horas = tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
                 when(binding.checkBox!!.isChecked) {
                     false -> remedio = Remedio(
                         args.item.id,
                         binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         binding.dataEditText.text.toString().toInt(),
-                        binding.horarioInicial.text.toString(),//hora
-                        tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()),
+                        horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox!!.isChecked,
                         args.item.requestCode
 
                     ).apply {
-                        primeiroDia = diaAtual()
-                        ultimoDia = diaFinal(binding.dataEditText.text.toString())
+                        primeiroDia = diaAtual(horas)
+                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas)
                     }
                     true -> remedio = Remedio(
                         args.item.id,
                         binding.campoRemedio.text.toString().uppercase(),
                         binding.horaEditText.text.toString().toInt(),
                         999999999,
-                        binding.horarioInicial.text.toString(),//hora
-                        tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()),
+                        horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox!!.isChecked,
                         args.item.requestCode
                     ).apply {
-                        primeiroDia = diaAtual()
+                        primeiroDia = diaAtual(horas)
                         ultimoDia = "-"// diaFinal("999999999")
                     }
                 }

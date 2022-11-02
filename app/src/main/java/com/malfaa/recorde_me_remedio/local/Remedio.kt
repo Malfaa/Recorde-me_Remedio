@@ -18,8 +18,6 @@ data class Remedio(
     var horaEmHora: Int,
     @ColumnInfo(name = "periodo_em_dias")
     var periodoDias: Int,
-    @ColumnInfo(name = "hora_comeco")
-    var horaComeco: String,
     @ColumnInfo(name = "hora_comeco_em_millis")
     var horaComecoEmMillis: Long,
     var nota: String?,
@@ -36,3 +34,6 @@ data class Remedio(
     lateinit var ultimoDia: String
 
 }
+
+//    @ColumnInfo(name = "hora_comeco")
+//    var horaComeco: String,
