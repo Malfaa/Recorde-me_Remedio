@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_ACTION
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
+import com.malfaa.recorde_me_remedio.utils.miliParaHoraMinuto
 import java.util.*
 
 class AlarmeService {
@@ -25,10 +26,9 @@ class AlarmeService {
             action = INTENT_ACTION
             putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
         }
-
         val calendar: Calendar = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, item.horaComeco.substringBefore(":").toInt()) //item.horaComeco.substringBefore(":").toInt()
-            set(Calendar.MINUTE, item.horaComeco.substringAfter(":").toInt() )//item.horaComeco.substringAfter(":").toInt()
+            set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(item.horaComecoEmMillis).substringBefore(":").toInt()) //item.horaComeco.substringBefore(":").toInt()
+            set(Calendar.MINUTE, miliParaHoraMinuto(item.horaComecoEmMillis).substringAfter(":").toInt() )//item.horaComeco.substringAfter(":").toInt()
         }
 
 
