@@ -146,7 +146,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao_large"
                     android:textStyle="bold"
-                    android:text="@{viewModel.item.horaComeco}"
+                    app:miliParaHoraMinuto="@{viewModel.item.horaComecoEmMillis}"
                     app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
                     app:layout_constraintEnd_toEndOf="@+id/anteriormente"
                     app:layout_constraintHorizontal_bias="1.0"
