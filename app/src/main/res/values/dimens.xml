@@ -57,4 +57,8 @@
     <dimen name="item_width_small">310dp</dimen>
 
     <dimen name="font_item_large">20sp</dimen>
+
+<!--    Ad Dimen-->
+    <dimen name="ad_dimen_height">60dp</dimen>
+    <dimen name="ad_dimen_height_large">120dp</dimen>
 </resources>
