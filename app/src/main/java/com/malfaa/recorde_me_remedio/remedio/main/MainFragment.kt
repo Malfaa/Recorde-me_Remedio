@@ -1,24 +1,29 @@
 package com.malfaa.recorde_me_remedio.remedio.main
 
+import android.app.AlarmManager
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
-import com.malfaa.recorde_me_remedio.admob.admob.ad
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
+import com.malfaa.recorde_me_remedio.google.admob.ad
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
@@ -49,6 +54,17 @@ class MainFragment : Fragment() {
 
         viewModel.criandoCanalDeNotificacao(requireContext())
 
+        //Verifica se pode ou não ser usado o exact alarm em api's > 31
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = ContextCompat.getSystemService(requireContext(), AlarmManager::class.java)
+            if (alarmManager?.canScheduleExactAlarms() == false) {
+                Intent().also { intent ->
+                    intent.action = Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
+                    context?.startActivity(intent)
+                }
+            }
+        }
+
         return binding.root
     }
 
@@ -73,13 +89,14 @@ class MainFragment : Fragment() {
             adapter.submitList(remedios)
         }
 
-        //Navegar até Adicionar
+
         binding.adicionarLembrete?.setOnClickListener{
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
         binding.adicionarLembreteLand?.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
         }
+
 
         deletar.observe(viewLifecycleOwner){
                 condicao ->
@@ -88,6 +105,33 @@ class MainFragment : Fragment() {
                 deletar.value = false
             }
         }
+
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    R.id.menu1 -> {
+                        AlertDialog.Builder(requireContext()).setTitle("Alarme Noturno")
+                            .setMessage(requireContext().getString(R.string.alarmNoturnoDesc))
+                            .setPositiveButton("OK", null).create().show()
+                        true
+                    }
+//                    R.id.action_menu2 -> {
+//                        // FAZER
+//                        true
+//                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
 
         //Callback
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {

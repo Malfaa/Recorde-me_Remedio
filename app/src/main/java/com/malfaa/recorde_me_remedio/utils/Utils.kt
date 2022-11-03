@@ -11,8 +11,48 @@ import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
-import java.util.concurrent.TimeUnit
 
+@SuppressLint("SimpleDateFormat")
+fun miliParaHoraMinuto(tempo: Long): String {
+    val date = Date(tempo)
+    val formatter = SimpleDateFormat("HH:mm")
+
+    return formatter.format(date)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun calendarioParaData(item: Date): String {
+    val formato = SimpleDateFormat("dd/MM")
+    return formato.format(item)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun tempoEmMilissegundos(hora: Int, minuto: Int):Long {//"2014/10/29 18:10:45"
+    return try {
+        val myDate = "${diaAtualFormatado()} $hora:$minuto:00"
+        val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        val date: Date= sdf.parse(myDate) as Date
+
+        date.time
+    }catch (e: Exception){
+        Log.e("Error", e.message!!)
+        0L
+    }
+}
+
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+
+fun testeSeODiaInicialSeraHojeOuAmanha(date: Long):Int{ //talvez pra saber se soma ou não
+    val horarioEscolhidoConcatenado = date + (1000 * 60 * 15) //15 min de atraso
+    val horarioLocalConcatenado = System.currentTimeMillis()
+
+    return if (horarioEscolhidoConcatenado > horarioLocalConcatenado) { //  19:15 19:00
+        0
+    }else{// 19:00 19:15
+        1
+    }
+}
 fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
     val horarioEscolhidoConcatenado = hora+minuto +15 //15 min de atraso
     val horarioLocalConcatenado =
@@ -25,18 +65,9 @@ fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
     }
 }
 
-fun calendario(item: Int): String{
-    val calendario = Calendar.getInstance()
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 
-    calendario.add(Calendar.DATE, item)
-    return calendarioParaData(calendario.time)
-}
-
-fun diaAtual():String{
-    val calendar = Calendar.getInstance()
-    calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()))
-    return calendarioParaData(calendar.time)
-}
 
 @SuppressLint("SimpleDateFormat")
 fun diaAtualFormatado():String{
@@ -47,15 +78,23 @@ fun diaAtualFormatado():String{
     return formato.format(calendar.time)
 }
 
-fun diaFinal(editTextData: String):String{
-    return calendario(editTextData.toInt())
+fun diaAtual(tempo: Long):String{
+    val calendario = Calendar.getInstance()
+    calendario.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(tempo))
+    return calendarioParaData(calendario.time)
+//    return calendarioParaData(dateParaDiasAtuaisEFinais(tempo))
 }
 
-@SuppressLint("SimpleDateFormat")
-fun calendarioParaData(item: Date): String {
-    val formato = SimpleDateFormat("dd/MM")
-    return formato.format(item)
+fun diaFinal(editTextData: String, tempo:Long):String{
+    val calendario = Calendar.getInstance()
+    calendario.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(tempo)+editTextData.toInt())
+
+    return calendarioParaData(calendario.time)
 }
+
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+
 
 fun picker(frag: FragmentManager, text: TextView) {
     var horaFinal: String
@@ -65,8 +104,8 @@ fun picker(frag: FragmentManager, text: TextView) {
             .setMinute(LocalDateTime.now().minute).build()
     } else {
         MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-            .setTitleText("Hora em que iniciará:").setHour(horaFormato(Date().time))
-            .setMinute(minutoFormato(Date().time)).build()
+            .setTitleText("Hora em que iniciará:").setHour(miliParaHoraMinuto(System.currentTimeMillis()).substringBefore(":").toInt())//horaFormato(Date().time)
+            .setMinute(miliParaHoraMinuto(System.currentTimeMillis()).substringAfter(":").toInt()).build()//minutoFormato(Date().time)
     }
 
     picker.show(frag, "remedio")
@@ -77,48 +116,5 @@ fun picker(frag: FragmentManager, text: TextView) {
         horaFinal = "${AdicionarViewModel.horaInicial}:${AdicionarViewModel.minutoInicial}"
 
         text.text = horaFinal
-    }
-}
-
-fun stringFormat(dia:Int):String{
-    return String.format("%02d",dia)
-}
-
-@SuppressLint("SimpleDateFormat")
-fun horaFormato(horaSistema: Long): Int {
-    return try {
-        val formato = SimpleDateFormat("HH:mm")
-        formato.format(horaSistema).toInt()
-    }catch (e: Exception) {
-        Log.d("error", "$e")
-    }
-
-}
-@SuppressLint("SimpleDateFormat")
-fun minutoFormato(horaSistema: Long): Int {
-    return try {
-        val formato = SimpleDateFormat("mm")
-        formato.format(horaSistema).toInt()
-    } catch (e: Exception) {
-        Log.d("error", "$e")
-    }
-}
-
-@SuppressLint("SimpleDateFormat")
-fun tempoEmMilissegundos(hora: Int, minuto: Int):Long {//"2014/10/29 18:10:45"
-    val myDate = "${diaAtualFormatado()} $hora:$minuto:00"
-    val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-    val date: Date= sdf.parse(myDate) as Date
-
-    return date.time * 1000
-}
-
-@SuppressLint("SimpleDateFormat")
-fun minutoParaAlarme(horaSistema: Long): Int {
-    return try {
-        val formato = SimpleDateFormat("HH:mm")
-        formato.format(horaSistema).substringAfter(":").toInt()
-    }catch (e: Exception) {
-        Log.d("error", "$e")
     }
 }
