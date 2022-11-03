@@ -1,4 +1,4 @@
-package com.malfaa.recorde_me_remedio.admob
+package com.malfaa.recorde_me_remedio.google
 
 import android.content.Context
 import android.widget.Toast
@@ -17,8 +17,6 @@ object admob {
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
-                val error = String.format(
-                    "domain: ${adError.domain}, code: ${adError.code}, message: ${adError.message}")
                 Toast.makeText(context, "Ad failed to load", Toast.LENGTH_SHORT).show()//, error: $error.
             }
 
