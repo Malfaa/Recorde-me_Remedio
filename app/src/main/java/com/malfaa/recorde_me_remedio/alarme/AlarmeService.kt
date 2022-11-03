@@ -3,8 +3,10 @@ package com.malfaa.recorde_me_remedio.alarme
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.os.bundleOf
 import com.malfaa.recorde_me_remedio.local.Remedio
@@ -21,14 +23,23 @@ class AlarmeService {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     fun adicionarAlarme(context:Context, item: Remedio, valor: Int?) {
+
+        val receiver = ComponentName(context, RebootReceiver::class.java)
+
+        context.packageManager.setComponentEnabledSetting(
+            receiver,
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
+
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
             action = INTENT_ACTION
             putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
         }
         val calendar: Calendar = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(item.horaComecoEmMillis).substringBefore(":").toInt()) //item.horaComeco.substringBefore(":").toInt()
-            set(Calendar.MINUTE, miliParaHoraMinuto(item.horaComecoEmMillis).substringAfter(":").toInt() )//item.horaComeco.substringAfter(":").toInt()
+            set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(item.horaComecoEmMillis).substringBefore(":").toInt())
+            set(Calendar.MINUTE, miliParaHoraMinuto(item.horaComecoEmMillis).substringAfter(":").toInt() )
         }
 
 
@@ -68,14 +79,14 @@ class AlarmeService {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()), //pega o agora e soma equação
+                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),
                         notifyPendingIntent
                     )
 
                 } else {
                     alarmManager.setExact(
                         AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),//1000 * 60 * (60 * item.horaEmHora).toLong(),
+                        System.currentTimeMillis() + (1000 * 60 * (60 * valor).toLong()),
                         notifyPendingIntent
                     )
                 }
