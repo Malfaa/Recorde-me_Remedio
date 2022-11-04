@@ -47,7 +47,7 @@ class AdicionarViewModelTest {
 
     @Test
     fun setRemedio_VerificaComportamento() = scope.runTest{
-        val remedio = Remedio(1, "um",2,4,"12:00",null)
+        val remedio = Remedio(1, "um",2,4,5L,null,false,1)
 
         adicionarViewModel.adicionarRemedio(remedio)
 

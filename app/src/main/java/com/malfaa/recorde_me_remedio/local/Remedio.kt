@@ -32,8 +32,4 @@ data class Remedio(
     @IgnoredOnParcel
     @ColumnInfo(name = "ultimo_dia")
     lateinit var ultimoDia: String
-
 }
-
-//    @ColumnInfo(name = "hora_comeco")
-//    var horaComeco: String,
