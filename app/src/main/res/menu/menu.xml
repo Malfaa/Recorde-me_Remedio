@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="@string/alarmNoturno" android:id="@+id/menu1"/>
-<!--    <item android:title="@string/reboot" />-->
+    <item android:title="@string/reboot" android:id="@+id/menu2"/>
 </menu>

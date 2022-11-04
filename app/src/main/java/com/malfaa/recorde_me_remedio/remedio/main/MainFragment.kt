@@ -2,8 +2,10 @@ package com.malfaa.recorde_me_remedio.remedio.main
 
 import android.app.AlarmManager
 import android.app.AlertDialog
+import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -28,6 +30,8 @@ import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
+import com.malfaa.recorde_me_remedio.utils.Constantes.PREFS_NAME
+import com.malfaa.recorde_me_remedio.utils.notificacao
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -44,6 +48,8 @@ class MainFragment : Fragment() {
         binding = MainFragmentBinding.inflate(inflater,container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.remedio_lembrar)
+
+        ehPrimeiraVez()
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -118,15 +124,24 @@ class MainFragment : Fragment() {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.menu1 -> {
-                        AlertDialog.Builder(requireContext()).setTitle("Alarme Noturno")
-                            .setMessage(requireContext().getString(R.string.alarmNoturnoDesc))
-                            .setPositiveButton("OK", null).create().show()
+                        notificacao(
+                            requireContext(),
+                            "Alarme Noturno",
+                            requireContext().getString(R.string.alarmNoturnoDesc),
+                            "OK"
+                        )
+
                         true
                     }
-//                    R.id.action_menu2 -> {
-//                        // FAZER
-//                        true
-//                    }
+                    R.id.menu2 -> {
+                        notificacao(
+                            requireContext(),
+                            "Importante!",
+                            requireContext().getString(R.string.urgente),
+                            "Entendido"
+                        )
+                        true
+                    }
                     else -> false
                 }
             }
@@ -165,5 +180,21 @@ class MainFragment : Fragment() {
 
         val alerta = construtor.create()
         alerta.show()
+    }
+
+    private fun ehPrimeiraVez() {
+        val prefs: SharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        val isFirst: Boolean = prefs.getBoolean(PREFS_NAME,true)
+        if (isFirst) {
+            notificacao(
+                requireContext(),
+                "Importante!",
+                requireContext().getString(R.string.urgente),
+                "Entendido"
+            )
+
+            prefs.edit().putBoolean(PREFS_NAME,
+                false).apply()
+        }
     }
 }

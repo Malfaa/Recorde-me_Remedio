@@ -1,6 +1,8 @@
 package com.malfaa.recorde_me_remedio.utils
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.widget.TextView
@@ -117,4 +119,10 @@ fun picker(frag: FragmentManager, text: TextView) {
 
         text.text = horaFinal
     }
+}
+
+fun notificacao(context: Context, titulo: String, mensagem: String, confirmacao:String){
+    AlertDialog.Builder(context).setTitle(titulo)
+        .setMessage(mensagem)
+        .setPositiveButton(confirmacao, null).create().show()
 }

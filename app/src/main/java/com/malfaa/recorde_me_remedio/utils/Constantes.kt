@@ -6,4 +6,5 @@ object Constantes {
     const val INTENT_REBOOT = "REBOOT"
     const val INTENT_BUNDLE = "REMEDIO"
     const val WORK_NAME = "VERIFICA_DIA"
+    const val PREFS_NAME = "URGENTE"
 }
