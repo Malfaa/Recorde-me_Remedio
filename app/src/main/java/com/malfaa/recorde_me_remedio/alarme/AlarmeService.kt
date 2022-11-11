@@ -3,10 +3,8 @@ package com.malfaa.recorde_me_remedio.alarme
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.os.bundleOf
 import com.malfaa.recorde_me_remedio.local.Remedio
@@ -23,14 +21,6 @@ class AlarmeService {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     fun adicionarAlarme(context:Context, item: Remedio, valor: Int?) {
-
-        val receiver = ComponentName(context, RebootReceiver::class.java)
-
-        context.packageManager.setComponentEnabledSetting(
-            receiver,
-            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-            PackageManager.DONT_KILL_APP
-        )
 
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {

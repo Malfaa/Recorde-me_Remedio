@@ -4,6 +4,8 @@ import com.malfaa.recorde_me_remedio.local.Remedio
 
 interface IRepository {
 
+    suspend fun remediosReboot(): List<Remedio>
+
     suspend fun retornaUltimoDia(): List<String>
 
     suspend fun adicionandoRemedio(item: Remedio)

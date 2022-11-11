@@ -19,12 +19,12 @@ class RebootService(private val context: Context) {
     private val database = RemedioDatabase.getInstance(context)
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun reboot(){
-        val remedios = database.dao.getRemedios()
+    suspend fun reboot(){
+        val remedios = database.dao.getRemedioReboot()
 
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        for (i in remedios.value!!){
+        for (i in remedios){
             notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
                 action = INTENT_ACTION // ou INTENT_REBOOT
                 putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to i))
