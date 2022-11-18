@@ -133,15 +133,6 @@ class MainFragment : Fragment() {
 
                         true
                     }
-                    R.id.menu2 -> {
-                        notificacao(
-                            requireContext(),
-                            "Importante!",
-                            requireContext().getString(R.string.urgente),
-                            "Entendido"
-                        )
-                        true
-                    }
                     else -> false
                 }
             }
@@ -189,7 +180,7 @@ class MainFragment : Fragment() {
             notificacao(
                 requireContext(),
                 "Importante!",
-                requireContext().getString(R.string.urgente),
+                requireContext().getString(R.string.alarmNoturnoDesc),
                 "Entendido"
             )
 

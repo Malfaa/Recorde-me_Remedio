@@ -117,12 +117,4 @@
         Se o alarme for disparar no meio da madrugada, não se esqueça de colocar um despertador!
         O aplicativo apenas notifica e não desperta!
     </string>
-    <string name="reboot">Alarme não notificou?</string>
-
-<!--    IMPORTANTE-->
-    <string name="urgente">
-        Quando for REINICIAR ou DESLIGAR o aparelho. Volte aos Remédios e ALTERE-OS para um novo horário.
-        Desse jeito as notificações funcionarão normalmente!
-    </string>
-
 </resources>
