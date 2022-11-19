@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tela"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imagem"
+            android:layout_marginTop="@dimen/ad_dimen_height"
+            style="@style/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/remedioDespertador"
+            style="@style/despertadorFont"
+            android:layout_marginTop="@dimen/n_distancia_itens"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/remedio" />
+
+        <TextView
+            android:id="@+id/horaDespertador"
+            style="@style/despertadorFont"
+            android:layout_marginTop="@dimen/n_distancia_itens"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/hora"/>
+
+        <TextView
+            android:id="@+id/info"
+            style="@style/dismissFont"
+            android:layout_marginTop="@dimen/ad_dimen_height"
+            android:layout_gravity="center"
+            android:text="@string/dismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

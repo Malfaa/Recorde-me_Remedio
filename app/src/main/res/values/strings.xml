@@ -117,4 +117,8 @@
         Se o alarme for disparar no meio da madrugada, não se esqueça de colocar um despertador!
         O aplicativo apenas notifica e não desperta!
     </string>
+
+<!--    Despertador-->
+    <string name="dismiss">Clique na tela para dispensar.</string>
+
 </resources>

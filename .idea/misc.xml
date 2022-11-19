@@ -44,6 +44,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_despertador.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.5301587301587302" />
         <entry key="app/src/main/res/layout/item_remedio.xml" value="0.4280639431616341" />
