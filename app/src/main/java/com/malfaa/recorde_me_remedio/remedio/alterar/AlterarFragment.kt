@@ -14,13 +14,10 @@ import androidx.navigation.fragment.navArgs
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AlterarFragmentBinding
-import com.malfaa.recorde_me_remedio.utils.diaAtual
-import com.malfaa.recorde_me_remedio.utils.diaFinal
 import com.malfaa.recorde_me_remedio.local.Remedio
-import com.malfaa.recorde_me_remedio.utils.picker
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
-import com.malfaa.recorde_me_remedio.utils.tempoEmMilissegundos
+import com.malfaa.recorde_me_remedio.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlterarFragment : Fragment()  {
@@ -101,12 +98,15 @@ class AlterarFragment : Fragment()  {
             picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
+        binding.infoDespertador.setOnClickListener {
+            notificacao(requireContext(),requireContext().getString(R.string.titulo_info), requireContext().getString(R.string.mensagem_info),"Ok")
+        }
 
         binding.alterar.setOnClickListener{
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
-                when(binding.checkBox!!.isChecked) {
+                when(binding.checkBox.isChecked) {
                     false -> remedio = Remedio(
                         args.item.id,
                         binding.campoRemedio.text.toString().uppercase(),
@@ -114,7 +114,8 @@ class AlterarFragment : Fragment()  {
                         binding.dataEditText.text.toString().toInt(),
                         horas,
                         binding.campoNota.text.toString(),
-                        binding.checkBox!!.isChecked,
+                        binding.checkBox.isChecked,
+                        binding.despertador.isChecked,
                         args.item.requestCode
 
                     ).apply {
@@ -128,7 +129,8 @@ class AlterarFragment : Fragment()  {
                         999999999,
                         horas,
                         binding.campoNota.text.toString(),
-                        binding.checkBox!!.isChecked,
+                        binding.checkBox.isChecked,
+                        binding.despertador.isChecked,
                         args.item.requestCode
                     ).apply {
                         primeiroDia = diaAtual(horas)

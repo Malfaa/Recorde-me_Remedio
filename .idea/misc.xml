@@ -22,11 +22,13 @@
         <entry key="app/src/main/res/drawable/ic_pill.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_plugin_icon_maior.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable/ic_time.xml" value="0.376" />
+        <entry key="app/src/main/res/drawable/info.xml" value="0.376" />
+        <entry key="app/src/main/res/drawable/info_white.xml" value="0.376" />
         <entry key="app/src/main/res/drawable/night_add_alt_text_box.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/night_add_alt_text_box_disabled.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/night_text_view_drawable.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/outline_nota_item_lembrete.xml" value="0.3765" />
-        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout-land/alterar_fragment.xml" value="0.18611111111111112" />
         <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.31790123456790126" />
         <entry key="app/src/main/res/layout-land/main_fragment.xml" value="0.318342151675485" />
@@ -37,13 +39,13 @@
         <entry key="app/src/main/res/layout-small/adicionar_fragment.xml" value="1.0" />
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.4188087774294671" />
         <entry key="app/src/main/res/layout-small/item_remedio.xml" value="0.3925081433224756" />
-        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.2" />
+        <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw600dp/alterar_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw600dp/item_remedio.xml" value="0.28203125" />
         <entry key="app/src/main/res/layout-sw600dp/main_fragment.xml" value="0.28203125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
-        <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/adicionar_fragment.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/alterar_fragment.xml" value="0.22121486854034453" />
         <entry key="app/src/main/res/layout/fragment_despertador.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_lembrete.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_lembrete_novo.xml" value="0.5301587301587302" />

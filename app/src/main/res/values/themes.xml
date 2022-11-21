@@ -92,4 +92,8 @@
     <style name="clock" parent="">
         <item name="android:src">@drawable/ic_clock</item>
     </style>
+
+    <style name="info_image" parent="">
+        <item name="android:src">@drawable/info</item>
+    </style>
 </resources>

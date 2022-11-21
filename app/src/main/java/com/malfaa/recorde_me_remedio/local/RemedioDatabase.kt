@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.malfaa.recorde_me_remedio.utils.Constantes
 
-@Database(entities = [Remedio::class], version = 1, exportSchema = false)
+@Database(entities = [Remedio::class], version = 2, exportSchema = false)
 abstract class RemedioDatabase : RoomDatabase() {
 
     abstract val dao: RemedioDao
@@ -14,6 +16,12 @@ abstract class RemedioDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: RemedioDatabase?= null
+
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE ${Constantes.TABLE_NAME} ADD COLUMN despertador INTEGER NOT NULL DEFAULT 'null'")
+            }
+        }
 
         fun getInstance(context: Context): RemedioDatabase{
             synchronized(this) {
@@ -24,7 +32,7 @@ abstract class RemedioDatabase : RoomDatabase() {
                         RemedioDatabase::class.java,
                         Constantes.TABLE_NAME
                     )
-                        .fallbackToDestructiveMigration()
+                        .addMigrations(MIGRATION_1_2)
                         .build()
 
                     INSTANCE = instance

@@ -17,10 +17,7 @@ import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.horaInicial
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.minutoInicial
-import com.malfaa.recorde_me_remedio.utils.diaAtual
-import com.malfaa.recorde_me_remedio.utils.diaFinal
-import com.malfaa.recorde_me_remedio.utils.picker
-import com.malfaa.recorde_me_remedio.utils.tempoEmMilissegundos
+import com.malfaa.recorde_me_remedio.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdicionarFragment : Fragment() {
@@ -71,6 +68,10 @@ class AdicionarFragment : Fragment() {
             picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
+        binding.infoDespertador.setOnClickListener {
+            notificacao(requireContext(),requireContext().getString(R.string.titulo_info), requireContext().getString(R.string.mensagem_info),"Ok")
+        }
+
         viewModel.checkBox.observe(viewLifecycleOwner){
                 condicao ->
             when(condicao){
@@ -103,7 +104,7 @@ class AdicionarFragment : Fragment() {
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt())
-                when(binding.checkBox!!.isChecked){
+                when(binding.checkBox.isChecked){
                     false ->remedio = Remedio(
                         0,
                         binding.campoRemedio.text.toString().uppercase(),
@@ -111,7 +112,8 @@ class AdicionarFragment : Fragment() {
                         binding.dataEditText.text.toString().toInt(),
                         horas,
                         binding.campoNota.text.toString(),
-                        binding.checkBox!!.isChecked,
+                        binding.checkBox.isChecked,
+                        binding.despertador.isChecked,
                         viewModel.getUniqueId()
                     ).apply {
                         primeiroDia = diaAtual(horas)
@@ -125,7 +127,8 @@ class AdicionarFragment : Fragment() {
                             999999999,
                             horas,
                             binding.campoNota.text.toString(),
-                            binding.checkBox!!.isChecked,
+                            binding.checkBox.isChecked,
+                            binding.despertador.isChecked,
                             viewModel.getUniqueId()
                         ).apply {
                             primeiroDia = diaAtual(horas)

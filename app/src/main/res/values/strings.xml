@@ -120,5 +120,12 @@
 
 <!--    Despertador-->
     <string name="dismiss">Clique na tela para dispensar.</string>
+    <string name="titulo_info">Despertador.</string>
+    <string name="mensagem_info">
+        Se a caixa estiver marcada, o aplicativo irá despertar e para ser
+        dispensado precisa "Tocar" na tela. Se estiver desligado, ele apenas irá notificar.
+    </string>
+    <string name="despertadorText">Tornar padrão o despertador?</string>
+    <string name="despertadorContentDesc">Informação sobre o modo despertador.</string>
 
 </resources>
