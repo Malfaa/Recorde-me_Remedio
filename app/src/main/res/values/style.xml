@@ -8,6 +8,10 @@
         <item name="android:textSize">@dimen/font_adicao_large</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="notaFont">
+        <item name="android:textSize">@dimen/font_adicao</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="dismissFont">
         <item name="android:textSize">@dimen/font_adicao</item>
         <item name="android:textStyle">bold</item>

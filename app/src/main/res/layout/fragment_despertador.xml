@@ -26,6 +26,15 @@
             tools:text="@string/remedio" />
 
         <TextView
+            android:id="@+id/notaDespertador"
+            style="@style/notaFont"
+            android:layout_marginTop="@dimen/n_distancia_itens"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/nota" />
+
+        <TextView
             android:id="@+id/horaDespertador"
             style="@style/despertadorFont"
             android:layout_marginTop="@dimen/n_distancia_itens"

@@ -111,13 +111,6 @@
 <!--    Alterar Strings-->
     <string name="eram">Anteriormente eram:</string>
 
-<!--    Menu-->
-    <string name="alarmNoturno">Alarme Noturno</string>
-    <string name="alarmNoturnoDesc">
-        Se o alarme for disparar no meio da madrugada, não se esqueça de colocar um despertador!
-        O aplicativo apenas notifica e não desperta!
-    </string>
-
 <!--    Despertador-->
     <string name="dismiss">Clique na tela para dispensar.</string>
     <string name="titulo_info">Despertador.</string>

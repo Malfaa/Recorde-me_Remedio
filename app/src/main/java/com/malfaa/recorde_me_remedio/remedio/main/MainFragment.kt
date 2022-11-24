@@ -2,23 +2,20 @@ package com.malfaa.recorde_me_remedio.remedio.main
 
 import android.app.AlarmManager
 import android.app.AlertDialog
-import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -30,8 +27,6 @@ import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.remedioItem
-import com.malfaa.recorde_me_remedio.utils.Constantes.PREFS_NAME
-import com.malfaa.recorde_me_remedio.utils.notificacao
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -48,8 +43,6 @@ class MainFragment : Fragment() {
         binding = MainFragmentBinding.inflate(inflater,container, false)
 
         (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.remedio_lembrar)
-
-        ehPrimeiraVez()
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -112,33 +105,6 @@ class MainFragment : Fragment() {
             }
         }
 
-        val menuHost: MenuHost = requireActivity()
-
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // Add menu items here
-                menuInflater.inflate(R.menu.menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Handle the menu selection
-                return when (menuItem.itemId) {
-                    R.id.menu1 -> {
-                        notificacao(
-                            requireContext(),
-                            "Alarme Noturno",
-                            requireContext().getString(R.string.alarmNoturnoDesc),
-                            "OK"
-                        )
-
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-
         //Callback
         val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             val a = Intent(Intent.ACTION_MAIN)
@@ -171,21 +137,5 @@ class MainFragment : Fragment() {
 
         val alerta = construtor.create()
         alerta.show()
-    }
-
-    private fun ehPrimeiraVez() {
-        val prefs: SharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        val isFirst: Boolean = prefs.getBoolean(PREFS_NAME,true)
-        if (isFirst) {
-            notificacao(
-                requireContext(),
-                "Importante!",
-                requireContext().getString(R.string.alarmNoturnoDesc),
-                "Entendido"
-            )
-
-            prefs.edit().putBoolean(PREFS_NAME,
-                false).apply()
-        }
     }
 }

@@ -7,15 +7,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.os.bundleOf
+import com.malfaa.recorde_me_remedio.DespertadorActivity
 import com.malfaa.recorde_me_remedio.MainActivity
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.local.Remedio
+import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
 
 @SuppressLint("LaunchActivityFromNotification", "UnspecifiedImmutableFlag")
 fun NotificationManager.sendNotification(applicationContext: Context, remedio: Remedio) {
-    // Create the content intent for the notification, which launches
-    // this activity
-    val intent = Intent(applicationContext, MainActivity::class.java)
+
+    val intent: Intent = Intent(applicationContext, DespertadorActivity::class.java)
+    .putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to remedio))
+
+    val intentClickable = Intent(applicationContext, MainActivity::class.java)
+
     val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         PendingIntent.getActivity(
             applicationContext,
@@ -30,22 +36,36 @@ fun NotificationManager.sendNotification(applicationContext: Context, remedio: R
             PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
+    val clickingPendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        PendingIntent.getActivity(
+            applicationContext,
+            remedio.requestCode,
+            intentClickable,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    } else {
+        PendingIntent.getActivity(
+            applicationContext,
+            remedio.requestCode,
+            intentClickable,
+            PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
     // Build the notification
     val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.remedio_notification_channel_id))
         .setSmallIcon(R.drawable.ic_clock)
         .setContentTitle(remedio.remedio)
         .setContentText(remedio.nota)
-        .setContentIntent(pendingIntent)
+        .setContentIntent(clickingPendingIntent)
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .setFullScreenIntent(pendingIntent,true)
 
     notify(remedio.requestCode, builder.build())
 }
 
 @SuppressLint("UnspecifiedImmutableFlag")
 fun NotificationManager.sendLastDayNotification(applicationContext: Context) {
-    // Create the content intent for the notification, which launches
-    // this activity
+
     val intent = Intent(applicationContext, MainActivity::class.java)
     val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         PendingIntent.getActivity(
@@ -71,13 +91,4 @@ fun NotificationManager.sendLastDayNotification(applicationContext: Context) {
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     notify(0, builder.build())
-}
-
-fun NotificationManager.cancelNotification(requestCode:Int){
-    cancel(requestCode)
-}
-
-//Cancels all notifications.
-fun NotificationManager.cancelNotifications() {
-    cancelAll()
 }
