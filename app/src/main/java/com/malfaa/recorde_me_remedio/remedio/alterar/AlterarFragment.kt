@@ -98,10 +98,6 @@ class AlterarFragment : Fragment()  {
             picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
-        binding.infoDespertador.setOnClickListener {
-            notificacao(requireContext(),requireContext().getString(R.string.titulo_info), requireContext().getString(R.string.mensagem_info),"Ok")
-        }
-
         binding.alterar.setOnClickListener{
             try{
                 val remedio: Remedio
@@ -115,7 +111,6 @@ class AlterarFragment : Fragment()  {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
-                        binding.despertador.isChecked,
                         args.item.requestCode
 
                     ).apply {
@@ -130,7 +125,6 @@ class AlterarFragment : Fragment()  {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
-                        binding.despertador.isChecked,
                         args.item.requestCode
                     ).apply {
                         primeiroDia = diaAtual(horas)

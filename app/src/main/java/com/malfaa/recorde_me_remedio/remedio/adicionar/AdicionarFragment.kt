@@ -68,10 +68,6 @@ class AdicionarFragment : Fragment() {
             picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
         }
 
-        binding.infoDespertador.setOnClickListener {
-            notificacao(requireContext(),requireContext().getString(R.string.titulo_info), requireContext().getString(R.string.mensagem_info),"Ok")
-        }
-
         viewModel.checkBox.observe(viewLifecycleOwner){
                 condicao ->
             when(condicao){
@@ -113,7 +109,6 @@ class AdicionarFragment : Fragment() {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
-                        binding.despertador.isChecked,
                         viewModel.getUniqueId()
                     ).apply {
                         primeiroDia = diaAtual(horas)
@@ -128,7 +123,6 @@ class AdicionarFragment : Fragment() {
                             horas,
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
-                            binding.despertador.isChecked,
                             viewModel.getUniqueId()
                         ).apply {
                             primeiroDia = diaAtual(horas)
