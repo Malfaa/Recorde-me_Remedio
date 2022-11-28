@@ -2,11 +2,13 @@ package com.malfaa.recorde_me_remedio
 
 import android.app.KeyguardManager
 import android.content.Context
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.os.*
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -21,6 +23,9 @@ class DespertadorActivity : AppCompatActivity() {
 
     private val tela: LinearLayoutCompat
         get() = findViewById(R.id.tela)
+
+    private val imagem: ImageView
+        get() = findViewById(R.id.imagem)
 
     private val remedio: TextView
         get() = findViewById(R.id.remedioDespertador)
@@ -38,13 +43,30 @@ class DespertadorActivity : AppCompatActivity() {
         val bundleRemedio = intent.getBundleExtra(INTENT_BUNDLE)
             ?.getParcelable<Remedio>(INTENT_BUNDLE)
 
+        if(Build.VERSION.SDK_INT < 22){
+            imagem.setImageResource(R.mipmap.ic_clockv2)
+        }
+
         vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val vibratorManager =
-                getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
             vibratorManager.defaultVibrator
         } else {
             @Suppress("DEPRECATION")
             getSystemService(VIBRATOR_SERVICE) as Vibrator
+        }
+
+        val pattern = longArrayOf(300, 100, 500, 100)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(
+                VibrationEffect.createWaveform(pattern, 0),
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build()
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(pattern, 0)
         }
 
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
@@ -53,13 +75,6 @@ class DespertadorActivity : AppCompatActivity() {
         mediaPlayer.start()
 
         mediaPlayer.isLooping = true
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE) )
-        }else{
-            @Suppress("DEPRECATION")
-            vibrator.vibrate(200)
-        }
 
         ativaDespertador(bundleRemedio!!)
     }
@@ -92,8 +107,8 @@ class DespertadorActivity : AppCompatActivity() {
         }
         else {
             window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
     }
 }

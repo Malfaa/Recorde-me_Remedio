@@ -2,13 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.Remedio" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/day_primary_variant</item>
+        <item name="colorPrimary">@color/night_primary_variant</item>
         <item name="colorPrimaryVariant">@color/night_primary</item>
 
-        <item name="colorOnPrimary">@color/text_color_dark</item><!--text_color_dark-->
+        <item name="colorOnPrimary">@color/text_color_dark</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/night_primary</item>
-        <item name="colorSecondaryVariant">@color/secondary_light</item>
 
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -19,18 +18,15 @@
         <item name="floatingActionButtonStyle">@style/FloatingAction</item>
         <item name="cardViewStyle">@style/card_lembrete</item>
         <item name="imageButtonStyle">@style/ImageButton</item>
-
     </style>
 
     <style name="text_view" parent="TextAppearance.AppCompat">
 
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
-        <!--item name="android:layout_marginStart">@dimen/distancia_item</item-->
         <item name="android:textColor">@color/text_color_dark</item>
     </style>
 
     <style name="nota_text_view" parent="TextAppearance.AppCompat">
-        <!--item name="android:background">@drawable/night_text_view_drawable</item-->
         <item name="android:maxLines">4</item>
         <item name="autoSizeMinTextSize">14sp</item>
         <item name="autoSizeMaxTextSize">18sp</item>
@@ -45,9 +41,9 @@
 
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/margin_top_for_hora_inicial</item>
-        <!--item name="android:layout_marginStart">@dimen/distancia_item_edittext</item-->
         <item name="android:background">@drawable/night_add_alt_text_box</item>
-
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
     </style>
 
     <style name="textView_text_color" parent="TextAppearance.AppCompat">
@@ -87,8 +83,9 @@
     <style name="frame" parent="">
         <item name="android:src">@drawable/ic_frame_night</item>
     </style>
+
     <style name="clock" parent="">
-        <item name="android:src">@drawable/ic_clock_night</item>
+        <item name="android:src">@drawable/ic_clock</item>
     </style>
 
     <style name="info_image" parent="">

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Primeira Paleta-->
-    <!--color name= "day_primary">#eceff1</color-->
     <color name= "day_primary_light">#ffffff</color>
     <color name= "day_primary_dark">#babdbe</color>
 
@@ -12,8 +11,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="secondary">#6a5549</color>
-    <color name="secondary_light">#998175</color>
     <color name="secondary_dark">#3e2c21</color>
 
     <color name="text_color_dark">#E6E6E6</color>
@@ -25,15 +22,19 @@
     <color name= "caixa_expandida_bg_dark">#3A3939</color>
 
     <!--Segunda Paleta-->
-    <color name= "day_primary">#215a88</color><!--#215a88-->
-    <color name= "day_primary_variant">#00b186</color><!--#885021-->
-
-    <color name="night_primary">#218883</color>
-    <color name="night_primary_variant">#885021</color>
+<!--    Day-->
+    <color name= "day_primary">#215a88</color>
+    <color name= "day_primary_variant">#00b186</color>
 
 <!--    Day Text Box (DTB)-->
     <color name="dtb">#807BBFB1</color>
 
+
+<!--    Night-->
+    <color name="night_primary">#CD00CBFF</color>
+    <color name="night_primary_variant">#B278EF4D</color>
+<!--    Night Text Box (NTB)-->
+    <color name="ntb">#A4EBFFEB</color>
 
     <!--    Frame Backgroung-->
     <color name="frame_bg">#322F2F</color>

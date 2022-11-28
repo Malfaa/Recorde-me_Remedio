@@ -52,13 +52,18 @@ fun NotificationManager.sendNotification(applicationContext: Context, remedio: R
 
     // Build the notification
     val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.remedio_notification_channel_id))
-        .setSmallIcon(R.drawable.ic_clock)
         .setContentTitle(remedio.remedio)
         .setContentText(remedio.nota)
         .setContentIntent(clickingPendingIntent)
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
-        .setFullScreenIntent(pendingIntent,true)
+        .setFullScreenIntent(pendingIntent,true).apply {
+            if(Build.VERSION.SDK_INT >= 23){
+                this.setSmallIcon(R.drawable.ic_clock)
+            }else{
+                this.setSmallIcon(R.mipmap.ic_clockv2_foreground)
+            }
+        }
 
     notify(remedio.requestCode, builder.build())
 }

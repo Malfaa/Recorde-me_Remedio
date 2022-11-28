@@ -22,7 +22,6 @@
         <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">14dp</item>
-
         <item name="cardElevation">8dp</item>
     </style>
 

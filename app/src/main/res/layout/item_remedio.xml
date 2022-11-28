@@ -26,7 +26,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/remedio"
-                style="@style/text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/distancia_item"
@@ -130,18 +129,6 @@
                     app:layout_constraintStart_toEndOf="@+id/termina"
                     app:layout_constraintTop_toTopOf="@id/termina"/>
 
-<!--            <androidx.constraintlayout.motion.widget.MotionLayout-->
-<!--            android:id="@+id/motion_layout"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/terminaValor"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/remedio"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/termina"-->
-<!--            app:layout_constraintTop_toTopOf="@id/termina"-->
-<!--            app:layoutDescription="@xml/item_remedio_scene">-->
-<!--            </androidx.constraintlayout.motion.widget.MotionLayout>-->
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nota_box"
                 style="@style/caixa_expandida"
@@ -172,7 +159,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text = "@string/nota"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

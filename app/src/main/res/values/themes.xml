@@ -8,7 +8,6 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/day_primary</item>
-        <item name="colorSecondaryVariant">@color/secondary_light</item>
 
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -20,7 +19,7 @@
         <item name="cardViewStyle">@style/card_lembrete</item>
         <item name="imageButtonStyle">@style/ImageButton</item>
     </style>
-    
+
     <style name="text_view" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
         <item name="android:textColor">@color/secondary_dark</item>
@@ -51,15 +50,10 @@
     <style name="adc_alt_textview" parent="TextAppearance.AppCompat">
         <item name="android:layout_marginTop">@dimen/margin_top_for_hora_inicial</item>
         <item name="android:background">@drawable/day_add_alt_text_box</item>
-
     </style>
-
+<!--    night_primary_variant-->
     <style name="textView_text_color" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="text_dentro_box" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/secondary_dark</item>
     </style>
 
     <style name="card_lembrete" parent="Widget.MaterialComponents.CardView">
@@ -72,7 +66,6 @@
 
     <style name="FloatingAction" parent="Widget.Design.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/AppShapeAppearance.SmallComponent</item>
-        <!--item name="backgroundColor"></item-->
     </style>
 
     <style name="ImageButton" parent="Widget.AppCompat.ImageButton">
