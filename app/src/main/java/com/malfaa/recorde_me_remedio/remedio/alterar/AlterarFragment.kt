@@ -102,6 +102,10 @@ class AlterarFragment : Fragment()  {
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
+                if (binding.horaEditText.text.toString().toInt() > 24){
+                    Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
+                    binding.horaEditText.text = null
+                }
                 when(binding.checkBox.isChecked) {
                     false -> remedio = Remedio(
                         args.item.id,
