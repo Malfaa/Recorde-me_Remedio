@@ -11,9 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AdicionarFragmentBinding
+import com.malfaa.recorde_me_remedio.google.ADMOB
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.horaInicial
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.minutoInicial
@@ -40,6 +43,10 @@ class AdicionarFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title =
             requireContext().getString(R.string.novo_remedio)
 
+        MobileAds.initialize(requireContext())
+        val adRequest = AdRequest.Builder().build()
+        binding.adicionarAdView.loadAd(adRequest)
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -53,6 +60,8 @@ class AdicionarFragment : Fragment() {
         if (savedInstanceState != null) {
             binding.item = savedInstanceState.getParcelable(EDITOR_TEXT_INSTANCE)
         }
+
+        ADMOB.ad(binding, requireContext())
 
         viewModel.navegarDeVolta.observe(viewLifecycleOwner) { condicao ->
             if (condicao) {

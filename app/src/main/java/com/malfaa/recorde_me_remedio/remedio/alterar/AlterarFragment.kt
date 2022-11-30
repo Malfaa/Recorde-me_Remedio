@@ -11,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.AlterarFragmentBinding
+import com.malfaa.recorde_me_remedio.google.ADMOB
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
@@ -37,6 +40,10 @@ class AlterarFragment : Fragment()  {
 
         (activity as AppCompatActivity).supportActionBar?.title = requireContext().getString(R.string.alterar_remedio)
 
+        MobileAds.initialize(requireContext())
+        val adRequest = AdRequest.Builder().build()
+        binding.alterarAdView.loadAd(adRequest)
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -57,6 +64,8 @@ class AlterarFragment : Fragment()  {
                 viewModel.navegarDeVoltaFeito()
             }
         }
+
+        ADMOB.ad(binding, requireContext())
 
         viewModel.item.value = args.item.apply {
             viewModel.checkBox.value = args.item.todosOsDias

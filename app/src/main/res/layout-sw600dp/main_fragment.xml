@@ -47,15 +47,9 @@
             android:layout_marginStart="@dimen/distancia_item"
             android:layout_marginEnd="@dimen/distancia_item_edittext"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:adUnitId="@string/banner_ad_unit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-        <!-- Trocar linha 49 pelo ID próprio
-         Linha 49 está id de ad teste
-
-         ca-app-pub-3295333534958164/4908034529
-
-         -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

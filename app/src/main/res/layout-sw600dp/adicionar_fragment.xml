@@ -268,7 +268,7 @@
             android:layout_height="@dimen/ad_dimen_height_large"
             android:layout_gravity="center"
             app:adSize="SMART_BANNER"
-            app:adUnitId="@string/banner_google"
+            app:adUnitId="@string/banner_ad_unit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

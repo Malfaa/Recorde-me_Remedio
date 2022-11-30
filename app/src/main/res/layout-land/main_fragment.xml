@@ -46,7 +46,7 @@
             android:layout_marginStart="@dimen/distancia_item"
             android:layout_marginEnd="@dimen/distancia_item_edittext"
             app:adSize="SMART_BANNER"
-            app:adUnitId="@string/banner_google"
+            app:adUnitId="@string/banner_ad_unit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete_land"
             app:layout_constraintStart_toStartOf="parent" />

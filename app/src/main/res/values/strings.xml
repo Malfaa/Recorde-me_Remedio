@@ -73,9 +73,10 @@
     <string name="descricao_hora_inicial">Escolha qual horário o alarme terá seu ínicio.</string>
 
 <!--    Ad Strings-->
-    <string name="banner_ad_unit">ca-app-pub-3295333534958164/4908034529</string>
+    <string name="banner_ad_unit">ca-app-pub-7837109045078086/2672140694</string>
     <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
 
+<!--    -->
     <string name="nota_um">
         Fique atento à data que foi estabelecida quando foi criado o remedio,
         assim que chegar na data final, o remedio continuará sendo notificado. Sendo assim, é

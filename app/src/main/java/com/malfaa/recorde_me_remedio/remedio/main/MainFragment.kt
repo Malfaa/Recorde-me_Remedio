@@ -22,7 +22,7 @@ import com.google.android.gms.ads.MobileAds
 import com.malfaa.recorde_me_remedio.R
 import com.malfaa.recorde_me_remedio.alarme.AlarmeService
 import com.malfaa.recorde_me_remedio.databinding.MainFragmentBinding
-import com.malfaa.recorde_me_remedio.google.admob.ad
+import com.malfaa.recorde_me_remedio.google.ADMOB.ad
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.main.MainAdapter.RemedioListener
 import com.malfaa.recorde_me_remedio.remedio.main.MainViewModel.Companion.deletar
