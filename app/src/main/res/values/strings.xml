@@ -113,6 +113,7 @@
     <string name="eram">Anteriormente eram:</string>
 
 <!--    Despertador-->
-    <string name="dismiss">Clique na tela para dispensar.</string>
+    <string name="dismiss">Segure no ícone abaixo para dispensar.</string>
+    <string name="ícone_dismiss">Dispensar o alarme.</string>
 
 </resources>

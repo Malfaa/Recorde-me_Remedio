@@ -11,7 +11,6 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
 import com.malfaa.recorde_me_remedio.utils.miliParaHoraMinuto
@@ -21,8 +20,8 @@ class DespertadorActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var vibrator: Vibrator
 
-    private val tela: LinearLayoutCompat
-        get() = findViewById(R.id.tela)
+    private val dispensar: ImageView
+        get() = findViewById(R.id.dispensar)
 
     private val imagem: ImageView
         get() = findViewById(R.id.imagem)
@@ -90,10 +89,11 @@ class DespertadorActivity : AppCompatActivity() {
         }
         hora.text = miliParaHoraMinuto(System.currentTimeMillis())
 
-        tela.setOnClickListener{
+        dispensar.setOnLongClickListener{
             mediaPlayer.stop()
             vibrator.cancel()
             finish()
+            true
         }
 
     }

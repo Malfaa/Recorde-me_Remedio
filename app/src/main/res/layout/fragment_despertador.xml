@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -51,5 +52,15 @@
             android:text="@string/dismiss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/dispensar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/dispensar_color"
+            android:layout_marginTop="@dimen/ad_dimen_height"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_dispensar_alarme"
+            android:contentDescription="@string/ícone_dismiss" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

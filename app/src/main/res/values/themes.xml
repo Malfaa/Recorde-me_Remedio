@@ -25,6 +25,10 @@
         <item name="android:textColor">@color/secondary_dark</item>
     </style>
 
+    <style name="dispensar_color" parent="">
+        <item name="android:tint">@color/day_primary_variant</item>
+    </style>
+
     <style name="nota_text_view" parent="TextAppearance.AppCompat">
         <!--item name="android:background">@drawable/day_text_view_drawable</item-->
         <item name="android:maxLines">4</item>

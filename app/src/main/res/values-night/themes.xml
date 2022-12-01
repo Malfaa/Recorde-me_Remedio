@@ -21,9 +21,12 @@
     </style>
 
     <style name="text_view" parent="TextAppearance.AppCompat">
-
         <item name="android:layout_marginTop">@dimen/distancia_item</item>
         <item name="android:textColor">@color/text_color_dark</item>
+    </style>
+
+    <style name="dispensar_color" parent="">
+        <item name="android:tint">@color/night_primary_variant</item>
     </style>
 
     <style name="nota_text_view" parent="TextAppearance.AppCompat">
@@ -49,6 +52,8 @@
     <style name="textView_text_color" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/text_color_dark</item>
     </style>
+
+<!--    colocar o dispensar com as cores do tema-->
 
     <style name="lembrete" parent="">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
