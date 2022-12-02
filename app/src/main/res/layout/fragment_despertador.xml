@@ -58,9 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/dispensar_color"
-            android:layout_marginTop="@dimen/ad_dimen_height"
+            android:layout_marginTop="@dimen/n_distancia_itens"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_dispensar_alarme"
+            app:srcCompat="@drawable/ic_dispensar_alarme_icone"
             android:contentDescription="@string/ícone_dismiss" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
