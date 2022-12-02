@@ -57,6 +57,7 @@
                 tools:text="@string/uma_semana"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_adicao_small"
+                app:todososdias="@{item.todosOsDias}"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"

@@ -58,6 +58,7 @@
                 android:text="@{@string/dias(item.periodoDias)}"
                 tools:text="@string/uma_semana"
                 android:textAlignment="center"
+                app:todososdias="@{item.todosOsDias}"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"

@@ -15,7 +15,7 @@
         <Button
             android:id="@+id/adicionarLembrete_land"
             style="@style/Botao"
-            android:layout_width="@dimen/dimen_box_large_width"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dimen_box_large_height"
             android:clickable="true"
             android:contentDescription="@string/novo_item"
@@ -23,18 +23,17 @@
             android:text="@string/novo_item"
             app:layout_constraintBottom_toBottomOf="@+id/recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toEndOf="@+id/recyclerview"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/s_distancia_itens"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@+id/adView"
-            app:layout_constraintEnd_toStartOf="@+id/adicionarLembrete_land"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"

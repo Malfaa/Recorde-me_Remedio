@@ -56,12 +56,13 @@
                 android:layout_gravity="center"
                 android:textSize="@dimen/font_item_large"
                 android:text="@{@string/dias(item.periodoDias)}"
-                tools:text="@string/uma_semana"
                 android:textAlignment="center"
+                app:todososdias="@{item.todosOsDias}"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"
-                app:layout_constraintTop_toBottomOf="@+id/horario" />
+                app:layout_constraintTop_toBottomOf="@+id/horario"
+                tools:text="@string/uma_semana"/>
 
 
             <androidx.appcompat.widget.AppCompatTextView
