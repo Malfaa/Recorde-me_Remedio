@@ -196,6 +196,7 @@
                     android:textSize="@dimen/font_adicao_large"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:text="@string/todos_dias"
+                    android:checked="@={viewModel.checkBox}"
                     app:layout_constraintEnd_toEndOf="@+id/dataEditText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/dataEditText"
