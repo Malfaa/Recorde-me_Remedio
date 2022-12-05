@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Remember My Medicine</string>
+    <string name="remedio_lembrar">Remember me!</string>
+    <string name="iniciou">Start Time:</string>
+    <string name="termina">Begin-Fininsh:</string>
+    <string name="remedio">Medice</string>
+    <string name="clock">Clock</string>
+    <string name="valor">default</string>
+    <string name="nao">No</string>
+    <string name="sim">Yes</string>
+
+    <string name="quatro_horas">4 hours</string>
+    <string name="seis_horas">6 hours</string>
+    <string name="oito_horas">8 hours</string>
+    <string name="doze_horas">12 hours</string>
+    <string name="vintequatro_horas">24 hours</string>
+
+    <string name="cinco_dias">5 days</string>
+    <string name="sete_dias">7 days</string>
+    <string name="catorze_dias">14 days</string>
+    <string name="todos_dias">Every day</string>
+
+    <string name="nota">Note</string>
+    <string name="hora">Hour</string>
+    <string name="data">Period</string>
+    <string name="hora_inicial">Start at</string>
+
+    <!--    Overhaul strings-->
+    <string name="lembrar">To Remember</string>
+    <string name="novo_remedio">New Medicine</string>
+    <string name="novo_item">New Item</string>
+    <string name="adicionar">Add</string>
+    <string name="retornar">Return</string>
+    <string name="deletar">Delete</string>
+    <string name="cancelar">Cancel</string>
+    <string name="horario">12:00</string>
+    <string name="alterar_remedio">Change Medicine</string>
+    <string name="deletar_remedio">Delete Medicine</string>
+    <string name="deletar_descricao">Are you sure you want to delete this item?</string>
+    <string name="expandir">Expand</string>
+
+    <string name="seis_em_seis">6 in 6 hours</string>
+    <string name="quatro_em_quatro">4 in 4 hours</string>
+    <string name="doze_em_doze">12 in 12 hours</string>
+    <string name="oito_em_oito">8 in 8 hours</string>
+    <string name="vintequatro_em_vintequatro">24 in 24 hours</string>
+
+
+    <string name="horario_restante">2 hours 34 min</string>
+    <string name="data_restante">4 days</string>
+
+    <string name="termina_em">02/12 – 02/18</string>
+    <string name="inicia_todosdias">02/12</string>
+    <string name="iniciou_em">16:30</string>
+
+    <!--    Menu -->
+    <string-array name="menu_main">
+        <item>Adicionar Remedio</item>
+        <item>Alterar Remedio</item>
+        <item>Remover Remedio</item>
+    </string-array>
+
+    <string name="descricaoNota">Field where an additional description of the remedy is placed.</string>
+    <string name="descricaoSpinnerData">Field for choosing the dates that will be selected.</string>
+    <string name="descricaoSpinnerHora">Field for choosing the times to be selected.</string>
+
+    <string name="descricao_hora_inicial">Choose what time the alarm will start.</string>
+
+    <!--    Ad Strings-->
+    <string name="banner_ad_unit">ca-app-pub-7837109045078086/2672140694</string>
+    <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!--    -->
+    <string name="nota_um">
+        Fique atento à data que foi estabelecida quando foi criado o remedio,
+        assim que chegar na data final, o remedio continuará sendo notificado. Sendo assim, é
+        necessário remove-lo manualmente.
+    </string>
+    <string name="nota_dois">
+        O alarme notifica quando o dispositivo está ativo ou quando não está no modo Soneca. É
+        recomendado durante as noites colocar algum alarme que o faça acordar!
+    </string>
+    <string name="nota_tres">
+        Este app foi criado por um estudante de Dispositivos Móveis, se seu caso é mais grave,
+        recomenda-se usar outro app ou despertadores nativos do celular.
+    </string>
+
+    <!--    Formatações-->
+    <string name="data_somada">%s - %s</string>
+    <string name="horas">%d in %d hour(s)</string>
+    <string name="horas_hint">8 in 8 hour(s)</string>
+    <!--    %d em %d hora(s)-->
+    <string name="dias">%d day(s)</string>
+    <string name="dias_hint">5 day(s)</string>
+    <!--    %d dia(s)-->
+
+    <string name="dica_data">Days</string>
+    <string name="dica_horas">Hours</string>
+
+    <string name="remedio_notification_channel_id" translatable="false">remedio_channel</string>
+
+    <!--    WorkManager-->
+    <string name="ultimo_dia_titulo">Last day!</string>
+    <string name="ultimo_dia_nota">Check within the app which medicine ends today! Don\'t forget to remove it!</string>
+
+    <!--    Alterar Strings-->
+    <string name="eram">Previously they were:</string>
+
+    <!--    Despertador-->
+    <string name="dismiss">Hold the icon below to dismiss.</string>
+    <string name="ícone_dismiss">Dismiss the alarm.</string>
+    <string name="alterar">Change</string>
+
+</resources>

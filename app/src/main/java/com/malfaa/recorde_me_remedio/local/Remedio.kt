@@ -23,6 +23,7 @@ data class Remedio(
     var nota: String?,
     @ColumnInfo(name = "todos_Dias")
     var todosOsDias: Boolean = false,
+    var linguagem: String,
     var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel

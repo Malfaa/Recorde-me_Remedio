@@ -34,7 +34,7 @@
         <entry key="app/src/main/res/drawable/outline_nota_item_lembrete.xml" value="0.3765" />
         <entry key="app/src/main/res/layout-land/adicionar_fragment.xml" value="0.18" />
         <entry key="app/src/main/res/layout-land/alterar_fragment.xml" value="0.18611111111111112" />
-        <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.31790123456790126" />
+        <entry key="app/src/main/res/layout-land/item_remedio.xml" value="0.33" />
         <entry key="app/src/main/res/layout-land/main_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout-large/alterar_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout-normal/adicionar_fragment.xml" value="0.38159371492704824" />
@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layout-small/alterar_fragment.xml" value="0.4188087774294671" />
         <entry key="app/src/main/res/layout-small/item_remedio.xml" value="0.3925081433224756" />
         <entry key="app/src/main/res/layout-sw600dp/adicionar_fragment.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-sw600dp/alterar_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-sw600dp/alterar_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout-sw600dp/item_remedio.xml" value="0.16" />
         <entry key="app/src/main/res/layout-sw600dp/main_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />

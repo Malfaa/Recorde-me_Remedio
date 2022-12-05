@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "ed0e405e552c6d9f784fd2546f492bfc",
+    "entities": [
+      {
+        "tableName": "recordemeremedio_database",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remedio` TEXT NOT NULL, `hora_em_hora` INTEGER NOT NULL, `periodo_em_dias` INTEGER NOT NULL, `hora_comeco_em_millis` INTEGER NOT NULL, `nota` TEXT, `todos_Dias` INTEGER NOT NULL, `linguagem` TEXT NOT NULL, `requestCode` INTEGER NOT NULL, `primeiro_dia` TEXT NOT NULL, `ultimo_dia` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remedio",
+            "columnName": "remedio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "horaEmHora",
+            "columnName": "hora_em_hora",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "periodoDias",
+            "columnName": "periodo_em_dias",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "horaComecoEmMillis",
+            "columnName": "hora_comeco_em_millis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "nota",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "todosOsDias",
+            "columnName": "todos_Dias",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "linguagem",
+            "columnName": "linguagem",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requestCode",
+            "columnName": "requestCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "primeiroDia",
+            "columnName": "primeiro_dia",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ultimoDia",
+            "columnName": "ultimo_dia",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ed0e405e552c6d9f784fd2546f492bfc')"
+    ]
+  }
+}

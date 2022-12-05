@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Recorde-me Remédio</string>
     <string name="remedio_lembrar">Lembre-me!</string>
-    <string name="restam">Restam:</string>
     <string name="iniciou">Hora Inicial:</string>
     <string name="termina">Início-Término:</string>
     <string name="remedio">Remédio</string>
@@ -10,8 +9,6 @@
     <string name="nao">Não</string>
     <string name="sim">Sim</string>
 
-    <string name="customizar_reticencias">Customizar…</string>
-    <string name="customizar">Customizar</string>
     <string name="quatro_horas">4 horas</string>
     <string name="seis_horas">6 horas</string>
     <string name="oito_horas">8 horas</string>
@@ -20,9 +17,7 @@
 
     <string name="cinco_dias">5 dias</string>
     <string name="sete_dias">7 dias</string>
-    <string name="uma_semana">1 semana</string>
     <string name="catorze_dias">14 dias</string>
-    <string name="duas_semanas">2 semanas</string>
     <string name="todos_dias">Todos os dias</string>
 
     <string name="nota">Nota</string>
@@ -73,8 +68,8 @@
     <string name="descricao_hora_inicial">Escolha qual horário o alarme terá seu ínicio.</string>
 
 <!--    Ad Strings-->
-    <string name="banner_ad_unit">ca-app-pub-7837109045078086/2672140694</string>
-    <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit" translatable="false">ca-app-pub-7837109045078086/2672140694</string>
+    <string name="banner_google" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
 
 <!--    -->
     <string name="nota_um">
@@ -107,7 +102,7 @@
 
 <!--    WorkManager-->
     <string name="ultimo_dia_titulo">Último Dia!</string>
-    <string name="ultimo_dia_nota">Verifique dentro do app qual remédio acabará hoje!\n Não se esqueça de removê-lo!</string>
+    <string name="ultimo_dia_nota">Verifique dentro do app qual remédio acaba hoje! Não se esqueça de removê-lo!</string>
 
 <!--    Alterar Strings-->
     <string name="eram">Anteriormente eram:</string>

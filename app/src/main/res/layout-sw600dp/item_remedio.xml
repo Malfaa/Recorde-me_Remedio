@@ -57,12 +57,12 @@
                 android:textSize="@dimen/font_item_large"
                 android:text="@{@string/dias(item.periodoDias)}"
                 android:textAlignment="center"
-                app:todososdias="@{item.todosOsDias}"
+                app:todososdias="@{item}"
                 app:layout_constraintBottom_toBottomOf="@+id/inicioValor"
                 app:layout_constraintEnd_toEndOf="@+id/horario"
                 app:layout_constraintStart_toStartOf="@+id/horario"
                 app:layout_constraintTop_toBottomOf="@+id/horario"
-                tools:text="@string/uma_semana"/>
+                tools:text="@string/dias_hint"/>
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -83,7 +83,7 @@
                 android:minWidth="@dimen/dimen_box_normal_width"
                 android:textAlignment="center"
                 android:textSize="@dimen/font_item_large"
-                app:miliParaHoraMinuto="@{item.horaComecoEmMillis}"
+                app:miliParaHoraMinuto="@{item}"
                 app:layout_constraintBottom_toBottomOf="@+id/terminaValor"
                 app:layout_constraintEnd_toEndOf="@+id/inicio"
                 app:layout_constraintStart_toStartOf="@id/inicio"

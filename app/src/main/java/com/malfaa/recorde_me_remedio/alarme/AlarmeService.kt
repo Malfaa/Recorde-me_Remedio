@@ -10,7 +10,7 @@ import androidx.core.os.bundleOf
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_ACTION
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
-import com.malfaa.recorde_me_remedio.utils.miliParaHoraMinuto
+import com.malfaa.recorde_me_remedio.utils.Horario.miliParaHoraMinuto
 import java.util.*
 
 class AlarmeService {

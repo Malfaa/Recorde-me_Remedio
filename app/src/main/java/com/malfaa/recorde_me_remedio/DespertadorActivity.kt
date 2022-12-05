@@ -13,12 +13,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
-import com.malfaa.recorde_me_remedio.utils.miliParaHoraMinuto
+import com.malfaa.recorde_me_remedio.utils.Horario
+
 
 class DespertadorActivity : AppCompatActivity() {
 
-    private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var vibrator: Vibrator
+    private lateinit var som: MediaPlayer
+    private lateinit var vib: Vibrator
 
     private val dispensar: ImageView
         get() = findViewById(R.id.dispensar)
@@ -46,34 +47,9 @@ class DespertadorActivity : AppCompatActivity() {
             imagem.setImageResource(R.mipmap.ic_clockv2)
         }
 
-        vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-            vibratorManager.defaultVibrator
-        } else {
-            @Suppress("DEPRECATION")
-            getSystemService(VIBRATOR_SERVICE) as Vibrator
-        }
+        vibrar()
 
-        val pattern = longArrayOf(300, 100, 500, 100)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(
-                VibrationEffect.createWaveform(pattern, 0),
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .setUsage(AudioAttributes.USAGE_ALARM)
-                    .build()
-            )
-        } else {
-            @Suppress("DEPRECATION")
-            vibrator.vibrate(pattern, 0)
-        }
-
-        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        mediaPlayer = MediaPlayer.create(this, alarmSound)
-
-        mediaPlayer.start()
-
-        mediaPlayer.isLooping = true
+        alarme()
 
         ativaDespertador(bundleRemedio!!)
     }
@@ -87,15 +63,53 @@ class DespertadorActivity : AppCompatActivity() {
         }else{
             nota.visibility = View.GONE
         }
-        hora.text = miliParaHoraMinuto(System.currentTimeMillis())
+        hora.text = Horario.miliParaHoraMinuto(item, System.currentTimeMillis())
 
         dispensar.setOnLongClickListener{
-            mediaPlayer.stop()
-            vibrator.cancel()
+            som.stop()
+            vib.cancel()
             finish()
             true
         }
 
+    }
+
+    private fun alarme(){
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        som = MediaPlayer.create(this, alarmSound)
+
+        som.start()
+        som.setVolume(0.6F, 0.6F)
+
+        som.isLooping = true
+    }
+
+    private fun vibrar(){
+        val atraso = 0
+        val vibra = 1000
+        val dorme = 1000
+
+        val vibratePattern = longArrayOf(atraso.toLong(), vibra.toLong(), dorme.toLong())
+
+        vib = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            getSystemService(VIBRATOR_SERVICE) as Vibrator
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vib.vibrate(
+                VibrationEffect.createWaveform(vibratePattern, 0),
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build()
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            vib.vibrate(vibratePattern, 0)
+        }
     }
 
     private fun showWhenLockedAndTurnScreenOn() {
@@ -106,6 +120,7 @@ class DespertadorActivity : AppCompatActivity() {
             keyguardManager.requestDismissKeyguard(this, null)
         }
         else {
+            @Suppress("DEPRECATION")
             window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)

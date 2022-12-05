@@ -5,10 +5,10 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.malfaa.recorde_me_remedio.utils.calendarioParaData
 import com.malfaa.recorde_me_remedio.local.RemedioDatabase
 import com.malfaa.recorde_me_remedio.notificacao.sendLastDayNotification
 import com.malfaa.recorde_me_remedio.repository.Repository
+import com.malfaa.recorde_me_remedio.utils.Linguagem
 import java.util.*
 
 class VerificaDiaENotifica (private val context: Context, params: WorkerParameters): CoroutineWorker(context, params) {
@@ -24,8 +24,9 @@ class VerificaDiaENotifica (private val context: Context, params: WorkerParamete
 
         return try {
             val list = repository.retornaUltimoDia()
+            val local = Locale.getDefault().displayLanguage
             for(i in list){
-                if(calendarioParaData(calendario.time) == i){
+                if(Linguagem.linguagem(calendario.time, local)== i) {
                     notificationManager.sendLastDayNotification(context)
                 }
             }

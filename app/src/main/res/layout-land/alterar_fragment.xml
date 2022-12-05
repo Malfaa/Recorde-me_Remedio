@@ -150,7 +150,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     android:textStyle="bold"
-                    app:miliParaHoraMinuto="@{viewModel.item.horaComecoEmMillis}"
+                    app:miliParaHoraMinuto="@{viewModel.item}"
                     app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
                     app:layout_constraintEnd_toEndOf="@+id/anteriormente"
                     app:layout_constraintHorizontal_bias="1.0"

@@ -22,6 +22,7 @@ import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Compan
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel.Companion.minutoInicial
 import com.malfaa.recorde_me_remedio.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class AdicionarFragment : Fragment() {
     private lateinit var binding: AdicionarFragmentBinding
@@ -109,6 +110,7 @@ class AdicionarFragment : Fragment() {
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt())
+                val local = Locale.getDefault().displayLanguage
                 if (binding.horaEditText.text.toString().toInt() > 24){
                     Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
                     binding.horaEditText.text = null
@@ -122,10 +124,11 @@ class AdicionarFragment : Fragment() {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
+                        local,
                         viewModel.getUniqueId()
                     ).apply {
-                        primeiroDia = diaAtual(horas)
-                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas)
+                        primeiroDia = diaAtual(horas, local)
+                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, local)
                     }
                     true -> {
                         remedio = Remedio(
@@ -136,9 +139,10 @@ class AdicionarFragment : Fragment() {
                             horas,
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
+                            local,
                             viewModel.getUniqueId()
                         ).apply {
-                            primeiroDia = diaAtual(horas)
+                            primeiroDia = diaAtual(horas, local)
                             ultimoDia = "-"//diaFinal("999999999")
                         }
                     }
