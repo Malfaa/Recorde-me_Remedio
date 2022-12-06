@@ -61,7 +61,7 @@ fun calendarioParaDataIngles(item: Date): String {
 @SuppressLint("SimpleDateFormat")
 fun tempoEmMilissegundos(hora: Int, minuto: Int):Long {//"2014/10/29 18:10:45"
     return try {
-        val myDate = "${diaAtualFormatado()} $hora:$minuto:00"
+        val myDate = "${diaAtualFormatado(hora,minuto)} $hora:$minuto:00" //1670344200000 = 13:30
         val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         val date: Date= sdf.parse(myDate) as Date
 
@@ -75,7 +75,7 @@ fun tempoEmMilissegundos(hora: Int, minuto: Int):Long {//"2014/10/29 18:10:45"
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 
-fun testeSeODiaInicialSeraHojeOuAmanha(date: Long):Int{ //talvez pra saber se soma ou não
+fun testeSeODiaInicialSeraHojeOuAmanha(date: Long):Int{
     val horarioEscolhidoConcatenado = date + (1000 * 60 * 15) //15 min de atraso
     val horarioLocalConcatenado = System.currentTimeMillis()
 
@@ -86,11 +86,13 @@ fun testeSeODiaInicialSeraHojeOuAmanha(date: Long):Int{ //talvez pra saber se so
     }
 }
 fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
-    val horarioEscolhidoConcatenado = hora+minuto +15 //15 min de atraso
-    val horarioLocalConcatenado =
-        Calendar.HOUR_OF_DAY + Calendar.MINUTE
+    val horarioEscolhidoConcatenado : String = "$hora" + "${minuto + 15}"//15 min de atraso
+    val horarioLocalConcatenado : String = "${Calendar.HOUR_OF_DAY}" + "${Calendar.MINUTE}"
 
-    return if (horarioEscolhidoConcatenado > horarioLocalConcatenado) { //  19:15 19:00
+    // 11 + 30 + 15 = 56 não concatenado
+    // 13 + 25 = 22
+
+    return if (horarioEscolhidoConcatenado.toInt() > horarioLocalConcatenado.toInt()) { //  19:15 19:00
         0
     }else{// 19:00 19:15
         1
@@ -102,9 +104,9 @@ fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
 
 
 @SuppressLint("SimpleDateFormat")
-fun diaAtualFormatado():String{
+fun diaAtualFormatado(horaInit: Int, minutoInit: Int):String{
     val calendar = Calendar.getInstance()
-    calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()))
+    calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(horaInit, minutoInit))
 
     val formato = SimpleDateFormat("yyyy/MM/dd")
     return formato.format(calendar.time)

@@ -11,6 +11,7 @@ import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_ACTION
 import com.malfaa.recorde_me_remedio.utils.Constantes.INTENT_BUNDLE
 import com.malfaa.recorde_me_remedio.utils.Horario.miliParaHoraMinuto
+import com.malfaa.recorde_me_remedio.utils.testeSeODiaInicialSeraHojeOuAmanha
 import java.util.*
 
 class AlarmeService {
@@ -30,6 +31,9 @@ class AlarmeService {
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(item.horaComecoEmMillis).substringBefore(":").toInt())
             set(Calendar.MINUTE, miliParaHoraMinuto(item.horaComecoEmMillis).substringAfter(":").toInt() )
+            if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+                this.add(Calendar.DAY_OF_MONTH, 1)
+            }
         }
 
 
