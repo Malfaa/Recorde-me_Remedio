@@ -1,7 +1,6 @@
 package com.malfaa.recorde_me_remedio.inicial
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -32,14 +31,7 @@ class SplashScreen : Fragment(){
         if(Build.VERSION.SDK_INT >= 23){
             binding.clock.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.shake_animation)
         }else{
-            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    binding.clock.setImageDrawable(requireContext().getDrawable(R.mipmap.ic_clockv2_foreground))
-                }
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    binding.clock.setImageDrawable(requireContext().getDrawable(R.mipmap.ic_clockv2_foreground))
-                }
-            }
+           binding.clock.setImageDrawable(requireContext().getDrawable(R.mipmap.ic_clockv2_foreground))
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
