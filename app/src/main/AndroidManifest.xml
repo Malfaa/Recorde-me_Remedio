@@ -20,7 +20,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7837109045078086~5068910184"/>
+            android:value="ca-app-pub-7837109045078086~3565326058"/>
 
         <activity
             android:name="com.malfaa.recorde_me_remedio.MainActivity"
