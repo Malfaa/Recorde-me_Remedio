@@ -60,6 +60,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="tutorial_texto" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="card_lembrete" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_marginTop">@dimen/distancia_item_edittext</item>
         <item name="android:layout_marginStart">@dimen/distancia_item_edittext</item>

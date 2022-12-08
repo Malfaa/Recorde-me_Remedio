@@ -89,6 +89,66 @@ class AlarmeService {
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
+    fun alarmeAlterandoAlarme(context:Context, item: Remedio){
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
+            action = INTENT_ACTION
+            putExtra(INTENT_BUNDLE, bundleOf(INTENT_BUNDLE to item))
+        }
+
+        notifyPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }else{
+            PendingIntent.getBroadcast(
+                context.applicationContext,
+                item.requestCode,
+                notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
+
+        val horaFinal = (System.currentTimeMillis() - item.horaComecoEmMillis)
+
+        when(item.horaComecoEmMillis > System.currentTimeMillis()) {
+            true -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() - horaFinal,
+                        notifyPendingIntent
+                    )
+                } else {
+                    alarmManager.setExact(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() - horaFinal,
+                        notifyPendingIntent
+                    )
+                }
+            }
+            false -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + ((1000 * 60 * (60 * item.horaEmHora).toLong()) - horaFinal),
+                        notifyPendingIntent  // 1667345544000 + 22956000
+                    )
+                } else {
+                    alarmManager.setExact(
+                        AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + ((1000 * 60 * (60 * item.horaEmHora).toLong()) - horaFinal),
+                        notifyPendingIntent
+                    )
+                }
+            }
+        }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun removerAlarme(context:Context, item: Remedio){
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {

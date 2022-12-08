@@ -6,6 +6,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.os.*
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -68,6 +69,8 @@ class DespertadorActivity : AppCompatActivity() {
         dispensar.setOnLongClickListener{
             som.stop()
             vib.cancel()
+            window.decorView.rootView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+
             finish()
             true
         }

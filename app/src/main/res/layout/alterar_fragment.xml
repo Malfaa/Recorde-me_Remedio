@@ -169,7 +169,7 @@
                     android:layout_gravity="center"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:minWidth="@dimen/spinner_dimen"
                     android:hint="@string/dica_data"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"

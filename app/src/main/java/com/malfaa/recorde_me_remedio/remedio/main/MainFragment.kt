@@ -2,8 +2,10 @@ package com.malfaa.recorde_me_remedio.remedio.main
 
 import android.app.AlarmManager
 import android.app.AlertDialog
+import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -34,6 +36,11 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModel()
 
     private lateinit var binding : MainFragmentBinding
+
+    companion object{
+        const val PREFS_NAME = "PrimeiraVez"
+        var ideia : Boolean?= null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +76,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ehPrimeiraVez()
 
         val adapter = MainAdapter(
             RemedioListener{
@@ -91,6 +99,7 @@ class MainFragment : Fragment() {
 
         binding.adicionarLembrete?.setOnClickListener{
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
+            ideia = true
         }
         binding.adicionarLembreteLand?.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAdicionarFragment())
@@ -137,5 +146,20 @@ class MainFragment : Fragment() {
 
         val alerta = construtor.create()
         alerta.show()
+    }
+
+    private fun ehPrimeiraVez() {
+        val prefs: SharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        val isFirst: Boolean = prefs.getBoolean(PREFS_NAME,true)
+        if (isFirst) {
+            binding.tutorialView?.visibility = View.VISIBLE
+            when(ideia){
+                true -> {
+                    binding.tutorialView?.visibility = View.GONE
+                    prefs.edit().putBoolean(PREFS_NAME,
+                        false).apply()}
+                else-> binding.tutorialView?.visibility = View.VISIBLE
+            }
+        }
     }
 }

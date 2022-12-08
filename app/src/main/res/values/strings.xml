@@ -20,7 +20,7 @@
     <string name="catorze_dias">14 dias</string>
     <string name="todos_dias">Todos os dias</string>
 
-    <string name="nota">Nota</string>
+    <string name="nota">Nota (opcional)</string>
     <string name="hora">Hora</string>
     <string name="data">Período</string>
     <string name="hora_inicial">Iniciar em</string>
@@ -46,6 +46,7 @@
     <string name="oito_em_oito">8 em 8 horas</string>
     <string name="vintequatro_em_vintequatro">24 em 24 horas</string>
 
+    <string name="tutorial_adicionar">Exemplos abaixo:</string>
 
     <string name="horario_restante">2 horas 34 min</string>
     <string name="data_restante">4 dias</string>
@@ -69,7 +70,7 @@
 
 <!--    Ad Strings-->
     <string name="banner_ad_unit" translatable="false">ca-app-pub-7837109045078086/2672140694</string>
-<!--    <string name="banner_google" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--    <string name="banner_ad_unit" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
 
 <!--    -->
     <string name="nota_um">
@@ -110,5 +111,8 @@
 <!--    Despertador-->
     <string name="dismiss">Segure no ícone abaixo para dispensar.</string>
     <string name="ícone_dismiss">Dispensar o alarme.</string>
+
+<!--    Tutorial Crop-->
+    <string name="texto_tutorial">Clique no botão destacado para adicionar seu primeiro alarme!</string>
 
 </resources>

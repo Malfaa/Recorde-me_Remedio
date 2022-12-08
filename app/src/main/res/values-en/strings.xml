@@ -21,7 +21,7 @@
     <string name="catorze_dias">14 days</string>
     <string name="todos_dias">Every day</string>
 
-    <string name="nota">Note</string>
+    <string name="nota">Note (optional)</string>
     <string name="hora">Hour</string>
     <string name="data">Period</string>
     <string name="hora_inicial">Start at</string>
@@ -69,7 +69,7 @@
 
     <!--    Ad Strings-->
     <string name="banner_ad_unit">ca-app-pub-7837109045078086/2672140694</string>
-    <string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>
+<!--<string name="banner_google">ca-app-pub-3940256099942544/6300978111</string>-->
 
     <!--    -->
     <string name="nota_um">
@@ -111,5 +111,7 @@
     <string name="dismiss">Hold the icon below to dismiss.</string>
     <string name="ícone_dismiss">Dismiss the alarm.</string>
     <string name="alterar">Change</string>
+    <string name="tutorial_adicionar">Examples below:</string>
+    <string name="texto_tutorial">Click the highlighted button to add your first alarm!</string>
 
 </resources>

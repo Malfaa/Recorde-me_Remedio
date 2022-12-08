@@ -20,7 +20,10 @@ import com.malfaa.recorde_me_remedio.google.ADMOB
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
-import com.malfaa.recorde_me_remedio.utils.*
+import com.malfaa.recorde_me_remedio.utils.diaAtual
+import com.malfaa.recorde_me_remedio.utils.diaFinal
+import com.malfaa.recorde_me_remedio.utils.picker
+import com.malfaa.recorde_me_remedio.utils.tempoEmMilissegundos
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -111,18 +114,50 @@ class AlterarFragment : Fragment()  {
         binding.alterar.setOnClickListener{
             try{
                 val remedio: Remedio
-                val horas = tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
                 val local = Locale.getDefault().displayLanguage
-                if (binding.horaEditText.text.toString().toInt() > 24){
-                    Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
-                    binding.horaEditText.text = null
+
+                val horas = if(binding.horarioInicial.text.isNullOrBlank()){
+                    args.item.horaComecoEmMillis
+                }else{
+                    tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
                 }
+
+                var horaEmHora : Int? = if (binding.horaEditText.text?.isEmpty() == true) {
+                    args.item.horaEmHora
+                }else{
+                    binding.horaEditText.text.toString().toInt()
+                }
+
+                var periodo: Int? = if (binding.dataEditText.text.isNullOrBlank()) {
+                    args.item.periodoDias
+                }else{
+                    binding.dataEditText.text.toString().toInt()
+                }
+
+                if (horaEmHora != null) {
+                    if (horaEmHora > 24){
+                        Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
+                        horaEmHora = null
+                    }
+                }
+                if (horaEmHora != null) {
+                    if(horaEmHora <= 0){
+                        Toast.makeText(requireContext(), "Hora mínimo permitido é de:\n1 hora",Toast.LENGTH_SHORT).show()
+                        horaEmHora = null
+                    }
+                }
+                if (periodo == 0){
+                    Toast.makeText(requireContext(), "Período mínimo permitido é de:\n1 dia",Toast.LENGTH_SHORT).show()
+                    periodo = null
+                }
+
+
                 when(binding.checkBox.isChecked) {
                     false -> remedio = Remedio(
                         args.item.id,
                         binding.campoRemedio.text.toString().uppercase(),
-                        binding.horaEditText.text.toString().toInt(),
-                        binding.dataEditText.text.toString().toInt(),
+                        horaEmHora!!,
+                        periodo!!,
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
@@ -131,12 +166,12 @@ class AlterarFragment : Fragment()  {
 
                     ).apply {
                         primeiroDia = diaAtual(horas, local)
-                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, local)
+                        ultimoDia = diaFinal(periodo.toString(),horas, local)
                     }
                     true -> remedio = Remedio(
                         args.item.id,
                         binding.campoRemedio.text.toString().uppercase(),
-                        binding.horaEditText.text.toString().toInt(),
+                        horaEmHora!!,
                         999999999,
                         horas,
                         binding.campoNota.text.toString(),
@@ -149,7 +184,10 @@ class AlterarFragment : Fragment()  {
                     }
                 }
 
-                AlarmeService().adicionarAlarme(requireContext(), remedio, null)
+                when(binding.horarioInicial.text){
+                    null -> AlarmeService().alarmeAlterandoAlarme(requireContext(), remedio)
+                    else -> AlarmeService().adicionarAlarme(requireContext(), remedio, null)
+                }
 
                 viewModel.alterarRemedio(remedio)
             }catch (e:Exception){
