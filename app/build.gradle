@@ -13,8 +13,8 @@ android {
         applicationId "com.malfaa.recorde_me_remedio"
         minSdk 21
         targetSdk 32
-        versionCode 4
-        versionName "1.2.1"
+        versionCode 5
+        versionName "1.2.2"
 
         javaCompileOptions {
             annotationProcessorOptions {
