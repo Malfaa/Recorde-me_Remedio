@@ -15,7 +15,7 @@
 
     <color name="text_color_dark">#E6E6E6</color>
 
-    <color name="grey_bg">#eceff1</color>
+    <color name="gray_bg">#eceff1</color>
     <color name= "cinza_texto">#535252</color>
 
     <color name= "caixa_expandida_bg_light">#EAE6E4</color>

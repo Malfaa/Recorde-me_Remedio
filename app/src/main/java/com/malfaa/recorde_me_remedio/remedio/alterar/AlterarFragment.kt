@@ -20,10 +20,7 @@ import com.malfaa.recorde_me_remedio.google.ADMOB
 import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarFragment.Companion.EDITOR_TEXT_INSTANCE
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
-import com.malfaa.recorde_me_remedio.utils.diaAtual
-import com.malfaa.recorde_me_remedio.utils.diaFinal
-import com.malfaa.recorde_me_remedio.utils.picker
-import com.malfaa.recorde_me_remedio.utils.tempoEmMilissegundos
+import com.malfaa.recorde_me_remedio.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -108,13 +105,12 @@ class AlterarFragment : Fragment()  {
         }
 
         binding.horarioInicial.setOnClickListener {
-            picker(requireParentFragment().parentFragmentManager, binding.horarioInicial)
+            timePicker(requireParentFragment().parentFragmentManager, args.item.linguagem, binding.horarioInicial, binding.diaReferencia)
         }
 
         binding.alterar.setOnClickListener{
             try{
                 val remedio: Remedio
-                val local = Locale.getDefault().displayLanguage
 
                 val horas = if(binding.horarioInicial.text.isNullOrBlank()){
                     args.item.horaComecoEmMillis
@@ -161,12 +157,12 @@ class AlterarFragment : Fragment()  {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
-                        local,
+                        args.item.linguagem,
                         args.item.requestCode
 
                     ).apply {
-                        primeiroDia = diaAtual(horas, local)
-                        ultimoDia = diaFinal(periodo.toString(),horas, local)
+                        primeiroDia = diaInicial(horas, args.item.linguagem)
+                        ultimoDia = diaFinal(periodo.toString(),horas, args.item.linguagem)
                     }
                     true -> remedio = Remedio(
                         args.item.id,
@@ -176,10 +172,10 @@ class AlterarFragment : Fragment()  {
                         horas,
                         binding.campoNota.text.toString(),
                         binding.checkBox.isChecked,
-                        local,
+                        args.item.linguagem,
                         args.item.requestCode
                     ).apply {
-                        primeiroDia = diaAtual(horas, local)
+                        primeiroDia = diaInicial(horas, args.item.linguagem)
                         ultimoDia = "-"// diaFinal("999999999")
                     }
                 }

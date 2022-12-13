@@ -115,4 +115,11 @@
 <!--    Tutorial Crop-->
     <string name="texto_tutorial">Clique no botão destacado para adicionar seu primeiro alarme!</string>
 
+<!--    Content Description-->
+    <string name="rec_content_desc">Área da Lista de Medicamentos</string>
+    <string name="area_nota">Campo da Nota</string>
+    <string name="area_remedio">Campo Remédio</string>
+    <string name="area_hora_inicial">Campo Hora Inicial</string>
+    <string name="remedio_titulo">Título do Remédio</string>
+
 </resources>

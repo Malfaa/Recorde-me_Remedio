@@ -54,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/distancia_item_edittext"
                     android:autofillHints="no"
+                    android:contentDescription="@string/area_remedio"
                     android:ems="10"
                     android:text="@{viewModel.item.remedio}"
                     android:inputType="text"
@@ -90,10 +91,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_box_default_height"
                     android:minWidth="@dimen/dimen_box_default_width"
+                    android:contentDescription="@string/area_hora_inicial"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_adicao"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
                     app:layout_constraintTop_toBottomOf="@+id/horaInicialText" />
+
+                <TextView
+                    android:id="@+id/diaReferencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dimen_box_large_height"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_adicao"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/horarioInicial"
+                    app:layout_constraintStart_toEndOf="@+id/horarioInicial"
+                    app:layout_constraintTop_toTopOf="@+id/horarioInicial" />
 
                 <TextView
                     android:id="@+id/horaText"
@@ -122,6 +137,7 @@
                     android:inputType="numberDecimal"
                     android:minWidth="@dimen/dimen_box_default_height"
                     android:hint="@string/dica_horas"
+                    android:textColorHint="@drawable/selector"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -202,6 +218,7 @@
                     android:inputType="number"
                     android:minWidth="@dimen/spinner_dimen"
                     android:hint="@string/dica_data"
+                    android:textColorHint="@drawable/selector"
                     app:layout_constraintEnd_toEndOf="@+id/horarioInicial"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/horarioInicial"
@@ -260,6 +277,7 @@
                     android:layout_height="@dimen/l_distancia_itens"
                     android:layout_marginTop="@dimen/distancia_item_edittext"
                     android:ems="10"
+                    android:contentDescription="@string/area_nota"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:text="@{viewModel.item.nota}"

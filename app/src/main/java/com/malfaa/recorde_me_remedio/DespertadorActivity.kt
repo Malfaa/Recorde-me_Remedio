@@ -69,7 +69,7 @@ class DespertadorActivity : AppCompatActivity() {
         dispensar.setOnLongClickListener{
             som.stop()
             vib.cancel()
-            window.decorView.rootView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+            window.decorView.rootView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
 
             finish()
             true
@@ -128,5 +128,11 @@ class DespertadorActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        som.stop()
+        vib.cancel()
     }
 }

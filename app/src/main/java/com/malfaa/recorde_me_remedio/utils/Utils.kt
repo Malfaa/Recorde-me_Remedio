@@ -7,41 +7,11 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.malfaa.recorde_me_remedio.local.Remedio
 import com.malfaa.recorde_me_remedio.remedio.adicionar.AdicionarViewModel
 import com.malfaa.recorde_me_remedio.utils.Horario.miliParaHoraMinuto
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
-
-object Horario{
-    @SuppressLint("SimpleDateFormat")
-    fun miliParaHoraMinuto(tempo: Long): String {
-        val date = Date(tempo)
-        val formatter = SimpleDateFormat("HH:mm")
-
-        return formatter.format(date)
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun miliParaHoraMinuto(item: Remedio, horario: Long): String {
-        return when(item.linguagem){
-            "português" ->{
-                val date = Date(horario)
-                val formatter = SimpleDateFormat("HH:mm")
-
-                formatter.format(date)
-            }
-            else->{
-                val date = Date(horario)
-                val formatter = SimpleDateFormat("hh:mm a")
-
-                formatter.format(date)
-            }
-        }
-    }
-}
-
 
 @SuppressLint("SimpleDateFormat")
 fun calendarioParaData(item: Date): String {
@@ -106,34 +76,70 @@ fun testeSeODiaInicialSeraHojeOuAmanha(hora:Int, minuto:Int):Int{
 @SuppressLint("SimpleDateFormat")
 fun diaAtualFormatado(horaInit: Int, minutoInit: Int):String{
     val calendar = Calendar.getInstance()
-    calendar.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(horaInit, minutoInit))
-
+    if(testeSeODiaInicialSeraHojeOuAmanha(horaInit, minutoInit) == 1) {
+        calendar.add(Calendar.DAY_OF_MONTH, 1)
+    }
     val formato = SimpleDateFormat("yyyy/MM/dd")
     return formato.format(calendar.time)
 }
 
-fun diaAtual(tempo: Long, language: String):String{
-    val calendario = Calendar.getInstance()
-    calendario.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(tempo))
-    return Linguagem.linguagem(calendario.time, language)
+@SuppressLint("SimpleDateFormat")
+fun diaInicial(date: Long, language: String):String {//"2014/10/29 18:10:45"
+    val calendar: Calendar = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(date).substringBefore(":").toInt())
+        set(Calendar.MINUTE, miliParaHoraMinuto(date).substringAfter(":").toInt())
+        if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+            this.add(Calendar.DAY_OF_MONTH, 1)
+        }
+    }
+    return try {
+        val sdf: SimpleDateFormat = when(language){
+            "português" -> SimpleDateFormat("dd/MM")
+            else -> SimpleDateFormat("MM/dd")
+        }
+        sdf.format(calendar.time)
+
+    }catch (e: Exception){
+        Log.e("Error", e.message!!)
+        ""
+    }
 }
 
-fun diaFinal(editTextData: String, tempo:Long, language: String):String{
-    val calendario = Calendar.getInstance()
-    calendario.add(Calendar.DATE, testeSeODiaInicialSeraHojeOuAmanha(tempo)+editTextData.toInt())
-    return Linguagem.linguagem(calendario.time, language)
+@SuppressLint("SimpleDateFormat")
+fun diaFinal(editTextData: String, date: Long, language: String):String {//"2014/10/29 18:10:45"
+    val calendar: Calendar = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(date).substringBefore(":").toInt())
+        set(Calendar.MINUTE, miliParaHoraMinuto(date).substringAfter(":").toInt() )
+        if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+            this.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        this.add(Calendar.DAY_OF_MONTH, editTextData.toInt())
+    }
+    return try {
+        val sdf: SimpleDateFormat = when(language){
+            "português" -> SimpleDateFormat("dd/MM")
+            else -> SimpleDateFormat("MM/dd")
+        }
+        sdf.format(calendar.time)
+
+    }catch (e: Exception){
+        Log.e("Error", e.message!!)
+        ""
+    }
 }
 
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 
-fun picker(frag: FragmentManager, text: TextView) {
+fun timePicker(frag: FragmentManager, linguagem: String, text: TextView, diaReferencia: TextView) {
     var horaFinal: String
     val picker =
-        when(Locale.getDefault().displayLanguage){
+        when(linguagem){
             "português" ->{
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H)
-                    .setTitleText("Hora em que iniciará:").setHour(LocalDateTime.now().hour)
+                    .setTitleText("Hora em que iniciará:")
+                    .setHour(LocalDateTime.now().hour)
                     .setMinute(LocalDateTime.now().minute)
                     .build()
                 } else {
@@ -163,6 +169,8 @@ fun picker(frag: FragmentManager, text: TextView) {
         AdicionarViewModel.horaInicial = String.format("%02d", picker.hour)
         AdicionarViewModel.minutoInicial = String.format("%02d", picker.minute)
         horaFinal = "${AdicionarViewModel.horaInicial}:${AdicionarViewModel.minutoInicial}"
+
         text.text = horaFinal
+        diaReferencia.text = diaInicial(tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()), linguagem)
     }
 }
