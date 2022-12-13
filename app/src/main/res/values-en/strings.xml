@@ -114,8 +114,6 @@
     <string name="tutorial_adicionar">Examples below:</string>
     <string name="texto_tutorial">Click the highlighted button to add your first alarm!</string>
     <string name="rec_content_desc">Area of Medicine List</string>
-    <string name="area_nota">Note Field</string>
-    <string name="area_remedio">Remedy Field</string>
     <string name="area_hora_inicial">Start Time field</string>
     <string name="remedio_titulo">Medicine Title</string>
 

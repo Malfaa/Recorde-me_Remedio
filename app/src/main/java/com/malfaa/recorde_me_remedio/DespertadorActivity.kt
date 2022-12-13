@@ -6,7 +6,6 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.os.*
-import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -69,7 +68,20 @@ class DespertadorActivity : AppCompatActivity() {
         dispensar.setOnLongClickListener{
             som.stop()
             vib.cancel()
-            window.decorView.rootView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            val vibratePattern = longArrayOf(0, 100, 100)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vib.vibrate(
+                    VibrationEffect.createWaveform(vibratePattern, 0),
+                    AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .build()
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                vib.vibrate(vibratePattern, 0)
+            }
 
             finish()
             true

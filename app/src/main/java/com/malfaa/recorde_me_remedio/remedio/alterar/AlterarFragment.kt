@@ -109,88 +109,88 @@ class AlterarFragment : Fragment()  {
         }
 
         binding.alterar.setOnClickListener{
-            try{
+            try {
                 val remedio: Remedio
 
-                val horas = if(binding.horarioInicial.text.isNullOrBlank()){
+                val horas = if (binding.horarioInicial.text.isNullOrBlank()) {
                     args.item.horaComecoEmMillis
-                }else{
-                    tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt())
+                } else {
+                    tempoEmMilissegundos(
+                        AdicionarViewModel.horaInicial.toInt(),
+                        AdicionarViewModel.minutoInicial.toInt()
+                    )
                 }
 
-                var horaEmHora : Int? = if (binding.horaEditText.text?.isEmpty() == true) {
+                val horaEmHora: Int = if (binding.horaEditText.text?.isEmpty() == true) {
                     args.item.horaEmHora
-                }else{
+                } else {
                     binding.horaEditText.text.toString().toInt()
                 }
 
-                var periodo: Int? = if (binding.dataEditText.text.isNullOrBlank()) {
+                val periodo: Int = if (binding.dataEditText.text.isNullOrBlank()) {
                     args.item.periodoDias
-                }else{
+                } else {
                     binding.dataEditText.text.toString().toInt()
                 }
 
-                if (horaEmHora != null) {
-                    if (horaEmHora > 24){
-                        Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
-                        horaEmHora = null
+
+                if (horaEmHora in 1..23) {
+                    when (binding.checkBox.isChecked) {
+                        false -> remedio = Remedio(
+                            args.item.id,
+                            binding.campoRemedio.text.toString().uppercase(),
+                            horaEmHora,
+                            periodo,
+                            horas,
+                            binding.campoNota.text.toString(),
+                            binding.checkBox.isChecked,
+                            args.item.linguagem,
+                            args.item.requestCode
+
+                        ).apply {
+                            primeiroDia = diaInicial(horas, args.item.linguagem)
+                            ultimoDia = diaFinal(periodo.toString(), horas, args.item.linguagem)
+                        }
+                        true -> remedio = Remedio(
+                            args.item.id,
+                            binding.campoRemedio.text.toString().uppercase(),
+                            horaEmHora,
+                            999999999,
+                            horas,
+                            binding.campoNota.text.toString(),
+                            binding.checkBox.isChecked,
+                            args.item.linguagem,
+                            args.item.requestCode
+                        ).apply {
+                            primeiroDia = diaInicial(horas, args.item.linguagem)
+                            ultimoDia = "-"// diaFinal("999999999")
+                        }
                     }
-                }
-                if (horaEmHora != null) {
-                    if(horaEmHora <= 0){
-                        Toast.makeText(requireContext(), "Hora mínimo permitido é de:\n1 hora",Toast.LENGTH_SHORT).show()
-                        horaEmHora = null
+
+                    when (binding.horarioInicial.text) {
+                        null -> AlarmeService().alarmeAlterandoAlarme(requireContext(), remedio)
+                        else -> AlarmeService().adicionarAlarme(requireContext(), remedio, null)
                     }
+
+                    viewModel.alterarRemedio(remedio)
+                } else {
+                    binding.horaEditText.text = null
+                    Toast.makeText(
+                        requireContext(),
+                        "Horas tem que ser entre 1 e 24.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                if (periodo == 0){
-                    Toast.makeText(requireContext(), "Período mínimo permitido é de:\n1 dia",Toast.LENGTH_SHORT).show()
-                    periodo = null
-                }
-
-
-                when(binding.checkBox.isChecked) {
-                    false -> remedio = Remedio(
-                        args.item.id,
-                        binding.campoRemedio.text.toString().uppercase(),
-                        horaEmHora!!,
-                        periodo!!,
-                        horas,
-                        binding.campoNota.text.toString(),
-                        binding.checkBox.isChecked,
-                        args.item.linguagem,
-                        args.item.requestCode
-
-                    ).apply {
-                        primeiroDia = diaInicial(horas, args.item.linguagem)
-                        ultimoDia = diaFinal(periodo.toString(),horas, args.item.linguagem)
-                    }
-                    true -> remedio = Remedio(
-                        args.item.id,
-                        binding.campoRemedio.text.toString().uppercase(),
-                        horaEmHora!!,
-                        999999999,
-                        horas,
-                        binding.campoNota.text.toString(),
-                        binding.checkBox.isChecked,
-                        args.item.linguagem,
-                        args.item.requestCode
-                    ).apply {
-                        primeiroDia = diaInicial(horas, args.item.linguagem)
-                        ultimoDia = "-"// diaFinal("999999999")
-                    }
-                }
-
-                when(binding.horarioInicial.text){
-                    null -> AlarmeService().alarmeAlterandoAlarme(requireContext(), remedio)
-                    else -> AlarmeService().adicionarAlarme(requireContext(), remedio, null)
-                }
-
-                viewModel.alterarRemedio(remedio)
-            }catch (e:Exception){
-                Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
+            } catch (e:Exception){
+                Toast.makeText(
+                    requireContext(),
+                    "Campo necessário inválido, tente novamente.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

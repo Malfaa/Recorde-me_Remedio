@@ -112,39 +112,13 @@ class AdicionarFragment : Fragment() {
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt())
-
-                if (binding.horaEditText.text.toString().toInt() > 24){
-                    Toast.makeText(requireContext(), "Hora máxima permitida é de:\n24 horas",Toast.LENGTH_SHORT).show()
-                    binding.horaEditText.text = null
-                }else if(binding.horaEditText.text.toString().toInt() <= 0){
-                    Toast.makeText(requireContext(), "Hora mínimo permitido é de:\n1 hora",Toast.LENGTH_SHORT).show()
-                    binding.horaEditText.text = null
-                }else if (binding.dataEditText.text.toString().toInt() == 0){
-                    Toast.makeText(requireContext(), "Período mínimo permitido é de:\n1 dia",Toast.LENGTH_SHORT).show()
-                    binding.dataEditText.text = null
-                }
-
-                when(binding.checkBox.isChecked){
-                    false ->remedio = Remedio(
-                        0,
-                        binding.campoRemedio.text.toString().uppercase(),
-                        binding.horaEditText.text.toString().toInt(),
-                        binding.dataEditText.text.toString().toInt(),
-                        horas,
-                        binding.campoNota.text.toString(),
-                        binding.checkBox.isChecked,
-                        idioma,
-                        viewModel.getUniqueId()
-                    ).apply {
-                        primeiroDia = diaInicial(horas, idioma)
-                        ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, idioma)
-                    }
-                    true -> {
-                        remedio = Remedio(
+                if (binding.horaEditText.text.toString().toInt() in 1..23 ) {
+                    when(binding.checkBox.isChecked){
+                        false ->remedio = Remedio(
                             0,
                             binding.campoRemedio.text.toString().uppercase(),
                             binding.horaEditText.text.toString().toInt(),
-                            999999999,
+                            binding.dataEditText.text.toString().toInt(),
                             horas,
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
@@ -152,15 +126,34 @@ class AdicionarFragment : Fragment() {
                             viewModel.getUniqueId()
                         ).apply {
                             primeiroDia = diaInicial(horas, idioma)
-                            ultimoDia = "-"//diaFinal("999999999")
+                            ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, idioma)
+                        }
+                        true -> {
+                            remedio = Remedio(
+                                0,
+                                binding.campoRemedio.text.toString().uppercase(),
+                                binding.horaEditText.text.toString().toInt(),
+                                999999999,
+                                horas,
+                                binding.campoNota.text.toString(),
+                                binding.checkBox.isChecked,
+                                idioma,
+                                viewModel.getUniqueId()
+                            ).apply {
+                                primeiroDia = diaInicial(horas, idioma)
+                                ultimoDia = "-"//diaFinal("999999999")
+                            }
                         }
                     }
-                }
-                AlarmeService().adicionarAlarme(requireContext(), remedio, null)
+                    AlarmeService().adicionarAlarme(requireContext(), remedio, null)
 
-                viewModel.adicionarRemedio(remedio)
+                    viewModel.adicionarRemedio(remedio)
+                }else{
+                    binding.horaEditText.text = null
+                    Toast.makeText(requireContext(), "Horas tem que ser entre 1 e 24.", Toast.LENGTH_SHORT).show()
+                }
             }catch (e:Exception){
-//                Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Campo necessário inválido, tente novamente.", Toast.LENGTH_SHORT).show()
                 Log.e("AdicionarFragment",e.message!!)
             }
         }
