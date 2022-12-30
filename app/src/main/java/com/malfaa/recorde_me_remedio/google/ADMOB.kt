@@ -1,6 +1,7 @@
 package com.malfaa.recorde_me_remedio.google
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.LoadAdError
@@ -15,11 +16,13 @@ object ADMOB {
                 // Code to be executed when an ad finishes loading.
                 //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
                 binding.adView.resume()
+                Log.d("AdLoaded","Banner adapter class name:" + binding.adView.responseInfo?.mediationAdapterClassName.toString())
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
                 Toast.makeText(context, "Ad failed to load", Toast.LENGTH_SHORT).show()//, error: $error.
+                Log.e("Error", adError.message)
             }
 
             override fun onAdOpened() {
@@ -50,11 +53,13 @@ object ADMOB {
                 // Code to be executed when an ad finishes loading.
                 //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
                 binding.adicionarAdView.resume()
+                Log.d("AdLoaded","Banner adapter class name:" + binding.adicionarAdView.responseInfo?.mediationAdapterClassName.toString())
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
                 Toast.makeText(context, "Ad failed to load", Toast.LENGTH_SHORT).show()//, error: $error.
+                Log.e("Error", adError.message)
             }
 
             override fun onAdOpened() {
@@ -85,11 +90,13 @@ object ADMOB {
                 // Code to be executed when an ad finishes loading.
                 //Toast.makeText(context, "Ad loaded.", Toast.LENGTH_SHORT).show()
                 binding.alterarAdView.resume()
+                Log.d("AdLoaded","Banner adapter class name:" + binding.alterarAdView.responseInfo?.mediationAdapterClassName.toString())
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
                 Toast.makeText(context, "Ad failed to load", Toast.LENGTH_SHORT).show()//, error: $error.
+                Log.e("Error", adError.message)
             }
 
             override fun onAdOpened() {

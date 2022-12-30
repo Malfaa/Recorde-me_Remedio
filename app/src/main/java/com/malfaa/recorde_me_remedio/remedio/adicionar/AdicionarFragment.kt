@@ -112,7 +112,7 @@ class AdicionarFragment : Fragment() {
             try{
                 val remedio: Remedio
                 val horas = tempoEmMilissegundos(horaInicial.toInt(), minutoInicial.toInt())
-                if (binding.horaEditText.text.toString().toInt() in 1..23 ) {
+                if (binding.horaEditText.text.toString().toInt() in 1..24 ) {
                     when(binding.checkBox.isChecked){
                         false ->remedio = Remedio(
                             0,

@@ -134,7 +134,7 @@ class AlterarFragment : Fragment()  {
                 }
 
 
-                if (horaEmHora in 1..23) {
+                if (horaEmHora in 1..24) {
                     when (binding.checkBox.isChecked) {
                         false -> remedio = Remedio(
                             args.item.id,
