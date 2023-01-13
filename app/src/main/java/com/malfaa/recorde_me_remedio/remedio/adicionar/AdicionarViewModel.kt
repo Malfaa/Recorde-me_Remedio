@@ -16,6 +16,7 @@ class AdicionarViewModel(private val repositorio: Repository): ViewModel(){
     }
 
     val checkBox = MutableLiveData(false)
+    val checkBoxProxDia = MutableLiveData(false)
 
     private val _navegarDeVolta = MutableLiveData(false)
     val navegarDeVolta : LiveData<Boolean>

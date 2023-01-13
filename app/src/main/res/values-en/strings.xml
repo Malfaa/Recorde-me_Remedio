@@ -3,7 +3,7 @@
     <string name="app_name">Remember My Medicine</string>
     <string name="remedio_lembrar">Remember me!</string>
     <string name="iniciou">Start Time:</string>
-    <string name="termina">Begin-Fininsh:</string>
+    <string name="termina">Begin-Finish:</string>
     <string name="remedio">Medice</string>
     <string name="clock">Clock</string>
     <string name="valor">default</string>
@@ -116,5 +116,6 @@
     <string name="rec_content_desc">Area of Medicine List</string>
     <string name="area_hora_inicial">Start Time field</string>
     <string name="remedio_titulo">Medicine Title</string>
+    <string name="prox_dia">Start notifying from tomorrow?</string>
 
 </resources>

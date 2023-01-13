@@ -70,6 +70,7 @@ class AlterarFragment : Fragment()  {
 
         viewModel.item.value = args.item.apply {
             viewModel.checkBox.value = args.item.todosOsDias
+            viewModel.checkBoxProxDia.value = args.item.proximoDia
         }
 
         viewModel.checkBox.observe(viewLifecycleOwner){
@@ -145,11 +146,12 @@ class AlterarFragment : Fragment()  {
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
                             args.item.linguagem,
+                            binding.checkBoxProxDia.isChecked,
                             args.item.requestCode
 
                         ).apply {
-                            primeiroDia = diaInicial(horas, args.item.linguagem)
-                            ultimoDia = diaFinal(periodo.toString(), horas, args.item.linguagem)
+                            primeiroDia = diaInicial(horas, args.item.linguagem, binding.checkBoxProxDia.isChecked)
+                            ultimoDia = diaFinal(periodo.toString(), horas, args.item.linguagem, binding.checkBoxProxDia.isChecked)
                         }
                         true -> remedio = Remedio(
                             args.item.id,
@@ -160,16 +162,17 @@ class AlterarFragment : Fragment()  {
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
                             args.item.linguagem,
+                            binding.checkBoxProxDia.isChecked,
                             args.item.requestCode
                         ).apply {
-                            primeiroDia = diaInicial(horas, args.item.linguagem)
+                            primeiroDia = diaInicial(horas, args.item.linguagem, binding.checkBoxProxDia.isChecked)
                             ultimoDia = "-"// diaFinal("999999999")
                         }
                     }
 
                     when (binding.horarioInicial.text) {
                         null -> AlarmeService().alarmeAlterandoAlarme(requireContext(), remedio)
-                        else -> AlarmeService().adicionarAlarme(requireContext(), remedio, null)
+                        else -> AlarmeService().adicionarAlarme(requireContext(), remedio, horaEmHora, true, binding.checkBoxProxDia.isChecked)
                     }
 
                     viewModel.alterarRemedio(remedio)

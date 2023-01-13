@@ -123,10 +123,11 @@ class AdicionarFragment : Fragment() {
                             binding.campoNota.text.toString(),
                             binding.checkBox.isChecked,
                             idioma,
+                            binding.checkBoxProxDia.isChecked,
                             viewModel.getUniqueId()
                         ).apply {
-                            primeiroDia = diaInicial(horas, idioma)
-                            ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, idioma)
+                            primeiroDia = diaInicial(horas, idioma, binding.checkBoxProxDia.isChecked)
+                            ultimoDia = diaFinal(binding.dataEditText.text.toString(),horas, idioma, binding.checkBoxProxDia.isChecked)
                         }
                         true -> {
                             remedio = Remedio(
@@ -138,14 +139,15 @@ class AdicionarFragment : Fragment() {
                                 binding.campoNota.text.toString(),
                                 binding.checkBox.isChecked,
                                 idioma,
+                                binding.checkBoxProxDia.isChecked,
                                 viewModel.getUniqueId()
                             ).apply {
-                                primeiroDia = diaInicial(horas, idioma)
+                                primeiroDia = diaInicial(horas, idioma, binding.checkBoxProxDia.isChecked)
                                 ultimoDia = "-"//diaFinal("999999999")
                             }
                         }
                     }
-                    AlarmeService().adicionarAlarme(requireContext(), remedio, null)
+                    AlarmeService().adicionarAlarme(requireContext(), remedio, binding.horaEditText.text.toString().toInt(), true, binding.checkBoxProxDia.isChecked)
 
                     viewModel.adicionarRemedio(remedio)
                 }else{

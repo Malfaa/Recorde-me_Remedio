@@ -84,11 +84,11 @@ fun diaAtualFormatado(horaInit: Int, minutoInit: Int):String{
 }
 
 @SuppressLint("SimpleDateFormat")
-fun diaInicial(date: Long, language: String):String {//"2014/10/29 18:10:45"
+fun diaInicial(date: Long, language: String, proxDia: Boolean):String {//"2014/10/29 18:10:45"
     val calendar: Calendar = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(date).substringBefore(":").toInt())
         set(Calendar.MINUTE, miliParaHoraMinuto(date).substringAfter(":").toInt())
-        if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+        if (proxDia){
             this.add(Calendar.DAY_OF_MONTH, 1)
         }
     }
@@ -106,11 +106,11 @@ fun diaInicial(date: Long, language: String):String {//"2014/10/29 18:10:45"
 }
 
 @SuppressLint("SimpleDateFormat")
-fun diaFinal(editTextData: String, date: Long, language: String):String {//"2014/10/29 18:10:45"
+fun diaFinal(editTextData: String, date: Long, language: String, proxDia: Boolean):String {//"2014/10/29 18:10:45"
     val calendar: Calendar = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(date).substringBefore(":").toInt())
         set(Calendar.MINUTE, miliParaHoraMinuto(date).substringAfter(":").toInt() )
-        if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+        if (proxDia){
             this.add(Calendar.DAY_OF_MONTH, 1)
         }
 
@@ -171,6 +171,6 @@ fun timePicker(frag: FragmentManager, linguagem: String, text: TextView, diaRefe
         horaFinal = "${AdicionarViewModel.horaInicial}:${AdicionarViewModel.minutoInicial}"
 
         text.text = horaFinal
-        diaReferencia.text = diaInicial(tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()), linguagem)
+        diaReferencia.text = diaInicial(tempoEmMilissegundos(AdicionarViewModel.horaInicial.toInt(), AdicionarViewModel.minutoInicial.toInt()), linguagem, false)
     }
 }
