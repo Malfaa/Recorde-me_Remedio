@@ -14,6 +14,7 @@ class AlterarViewModel(private val repositorio: Repository): ViewModel() {
     val item = MutableLiveData<Remedio>()
 
     val checkBox = MutableLiveData<Boolean>()
+    val checkBoxProxDia = MutableLiveData<Boolean>()
 
     private val _navegarDeVolta = MutableLiveData(false)
     val navegarDeVolta : LiveData<Boolean>

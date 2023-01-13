@@ -21,7 +21,7 @@ class AlarmeService {
     private lateinit var notifyPendingIntent: PendingIntent
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun adicionarAlarme(context:Context, item: Remedio, valor: Int?) {
+    fun adicionarAlarme(context:Context, item: Remedio, valor: Int, primeiroAlarme: Boolean, proxDia: Boolean) {
 
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         notifyIntent = Intent(context, AlarmeReceiver::class.java).apply {
@@ -31,7 +31,7 @@ class AlarmeService {
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, miliParaHoraMinuto(item.horaComecoEmMillis).substringBefore(":").toInt())
             set(Calendar.MINUTE, miliParaHoraMinuto(item.horaComecoEmMillis).substringAfter(":").toInt() )
-            if(testeSeODiaInicialSeraHojeOuAmanha(this.timeInMillis) == 1){
+            if(proxDia){
                 this.add(Calendar.DAY_OF_MONTH, 1)
             }
         }
@@ -53,23 +53,41 @@ class AlarmeService {
             )
         }
 
-        when(valor){
-            null -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        calendar.timeInMillis,
-                        notifyPendingIntent
-                    )
+        when(primeiroAlarme){
+            true->{
+                if(testeSeODiaInicialSeraHojeOuAmanha(calendar.timeInMillis) == 1){
+                    val horaFinal = (System.currentTimeMillis() - calendar.timeInMillis)
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        alarmManager.setExactAndAllowWhileIdle(
+                            AlarmManager.RTC_WAKEUP,
+                            System.currentTimeMillis() + ((1000 * 60 * (60 * valor).toLong()) - horaFinal),
+                            notifyPendingIntent
+                        )
+                    }else {
+                        alarmManager.setExact(
+                            AlarmManager.RTC_WAKEUP,
+                            System.currentTimeMillis() + ((1000 * 60 * (60 * valor).toLong()) - horaFinal),
+                            notifyPendingIntent
+                        )
+                    }
                 }else{
-                    alarmManager.setExact(
-                        AlarmManager.RTC_WAKEUP,
-                        calendar.timeInMillis,
-                        notifyPendingIntent
-                    )
-                }
-            }
-            else -> {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        alarmManager.setExactAndAllowWhileIdle(
+                            AlarmManager.RTC_WAKEUP,
+                            calendar.timeInMillis,
+                            notifyPendingIntent
+                        )
+                    }else{
+                        alarmManager.setExact(
+                            AlarmManager.RTC_WAKEUP,
+                            calendar.timeInMillis,
+                            notifyPendingIntent
+                        )
+                    }
+                }}
+            false ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
@@ -84,7 +102,6 @@ class AlarmeService {
                         notifyPendingIntent
                     )
                 }
-            }
         }
     }
 

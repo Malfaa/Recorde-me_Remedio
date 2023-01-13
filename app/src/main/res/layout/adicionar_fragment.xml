@@ -234,7 +234,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/remedioTexto"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/remedioTexto"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxProxDia" />
 
                 <EditText
                     android:id="@+id/campoNota"
@@ -293,6 +293,17 @@
                     app:layout_constraintStart_toStartOf="@+id/dataEditText"
                     app:layout_constraintTop_toBottomOf="@+id/dataEditText" />
 
+                <CheckBox
+                    android:id="@+id/checkBoxProxDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distancia_item_edittext"
+                    android:checked="@={viewModel.checkBoxProxDia}"
+                    android:text="@string/prox_dia"
+                    app:layout_constraintEnd_toEndOf="@+id/dataEditText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/checkBox"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

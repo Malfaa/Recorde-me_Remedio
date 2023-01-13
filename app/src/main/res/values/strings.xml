@@ -119,5 +119,6 @@
     <string name="rec_content_desc">Área da Lista de Medicamentos</string>
     <string name="area_hora_inicial">Campo Hora Inicial</string>
     <string name="remedio_titulo">Título do Remédio</string>
+    <string name="prox_dia">Começar a notificar a partir de amanhã?</string>
 
 </resources>

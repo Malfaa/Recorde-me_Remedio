@@ -24,7 +24,7 @@ class AlarmeReceiver: BroadcastReceiver() {
 
             notificationManager.sendNotification(context, item!!)
             AlarmeService().removerAlarme(context, item)
-            AlarmeService().adicionarAlarme(context, item, item.horaEmHora)
+            AlarmeService().adicionarAlarme(context, item, item.horaEmHora,false, proxDia = false)
         }
     }
 }

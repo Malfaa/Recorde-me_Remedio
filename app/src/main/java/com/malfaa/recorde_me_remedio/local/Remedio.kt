@@ -24,6 +24,7 @@ data class Remedio(
     @ColumnInfo(name = "todos_Dias")
     var todosOsDias: Boolean = false,
     var linguagem: String,
+    var proximoDia: Boolean,
     var requestCode: Int
 ): Parcelable{
     @IgnoredOnParcel
